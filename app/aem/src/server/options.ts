@@ -3,6 +3,6 @@ const packageJson = require('../../package.json');
 
 export default {
   packageJson,
-  framework: 'aem',
+  framework: 'html',
   frameworkPresets: [require.resolve('./framework-preset-html.js')],
 };

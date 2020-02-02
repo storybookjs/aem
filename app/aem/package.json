@@ -21,6 +21,7 @@
     "*.d.ts"
   ],
   "main": "app/aem/dist/index.js",
+  "typings": "app/aem/dist/typings.d.js",
   "bin": {
     "build-storybook": "./bin/build.js",
     "start-storybook": "./bin/index.js",
