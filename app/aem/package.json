@@ -1,18 +1,18 @@
 {
-  "name": "@storybook/html",
-  "version": "6.0.0-alpha.2",
-  "description": "Storybook for HTML: View HTML snippets in isolation with Hot Reloading.",
+  "name": "@storybook/aem",
+  "version": "0.0.0",
+  "description": "Storybook for AEM: View AEM components in isolation with hot reloading.",
   "keywords": [
-    "storybook"
+    "storybook",
+    "aem"
   ],
-  "homepage": "https://github.com/storybookjs/storybook/tree/master/app/html",
+  "homepage": "https://github.com/CodeByAlex/storybook-aem-native/app/aem",
   "bugs": {
-    "url": "https://github.com/storybookjs/storybook/issues"
+    "url": "https://github.com/CodeByAlex/storybook-aem-native/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/storybookjs/storybook.git",
-    "directory": "app/html"
+    "directory": "app/aem"
   },
   "license": "MIT",
   "files": [
@@ -22,8 +22,7 @@
     "*.js",
     "*.d.ts"
   ],
-  "main": "dist/client/index.js",
-  "types": "dist/client/index.d.ts",
+  "main": "app/aem/dist/index.js",
   "bin": {
     "build-storybook": "./bin/build.js",
     "start-storybook": "./bin/index.js",
