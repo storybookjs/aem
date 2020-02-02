@@ -7,8 +7,9 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "start-storybook -p 9001"
+    "build": "node ./scripts/watch-tsc.js",
+    "storybook": "start-storybook -p 9001",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,9 @@
     "@storybook/core": "6.0.0-alpha.2",
     "@storybook/core-events": "6.0.0-alpha.2",
     "@storybook/source-loader": "6.0.0-alpha.2",
-    "babel-loader": "^8.0.6"
+    "@types/webpack": "^4.41.3",
+    "babel-loader": "^8.0.6",
+    "shelljs": "^0.8.3",
+    "typescript": "^3.7.5"
   }
 }
