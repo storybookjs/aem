@@ -1,6 +1,7 @@
 {
   "name": "storybook-aem-native",
   "version": "0.0.0",
+  "private": true,
   "description": "",
   "main": "index.js",
   "directories": {
@@ -8,9 +9,12 @@
   },
   "scripts": {
     "build": "node ./scripts/watch-tsc.js",
-    "storybook": "./app/aem/bin/index.js -p 9001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "workspaces": [
+    "app/aem",
+    "examples"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeByAlex/storybook-aem-native.git"
@@ -21,32 +25,7 @@
     "url": "https://github.com/CodeByAlex/storybook-aem-native/issues"
   },
   "homepage": "https://github.com/CodeByAlex/storybook-aem-native#readme",
-  "dependencies": {
-    "@storybook/addons": "6.0.0-alpha.2",
-    "@storybook/client-api": "6.0.0-alpha.2",
-    "@storybook/core": "6.0.0-alpha.2",
-    "@storybook/core-events": "6.0.0-alpha.2",
-    "@storybook/html": "^5.3.10",
-    "@storybook/source-loader": "6.0.0-alpha.2",
-    "@types/webpack": "^4.41.3",
-    "babel-loader": "^8.0.6",
-    "html-loader": "^0.5.5",
-    "typescript": "^3.7.5"
-  },
   "devDependencies": {
-    "@storybook/addon-a11y": "6.0.0-alpha.2",
-    "@storybook/addon-actions": "6.0.0-alpha.2",
-    "@storybook/addon-backgrounds": "6.0.0-alpha.2",
-    "@storybook/addon-centered": "6.0.0-alpha.2",
-    "@storybook/addon-docs": "6.0.0-alpha.2",
-    "@storybook/addon-events": "6.0.0-alpha.2",
-    "@storybook/addon-jest": "6.0.0-alpha.2",
-    "@storybook/addon-knobs": "6.0.0-alpha.2",
-    "@storybook/addon-links": "6.0.0-alpha.2",
-    "@storybook/addon-options": "6.0.0-alpha.2",
-    "@storybook/addon-storyshots": "6.0.0-alpha.2",
-    "@storybook/addon-storysource": "6.0.0-alpha.2",
-    "@storybook/addon-viewport": "6.0.0-alpha.2",
     "chalk": "^3.0.0",
     "shelljs": "^0.8.3"
   }
