@@ -6,9 +6,9 @@
     "storybook",
     "aem"
   ],
-  "homepage": "https://github.com/CodeByAlex/storybook-aem-native/app/aem",
+  "homepage": "https://github.com/storybookjs/aem/app/aem",
   "bugs": {
-    "url": "https://github.com/CodeByAlex/storybook-aem-native/issues"
+    "url": "https://github.com/storybookjs/aem/issues"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,8 @@
     "*.js",
     "*.d.ts"
   ],
-  "main": "app/aem/dist/index.js",
-  "typings": "app/aem/dist/typings.d.js",
+  "main": "dist/client/index.js",
+  "typings": "dist/client/index.d.ts",
   "bin": {
     "build-storybook": "./bin/build.js",
     "start-storybook": "./bin/index.js",
