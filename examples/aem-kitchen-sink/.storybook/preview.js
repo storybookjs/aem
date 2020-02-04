@@ -1,4 +1,4 @@
-import { addParameters, addDecorator } from '@storybook/aem';
+import { addParameters, addDecorator } from '@storybook/client-api';
 import { withA11y } from '@storybook/addon-a11y';
 
 addDecorator(withA11y);
