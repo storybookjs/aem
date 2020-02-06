@@ -1,6 +1,6 @@
 # Storybook Adobe Experience Manager (AEM) App
 
-This project has been created to provide native Storybook support for Adobe Experience Manager. It is a work in progress and has not been published yet. If you are interested in helping out or learning more about this project, you can join the discord channel [here](http://google.com) to see what we've been up to.
+This project has been created to provide native Storybook support for Adobe Experience Manager. It is a work in progress and has not been published yet. If you are interested in helping out or learning more about this project, you can join the discord channel [here](https://discord.gg/z5pGCKQ) to see what we've been up to.
 
 To build and test out this project complete the following:
 
