@@ -17,6 +17,11 @@ import MyText from './text.html';
 export default {
   title: 'Text',
   decorators: [withKnobs],
+  parameters: {
+    knobs: {
+      escapeHTML: false,
+    }
+  },
 };
 
 export const Text = async () => {
@@ -41,4 +46,3 @@ export const Text = async () => {
   });
   return await MyText(runtime);
 };
-
