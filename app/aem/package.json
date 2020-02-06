@@ -31,6 +31,7 @@
     "prepare": "node ../../scripts/prepare.js"
   },
   "dependencies": {
+    "@adobe/htl-loader": "*",
     "@storybook/addons": "6.0.0-alpha.2",
     "@storybook/core": "6.0.0-alpha.2",
     "@storybook/client-api": "6.0.0-alpha.2",
@@ -42,7 +43,6 @@
     "core-js": "^3.0.1",
     "global": "^4.3.2",
     "babel-loader": "^8.0.6",
-    "html-loader": "^0.5.5",
     "regenerator-runtime": "^0.13.3",
     "ts-dedent": "^1.1.0"
   },
