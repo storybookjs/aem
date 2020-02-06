@@ -18,7 +18,10 @@ const { Compiler } = require('@adobe/htlengine');
 async function run(content) {
   // setup the HTL compiler
   const compiler = new Compiler()
-    .includeRuntime(false);
+    .includeRuntime(false)
+    .withRuntimeGlobalName('context')
+    .withRuntimeVar('wcmmode')
+    .withRuntimeVar('component');
 
   // compile the script to a executable template function
   const template = await compiler.compileToString(content);

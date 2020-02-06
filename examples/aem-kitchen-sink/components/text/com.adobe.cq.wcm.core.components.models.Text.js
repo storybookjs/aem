@@ -27,7 +27,8 @@
 //@ConsumerType
 //public interface Text extends ComponentExporter {
 module.exports = class Text {
-  use() {
+  use(context) {
+    const { content } = context;
     return {
       /**
        * Retrieves the text value to be displayed.
@@ -36,7 +37,7 @@ module.exports = class Text {
        * @since com.adobe.cq.wcm.core.components.models 11.0.0; marked <code>default</code> in 12.1.0
        */
       get text() {
-        return 'example text';
+        return content.text || '';
       },
 
       /**
@@ -46,7 +47,7 @@ module.exports = class Text {
        * @since com.adobe.cq.wcm.core.components.models 11.0.0; marked <code>default</code> in 12.1.0
        */
       get isRichText() {
-        return false;
+        return content.isRichText || false;
       },
 
       /**

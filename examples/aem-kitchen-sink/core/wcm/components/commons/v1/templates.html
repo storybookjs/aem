@@ -15,7 +15,7 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
 
 <sly data-sly-template.placeholder="${@ isEmpty, classAppend, emptyTextAppend}">
-    <div data-sly-test="${(global.wcmmode.edit || global.wcmmode.preview) && isEmpty}"
+    <div data-sly-test="${(wcmmode.edit || wcmmode.preview) && isEmpty}"
          class="cq-placeholder ${classAppend}"
          data-emptytext="${component.properties.jcr:title}${emptyTextAppend && ' - '}${emptyTextAppend}"></div>
 </sly>
