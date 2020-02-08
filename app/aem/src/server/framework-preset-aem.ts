@@ -12,7 +12,7 @@ export function webpack(config: Configuration) {
           test: /\.html$/,
           use: [
             {
-              loader: require.resolve('html-loader'),
+              loader: require.resolve('@adobe/htl-loader'),
             },
           ],
         },

@@ -4,7 +4,7 @@ import { RenderMainArgs } from './types';
 
 const rootElement = document.getElementById('root');
 
-export default function renderMain({
+export default async function renderMain({
   storyFn,
   selectedKind,
   selectedStory,
@@ -12,7 +12,7 @@ export default function renderMain({
   showError,
   forceRender,
 }: RenderMainArgs) {
-  const element = storyFn();
+  const element = await storyFn();
 
   showMain();
   if (typeof element === 'string') {
