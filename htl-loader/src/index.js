@@ -16,12 +16,24 @@ const loaderUtils = require('loader-utils');
 const { Compiler } = require('@adobe/htlengine');
 
 async function run(content) {
+
+  const slingModels = {
+    'com.adobe.cq.wcm.core.components.models.Text': true,
+  };
+
+  const modGen = (baseDir, varName, id) => {
+    if (id in slingModels) {
+      return `const ${varName} = require('../../poc/GenericModel')(${JSON.stringify(id)});`;
+    }
+  };
+
   // setup the HTL compiler
   const compiler = new Compiler()
     .includeRuntime(false)
     .withRuntimeGlobalName('context')
     .withRuntimeVar('wcmmode')
-    .withRuntimeVar('component');
+    .withRuntimeVar('component')
+    .withModuleImportGenerator(modGen);
 
   // compile the script to a executable template function
   const template = await compiler.compileToString(content);

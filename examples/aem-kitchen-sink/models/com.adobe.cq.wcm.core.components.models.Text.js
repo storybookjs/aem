@@ -21,43 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 
-// todo: simplify; include automatically during compilation
-import Runtime from '../../poc/BrowserRuntime.js';
-
-import MyText from './text.html';
-
-export default {
-  title: 'Text',
-  decorators: [withKnobs],
-  parameters: {
-    knobs: {
-      escapeHTML: false,
+/**
+ * Model descriptor of the 'Text' component'
+ * Notes:
+ * - they could be automatically extracted from the java interface
+ * - don't know if we really need those, but it would give more stability for developers who
+ *   use models (as opposed to `${properties.xyz}` ).
+ */
+module.exports = {
+  clazz: 'com.adobe.cq.wcm.core.components.models.Text',
+  properties: {
+    text: '',
+    isRichText: '',
+    get exportedType() {
+      // return this.resource.getResourceType();
+      return 'wcm/core/components/text';
     }
-  },
-};
-
-export const Text = async () => {
-  const runtime = new Runtime()
-    .setGlobal({
-      wcmmode: { edit: true },
-      component: {
-        properties: {
-          // todo: read from .content.xml
-          'jcr:title': 'Text (v2)'
-        }
-      },
-      content: {
-        text: text('text', 'Hello, world.' ),
-        isRichText: boolean('isRichText', false),
-      }
-    });
-
-  // todo: runtime globals are not available in templates
-  // see https://github.com/adobe/htlengine/issues/133
-  Object.entries(runtime.globals).forEach(([key, value]) => {
-    global[key] = value;
-  });
-  return await MyText(runtime);
-};
+  }
+}

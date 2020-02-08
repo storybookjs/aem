@@ -21,43 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 
-// todo: simplify; include automatically during compilation
-import Runtime from '../../poc/BrowserRuntime.js';
+/**
+ * Generic model implementation that mocks a Sling Model class.
+ */
+class GenericModel {
+  constructor(descriptor) {
+    this.descriptor = descriptor;
+  }
 
-import MyText from './text.html';
-
-export default {
-  title: 'Text',
-  decorators: [withKnobs],
-  parameters: {
-    knobs: {
-      escapeHTML: false,
-    }
-  },
-};
-
-export const Text = async () => {
-  const runtime = new Runtime()
-    .setGlobal({
-      wcmmode: { edit: true },
-      component: {
-        properties: {
-          // todo: read from .content.xml
-          'jcr:title': 'Text (v2)'
-        }
-      },
-      content: {
-        text: text('text', 'Hello, world.' ),
-        isRichText: boolean('isRichText', false),
+  use(context) {
+    const { content } = context;
+    const model = {};
+    Object.entries(this.descriptor.properties).forEach(([key, value]) => {
+      if (typeof value !== 'function' && content[key]) {
+        model[key] = content[key];
+      } else {
+        model[key] = value;
       }
     });
+    return model;
+  }
+}
 
-  // todo: runtime globals are not available in templates
-  // see https://github.com/adobe/htlengine/issues/133
-  Object.entries(runtime.globals).forEach(([key, value]) => {
-    global[key] = value;
+// todo: load automatically
+const tm = require('../models/com.adobe.cq.wcm.core.components.models.Text');
+
+module.exports = (id) => {
+  return new Proxy(GenericModel, {
+    construct(target, argArray, newTarget) {
+      return new target(tm);
+    }
   });
-  return await MyText(runtime);
 };

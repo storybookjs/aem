@@ -3,7 +3,7 @@ import { withLinks } from '@storybook/addon-links';
 import './welcome.css';
 import welcome from './welcome.html';
 
-import Runtime from './../components/text/BrowserRuntime.js';
+import Runtime from './../poc/BrowserRuntime.js';
 
 export default {
   title: 'Welcome',

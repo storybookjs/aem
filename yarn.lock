@@ -2,10 +2,9 @@
 # yarn lockfile v1
 
 
-"@adobe/htlengine@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@adobe/htlengine/-/htlengine-3.3.1.tgz#c224de9206ec6748dc3bc720cd6530a096fdc925"
-  integrity sha512-gTH72Jld4ZvTre6rHd9mlIDE+zFRcaoy9e+I4XlLj/Lm+yb+k+CVMuq7EcM3eMPuLf2hMijNzI8zaZsVb+lIUA==
+"@adobe/htlengine@./htl-loader/adobe-htlengine-3.3.1-pre1.tgz":
+  version "3.3.1-pre1"
+  resolved "./htl-loader/adobe-htlengine-3.3.1-pre1.tgz#528c722ca9334675b3636218cde1b949809f27fc"
   dependencies:
     antlr4 "^4.7.2"
     co "^4.6.0"
