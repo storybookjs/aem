@@ -41,7 +41,7 @@ export default {
 export const Text = async () => {
   const runtime = new Runtime()
     .setGlobal({
-      wcmmode: { edit: true },
+      wcmmode: { },
       component: {
         properties: {
           // todo: read from .content.xml

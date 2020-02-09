@@ -26,28 +26,21 @@
  * Generic model implementation that mocks a Sling Model class.
  */
 class GenericModel {
-  constructor(descriptor) {
-    this.descriptor = descriptor;
+  constructor(modelClazz) {
+    this.modelClazz = modelClazz;
   }
 
-  use(context) {
+  async use(context) {
     const { content } = context;
-    const model = {};
-    Object.entries(this.descriptor.properties).forEach(([key, value]) => {
-      if (typeof value !== 'function' && content[key]) {
-        model[key] = content[key];
-      } else {
-        model[key] = value;
-      }
-    });
-    return model;
+    return new this.modelClazz(content);
   }
 }
 
 // todo: load automatically
 const models = [
-  require('../models/com.adobe.cq.wcm.core.components.models.Text'),
-  require('../models/com.adobe.cq.wcm.core.components.models.List'),
+  require('../models/com.adobe.cq.wcm.core.components.models.Text').default,
+  require('../models/com.adobe.cq.wcm.core.components.models.List').default,
+  require('../models/com.adobe.cq.wcm.core.components.models.Accordion').default,
 ];
 
 module.exports = (id) => {

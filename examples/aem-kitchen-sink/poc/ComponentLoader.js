@@ -21,39 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
-import Runtime from '../../poc/BrowserRuntime.js';
 
-import MyList from './list.html';
-import MyItem from './item.html';
+// todo: load automatically
+import Text from '../components/text/text.html';
 
-export default {
-  title: 'List',
-  decorators: [withKnobs],
-  parameters: {
-    knobs: {
-      escapeHTML: false,
+export default class ComponentLoader {
+  resolve(type) {
+    if (type === 'wcm/components/text') {
+      return Text;
     }
-  },
-};
-
-export const List = async () => {
-  const runtime = new Runtime()
-    .setGlobal({
-      wcmmode: { },
-      component: {
-        properties: {
-          // todo: read from .content.xml
-          'jcr:title': 'List (v2)'
-        }
-      },
-      content: {
-      }
-    });
-
-  // todo: runtime globals are not available in templates
-  Object.entries(runtime.globals).forEach(([key, value]) => {
-    global[key] = value;
-  });
-  return await MyList(runtime);
-};
+    return  null;
+  }
+}

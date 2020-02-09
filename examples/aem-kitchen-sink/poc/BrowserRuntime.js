@@ -30,6 +30,21 @@ const co = require('co');
 const formatXss = require('@adobe/htlengine/src/runtime/format_xss');
 const VDOMFactory = require('@adobe/htlengine/src/runtime/VDOMFactory.js');
 
+async function defaultResourceLoader(uri) {
+  // const resourcePath = path.resolve(this._resourceDir, uri);
+  //
+  // return new Promise((resolve, reject) => {
+  //   fs.readFile(resourcePath, 'utf8', (err, data) => {
+  //     if (err) {
+  //       reject(err);
+  //     } else {
+  //       resolve(data);
+  //     }
+  //   });
+  // });
+  return uri;
+}
+
 module.exports = class Runtime {
   constructor() {
     this._globals = {};
@@ -37,6 +52,7 @@ module.exports = class Runtime {
     this._useDir = '.';
     this._resourceDir = '.';
     this._dom = new VDOMFactory(window.document.implementation);
+    this._resourceLoader = defaultResourceLoader;
   }
 
   get globals() {
@@ -87,6 +103,11 @@ module.exports = class Runtime {
     return this;
   }
 
+  withResourceLoader(fn) {
+    this._resourceLoader = fn;
+    return this;
+  }
+
   setGlobal(name, obj) {
     if (obj === undefined) {
       Object.keys(name).forEach((k) => {
@@ -115,7 +136,6 @@ module.exports = class Runtime {
   }
 
   use(Mod, options) {
-    console.log(Mod);
     const mod = new Mod();
     Object.keys(options).forEach((k) => {
       mod[k] = options[k];
@@ -124,17 +144,7 @@ module.exports = class Runtime {
   }
 
   resource(uri) {
-    const resourcePath = path.resolve(this._resourceDir, uri);
-
-    return new Promise((resolve, reject) => {
-      fs.readFile(resourcePath, 'utf8', (err, data) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
-        }
-      });
-    });
+    return this._resourceLoader(this, uri);
   }
 
   // eslint-disable-next-line class-methods-use-this
