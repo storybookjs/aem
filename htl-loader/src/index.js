@@ -17,8 +17,10 @@ const { Compiler } = require('@adobe/htlengine');
 
 async function run(content) {
 
+  // todo: load automatically
   const slingModels = {
     'com.adobe.cq.wcm.core.components.models.Text': true,
+    'com.adobe.cq.wcm.core.components.models.List': true,
   };
 
   const modGen = (baseDir, varName, id) => {

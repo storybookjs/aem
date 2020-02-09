@@ -21,43 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import Runtime from '../../poc/BrowserRuntime.js';
 
-/**
- * Generic model implementation that mocks a Sling Model class.
- */
-class GenericModel {
-  constructor(descriptor) {
-    this.descriptor = descriptor;
-  }
+import MyList from './list.html';
+import MyItem from './item.html';
 
-  use(context) {
-    const { content } = context;
-    const model = {};
-    Object.entries(this.descriptor.properties).forEach(([key, value]) => {
-      if (typeof value !== 'function' && content[key]) {
-        model[key] = content[key];
-      } else {
-        model[key] = value;
+export default {
+  title: 'List',
+  decorators: [withKnobs],
+  parameters: {
+    knobs: {
+      escapeHTML: false,
+    }
+  },
+};
+
+export const List = async () => {
+  const runtime = new Runtime()
+    .setGlobal({
+      wcmmode: { edit: true },
+      component: {
+        properties: {
+          // todo: read from .content.xml
+          'jcr:title': 'List (v2)'
+        }
+      },
+      content: {
       }
     });
-    return model;
-  }
-}
 
-// todo: load automatically
-const models = [
-  require('../models/com.adobe.cq.wcm.core.components.models.Text'),
-  require('../models/com.adobe.cq.wcm.core.components.models.List'),
-];
-
-module.exports = (id) => {
-  return new Proxy(GenericModel, {
-    construct(target, argArray, newTarget) {
-      const model = models.find((mod) => mod.clazz === id);
-      if (!model) {
-        throw Error(`no such model: ${id}`);
-      }
-      return new target(model);
-    }
+  // todo: runtime globals are not available in templates
+  Object.entries(runtime.globals).forEach(([key, value]) => {
+    global[key] = value;
   });
+  return await MyList(runtime);
 };

@@ -23,41 +23,31 @@
  */
 
 /**
- * Generic model implementation that mocks a Sling Model class.
+ * Model descriptor of the 'Text' component'
+ * Notes:
+ * - they could be automatically extracted from the java interface
+ * - don't know if we really need those, but it would give more stability for developers who
+ *   use models (as opposed to `${properties.xyz}` ).
  */
-class GenericModel {
-  constructor(descriptor) {
-    this.descriptor = descriptor;
-  }
+module.exports = {
+  clazz: 'com.adobe.cq.wcm.core.components.models.List',
+  properties: {
+    text: '',
+    isRichText: '',
+    get exportedType() {
+      // return this.resource.getResourceType();
+      return 'wcm/core/components/text';
+    },
 
-  use(context) {
-    const { content } = context;
-    const model = {};
-    Object.entries(this.descriptor.properties).forEach(([key, value]) => {
-      if (typeof value !== 'function' && content[key]) {
-        model[key] = content[key];
-      } else {
-        model[key] = value;
-      }
-    });
-    return model;
-  }
-}
-
-// todo: load automatically
-const models = [
-  require('../models/com.adobe.cq.wcm.core.components.models.Text'),
-  require('../models/com.adobe.cq.wcm.core.components.models.List'),
-];
-
-module.exports = (id) => {
-  return new Proxy(GenericModel, {
-    construct(target, argArray, newTarget) {
-      const model = models.find((mod) => mod.clazz === id);
-      if (!model) {
-        throw Error(`no such model: ${id}`);
-      }
-      return new target(model);
+    get listItems() {
+      return [
+        {
+          title: 'Item 1',
+        },
+        {
+          title: 'Item 2',
+        }
+      ];
     }
-  });
+  }
 };
