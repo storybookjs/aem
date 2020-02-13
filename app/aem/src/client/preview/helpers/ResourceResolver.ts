@@ -1,6 +1,8 @@
 import Runtime from './BrowserRuntime';
 
 export default class ResourceResolver {
+  content = null;
+  loader = null;
 
   constructor(content, componentLoader) {
     this.content = content;

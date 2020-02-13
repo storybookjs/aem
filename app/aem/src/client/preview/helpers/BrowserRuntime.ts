@@ -1,11 +1,10 @@
-// const path = require('path');
 const co = require('co');
+// const path = require('path');
 // const fs = require('fs');
 // const format = require('./format');
 // const formatUri = require('./format_uri');
 const formatXss = require('@adobe/htlengine/src/runtime/format_xss');
 const VDOMFactory = require('@adobe/htlengine/src/runtime/VDOMFactory.js');
-
 async function defaultResourceLoader(uri) {
   // const resourcePath = path.resolve(this._resourceDir, uri);
   //
@@ -21,12 +20,15 @@ async function defaultResourceLoader(uri) {
   return uri;
 }
 
-module.exports = class Runtime {
+export default class Runtime {
+  _globals = {};
+  _templates = {};
+  _useDir = '.';
+  _resourceDir = '.';
+  _dom = null;
+  _resourceLoader = null;
+
   constructor() {
-    this._globals = {};
-    this._templates = {};
-    this._useDir = '.';
-    this._resourceDir = '.';
     this._dom = new VDOMFactory(window.document.implementation);
     this._resourceLoader = defaultResourceLoader;
   }
@@ -84,13 +86,11 @@ module.exports = class Runtime {
     return this;
   }
 
-  setGlobal(name, obj) {
-    if (obj === undefined) {
-      Object.keys(name).forEach((k) => {
-        this._globals[k] = name[k];
+  setGlobal(obj) {
+    if (obj) {
+      Object.keys(obj).forEach((k) => {
+        this._globals[k] = obj[k];
       });
-    } else {
-      this._globals[name] = obj;
     }
     return this;
   }
@@ -160,13 +160,13 @@ module.exports = class Runtime {
       return value.join(arg0 || ', ');
     }
 
-    if (name === 'format') {
-      return format(value, arg0);
-    }
+    // if (name === 'format') {
+    //   return format(value, arg0);
+    // }
 
-    if (name === 'uriManipulation') {
-      return formatUri(value, arg0);
-    }
+    // if (name === 'uriManipulation') {
+    //   return formatUri(value, arg0);
+    // }
 
     if (name === 'xss') {
       return this.xss(value, arg0, arg1);

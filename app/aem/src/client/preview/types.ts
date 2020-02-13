@@ -1,7 +1,5 @@
 import { StoryFn } from '@storybook/addons';
 
-export type StoryFnHtmlReturnType = string | Node;
-
 export interface IStorybookStory {
   name: string;
   render: () => any;
@@ -24,4 +22,12 @@ export interface RenderMainArgs {
   showMain: () => void;
   showError: (args: ShowErrorArgs) => void;
   forceRender: boolean;
+}
+
+export interface StoryFnHtmlReturnType {
+  content?: any;
+  props?: any;
+  resourceLoaderPath?: string;
+  template?: any;
+  wcmmode?: any;
 }
