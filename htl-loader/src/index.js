@@ -16,13 +16,8 @@ const loaderUtils = require('loader-utils');
 const { Compiler } = require('@adobe/htlengine');
 
 async function run(content) {
-
-  const slingModels = {
-    'com.adobe.cq.wcm.core.components.models.Text': true,
-  };
-
   const modGen = (baseDir, varName, id) => {
-    if (id in slingModels) {
+    if (id.startsWith('com.adobe.cq.wcm.core.components.models')) {
       return `const ${varName} = require('../../poc/GenericModel')(${JSON.stringify(id)});`;
     }
   };

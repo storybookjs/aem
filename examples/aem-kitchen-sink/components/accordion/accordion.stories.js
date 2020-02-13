@@ -2,11 +2,14 @@ import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 
 // todo: simplify; include automatically during compilation
 import Runtime from '../../poc/BrowserRuntime.js';
+import ResourceResolver from '../../poc/ResourceResolver';
+import ComponentLoader from '../../poc/ComponentLoader';
+import MyAccordion from './accordion.html';
 
-import MyText from './text.html';
+import exampleContent from './example_content';
 
 export default {
-  title: 'Text',
+  title: 'Accordion',
   decorators: [withKnobs],
   parameters: {
     knobs: {
@@ -15,20 +18,19 @@ export default {
   },
 };
 
-export const Text = async () => {
+export const Accordion = async () => {
+  const resolver = new ResourceResolver(exampleContent, new ComponentLoader());
   const runtime = new Runtime()
+    .withResourceLoader(resolver.createResourceLoader('/'))
     .setGlobal({
       wcmmode: { },
       component: {
         properties: {
           // todo: read from .content.xml
-          'jcr:title': 'Text (v2)'
+          'jcr:title': 'Accordion (v1)'
         }
       },
-      content: {
-        text: text('text', 'Hello, world.' ),
-        isRichText: boolean('isRichText', false),
-      }
+      content: exampleContent,
     });
 
   // todo: runtime globals are not available in templates
@@ -36,5 +38,5 @@ export const Text = async () => {
   Object.entries(runtime.globals).forEach(([key, value]) => {
     global[key] = value;
   });
-  return await MyText(runtime);
+  return await MyAccordion(runtime);
 };

@@ -1,15 +1,3 @@
-/*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- */
-
 // const path = require('path');
 const co = require('co');
 // const fs = require('fs');
@@ -18,6 +6,21 @@ const co = require('co');
 const formatXss = require('@adobe/htlengine/src/runtime/format_xss');
 const VDOMFactory = require('@adobe/htlengine/src/runtime/VDOMFactory.js');
 
+async function defaultResourceLoader(uri) {
+  // const resourcePath = path.resolve(this._resourceDir, uri);
+  //
+  // return new Promise((resolve, reject) => {
+  //   fs.readFile(resourcePath, 'utf8', (err, data) => {
+  //     if (err) {
+  //       reject(err);
+  //     } else {
+  //       resolve(data);
+  //     }
+  //   });
+  // });
+  return uri;
+}
+
 module.exports = class Runtime {
   constructor() {
     this._globals = {};
@@ -25,6 +28,7 @@ module.exports = class Runtime {
     this._useDir = '.';
     this._resourceDir = '.';
     this._dom = new VDOMFactory(window.document.implementation);
+    this._resourceLoader = defaultResourceLoader;
   }
 
   get globals() {
@@ -75,6 +79,11 @@ module.exports = class Runtime {
     return this;
   }
 
+  withResourceLoader(fn) {
+    this._resourceLoader = fn;
+    return this;
+  }
+
   setGlobal(name, obj) {
     if (obj === undefined) {
       Object.keys(name).forEach((k) => {
@@ -103,7 +112,6 @@ module.exports = class Runtime {
   }
 
   use(Mod, options) {
-    console.log(Mod);
     const mod = new Mod();
     Object.keys(options).forEach((k) => {
       mod[k] = options[k];
@@ -112,17 +120,7 @@ module.exports = class Runtime {
   }
 
   resource(uri) {
-    const resourcePath = path.resolve(this._resourceDir, uri);
-
-    return new Promise((resolve, reject) => {
-      fs.readFile(resourcePath, 'utf8', (err, data) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
-        }
-      });
-    });
+    return this._resourceLoader(this, uri);
   }
 
   // eslint-disable-next-line class-methods-use-this
