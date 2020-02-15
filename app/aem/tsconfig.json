@@ -4,5 +4,5 @@
     "rootDir": "./src",
     "types": ["webpack-env"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "src/client/preview/helpers/*"]
 }
