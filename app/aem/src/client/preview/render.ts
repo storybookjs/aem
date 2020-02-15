@@ -1,7 +1,7 @@
 import { document, Node } from 'global';
 import dedent from 'ts-dedent';
 import { RenderMainArgs } from './types';
-import Runtime from './helpers/BrowserRuntime';
+import * as Runtime from './helpers/BrowserRuntime';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
 
