@@ -1,3 +1,18 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ~ Copyright 2018 Adobe
+ ~
+ ~ Licensed under the Apache License, Version 2.0 (the "License");
+ ~ you may not use this file except in compliance with the License.
+ ~ You may obtain a copy of the License at
+ ~
+ ~     http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~ Unless required by applicable law or agreed to in writing, software
+ ~ distributed under the License is distributed on an "AS IS" BASIS,
+ ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ~ See the License for the specific language governing permissions and
+ ~ limitations under the License.
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 import ListItem from './com.adobe.cq.wcm.core.components.models.ListItem';
 
 /**
@@ -10,40 +25,45 @@ export default class Container {
     this.content = content;
   }
 
+  static get clazz() {
+    return 'com.adobe.cq.wcm.core.components.models.Container';
+  }
+
+
   /**
    * Name of the configuration policy property that indicates if background images are enabled
    *
    * @since com.adobe.cq.wcm.core.components.models 12.8.0
    */
-  static PN_BACKGROUND_IMAGE_ENABLED = "backgroundImageEnabled";
+  // static PN_BACKGROUND_IMAGE_ENABLED = "backgroundImageEnabled";
 
   /**
    * Name of the configuration policy property that indicates if background colors are enabled
    *
    * @since com.adobe.cq.wcm.core.components.models 12.8.0
    */
-  static PN_BACKGROUND_COLOR_ENABLED = "backgroundColorEnabled";
+  // static PN_BACKGROUND_COLOR_ENABLED = "backgroundColorEnabled";
 
   /**
    * Name of the configuration policy property that indicates if background colors are to be restricted to predefined values
    *
    * @since com.adobe.cq.wcm.core.components.models 12.8.0
    */
-  static PN_BACKGROUND_COLOR_SWATCHES_ONLY = "backgroundColorSwatchesOnly";
+  // static PN_BACKGROUND_COLOR_SWATCHES_ONLY = "backgroundColorSwatchesOnly";
 
   /**
    * Name of the resource property that indicates that path to the background image
    *
    * @since com.adobe.cq.wcm.core.components.models 12.8.0
    */
-  static PN_BACKGROUND_IMAGE_REFERENCE = "backgroundImageReference";
+  // static PN_BACKGROUND_IMAGE_REFERENCE = "backgroundImageReference";
 
   /**
    * Name of the resource property that indicates the background color
    *
    * @since com.adobe.cq.wcm.core.components.models 12.8.0
    */
-  static PN_BACKGROUND_COLOR = "backgroundColor";
+  // static PN_BACKGROUND_COLOR = "backgroundColor";
 
   /**
    * Returns a list of container items

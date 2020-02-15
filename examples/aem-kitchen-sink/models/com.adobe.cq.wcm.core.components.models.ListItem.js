@@ -1,13 +1,32 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ~ Copyright 2018 Adobe
+ ~
+ ~ Licensed under the Apache License, Version 2.0 (the "License");
+ ~ you may not use this file except in compliance with the License.
+ ~ You may obtain a copy of the License at
+ ~
+ ~     http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~ Unless required by applicable law or agreed to in writing, software
+ ~ distributed under the License is distributed on an "AS IS" BASIS,
+ ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ~ See the License for the specific language governing permissions and
+ ~ limitations under the License.
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 /**
  * Interface for a generic list item, used by the {@link List} and {@link Search} models.
  *
  * @since com.adobe.cq.wcm.core.components.models 12.2.0
  */
 export default class ListItem {
-  static clazz = 'com.adobe.cq.wcm.core.components.models.ListItem';
 
   constructor(content) {
     this.content = content;
+  }
+
+  static get clazz() {
+    return 'com.adobe.cq.wcm.core.components.models.ListItem';
   }
 
   /**

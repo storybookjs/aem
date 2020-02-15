@@ -19,6 +19,6 @@ export const Accordion = () => {
       'jcr:title': 'Accordion (v1)'
     },
     resourceLoaderPath: '/',
-    template: MyAccordion,
+    template: MyAccordion
   };
 };
