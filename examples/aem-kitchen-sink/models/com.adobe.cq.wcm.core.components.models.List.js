@@ -1,19 +1,3 @@
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- ~ Copyright 2018 Adobe
- ~
- ~ Licensed under the Apache License, Version 2.0 (the "License");
- ~ you may not use this file except in compliance with the License.
- ~ You may obtain a copy of the License at
- ~
- ~     http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~ Unless required by applicable law or agreed to in writing, software
- ~ distributed under the License is distributed on an "AS IS" BASIS,
- ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- ~ See the License for the specific language governing permissions and
- ~ limitations under the License.
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 import ListItem from './com.adobe.cq.wcm.core.components.models.ListItem';
 
 /**
@@ -23,13 +7,10 @@ import ListItem from './com.adobe.cq.wcm.core.components.models.ListItem';
  * @since com.adobe.cq.wcm.core.components.models 11.0.0
  */
 export default class List  {
+  static clazz = 'com.adobe.cq.wcm.core.components.models.List';
 
   constructor(content) {
     this.content = content;
-  }
-
-  static get clazz() {
-    return 'com.adobe.cq.wcm.core.components.models.List';
   }
 
   /**
@@ -45,7 +26,7 @@ export default class List  {
    *
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_SOURCE = "listFrom";
+  static PN_SOURCE = "listFrom";
 
   /**
    * Name of the resource property storing the list of pages to be rendered if the source of the list is <code>static</code>.
@@ -53,7 +34,7 @@ export default class List  {
    * @see #PN_SOURCE
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_PAGES = "pages";
+  static PN_PAGES = "pages";
 
   /**
    * Name of the resource property storing the root page from which to build the list if the source of the list is <code>children</code>.
@@ -61,7 +42,7 @@ export default class List  {
    * @see #PN_SOURCE
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_PARENT_PAGE = "parentPage";
+  static PN_PARENT_PAGE = "parentPage";
 
   /**
    * Name of the resource property storing the root from where the tag search is performed.
@@ -69,7 +50,7 @@ export default class List  {
    * @see #PN_SOURCE
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static  PN_TAGS_PARENT_PAGE = "tagsSearchRoot";
+  static  PN_TAGS_PARENT_PAGE = "tagsSearchRoot";
 
   /**
    * Name of the resource property storing the tags that will be used for building the list if the source of the list is
@@ -78,7 +59,7 @@ export default class List  {
    * @see #PN_SOURCE
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_TAGS = "tags";
+  static PN_TAGS = "tags";
 
   /**
    * Name of the resource property indicating if the matching against tags can accept any tag from the tag list. The accepted value is
@@ -87,28 +68,28 @@ export default class List  {
    * @see #PN_SOURCE
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_TAGS_MATCH = "tagsMatch";
+  static PN_TAGS_MATCH = "tagsMatch";
 
   /**
    * Name of the boolean resource property indicating if the list items should render a description.
    *
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_SHOW_DESCRIPTION = "showDescription";
+  static PN_SHOW_DESCRIPTION = "showDescription";
 
   /**
    * Name of the boolean resource property indicating if the list items should render the modification date of each item.
    *
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_SHOW_MODIFICATION_DATE = "showModificationDate";
+  static PN_SHOW_MODIFICATION_DATE = "showModificationDate";
 
   /**
    * Name of the boolean resource property indication if the items should render a link to the page they represent.
    *
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_LINK_ITEMS = "linkItems";
+  static PN_LINK_ITEMS = "linkItems";
 
   /**
    * Name of the resource property storing where a search should be performed if the source of the list is <code>search</code>.
@@ -116,14 +97,14 @@ export default class List  {
    * @see #PN_SOURCE
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_SEARCH_IN = "searchIn";
+  static PN_SEARCH_IN = "searchIn";
 
   /**
    * Name of the resource property indicating how the list items should be sorted. Possible values: <code>asc</code>, <code>desc</code>.
    *
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_SORT_ORDER = "sortOrder";
+  static PN_SORT_ORDER = "sortOrder";
 
   /**
    * Name of the resource property indicating by which criterion the sort is performed. Possible value: <code>title</code>,
@@ -131,14 +112,14 @@ export default class List  {
    *
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_ORDER_BY = "orderBy";
+  static PN_ORDER_BY = "orderBy";
 
   /**
    * Name of the resource property indicating which date format should be used when the list items render their modification date.
    *
    * @since com.adobe.cq.wcm.core.components.models 11.0.0
    */
-  // static PN_DATE_FORMAT = "dateFormat";
+  static PN_DATE_FORMAT = "dateFormat";
 
   /**
    * Returns the list's items collection, as {@link Page} elements.
