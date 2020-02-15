@@ -1,10 +1,35 @@
-const co = require('co');
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2020 Adobe
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 // const path = require('path');
+const co = require('co');
 // const fs = require('fs');
 // const format = require('./format');
 // const formatUri = require('./format_uri');
 const formatXss = require('@adobe/htlengine/src/runtime/format_xss');
 const VDOMFactory = require('@adobe/htlengine/src/runtime/VDOMFactory.js');
+
 async function defaultResourceLoader(uri) {
   // const resourcePath = path.resolve(this._resourceDir, uri);
   //
@@ -20,15 +45,12 @@ async function defaultResourceLoader(uri) {
   return uri;
 }
 
-export default class Runtime {
-  _globals = {};
-  _templates = {};
-  _useDir = '.';
-  _resourceDir = '.';
-  _dom = null;
-  _resourceLoader = null;
-
+module.exports = class Runtime {
   constructor() {
+    this._globals = {};
+    this._templates = {};
+    this._useDir = '.';
+    this._resourceDir = '.';
     this._dom = new VDOMFactory(window.document.implementation);
     this._resourceLoader = defaultResourceLoader;
   }
@@ -86,11 +108,13 @@ export default class Runtime {
     return this;
   }
 
-  setGlobal(obj) {
-    if (obj) {
-      Object.keys(obj).forEach((k) => {
-        this._globals[k] = obj[k];
+  setGlobal(name, obj) {
+    if (obj === undefined) {
+      Object.keys(name).forEach((k) => {
+        this._globals[k] = name[k];
       });
+    } else {
+      this._globals[name] = obj;
     }
     return this;
   }
@@ -160,13 +184,13 @@ export default class Runtime {
       return value.join(arg0 || ', ');
     }
 
-    // if (name === 'format') {
-    //   return format(value, arg0);
-    // }
+    if (name === 'format') {
+      return format(value, arg0);
+    }
 
-    // if (name === 'uriManipulation') {
-    //   return formatUri(value, arg0);
-    // }
+    if (name === 'uriManipulation') {
+      return formatUri(value, arg0);
+    }
 
     if (name === 'xss') {
       return this.xss(value, arg0, arg1);
