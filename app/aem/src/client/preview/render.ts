@@ -1,7 +1,7 @@
 import { document, Node } from 'global';
 import dedent from 'ts-dedent';
 import { RenderMainArgs } from './types';
-import Runtime from '@adobe/htlengine/src/runtime/Runtime';
+import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
 
@@ -16,25 +16,23 @@ export default async function renderMain({
   forceRender,
 }: RenderMainArgs) {
   const storyObj = storyFn() as any;
-  console.log(storyObj)
-  showMain();
   const { resourceLoaderPath, template, props, content, wcmmode = {} } = storyObj;
-
   const runtime = new Runtime();
   runtime.setGlobal({
-      wcmmode: wcmmode,
-      component: {
-        properties: props
-      },
-      content: content,
-    });
+    wcmmode: wcmmode,
+    component: {
+      properties: props
+    },
+    content: content,
+  });
   runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation));
-  console.log('made it')
   if(resourceLoaderPath && content) {
     const resolver = new ResourceResolver(content, new ComponentLoader());
     runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath));
   }
 
+  showMain();
+  
   // todo: runtime globals are not available in templates
   // see https://github.com/adobe/htlengine/issues/133
   Object.entries(runtime.globals).forEach(([key, value]) => {
