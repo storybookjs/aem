@@ -17,7 +17,7 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@adobe/htlengine": "./htl-loader/adobe-htlengine-3.3.1-pre1.tgz",
+    "@adobe/htlengine": "4.0.0",
     "loader-utils": "^1.2.3"
   },
   "devDependencies": {

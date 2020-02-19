@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@adobe/htl-loader": "*",
+    "@adobe/htlengine": "4.0.0",
     "@storybook/addons": "6.0.0-alpha.2",
     "@storybook/core": "6.0.0-alpha.2",
     "@storybook/client-api": "6.0.0-alpha.2",

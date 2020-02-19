@@ -1,4 +1,4 @@
-import Runtime from './BrowserRuntime';
+import Runtime from '@adobe/htlengine/src/runtime/Runtime';
 
 export default class ResourceResolver {
   content = null;
@@ -41,6 +41,7 @@ export default class ResourceResolver {
       // create a new runtime for this component
       const localRuntime = new Runtime()
         .withResourceLoader(this.createResourceLoader(path))
+        .withDomFactory(new Runtime.VDOMFactory(window.document.implementation))
         .setGlobal({
           ...runtime._globals,
           component: {
