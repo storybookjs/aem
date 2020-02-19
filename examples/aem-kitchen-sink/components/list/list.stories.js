@@ -1,5 +1,5 @@
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
-import Runtime from '../../poc/BrowserRuntime.js';
+import Runtime from '@adobe/htlengine/src/runtime/Runtime';
 
 import MyList from './list.html';
 import MyItem from './item.html';
@@ -16,6 +16,7 @@ export default {
 
 export const List = async () => {
   const runtime = new Runtime()
+    .withDomFactory(new Runtime.VDOMFactory(window.document.implementation))
     .setGlobal({
       wcmmode: { },
       component: {

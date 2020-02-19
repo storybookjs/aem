@@ -12,10 +12,9 @@
 
 'use strict';
 
-const loaderUtils = require('loader-utils');
 const { Compiler } = require('@adobe/htlengine');
 
-async function run(content) {
+module.exports = async function compile(content) {
   const modGen = (baseDir, varName, id) => {
     if (id.startsWith('com.adobe.cq.wcm.core.components.models')) {
       return `const ${varName} = require('../../poc/GenericModel')(${JSON.stringify(id)});`;
@@ -24,6 +23,7 @@ async function run(content) {
 
   // setup the HTL compiler
   const compiler = new Compiler()
+    .withDirectory(this.rootContext)
     .includeRuntime(false)
     .withRuntimeGlobalName('context')
     .withRuntimeVar('wcmmode')
@@ -31,14 +31,5 @@ async function run(content) {
     .withModuleImportGenerator(modGen);
 
   // compile the script to a executable template function
-  const template = await compiler.compileToString(content);
-
-  console.log(template);
-
-  return template;
-}
-
-module.exports = async function compile(content) {
-  // const options = loaderUtils.getOptions(this);
-  return run(content);
+  return await compiler.compileToString(content, this.context);
 };

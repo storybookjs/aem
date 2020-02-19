@@ -1,7 +1,7 @@
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 
 // todo: simplify; include automatically during compilation
-import Runtime from '../../poc/BrowserRuntime.js';
+import Runtime from '@adobe/htlengine/src/runtime/Runtime';
 import ResourceResolver from '../../poc/ResourceResolver';
 import ComponentLoader from '../../poc/ComponentLoader';
 import MyAccordion from './accordion.html';
@@ -21,6 +21,7 @@ export default {
 export const Accordion = async () => {
   const resolver = new ResourceResolver(exampleContent, new ComponentLoader());
   const runtime = new Runtime()
+    .withDomFactory(new Runtime.VDOMFactory(window.document.implementation))
     .withResourceLoader(resolver.createResourceLoader('/'))
     .setGlobal({
       wcmmode: { },

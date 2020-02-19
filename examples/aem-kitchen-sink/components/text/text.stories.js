@@ -1,7 +1,7 @@
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 
 // todo: simplify; include automatically during compilation
-import Runtime from '../../poc/BrowserRuntime.js';
+import Runtime from '@adobe/htlengine/src/runtime/Runtime';
 
 import MyText from './text.html';
 
@@ -17,6 +17,7 @@ export default {
 
 export const Text = async () => {
   const runtime = new Runtime()
+    .withDomFactory(new Runtime.VDOMFactory(window.document.implementation))
     .setGlobal({
       wcmmode: { },
       component: {
