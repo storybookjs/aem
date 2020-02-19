@@ -24,3 +24,16 @@ export const Text = () => {
     template: MyText,
   };
 };
+
+export const RichText = () => {
+  return {
+    content: {
+      text: text('text', '<h1>Hello, world.</h1>' ),
+      isRichText: boolean('isRichText', true),
+    },
+    props: {
+      'jcr:title': 'Text (v2)'
+    },
+    template: MyText,
+  };
+};
