@@ -12,15 +12,9 @@
 
 'use strict';
 
-const loaderUtils = require('loader-utils');
 const { Compiler } = require('@adobe/htlengine');
 
-async function run(content) {
-}
-
 module.exports = async function compile(content) {
-  // const options = loaderUtils.getOptions(this);
-
   const modGen = (baseDir, varName, id) => {
     if (id.startsWith('com.adobe.cq.wcm.core.components.models')) {
       return `const ${varName} = require('../../poc/GenericModel')(${JSON.stringify(id)});`;
@@ -37,9 +31,5 @@ module.exports = async function compile(content) {
     .withModuleImportGenerator(modGen);
 
   // compile the script to a executable template function
-  const template = await compiler.compileToString(content, this.context);
-
-  // console.log(template);
-
-  return template;
+  return await compiler.compileToString(content, this.context);
 };
