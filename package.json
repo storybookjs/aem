@@ -8,7 +8,7 @@
     "example": "examples"
   },
   "scripts": {
-    "build": "node ./scripts/watch-tsc.js",
+    "build": "npx tsc ./app/aem/src/**/* --watch --outDir ./app/aem/dist --listEmittedFiles true --allowjs true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "workspaces": [

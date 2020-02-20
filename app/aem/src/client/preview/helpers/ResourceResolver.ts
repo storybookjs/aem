@@ -1,6 +1,8 @@
 import Runtime from '@adobe/htlengine/src/runtime/Runtime';
 
 export default class ResourceResolver {
+  content = null;
+  loader = null;
 
   constructor(content, componentLoader) {
     this.content = content;

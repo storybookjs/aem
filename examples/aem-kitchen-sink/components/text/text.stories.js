@@ -1,9 +1,6 @@
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
-
-// todo: simplify; include automatically during compilation
-import Runtime from '@adobe/htlengine/src/runtime/Runtime';
-
 import MyText from './text.html';
+// todo: simplify; include automatically during compilation
 
 export default {
   title: 'Text',
@@ -15,27 +12,28 @@ export default {
   },
 };
 
-export const Text = async () => {
-  const runtime = new Runtime()
-    .withDomFactory(new Runtime.VDOMFactory(window.document.implementation))
-    .setGlobal({
-      wcmmode: { },
-      component: {
-        properties: {
-          // todo: read from .content.xml
-          'jcr:title': 'Text (v2)'
-        }
-      },
-      content: {
-        text: text('text', 'Hello, world.' ),
-        isRichText: boolean('isRichText', false),
-      }
-    });
+export const Text = () => {
+  return {
+    content: {
+      text: text('text', 'Hello, world.' ),
+      isRichText: boolean('isRichText', false),
+    },
+    props: {
+      'jcr:title': 'Text (v2)'
+    },
+    template: MyText,
+  };
+};
 
-  // todo: runtime globals are not available in templates
-  // see https://github.com/adobe/htlengine/issues/133
-  Object.entries(runtime.globals).forEach(([key, value]) => {
-    global[key] = value;
-  });
-  return await MyText(runtime);
+export const RichText = () => {
+  return {
+    content: {
+      text: text('text', '<h1>Hello, world.</h1>' ),
+      isRichText: boolean('isRichText', true),
+    },
+    props: {
+      'jcr:title': 'Text (v2)'
+    },
+    template: MyText,
+  };
 };
