@@ -39,3 +39,36 @@ To build and test out this project complete the following:
 - add configuration to specify runtime global vars
 - add configuration to specify runtime global name
 - add configuration to specify module import generator
+
+## Usage
+See [example](https://github.com/storybookjs/aem/blob/master/examples/aem-kitchen-sink/components/text/text.stories.js):
+```
+import Example from ('./example.html'); // HTL File or HTML File
+export const Example = () => {
+  return {
+    // content - optional 
+    // JSON Content TKTK Needs description, can be combined with Knobs
+    content: {
+      text: text('text', 'Hello, world.' ),
+      isRichText: boolean('isRichText', false),
+    },
+    // props - optional 
+    // JSON Content TKTK Needs description
+    props: {
+      'jcr:title': 'Text (v2)'
+    },
+    // template - required
+    // HTL/HTML File Reference or Inline HTML
+    template: MyText, 
+    // decorationTag - optional - {} or null
+    // Wrapper Element for template
+    // Null value prevents the template from being wrapped
+    // decorationTag.cssClasses - optional - array - Array of classes that will be added to the Wrapper Element
+    // decorationTag.tagname - optional - string - The type of Wrapper Element - e.g. div, section, etc
+    decorationTag: {
+      cssClass: ['text'],
+      tagName: 'article'
+    }
+  };
+};
+```

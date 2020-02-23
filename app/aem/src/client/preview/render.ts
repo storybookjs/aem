@@ -15,8 +15,15 @@ export default async function renderMain({
   showError,
   forceRender,
 }: RenderMainArgs) {
+  const errorMessage = {
+    title: `Expecting an HTML snippet or DOM node from the story: "${selectedStory}" of "${selectedKind}".`,
+    description: dedent`
+      Did you forget to return the HTML snippet from the story in the template parameter?
+      Use "template: <your snippet, node, or template>" or when defining the story.
+    `,
+  };
   const storyObj = storyFn() as any;
-  const { resourceLoaderPath, template, props, content, wcmmode = {} } = storyObj;
+  const { resourceLoaderPath, template, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
   const runtime = new Runtime();
   runtime.setGlobal({
     wcmmode: wcmmode,
@@ -38,26 +45,42 @@ export default async function renderMain({
   Object.entries(runtime.globals).forEach(([key, value]) => {
     (global as any)[key] = value;
   });
-  const element =  await template(runtime);
-  console.log('made it again')
 
-  if (typeof element === 'string') {
-    rootElement.innerHTML = element;
-  } else if (element instanceof Node) {
-    // Don't re-mount the element if it didn't change and neither did the story
-    if (rootElement.firstChild === element && forceRender === true) {
-      return;
+  const decorationElementType = decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
+  const decorationElementClass = decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses.join(' ') : 'component';
+
+  const decorationElement = document.createElement(decorationElementType);
+  decorationElement.setAttribute('class',decorationElementClass);
+  
+  if (typeof template === 'string') {
+    if (decorationTag === null) {
+      rootElement.innerHTML = template;
+    } else {
+      rootElement.innerHTML = '';
+      decorationElement.innerHTML = template;
+      rootElement.appendChild(decorationElement);
     }
-
-    rootElement.innerHTML = '';
-    rootElement.appendChild(element);
+  } else if (typeof template === 'function') {
+    const element = await template(runtime);
+    if (element instanceof Node !== true) {
+      showError(errorMessage);
+    } else {
+      // Don't re-mount the element if it didn't change and neither did the story
+      if (forceRender === true &&
+        (rootElement.firstChild === element ||
+        (rootElement.firstChild === decorationElement && decorationElement.firstChild === element) ) ) {
+        return;
+      }
+            
+      rootElement.innerHTML = '';
+      if (decorationTag === null) {
+        rootElement.appendChild(element);
+      } else {
+        decorationElement.appendChild(element);
+        rootElement.appendChild(decorationElement);
+      }
+    }
   } else {
-    showError({
-      title: `Expecting an HTML snippet or DOM node from the story: "${selectedStory}" of "${selectedKind}".`,
-      description: dedent`
-        Did you forget to return the HTML snippet from the story?
-        Use "() => <your snippet or node>" or when defining the story.
-      `,
-    });
+    showError(errorMessage);
   }
 }

@@ -30,4 +30,10 @@ export interface StoryFnHtmlReturnType {
   resourceLoaderPath?: string;
   template?: any;
   wcmmode?: any;
+  decorationTag?: DecorationTag;
+}
+
+export interface DecorationTag { 
+  cssClasses?: string [];
+  tagName?: string;
 }

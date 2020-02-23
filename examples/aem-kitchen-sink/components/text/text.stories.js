@@ -22,6 +22,10 @@ export const Text = () => {
       'jcr:title': 'Text (v2)'
     },
     template: MyText,
+    decorationTag: {
+      cssClasses: ['text','component'],
+      tagName: 'article'
+    }
   };
 };
 
@@ -35,5 +39,6 @@ export const RichText = () => {
       'jcr:title': 'Text (v2)'
     },
     template: MyText,
+    noDecoration: true
   };
 };
