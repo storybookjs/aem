@@ -23,7 +23,7 @@ export const Text = () => {
     },
     template: MyText,
     decorationTag: {
-      cssClass: 'text',
+      cssClasses: ['text','component'],
       tagName: 'article'
     }
   };

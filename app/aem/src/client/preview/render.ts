@@ -47,7 +47,7 @@ export default async function renderMain({
   });
 
   const decorationElementType = decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
-  const decorationElementClass = decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses : 'component'; 
+  const decorationElementClass = decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses.join(' ') : 'component';
 
   const decorationElement = document.createElement(decorationElementType);
   decorationElement.setAttribute('class',decorationElementClass);
