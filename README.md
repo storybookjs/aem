@@ -66,7 +66,7 @@ export const Example = () => {
     // decorationTag.cssClasses - optional - array - Array of classes that will be added to the Wrapper Element
     // decorationTag.tagname - optional - string - The type of Wrapper Element - e.g. div, section, etc
     decorationTag: {
-      cssClass: 'text',
+      cssClass: ['text'],
       tagName: 'article'
     }
   };
