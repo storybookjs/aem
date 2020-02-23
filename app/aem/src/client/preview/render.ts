@@ -23,7 +23,7 @@ export default async function renderMain({
     `,
   };
   const storyObj = storyFn() as any;
-  const { resourceLoaderPath, template, props, content, wcmmode = {}, decorationTag = {}, noDecoration } = storyObj;
+  const { resourceLoaderPath, template, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
   const runtime = new Runtime();
   runtime.setGlobal({
     wcmmode: wcmmode,
@@ -47,13 +47,13 @@ export default async function renderMain({
   });
 
   const decorationElementType = decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
-  const decorationElementClass = decorationTag.hasOwnProperty('cssClass') ? decorationTag.cssClass : 'component'; 
+  const decorationElementClass = decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses : 'component'; 
 
   const decorationElement = document.createElement(decorationElementType);
   decorationElement.setAttribute('class',decorationElementClass);
   
   if (typeof template === 'string') {
-    if (noDecoration) {
+    if (decorationTag === null) {
       rootElement.innerHTML = template;
     } else {
       rootElement.innerHTML = '';
@@ -73,7 +73,7 @@ export default async function renderMain({
       }
             
       rootElement.innerHTML = '';
-      if (noDecoration) {
+      if (decorationTag === null) {
         rootElement.appendChild(element);
       } else {
         decorationElement.appendChild(element);

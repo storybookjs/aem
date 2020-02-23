@@ -60,9 +60,10 @@ export const Example = () => {
     // template - required
     // HTL/HTML File Reference or Inline HTML
     template: MyText, 
-    // decorationTag - optional -
+    // decorationTag - optional - {} or null
     // Wrapper Element for template
-    // decorationTag.cssClass - optional - Classes that will be added to the Wrapper Element
+    // Null value prevents the template from being wrapped
+    // decorationTag.cssClasses - optional - Classes that will be added to the Wrapper Element
     // decorationTag.tagname - optional - The type of Wrapper Element - e.g. div, section, etc
     decorationTag: {
       cssClass: 'text',

@@ -34,6 +34,6 @@ export interface StoryFnHtmlReturnType {
 }
 
 export interface DecorationTag { 
-  cssClass?: string;
+  cssClasses?: string;
   tagName?: string;
 }
