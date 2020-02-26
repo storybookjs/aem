@@ -1,4 +1,3 @@
-import MyAccordion from './accordion.html';
 import exampleContent from './example_content';
 
 export default {
@@ -12,6 +11,6 @@ export const Accordion = () => {
       'jcr:title': 'Accordion (v1)'
     },
     resourceLoaderPath: '/',
-    template: MyAccordion
+    resourceType: 'core/wcm/components/accordion',  // todo: derive from path
   };
 };

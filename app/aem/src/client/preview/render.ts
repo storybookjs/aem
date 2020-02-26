@@ -23,7 +23,8 @@ export default async function renderMain({
     `,
   };
   const storyObj = storyFn() as any;
-  const { resourceLoaderPath, template, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
+  const { resourceLoaderPath, resourceType, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
+  let { template } = storyObj;
   const runtime = new Runtime();
   runtime.setGlobal({
     wcmmode: wcmmode,
@@ -33,10 +34,9 @@ export default async function renderMain({
     content: content,
   });
   runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
-  if(resourceLoaderPath && content) {
-    const resolver = new ResourceResolver(content, new ComponentLoader());
-    runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath));
-  }
+  const compLoader = new ComponentLoader();
+  const resolver = new ResourceResolver(content || {}, compLoader);
+  runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
 
   showMain();
 
@@ -45,6 +45,15 @@ export default async function renderMain({
 
   const decorationElement = document.createElement(decorationElementType);
   decorationElement.setAttribute('class',decorationElementClass);
+
+  if (!template && resourceType) {
+    const info = compLoader.resolve(resourceType);
+    if (!info) {
+      template = `unable to load ${resourceType}`;
+    } else {
+      template = info.module;
+    }
+  }
 
   if (typeof template === 'string') {
     if (decorationTag === null) {
