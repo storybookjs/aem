@@ -32,7 +32,7 @@ export default async function renderMain({
     },
     content: content,
   });
-  runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation));
+  runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
   if(resourceLoaderPath && content) {
     const resolver = new ResourceResolver(content, new ComponentLoader());
     runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath));
