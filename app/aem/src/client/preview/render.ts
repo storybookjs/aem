@@ -32,26 +32,20 @@ export default async function renderMain({
     },
     content: content,
   });
-  runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation));
+  runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
   if(resourceLoaderPath && content) {
     const resolver = new ResourceResolver(content, new ComponentLoader());
     runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath));
   }
 
   showMain();
-  
-  // todo: runtime globals are not available in templates
-  // see https://github.com/adobe/htlengine/issues/133
-  Object.entries(runtime.globals).forEach(([key, value]) => {
-    (global as any)[key] = value;
-  });
 
   const decorationElementType = decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
   const decorationElementClass = decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses.join(' ') : 'component';
 
   const decorationElement = document.createElement(decorationElementType);
   decorationElement.setAttribute('class',decorationElementClass);
-  
+
   if (typeof template === 'string') {
     if (decorationTag === null) {
       rootElement.innerHTML = template;
@@ -71,7 +65,7 @@ export default async function renderMain({
         (rootElement.firstChild === decorationElement && decorationElement.firstChild === element) ) ) {
         return;
       }
-            
+
       rootElement.innerHTML = '';
       if (decorationTag === null) {
         rootElement.appendChild(element);

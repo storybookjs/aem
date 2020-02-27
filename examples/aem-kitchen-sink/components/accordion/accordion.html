@@ -1,7 +1,3 @@
-<!--/* TODO:        data-cmp-expanded="${item.name in accordion.expandedItems}">*/-->
-<!--/* TODO:            <button class="cmp-accordion__button${item.name in accordion.expandedItems ? ' cmp-accordion__button&#45;&#45;expanded' : ''}"*/-->
-<!--/* TODO:             class="cmp-accordion__panel${item.name in accordion.expandedItems ? ' cmp-accordion__panel&#45;&#45;expanded' : ' cmp-accordion__panel&#45;&#45;hidden'}"*/-->
-<!--/* TODO: data-cmp-expanded="${accordion.expandedItems[item.name] ? true : false}"> */-->
 <div data-sly-use.accordion="com.adobe.cq.wcm.core.components.models.Accordion"
      class="cmp-accordion"
      data-cmp-is="accordion"
@@ -10,10 +6,10 @@
          data-sly-repeat.item="${accordion.items}"
          class="cmp-accordion__item"
          data-cmp-hook-accordion="item"
-         data-cmp-expanded="true">
+         data-cmp-expanded="${item.name in accordion.expandedItems}">
         <h3 data-sly-element="${accordion.headingElement @ context='elementName'}"
             class="cmp-accordion__header">
-            <button class="cmp-accordion__button${accordion.expandedItems[item.name] ? ' cmp-accordion__button--expanded' : ''}"
+            <button class="cmp-accordion__button${item.name in accordion.expandedItems ? ' cmp-accordion__button--expanded' : ''}"
                     data-cmp-hook-accordion="button">
                 <span class="cmp-accordion__title">${item.title}</span>
                 <span class="cmp-accordion__icon"></span>
@@ -21,7 +17,7 @@
         </h3>
         <div data-sly-resource="${item.name @ decorationTagName='div'}"
              data-cmp-hook-accordion="panel"
-             class="cmp-accordion__panel${accordion.expandedItems[item.name] ? ' cmp-accordion__panel--expanded' : ' cmp-accordion__panel--hidden'}"
+             class="cmp-accordion__panel${item.name in accordion.expandedItems ? ' cmp-accordion__panel--expanded' : ' cmp-accordion__panel--hidden'}"
              role="region"></div>
     </div>
     <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
