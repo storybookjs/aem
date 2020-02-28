@@ -39,6 +39,15 @@ export const RichText = () => {
       'jcr:title': 'Text (v2)'
     },
     template: MyText,
-    noDecoration: true
+    decorationTag: null
+  };
+};
+
+export const StringTest = () => {
+  return {
+    content: {
+      isRichText: boolean('Re Render Toggle', true),
+    },
+    template: `<h1>Flat HTML Hello World</h1>`,
   };
 };

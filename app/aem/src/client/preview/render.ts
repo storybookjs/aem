@@ -1,5 +1,4 @@
 import { document, Node } from 'global';
-import dedent from 'ts-dedent';
 import { RenderMainArgs } from './types';
 import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
 import ComponentLoader from './helpers/ComponentLoader';
@@ -17,13 +16,15 @@ export default async function renderMain({
 }: RenderMainArgs) {
   const errorMessage = {
     title: `Expecting an HTML snippet or DOM node from the story: "${selectedStory}" of "${selectedKind}".`,
-    description: dedent`
-      Did you forget to return the HTML snippet from the story in the template parameter?
-      Use "template: <your snippet, node, or template>" or when defining the story.
-    `,
+    description: [
+      `Did you forget to return the HTML snippet from the story in the template parameter?`,
+      `Use "template: <your snippet, node, or template>" or when defining the story.`
+    ].join('\n'),
   };
   const storyObj = storyFn() as any;
   const { resourceLoaderPath, template, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
+  const hasDecorationTag = decorationTag !== null;
+  let decorationElement;
   const runtime = new Runtime();
   runtime.setGlobal({
     wcmmode: wcmmode,
@@ -46,41 +47,52 @@ export default async function renderMain({
     (global as any)[key] = value;
   });
 
-  const decorationElementType = decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
-  const decorationElementClass = decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses.join(' ') : 'component';
+  let element = typeof template === 'function' ? await template(runtime) : template;
 
-  const decorationElement = document.createElement(decorationElementType);
-  decorationElement.setAttribute('class',decorationElementClass);
-  
-  if (typeof template === 'string') {
-    if (decorationTag === null) {
-      rootElement.innerHTML = template;
-    } else {
-      rootElement.innerHTML = '';
-      decorationElement.innerHTML = template;
-      rootElement.appendChild(decorationElement);
-    }
-  } else if (typeof template === 'function') {
-    const element = await template(runtime);
-    if (element instanceof Node !== true) {
-      showError(errorMessage);
-    } else {
-      // Don't re-mount the element if it didn't change and neither did the story
-      if (forceRender === true &&
-        (rootElement.firstChild === element ||
-        (rootElement.firstChild === decorationElement && decorationElement.firstChild === element) ) ) {
-        return;
-      }
-            
-      rootElement.innerHTML = '';
-      if (decorationTag === null) {
-        rootElement.appendChild(element);
-      } else {
-        decorationElement.appendChild(element);
-        rootElement.appendChild(decorationElement);
-      }
-    }
-  } else {
+  if (element instanceof Node === false && typeof element !== 'string') {
     showError(errorMessage);
+  } else {
+
+    // Build the decoration tag so we can check it to prevent unnecessary rerenders
+    if (hasDecorationTag) {
+      const decorationElementType = decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
+      const decorationElementClass = decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses.join(' ') : 'component';
+      
+      decorationElement = document.createElement(decorationElementType);
+      decorationElement.setAttribute('class',decorationElementClass);
+      
+      if (typeof element === 'string') {
+        decorationElement.innerHTML = element;
+      } else if (element instanceof Node) {
+        decorationElement.appendChild(element);
+      }
+    }
+
+    // Don't re-mount the element if it didn't change and neither did the story
+    if (forceRender === true && 
+      (
+        (typeof element === 'string' && rootElement.innerHTML === element) ||
+        ((element && element.outerHTML && rootElement.firstChild) &&
+          (rootElement.firstChild.outerHTML === element.outerHTML ||
+          decorationElement && rootElement.firstChild.outerHTML === decorationElement.outerHTML)
+        )
+      )
+    ) {
+      return;
+
+    // Render
+    } else {
+      rootElement.innerHTML = '';
+
+      if (hasDecorationTag) {
+        rootElement.appendChild(decorationElement);
+      } else {
+        if (typeof element === 'string') {
+          rootElement.innerHTML = element;
+        } else if (element instanceof Node) {
+          rootElement.appendChild(element);
+        }
+      }
+    }
   }
 }
