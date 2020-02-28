@@ -31,14 +31,6 @@ To build and test out this project complete the following:
   ```
    <div data-sly-repeat.item="${accordion.items}" data-cmp-expanded="${accordion.expandedItems[item.name] ? true : false}">
   ```
-- make resource loader pluggable in runtime
-
-## htl-loader
-
-- add configuration to render w/o runtime
-- add configuration to specify runtime global vars
-- add configuration to specify runtime global name
-- add configuration to specify module import generator
 
 ## Usage
 See [example](https://github.com/storybookjs/aem/blob/master/examples/aem-kitchen-sink/components/text/text.stories.js):
