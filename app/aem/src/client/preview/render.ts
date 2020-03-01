@@ -1,11 +1,19 @@
 import { document, Node } from 'global';
 import dedent from 'ts-dedent';
-import { RenderMainArgs } from './types';
+import { RenderMainArgs } from './types/types';
 import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
 
 const rootElement = document.getElementById('root');
+
+const includeJavascriptFiles = (files: string []) => {
+  console.log(files);
+}
+
+const includeStyleFiles = (files: string []) => {
+  console.log(files);
+}
 
 export default async function renderMain({
   storyFn,
@@ -23,7 +31,7 @@ export default async function renderMain({
     `,
   };
   const storyObj = storyFn() as any;
-  const { resourceLoaderPath, resourceType, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
+  const { resourceLoaderPath, resourceType, props, content, wcmmode = {}, aemMetadata = {} } = storyObj;
   let { template } = storyObj;
   const runtime = new Runtime();
   runtime.setGlobal({
@@ -38,10 +46,13 @@ export default async function renderMain({
   const resolver = new ResourceResolver(content || {}, compLoader);
   runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
 
+  includeJavascriptFiles(aemMetadata.javascriptIncludes);
+  includeStyleFiles(aemMetadata.styleIncludes);
+
   showMain();
 
-  const decorationElementType = decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
-  const decorationElementClass = decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses.join(' ') : 'component';
+  const decorationElementType = aemMetadata.decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
+  const decorationElementClass = aemMetadata.decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses.join(' ') : 'component';
 
   const decorationElement = document.createElement(decorationElementType);
   decorationElement.setAttribute('class',decorationElementClass);
@@ -56,7 +67,7 @@ export default async function renderMain({
   }
 
   if (typeof template === 'string') {
-    if (decorationTag === null) {
+    if (aemMetadata.decorationTag === null) {
       rootElement.innerHTML = template;
     } else {
       rootElement.innerHTML = '';
@@ -76,7 +87,7 @@ export default async function renderMain({
       }
 
       rootElement.innerHTML = '';
-      if (decorationTag === null) {
+      if (aemMetadata.decorationTag === null) {
         rootElement.appendChild(element);
       } else {
         decorationElement.appendChild(element);

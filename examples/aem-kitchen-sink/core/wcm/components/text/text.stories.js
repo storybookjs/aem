@@ -8,7 +8,7 @@ export default {
   parameters: {
     knobs: {
       escapeHTML: false,
-    }
+    },
   },
 };
 
@@ -20,6 +20,11 @@ export const Text = () => {
     },
     props: {
       'jcr:title': 'Text (v2)'
+    },
+    aemMetadata: {
+      componentIncludes: ['hello-component'],
+      javascriptIncludes: ['hello-javascript'],
+      styleIncludes: ['hello-styles'],
     },
     template: MyText,
     decorationTag: {
