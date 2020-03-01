@@ -2,6 +2,7 @@
 import { AemMetadata } from '../types/types';
 
 export const aemMetadata = (metadata: Partial<AemMetadata>) => (storyFn: () => any) => {
+  console.log('Im alive!', metadata);
   const story = storyFn();
   console.log('hi',story);
   const storyMetadata = story.aemMetadata || {};
@@ -9,7 +10,7 @@ export const aemMetadata = (metadata: Partial<AemMetadata>) => (storyFn: () => a
 
   return {
     ...story,
-    metadata: {
+    aemMetadata: {
       componentIncludes: [...(metadata.componentIncludes || []), ...(storyMetadata.componentIncludes || [])],
       javascriptIncludes: [...(metadata.javascriptIncludes || []), ...(storyMetadata.javascriptIncludes || [])],
       styleIncludes: [...(metadata.styleIncludes || []), ...(storyMetadata.styleIncludes || [])],

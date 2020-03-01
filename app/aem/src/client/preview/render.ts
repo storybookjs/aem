@@ -15,6 +15,20 @@ const includeStyleFiles = (files: string []) => {
   console.log(files);
 }
 
+const getRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader) => {
+  const resolver = new ResourceResolver(content || {}, compLoader);
+  const runtime = new Runtime();
+  runtime.setGlobal({
+    wcmmode: wcmmode,
+    component: {
+      properties: props
+    },
+    content: content,
+  });
+  runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
+  runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
+  return runtime;
+}
 export default async function renderMain({
   storyFn,
   selectedKind,
@@ -31,31 +45,18 @@ export default async function renderMain({
     `,
   };
   const storyObj = storyFn() as any;
-  const { resourceLoaderPath, resourceType, props, content, wcmmode = {}, aemMetadata = {} } = storyObj;
+  const { resourceLoaderPath, resourceType, props, content, aemMetadata = {}, wcmmode = {} } = storyObj;
   let { template } = storyObj;
-  const runtime = new Runtime();
-  runtime.setGlobal({
-    wcmmode: wcmmode,
-    component: {
-      properties: props
-    },
-    content: content,
-  });
-  runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
   const compLoader = new ComponentLoader();
-  const resolver = new ResourceResolver(content || {}, compLoader);
-  runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
-
+  
   includeJavascriptFiles(aemMetadata.javascriptIncludes);
   includeStyleFiles(aemMetadata.styleIncludes);
-
-  showMain();
-
-  const decorationElementType = aemMetadata.decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
-  const decorationElementClass = aemMetadata.decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses.join(' ') : 'component';
-
+  const decorationElementType = aemMetadata.decorationTag && aemMetadata.decorationTag.hasOwnProperty('tagName') ? aemMetadata.decorationTag.tagName : 'div';
+  const decorationElementClass = aemMetadata.decorationTag && aemMetadata.decorationTag.hasOwnProperty('cssClasses') ? aemMetadata.decorationTag.cssClasses.join(' ') : 'component';
   const decorationElement = document.createElement(decorationElementType);
   decorationElement.setAttribute('class',decorationElementClass);
+
+  showMain();
 
   if (!template && resourceType) {
     const info = compLoader.resolve(resourceType);
@@ -67,7 +68,7 @@ export default async function renderMain({
   }
 
   if (typeof template === 'string') {
-    if (aemMetadata.decorationTag === null) {
+    if (!decorationElement) {
       rootElement.innerHTML = template;
     } else {
       rootElement.innerHTML = '';
@@ -75,6 +76,7 @@ export default async function renderMain({
       rootElement.appendChild(decorationElement);
     }
   } else if (typeof template === 'function') {
+    const runtime = getRuntime(wcmmode, props, content, resourceLoaderPath, compLoader);
     const element = await template(runtime);
     if (element instanceof Node !== true) {
       showError(errorMessage);
@@ -82,14 +84,14 @@ export default async function renderMain({
       // Don't re-mount the element if it didn't change and neither did the story
       if (forceRender === true &&
         (rootElement.firstChild === element ||
-        (rootElement.firstChild === decorationElement && decorationElement.firstChild === element) ) ) {
+        (decorationElement && rootElement.firstChild === decorationElement && decorationElement.firstChild === element) ) ) {
         return;
       }
 
       rootElement.innerHTML = '';
-      if (aemMetadata.decorationTag === null) {
+      if (aemMetadata && aemMetadata.decorationTag === null) {
         rootElement.appendChild(element);
-      } else {
+      } else if (decorationElement) {
         decorationElement.appendChild(element);
         rootElement.appendChild(decorationElement);
       }
