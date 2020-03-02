@@ -1,9 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
+import * as path from 'path';
 import { Configuration } from 'webpack';
 
 const modGen = (baseDir, varName, id) => {
   if (id.startsWith('com.adobe.cq.wcm.core.components.models')) {
-    return `const ${varName} = require('../../poc/GenericModel')(${JSON.stringify(id)});`;
+    return `const ${varName} = require('../../../../poc/GenericModel')(${JSON.stringify(id)});`;
   }
 };
 
@@ -28,6 +29,14 @@ export function webpack(config: Configuration) {
             },
           ],
         },
+        {
+          test: /\.content\.xml$/,
+          use: [
+            {
+              loader: path.resolve(__dirname, './component-loader.js'),
+            }
+          ]
+        }
       ],
     },
   };

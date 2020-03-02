@@ -22,7 +22,8 @@ export default async function renderMain({
     ].join('\n'),
   };
   const storyObj = storyFn() as any;
-  const { resourceLoaderPath, template, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
+  const { resourceLoaderPath, resourceType, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
+  let { template } = storyObj;
   const hasDecorationTag = decorationTag !== null;
   let decorationElement;
   const runtime = new Runtime();
@@ -34,16 +35,24 @@ export default async function renderMain({
     content: content,
   });
   runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
-  if(resourceLoaderPath && content) {
-    const resolver = new ResourceResolver(content, new ComponentLoader());
-    runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath));
-  }
+  const compLoader = new ComponentLoader();
+  const resolver = new ResourceResolver(content || {}, compLoader);
+  runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
 
   showMain();
   
   Object.entries(runtime.globals).forEach(([key, value]) => {
     (global as any)[key] = value;
   });
+
+  if (!template && resourceType) {
+    const info = compLoader.resolve(resourceType);
+    if (!info) {
+      template = `unable to load ${resourceType}`;
+    } else {
+      template = info.module;
+    }
+  }
 
   let element = typeof template === 'function' ? await template(runtime) : template;
 
@@ -63,6 +72,7 @@ export default async function renderMain({
         decorationElement.innerHTML = element;
       } else {
         decorationElement.appendChild(element);
+      
       }
     }
 

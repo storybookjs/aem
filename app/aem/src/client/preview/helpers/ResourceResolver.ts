@@ -1,4 +1,4 @@
-import Runtime from '@adobe/htlengine/src/runtime/Runtime';
+import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
 
 export default class ResourceResolver {
   content = null;
@@ -45,14 +45,11 @@ export default class ResourceResolver {
         .setGlobal({
           ...runtime._globals,
           component: {
-            properties: {
-              // todo: read from .content.xml
-              'jcr:title': `component ${type}`
-            }
+            properties: comp.properties,
           },
           content: c,
         });
-      return comp(localRuntime);
+      return comp.module(localRuntime);
     }
   }
 }
