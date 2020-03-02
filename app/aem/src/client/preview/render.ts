@@ -41,8 +41,6 @@ export default async function renderMain({
 
   showMain();
   
-  // todo: runtime globals are not available in templates
-  // see https://github.com/adobe/htlengine/issues/133
   Object.entries(runtime.globals).forEach(([key, value]) => {
     (global as any)[key] = value;
   });
@@ -63,7 +61,7 @@ export default async function renderMain({
       
       if (typeof element === 'string') {
         decorationElement.innerHTML = element;
-      } else if (element instanceof Node) {
+      } else {
         decorationElement.appendChild(element);
       }
     }
@@ -89,7 +87,7 @@ export default async function renderMain({
       } else {
         if (typeof element === 'string') {
           rootElement.innerHTML = element;
-        } else if (element instanceof Node) {
+        } else {
           rootElement.appendChild(element);
         }
       }
