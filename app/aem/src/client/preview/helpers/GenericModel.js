@@ -25,12 +25,22 @@ class GenericModel {
     } else if (typeof model === 'object') {
       return model;
     } else if (typeof model === 'string') {
-      // todo: resolve path in content
-      if (content) {
-        return content;
-      } else {
+      if (!content) {
         throw Error(`no model for ${this.id} and no content defined.`);
       }
+      const node = model.split('/').reduce((current, seg) => {
+        if (!seg) {
+          return current;
+        }
+        if (!current || !current[':items']) {
+          return null;
+        }
+        return current[':items'][seg];
+      }, content);
+      if (!node) {
+        throw Error(`no model for ${this.id} and node at path '${model}' does not exist in content.`);
+      }
+      return node;
     }
   }
 }
