@@ -26,7 +26,7 @@ export interface AemMetadata {
 }
 
 export interface RenderMainArgs {
-  storyFn: () => StoryFn<StoryFnHtmlReturnType>;
+  storyFn: () => StoryFn<StoryFnAemReturnType>;
   selectedKind: string;
   selectedStory: string;
   showMain: () => void;
@@ -34,7 +34,7 @@ export interface RenderMainArgs {
   forceRender: boolean;
 }
 
-export interface StoryFnHtmlReturnType {
+export interface StoryFnAemReturnType {
   content?: any;
   props?: any;
   resourceLoaderPath?: string;
