@@ -7,6 +7,9 @@ import ResourceResolver from './helpers/ResourceResolver';
 
 const rootElement = document.getElementById('root');
 
+/**
+ * Gets the runtime object with all params set
+ */
 const getRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader, componentIncludes) => {
   const resolver = new ResourceResolver(content || {}, compLoader, componentIncludes);
   const runtime = new Runtime();
