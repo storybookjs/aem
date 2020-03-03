@@ -7,7 +7,8 @@ export {
   getStorybook,
   forceReRender,
   raw,
-} from './preview';
+  modelProxy,
+} from './preview/index';
 
 if (module && module.hot && module.hot.decline) {
   module.hot.decline();

@@ -1,5 +1,5 @@
 {
-  ":type": "wcm/components/accordion",
+  ":type": "core/wcm/components/accordion",
   "headingElement": "h3",
   "singleExpansion": false,
   ":items": {

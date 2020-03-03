@@ -23,11 +23,12 @@ export default async function renderMain({
     `,
   };
   const storyObj = storyFn() as any;
-  const { resourceLoaderPath, resourceType, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
+  const { resourceLoaderPath, resourceType, props, content, wcmmode = {}, decorationTag = {}, models = {} } = storyObj;
   let { template } = storyObj;
   const runtime = new Runtime();
   runtime.setGlobal({
     wcmmode: wcmmode,
+    models,
     component: {
       properties: props
     },
