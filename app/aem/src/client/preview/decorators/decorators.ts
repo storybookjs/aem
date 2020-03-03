@@ -10,8 +10,6 @@ export const aemMetadata = (metadata: Partial<AemMetadata>) => (storyFn: () => a
     ...story,
     aemMetadata: {
       componentIncludes: [...(metadata.componentIncludes || []), ...(storyMetadata.componentIncludes || [])],
-      javascriptIncludes: [...(metadata.javascriptIncludes || []), ...(storyMetadata.javascriptIncludes || [])],
-      styleIncludes: [...(metadata.styleIncludes || []), ...(storyMetadata.styleIncludes || [])],
       decorationTag: metadata.decorationTag || storyMetadata.decorationTag || {},
     },
   };

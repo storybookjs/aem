@@ -22,8 +22,6 @@ export interface DecorationTag {
 
 export interface AemMetadata {
   componentIncludes?: any [];
-  javascriptIncludes?: any [];
-  styleIncludes?: any [];
   decorationTag?: DecorationTag;
 }
 
