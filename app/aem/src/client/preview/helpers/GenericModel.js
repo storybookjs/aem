@@ -6,8 +6,12 @@ class GenericModel {
     this.id = id;
   }
 
+  /**
+   * Called by the htlengine runtime when a script uses the data-sly-call plugin.
+   * @param {object} context The runtime globals
+   * @returns A use-class like instance or object.
+   */
   async use(context) {
-    console.log(context);
     const { content, models = {} } = context;
     let model = models[this.id];
     if (!model) {
@@ -31,6 +35,11 @@ class GenericModel {
   }
 }
 
+/**
+ * A simple proxy that passes the respective Module id to the generic model.
+ * @param {string} id Module Id.
+ * @returns {GenericModel} A proxied GenericModel class.
+ */
 export function modelProxy(id) {
   return new Proxy(GenericModel, {
     construct(target, argArray, newTarget) {

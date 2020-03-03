@@ -24,16 +24,10 @@ To build and test out this project complete the following:
 
 ## htlengine
 
-- check spec for `in` operator. eg: `${item.name in accordion.expandedItems}`
 - better error reporting (add file, line, col): eg: `Error: Error: mismatched input 'in' expecting {'}', '@'}`
-- add support for function getters and java-like getters. e.g. `getText` for ${xyz.text}
-- repeat variable not available in attributes of same element. eg:
-  ```
-   <div data-sly-repeat.item="${accordion.items}" data-cmp-expanded="${accordion.expandedItems[item.name] ? true : false}">
-  ```
 
 ## Usage
-See [example](https://github.com/storybookjs/aem/blob/master/examples/aem-kitchen-sink/components/text/text.stories.js):
+See [example](./examples/aem-kitchen-sink/core/wcm/components/text/text.stories.js):
 ```
 import Example from ('./example.html'); // HTL File or HTML File
 export const Example = () => {
@@ -60,6 +54,12 @@ export const Example = () => {
     decorationTag: {
       cssClass: ['text'],
       tagName: 'article'
+    },
+    // models used to render this component. the model can either be a proper use-class, 
+    // a content object (model.json) or a resource path (string). When using the later,
+    // the respective content needs to be provided with the `content` object above.
+    models: {
+      'com.adobe.cq.wcm.core.components.models.Text': require('../../../../models/com.adobe.cq.wcm.core.components.models.Text'),
     }
   };
 };
