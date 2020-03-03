@@ -40,10 +40,6 @@ export default async function renderMain({
   runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
 
   showMain();
-  
-  Object.entries(runtime.globals).forEach(([key, value]) => {
-    (global as any)[key] = value;
-  });
 
   if (!template && resourceType) {
     const info = compLoader.resolve(resourceType);
