@@ -2,9 +2,7 @@
 import { AemMetadata } from '../types/types';
 
 export const aemMetadata = (metadata: Partial<AemMetadata>) => (storyFn: () => any) => {
-  console.log('Im alive!', metadata);
   const story = storyFn();
-  console.log('hi',story);
   const storyMetadata = story.aemMetadata || {};
   metadata = metadata || {};
 

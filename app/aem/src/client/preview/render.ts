@@ -7,16 +7,8 @@ import ResourceResolver from './helpers/ResourceResolver';
 
 const rootElement = document.getElementById('root');
 
-const includeJavascriptFiles = (files: string []) => {
-  console.log(files);
-}
-
-const includeStyleFiles = (files: string []) => {
-  console.log(files);
-}
-
-const getRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader) => {
-  const resolver = new ResourceResolver(content || {}, compLoader);
+const getRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader, componentIncludes) => {
+  const resolver = new ResourceResolver(content || {}, compLoader, componentIncludes);
   const runtime = new Runtime();
   runtime.setGlobal({
     wcmmode: wcmmode,
@@ -29,6 +21,7 @@ const getRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader) => 
   runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
   return runtime;
 }
+
 export default async function renderMain({
   storyFn,
   selectedKind,
@@ -49,8 +42,7 @@ export default async function renderMain({
   let { template } = storyObj;
   const compLoader = new ComponentLoader();
   
-  includeJavascriptFiles(aemMetadata.javascriptIncludes);
-  includeStyleFiles(aemMetadata.styleIncludes);
+  const componentIncludes = aemMetadata.componentIncludes;
   const decorationElementType = aemMetadata.decorationTag && aemMetadata.decorationTag.hasOwnProperty('tagName') ? aemMetadata.decorationTag.tagName : 'div';
   const decorationElementClass = aemMetadata.decorationTag && aemMetadata.decorationTag.hasOwnProperty('cssClasses') ? aemMetadata.decorationTag.cssClasses.join(' ') : 'component';
   const decorationElement = document.createElement(decorationElementType);
@@ -59,7 +51,7 @@ export default async function renderMain({
   showMain();
 
   if (!template && resourceType) {
-    const info = compLoader.resolve(resourceType);
+    const info = compLoader.resolve(resourceType, aemMetadata ? componentIncludes : []);
     if (!info) {
       template = `unable to load ${resourceType}`;
     } else {
@@ -76,7 +68,7 @@ export default async function renderMain({
       rootElement.appendChild(decorationElement);
     }
   } else if (typeof template === 'function') {
-    const runtime = getRuntime(wcmmode, props, content, resourceLoaderPath, compLoader);
+    const runtime = getRuntime(wcmmode, props, content, resourceLoaderPath, compLoader, componentIncludes);
     const element = await template(runtime);
     if (element instanceof Node !== true) {
       showError(errorMessage);

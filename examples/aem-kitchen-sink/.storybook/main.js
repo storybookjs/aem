@@ -2,7 +2,6 @@ module.exports = {
   stories: [
     `../stories/*.stories.*`,
     `../core/wcm/components/**/*.stories.*`,
-    `../components.js`,
   ],
   addons: [
     "@storybook/addon-docs",

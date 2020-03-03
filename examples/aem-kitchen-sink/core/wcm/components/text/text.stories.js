@@ -8,9 +8,6 @@ export default {
   decorators: [
     withKnobs,
     aemMetadata({
-      componentIncludes: ['hello-component'],
-      javascriptIncludes: ['hello-javascript'],
-      styleIncludes: ['hello-styles'],
       decorationTag: {
         cssClasses: ['text','component'],
         tagName: 'article'

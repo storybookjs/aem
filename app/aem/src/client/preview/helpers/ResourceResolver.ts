@@ -3,10 +3,12 @@ import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
 export default class ResourceResolver {
   content = null;
   loader = null;
+  componentIncludes = null;
 
-  constructor(content, componentLoader) {
+  constructor(content, componentLoader, componentIncludes) {
     this.content = content;
     this.loader = componentLoader;
+    this.componentIncludes = componentIncludes;
   }
 
   createResourceLoader(parentPath) {
@@ -33,7 +35,7 @@ export default class ResourceResolver {
 
       // try to get component
       const type = c[':type'];
-      const comp = this.loader.resolve(type);
+      const comp = this.loader.resolve(type, this.componentIncludes);
       if (!comp) {
         // todo: remove debug
         return `no such component: ${type}`;
