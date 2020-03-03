@@ -34,6 +34,8 @@ To build and test out this project complete the following:
 
 ## Usage
 See [example](https://github.com/storybookjs/aem/blob/master/examples/aem-kitchen-sink/components/text/text.stories.js):
+
+#### Story configuration
 ```
 import Example from ('./example.html'); // HTL File or HTML File
 export const Example = () => {
@@ -52,15 +54,62 @@ export const Example = () => {
     // template - required
     // HTL/HTML File Reference or Inline HTML
     template: MyText, 
-    // decorationTag - optional - {} or null
-    // Wrapper Element for template
-    // Null value prevents the template from being wrapped
-    // decorationTag.cssClasses - optional - array - Array of classes that will be added to the Wrapper Element
-    // decorationTag.tagname - optional - string - The type of Wrapper Element - e.g. div, section, etc
-    decorationTag: {
-      cssClass: ['text'],
-      tagName: 'article'
+    aemMetadata: {
+      // These are the component dependencies of the component you are testing
+      // These component includes can also be defined at the story config level or in the preview using the aemMetadata decorator
+      componentIncludes: [
+        require('../core/wcm/components/accordion/.content.xml'),
+        require('../core/wcm/components/list/.content.xml'),
+        require('../core/wcm/components/text/.content.xml'),
+      ],
+      // decorationTag - optional - {} or null
+      // Wrapper Element for template
+      // Null value prevents the template from being wrapped
+      // decorationTag.cssClasses - optional - array - Array of classes that will be added to the Wrapper Element
+      // decorationTag.tagname - optional - string - The type of Wrapper Element - e.g. div, section, etc
+      decorationTag: {
+        cssClasses: ['text','component'],
+        tagName: 'article'
+      }
     }
   };
+};
+```
+
+#### AEM metadata decorator
+The aem metadata decorator allows for the application of properties such as the decoration tag and the component includes to all of the stories (depending on where its used - in the preview or in the story config). Use the following syntax to apply the decorator:
+
+```
+import { aemMetadata } from '@storybook/aem';
+
+// in the preview.js
+addDecorator(aemMetadata({
+  componentIncludes: [
+    require('../core/wcm/components/accordion/.content.xml'),
+    require('../core/wcm/components/list/.content.xml'),
+    require('../core/wcm/components/text/.content.xml'),
+  ],
+  decorationTag: {
+    cssClasses: ['text','component'],
+    tagName: 'article'
+  }
+}));
+
+// in the story config
+export default {
+  title: 'Accordion',
+  decorators: [
+    aemMetadata({
+      componentIncludes: [
+        require('../core/wcm/components/accordion/.content.xml'),
+        require('../core/wcm/components/list/.content.xml'),
+        require('../core/wcm/components/text/.content.xml'),
+      ],
+      decorationTag: {
+        cssClasses: ['text','component'],
+        tagName: 'article'
+      }
+    }),
+  ]
 };
 ```
