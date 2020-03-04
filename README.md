@@ -10,66 +10,39 @@ To build and test out this project complete the following:
 4) Change directories to examples/aem-kitchen-sink
 5) From the examples/aem-kitchen-sink directory, run "yarn storybook"
 
-# TODO
-
-## app
-
-- make models and component loading automatic (during compile time)
-  (see ComponentLoader and GenericModel)
-- inject clientlibs css and js.
-
-## examples / models
-- the real AEM core components have a lot of logic in their model classes.
-  in order to display them properly, they need to be partially ported to JS.
-
-## htlengine
-
-- check spec for `in` operator. eg: `${item.name in accordion.expandedItems}`
-- better error reporting (add file, line, col): eg: `Error: Error: mismatched input 'in' expecting {'}', '@'}`
-- add support for function getters and java-like getters. e.g. `getText` for ${xyz.text}
-- repeat variable not available in attributes of same element. eg:
-  ```
-   <div data-sly-repeat.item="${accordion.items}" data-cmp-expanded="${accordion.expandedItems[item.name] ? true : false}">
-  ```
-
 ## Usage
 See [example](https://github.com/storybookjs/aem/blob/master/examples/aem-kitchen-sink/components/text/text.stories.js):
 
 #### Story configuration
+As a part of the storybook configuration setup there are options you can use to customize your use case:
+- Template (required): HTL/HTML File Reference or Inline HTML
+- Content (optional): Mocked authored content that can be used in conjunction with knobs
+- Props (optional): Mocked JCR props that can be used in conjunction with knobs
+- AEM Metadata (optional): An assortment of metadata used to provide your component context such as:
+  - Component dependencies: for nested components, you only need to provide a template but you must include require all nested component's xml files in order for them to render (They can also be defined at the story config level or in the preview using the aemMetadata decorator)
+  - Decoration tags: tags/ classes that can be applied to the outside of your component as a wrapper and can be used to mock the java tag annotations({} or null)
+
 ```
 import Example from ('./example.html'); // HTL File or HTML File
 export const Example = () => {
   return {
-    // content - optional 
-    // JSON Content TKTK Needs description, can be combined with Knobs
+    template: MyText,
     content: {
       text: text('text', 'Hello, world.' ),
       isRichText: boolean('isRichText', false),
     },
-    // props - optional 
-    // JSON Content TKTK Needs description
     props: {
       'jcr:title': 'Text (v2)'
     },
-    // template - required
-    // HTL/HTML File Reference or Inline HTML
-    template: MyText, 
     aemMetadata: {
-      // These are the component dependencies of the component you are testing
-      // These components can also be defined at the story config level or in the preview using the aemMetadata decorator
       components: [
         require('../core/wcm/components/accordion/.content.xml'),
         require('../core/wcm/components/list/.content.xml'),
         require('../core/wcm/components/text/.content.xml'),
       ],
-      // decorationTag - optional - {} or null
-      // Wrapper Element for template
-      // Null value prevents the template from being wrapped
-      // decorationTag.cssClasses - optional - array - Array of classes that will be added to the Wrapper Element
-      // decorationTag.tagname - optional - string - The type of Wrapper Element - e.g. div, section, etc
       decorationTag: {
         cssClasses: ['text','component'],
-        tagName: 'article'
+        tagName: 'article' // type of wrapper element
       }
     }
   };
@@ -79,10 +52,11 @@ export const Example = () => {
 #### AEM metadata decorator
 The aem metadata decorator allows for the application of properties such as the decoration tag and the component includes to all of the stories (depending on where its used - in the preview or in the story config). Use the following syntax to apply the decorator:
 
+
+##### Using the decorator in the Preview.js file
 ```
 import { aemMetadata } from '@storybook/aem';
 
-// in the preview.js
 addDecorator(aemMetadata({
   components: [
     require('../core/wcm/components/accordion/.content.xml'),
@@ -94,8 +68,10 @@ addDecorator(aemMetadata({
     tagName: 'article'
   }
 }));
+```
 
-// in the story config
+##### Using the decorator in the story config file
+```
 export default {
   title: 'Accordion',
   decorators: [
@@ -113,3 +89,34 @@ export default {
   ]
 };
 ```
+
+#### Including Styles and JS from client libs
+In order to provide a component with its styles, you must reuire the dependencies inside the story config.
+Example:
+```
+require('./clientlibs/site/css/accordion.css');
+require('./clientlibs/site/js/accordion.js');
+```
+* We are working on a solution using webpack to automatically pick up on your clientlib changes
+
+#### TODO
+
+##### app
+
+- make models and component loading automatic (during compile time)
+  (see ComponentLoader and GenericModel)
+- inject clientlibs css and js. using webpack
+
+##### examples / models
+- the real AEM core components have a lot of logic in their model classes.
+  in order to display them properly, they need to be partially ported to JS.
+
+##### htlengine
+
+- check spec for `in` operator. eg: `${item.name in accordion.expandedItems}`
+- better error reporting (add file, line, col): eg: `Error: Error: mismatched input 'in' expecting {'}', '@'}`
+- add support for function getters and java-like getters. e.g. `getText` for ${xyz.text}
+- repeat variable not available in attributes of same element. eg:
+  ```
+   <div data-sly-repeat.item="${accordion.items}" data-cmp-expanded="${accordion.expandedItems[item.name] ? true : false}">
+  ```
