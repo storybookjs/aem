@@ -16,7 +16,7 @@ const rootElement = document.getElementById('root');
 /**
  * Gets the runtime object with all params set
  */
-const getRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader, components) => {
+const createRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader, components) => {
   const resolver = new ResourceResolver(content || {}, compLoader, components);
   const runtime = new Runtime();
   runtime.setGlobal({
@@ -63,7 +63,7 @@ export default async function renderMain({
       template = info.module;
     }
   }
-  const runtime = getRuntime(wcmmode, props, content, resourceLoaderPath, compLoader, components);
+  const runtime = createRuntime(wcmmode, props, content, resourceLoaderPath, compLoader, components);
   let element = typeof template === TYPE_FUNCTION ? await template(runtime) : template;
 
   if (element instanceof Node === false && typeof element !== TYPE_STRING) {
