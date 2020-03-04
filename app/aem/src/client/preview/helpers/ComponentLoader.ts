@@ -1,6 +1,6 @@
 export default class ComponentLoader {
-  resolve(type) {
-    const comps = window.AEMComponents || [];
+  resolve(type, resources) {
+    const comps = resources || [];
     return comps.find((c) => c.resourceType === type);
   }
 }

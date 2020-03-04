@@ -15,8 +15,18 @@ export interface ShowErrorArgs {
   description: string;
 }
 
+export interface DecorationTag { 
+  cssClasses?: string [];
+  tagName?: string;
+}
+
+export interface AemMetadata {
+  components?: any [];
+  decorationTag?: DecorationTag;
+}
+
 export interface RenderMainArgs {
-  storyFn: () => StoryFn<StoryFnHtmlReturnType>;
+  storyFn: () => StoryFn<StoryFnAemReturnType>;
   selectedKind: string;
   selectedStory: string;
   showMain: () => void;
@@ -24,16 +34,11 @@ export interface RenderMainArgs {
   forceRender: boolean;
 }
 
-export interface StoryFnHtmlReturnType {
+export interface StoryFnAemReturnType {
   content?: any;
   props?: any;
   resourceLoaderPath?: string;
   template?: any;
   wcmmode?: any;
-  decorationTag?: DecorationTag;
-}
-
-export interface DecorationTag { 
-  cssClasses?: string [];
-  tagName?: string;
+  aemMetadata?: AemMetadata;
 }

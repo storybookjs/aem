@@ -1,10 +1,35 @@
 import { document, Node } from 'global';
-import { RenderMainArgs } from './types';
+import { RenderMainArgs } from './types/types';
 import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
 
+const DIV_TAG = 'div';
+const TYPE_STRING = 'string';
+const TYPE_FUNCTION = 'function';
+const PROPERTY_TAG_NAME = 'tagName';
+const PROPERTY_CSS_CLASSES = 'cssClasses';
+const ATTRIBUTE_CLASS = 'class';
 const rootElement = document.getElementById('root');
+
+
+/**
+ * Gets the runtime object with all params set
+ */
+const createRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader, components) => {
+  const resolver = new ResourceResolver(content || {}, compLoader, components);
+  const runtime = new Runtime();
+  runtime.setGlobal({
+    wcmmode: wcmmode,
+    component: {
+      properties: props
+    },
+    content: content,
+  });
+  runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
+  runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
+  return runtime;
+}
 
 export default async function renderMain({
   storyFn,
@@ -21,61 +46,50 @@ export default async function renderMain({
       `Use "template: <your snippet, node, or template>" or when defining the story.`
     ].join('\n'),
   };
-  const storyObj = storyFn() as any;
-  const { resourceLoaderPath, resourceType, props, content, wcmmode = {}, decorationTag = {} } = storyObj;
-  let { template } = storyObj;
-  const hasDecorationTag = decorationTag !== null;
-  let decorationElement;
-  const runtime = new Runtime();
-  runtime.setGlobal({
-    wcmmode: wcmmode,
-    component: {
-      properties: props
-    },
-    content: content,
-  });
-  runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
+
+  const { resourceLoaderPath, resourceType, props, content, aemMetadata = {}, wcmmode = {} } = storyFn() as any;
+  const decorationTag = aemMetadata ? aemMetadata.decorationTag : null;
+  const components = aemMetadata ? aemMetadata.components : [];
   const compLoader = new ComponentLoader();
-  const resolver = new ResourceResolver(content || {}, compLoader);
-  runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
+  let { template } = storyFn() as any;
 
   showMain();
 
   if (!template && resourceType) {
-    const info = compLoader.resolve(resourceType);
+    const info = compLoader.resolve(resourceType, components);
     if (!info) {
       template = `unable to load ${resourceType}`;
     } else {
       template = info.module;
     }
   }
+  const runtime = createRuntime(wcmmode, props, content, resourceLoaderPath, compLoader, components);
+  let element = typeof template === TYPE_FUNCTION ? await template(runtime) : template;
 
-  let element = typeof template === 'function' ? await template(runtime) : template;
-
-  if (element instanceof Node === false && typeof element !== 'string') {
+  if (element instanceof Node === false && typeof element !== TYPE_STRING) {
     showError(errorMessage);
   } else {
-
+    let decorationElement;
     // Build the decoration tag so we can check it to prevent unnecessary rerenders
-    if (hasDecorationTag) {
-      const decorationElementType = decorationTag.hasOwnProperty('tagName') ? decorationTag.tagName : 'div';
-      const decorationElementClass = decorationTag.hasOwnProperty('cssClasses') ? decorationTag.cssClasses.join(' ') : 'component';
+    if (decorationTag) {
+      const decorationElementType = decorationTag.hasOwnProperty(PROPERTY_TAG_NAME) ? decorationTag.tagName : DIV_TAG;
+      const decorationElementClass = decorationTag.hasOwnProperty(PROPERTY_CSS_CLASSES) ? decorationTag.cssClasses.join(' ') : 'component';
       
       decorationElement = document.createElement(decorationElementType);
-      decorationElement.setAttribute('class',decorationElementClass);
+      decorationElement.setAttribute(ATTRIBUTE_CLASS,decorationElementClass);
       
-      if (typeof element === 'string') {
+      if (typeof element === TYPE_STRING) {
         decorationElement.innerHTML = element;
       } else {
         decorationElement.appendChild(element);
       
       }
     }
-
+    if(!rootElement) return;
     // Don't re-mount the element if it didn't change and neither did the story
     if (forceRender === true && 
       (
-        (typeof element === 'string' && rootElement.innerHTML === element) ||
+        (typeof element === TYPE_STRING && rootElement.innerHTML === element) ||
         ((element && element.outerHTML && rootElement.firstChild) &&
           (rootElement.firstChild.outerHTML === element.outerHTML ||
           decorationElement && rootElement.firstChild.outerHTML === decorationElement.outerHTML)
@@ -83,15 +97,14 @@ export default async function renderMain({
       )
     ) {
       return;
-
     // Render
     } else {
       rootElement.innerHTML = '';
 
-      if (hasDecorationTag) {
+      if (decorationTag) {
         rootElement.appendChild(decorationElement);
       } else {
-        if (typeof element === 'string') {
+        if (typeof element === TYPE_STRING) {
           rootElement.innerHTML = element;
         } else {
           rootElement.appendChild(element);

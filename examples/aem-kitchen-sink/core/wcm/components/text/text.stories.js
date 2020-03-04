@@ -1,14 +1,23 @@
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { aemMetadata } from '@storybook/aem';
 import MyText from './text.html';
 // todo: simplify; include automatically during compilation
 
 export default {
   title: 'Text',
-  decorators: [withKnobs],
+  decorators: [
+    withKnobs,
+    aemMetadata({
+      decorationTag: {
+        cssClasses: ['text','component'],
+        tagName: 'article'
+      }
+    }),
+  ],
   parameters: {
     knobs: {
       escapeHTML: false,
-    }
+    },
   },
 };
 
@@ -22,10 +31,6 @@ export const Text = () => {
       'jcr:title': 'Text (v2)'
     },
     template: MyText,
-    decorationTag: {
-      cssClasses: ['text','component'],
-      tagName: 'article'
-    }
   };
 };
 
@@ -39,7 +44,9 @@ export const RichText = () => {
       'jcr:title': 'Text (v2)'
     },
     template: MyText,
-    decorationTag: null
+    aemMetadata: {
+      decorationTag: null
+    },
   };
 };
 

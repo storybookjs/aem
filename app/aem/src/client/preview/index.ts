@@ -4,11 +4,11 @@ import { ClientStoryApi, Loadable } from '@storybook/addons';
 
 import './globals';
 import render from './render';
-import { StoryFnHtmlReturnType, IStorybookSection } from './types';
+import { StoryFnAemReturnType, IStorybookSection } from './types/types';
 
 const framework = 'aem';
 
-interface ClientApi extends ClientStoryApi<StoryFnHtmlReturnType> {
+interface ClientApi extends ClientStoryApi<StoryFnAemReturnType> {
   setAddon(addon: any): void;
   configure(loader: Loadable, module: NodeModule): void;
   getStorybook(): IStorybookSection[];
@@ -33,3 +33,4 @@ export const setAddon: ClientApi['setAddon'] = api.clientApi.setAddon;
 export const forceReRender: ClientApi['forceReRender'] = api.forceReRender;
 export const getStorybook: ClientApi['getStorybook'] = api.clientApi.getStorybook;
 export const raw: ClientApi['raw'] = api.clientApi.raw;
+export { aemMetadata } from './decorators/decorators';
