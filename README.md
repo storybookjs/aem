@@ -56,8 +56,8 @@ export const Example = () => {
     template: MyText, 
     aemMetadata: {
       // These are the component dependencies of the component you are testing
-      // These component includes can also be defined at the story config level or in the preview using the aemMetadata decorator
-      componentIncludes: [
+      // These components can also be defined at the story config level or in the preview using the aemMetadata decorator
+      components: [
         require('../core/wcm/components/accordion/.content.xml'),
         require('../core/wcm/components/list/.content.xml'),
         require('../core/wcm/components/text/.content.xml'),
@@ -84,7 +84,7 @@ import { aemMetadata } from '@storybook/aem';
 
 // in the preview.js
 addDecorator(aemMetadata({
-  componentIncludes: [
+  components: [
     require('../core/wcm/components/accordion/.content.xml'),
     require('../core/wcm/components/list/.content.xml'),
     require('../core/wcm/components/text/.content.xml'),
@@ -100,7 +100,7 @@ export default {
   title: 'Accordion',
   decorators: [
     aemMetadata({
-      componentIncludes: [
+      components: [
         require('../core/wcm/components/accordion/.content.xml'),
         require('../core/wcm/components/list/.content.xml'),
         require('../core/wcm/components/text/.content.xml'),

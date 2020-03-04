@@ -44,7 +44,6 @@
     "global": "^4.3.2",
     "htl-loader": "2.0.0",
     "regenerator-runtime": "^0.13.3",
-    "ts-dedent": "^1.1.0",
     "typescript": "^3.7.5"
   },
   "peerDependencies": {

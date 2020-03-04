@@ -9,7 +9,7 @@ export const aemMetadata = (metadata: Partial<AemMetadata>) => (storyFn: () => a
   return {
     ...story,
     aemMetadata: {
-      componentIncludes: [...(metadata.componentIncludes || []), ...(storyMetadata.componentIncludes || [])],
+      components: [...(metadata.components || []), ...(storyMetadata.components || [])],
       decorationTag: metadata.decorationTag || storyMetadata.decorationTag || {},
     },
   };

@@ -9,7 +9,7 @@ export default {
   decorators: [
     aemMetadata({
       decorationTag: {
-        cssClasses: ['text','component'],
+        cssClasses: ['accordion','component'],
         tagName: 'article'
       }
     }),
