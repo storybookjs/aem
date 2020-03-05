@@ -11,7 +11,7 @@ To build and test out this project complete the following:
 5) From the examples/aem-kitchen-sink directory, run "yarn storybook"
 
 ## Usage
-See [example](https://github.com/storybookjs/aem/blob/master/examples/aem-kitchen-sink/components/text/text.stories.js):
+See [example](./examples/aem-kitchen-sink/core/wcm/components/text/text.stories.js):
 
 #### Story configuration
 As a part of the storybook configuration setup there are options you can use to customize your use case:
@@ -33,6 +33,12 @@ export const Example = () => {
     },
     props: {
       'jcr:title': 'Text (v2)'
+    },
+    // models used to render this component. the model can either be a proper use-class, 
+    // a content object (model.json) or a resource path (string). When using the later,
+    // the respective content needs to be provided with the `content` object above.
+    models: {
+      'com.adobe.cq.wcm.core.components.models.Text': require('../../../../models/com.adobe.cq.wcm.core.components.models.Text'),
     },
     aemMetadata: {
       components: [
@@ -99,6 +105,83 @@ require('./clientlibs/site/js/accordion.js');
 ```
 * We are working on a solution using webpack to automatically pick up on your clientlib changes
 
+#### Use Classes / Sling Models
+
+In AEM, most HTL scripts bind java classes in the `data-sly-use` attribute which makes the business logic available to the scripts. Most often, those classes implement _Sling Models_ which offer a simple annotation based way to define the resource properties that should be exported to the script. The _Sling Models_ are also used to generated the `*.model.json` view of a resource.
+
+For Example: [Text](https://github.com/adobe/aem-core-wcm-components/blob/master/bundles/core/src/main/java/com/adobe/cq/wcm/core/components/models/Text.java)
+
+With the htlengine used in JavaScript, it is not possible to use the java classes directly. Further, since loading of the model _modules_ is not trivial, they need to be registered in the story.
+
+There are several ways to provide the required functionality to the javascript world.
+
+##### 1. Plain Objects
+
+The probably simplest way is to provide a plain object, where the keys correspond to the property names. The value can either be a primitive value, a javascript getter (eg: `get title() { }`) or a function (eg: `title: () => ()`)).
+
+A easy way is to request the respective json resource with the `model` selector. eg:
+
+```console
+$ curl localhost:4502/content/en/welcome/jcr:content/par/0001.model.json
+```
+
+And then register the model in the story:
+
+```js
+    models: {
+      'com.adobe.cq.wcm.core.components.models.Text': {
+        text: 'Hello, world',
+        isRichText: false
+      }
+    }
+````
+_Hint_: Of course, the `model.json` can also be imported with a `require()` statement.
+
+
+**Caveat**: The same _model_ object is used with all instances of the respective model. So for example rendering a parsys, that includes several `Text` components, that use all the same _model_ object, will render the same output.
+
+##### 2. Javascript use classes
+
+A more sophisticated way is to actually implement a use-class in javascript that can generate some of the dynamic, computed properties, similar to your java class. After the class is loaded, it is instantiated with the runtime global object passed as argument to the constructor.
+
+A very simple example can be found here: [com.adobe.cq.wcm.core.components.models.Text](./examples/aem-kitchen-sink/models/com.adobe.cq.wcm.core.components.models.Text.js)
+
+The models needs to be registered in the story:
+
+For example:
+
+```js
+    models: {
+      'com.adobe.cq.wcm.core.components.models.Text': require('../../../../models/com.adobe.cq.wcm.core.components.models.Text'),
+      'com.adobe.cq.wcm.core.components.models.Title': require('../../../../models/com.adobe.cq.wcm.core.components.models.Title')
+    }
+```
+
+**Note**: In the future, there might be functionality to register multiple use-classes automatically.
+
+##### 3. Providing a resource path to a content object
+
+There might be cases where a larger content object (in form of a `*.model.json`) dump is provided. Then a story can just provide a resource path into the content and a model is implicitly mapped to
+the respective resource. This is similar to (1).
+
+For Example:
+
+```js
+    models: {
+      'com.adobe.cq.wcm.core.components.models.Text': '/text0001'
+    },
+    content: {
+      ':items': {
+        text0001: {
+          text: 'Hello, world',
+          isRichText: false,
+        }
+      }
+    }
+```
+
+**Note**: In the future, the content path would be derived from the current resource path, so that it will be very simple to render a complex component. It might even become the default (e.g. merge with (1) above.
+
 #### TODO
 
 ##### app
@@ -113,10 +196,4 @@ require('./clientlibs/site/js/accordion.js');
 
 ##### htlengine
 
-- check spec for `in` operator. eg: `${item.name in accordion.expandedItems}`
 - better error reporting (add file, line, col): eg: `Error: Error: mismatched input 'in' expecting {'}', '@'}`
-- add support for function getters and java-like getters. e.g. `getText` for ${xyz.text}
-- repeat variable not available in attributes of same element. eg:
-  ```
-   <div data-sly-repeat.item="${accordion.items}" data-cmp-expanded="${accordion.expandedItems[item.name] ? true : false}">
-  ```

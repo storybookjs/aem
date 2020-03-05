@@ -16,20 +16,21 @@ const rootElement = document.getElementById('root');
 /**
  * Gets the runtime object with all params set
  */
-const createRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader, components) => {
+const createRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader, components, models) => {
   const resolver = new ResourceResolver(content || {}, compLoader, components);
   const runtime = new Runtime();
   runtime.setGlobal({
-    wcmmode: wcmmode,
+    models,
+    wcmmode,
     component: {
       properties: props
     },
-    content: content,
+    content,
   });
   runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
   runtime.withResourceLoader(resolver.createResourceLoader(resourceLoaderPath || '/'));
   return runtime;
-}
+};
 
 export default async function renderMain({
   storyFn,
@@ -47,7 +48,7 @@ export default async function renderMain({
     ].join('\n'),
   };
 
-  const { resourceLoaderPath, resourceType, props, content, aemMetadata = {}, wcmmode = {} } = storyFn() as any;
+  const { resourceLoaderPath, resourceType, props, content, aemMetadata = {}, wcmmode = {}, models = {} } = storyFn() as any;
   const decorationTag = aemMetadata ? aemMetadata.decorationTag : null;
   const components = aemMetadata ? aemMetadata.components : [];
   const compLoader = new ComponentLoader();
@@ -63,7 +64,7 @@ export default async function renderMain({
       template = info.module;
     }
   }
-  const runtime = createRuntime(wcmmode, props, content, resourceLoaderPath, compLoader, components);
+  const runtime = createRuntime(wcmmode, props, content, resourceLoaderPath, compLoader, components, models);
   let element = typeof template === TYPE_FUNCTION ? await template(runtime) : template;
 
   if (element instanceof Node === false && typeof element !== TYPE_STRING) {
@@ -74,20 +75,20 @@ export default async function renderMain({
     if (decorationTag) {
       const decorationElementType = decorationTag.hasOwnProperty(PROPERTY_TAG_NAME) ? decorationTag.tagName : DIV_TAG;
       const decorationElementClass = decorationTag.hasOwnProperty(PROPERTY_CSS_CLASSES) ? decorationTag.cssClasses.join(' ') : 'component';
-      
+
       decorationElement = document.createElement(decorationElementType);
       decorationElement.setAttribute(ATTRIBUTE_CLASS,decorationElementClass);
-      
+
       if (typeof element === TYPE_STRING) {
         decorationElement.innerHTML = element;
       } else {
         decorationElement.appendChild(element);
-      
+
       }
     }
     if(!rootElement) return;
     // Don't re-mount the element if it didn't change and neither did the story
-    if (forceRender === true && 
+    if (forceRender === true &&
       (
         (typeof element === TYPE_STRING && rootElement.innerHTML === element) ||
         ((element && element.outerHTML && rootElement.firstChild) &&

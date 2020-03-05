@@ -8,7 +8,8 @@ export {
   forceReRender,
   raw,
   aemMetadata,
-} from './preview';
+  modelProxy,
+} from './preview/index';
 
 if (module && module.hot && module.hot.decline) {
   module.hot.decline();
