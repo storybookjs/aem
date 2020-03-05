@@ -133,7 +133,7 @@ And then register the model in the story:
       }
     }
 ````
-_Hint_: Of course, the `model.json` can also be imported with a `require()` statement.
+_Hint_: The `model.json` can also be imported with a `require()` statement.
 
 
 **Caveat**: The same _model_ object is used with all instances of the respective model. So for example rendering a parsys, that includes several `Text` components, that use all the same _model_ object, will render the same output.
