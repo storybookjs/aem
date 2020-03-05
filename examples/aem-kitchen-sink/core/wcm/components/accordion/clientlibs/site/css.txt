@@ -1,2 +1,2 @@
 #base=css
-accordion.less
+accordion.css

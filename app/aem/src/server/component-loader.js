@@ -7,7 +7,7 @@ module.exports = async function(source) {
     // todo: parse XML from `source`
     resourceType,
     properties: {
-      'jcr:title': `${name} v1`,
+      'jcr:title': `${name}`,
     }
   };
   const code = [

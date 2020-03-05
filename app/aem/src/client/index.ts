@@ -7,6 +7,7 @@ export {
   getStorybook,
   forceReRender,
   raw,
+  aemMetadata,
   modelProxy,
 } from './preview/index';
 
