@@ -16,6 +16,7 @@ See [example](./examples/aem-kitchen-sink/core/wcm/components/text/text.stories.
 #### Story configuration
 As a part of the storybook configuration setup there are options you can use to customize your use case:
 - Template (required): HTL/HTML File Reference or Inline HTML
+- Models (required): Used to render a component and can either be a proper use-class, a content object (model.json) or a resource path (string). When using the later, the respective content needs to be provided with the `content` object described below.
 - Content (optional): Mocked authored content that can be used in conjunction with knobs
 - Props (optional): Mocked JCR props that can be used in conjunction with knobs
 - AEM Metadata (optional): An assortment of metadata used to provide your component context such as:
@@ -27,18 +28,15 @@ import Example from ('./example.html'); // HTL File or HTML File
 export const Example = () => {
   return {
     template: MyText,
+    models: {
+      'com.adobe.cq.wcm.core.components.models.Text': require('../../../../models/com.adobe.cq.wcm.core.components.models.Text'),
+    },
     content: {
       text: text('text', 'Hello, world.' ),
       isRichText: boolean('isRichText', false),
     },
     props: {
       'jcr:title': 'Text (v2)'
-    },
-    // models used to render this component. the model can either be a proper use-class, 
-    // a content object (model.json) or a resource path (string). When using the later,
-    // the respective content needs to be provided with the `content` object above.
-    models: {
-      'com.adobe.cq.wcm.core.components.models.Text': require('../../../../models/com.adobe.cq.wcm.core.components.models.Text'),
     },
     aemMetadata: {
       components: [
@@ -135,7 +133,7 @@ And then register the model in the story:
       }
     }
 ````
-_Hint_: Of course, the `model.json` can also be imported with a `require()` statement.
+_Hint_: The `model.json` can also be imported with a `require()` statement.
 
 
 **Caveat**: The same _model_ object is used with all instances of the respective model. So for example rendering a parsys, that includes several `Text` components, that use all the same _model_ object, will render the same output.
