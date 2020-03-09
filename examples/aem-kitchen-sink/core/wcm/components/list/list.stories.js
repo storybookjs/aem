@@ -1,17 +1,17 @@
-import MyList from './list.html';
+import exampleContent from './example_content';
 
 export default {
-  title: 'List'
+  title: 'AEM List'
 };
 
 export const List = () => {
   return {
-    // models used to render this component. the model can either be a proper use-class, a
-    // content object (model.json) or a resource path.
+    // models used to render this component.
     // todo: this could further be automated by creating a _ModelLoader_ that is fed with all the use-classes
     models: {
       'com.adobe.cq.wcm.core.components.models.List': require('../../../../models/com.adobe.cq.wcm.core.components.models.List'),
     },
-    template: MyList
+    content: exampleContent,
+    resourceType: 'core/wcm/components/list',  // todo: derive from path
   };
 };

@@ -1,8 +1,8 @@
 import exampleContent from './example_content';
-import { aemMetadata } from '@storybook/aem';
+import { aemMetadata, GenericModel } from '@storybook/aem';
 
 export default {
-  title: 'Accordion',
+  title: 'AEM Accordion',
   decorators: [
     aemMetadata({
       decorationTag: {
@@ -15,8 +15,7 @@ export default {
 
 export const Accordion = () => {
   return {
-    // models used to render this component. the model can either be a proper use-class, a
-    // content object (model.json) or a resource path.
+    // models used to render this component.
     // todo: this could further be automated by creating a _ModelLoader_ that is fed with all the use-classes
     models: {
       'com.adobe.cq.wcm.core.components.models.Accordion': require('../../../../models/com.adobe.cq.wcm.core.components.models.Accordion'),
@@ -24,6 +23,19 @@ export const Accordion = () => {
     },
     content: exampleContent,
     resourceLoaderPath: '/',
+    resourceType: 'core/wcm/components/accordion',  // todo: derive from path
+  };
+};
+
+export const AccordionWithGenericModel = () => {
+  return {
+    // models used to render this component.
+    // todo: this could further be automated by creating a _ModelLoader_ that is fed with all the use-classes
+    models: {
+      'com.adobe.cq.wcm.core.components.models.Accordion': GenericModel,
+      'com.adobe.cq.wcm.core.components.models.Text': GenericModel,
+    },
+    content: exampleContent,
     resourceType: 'core/wcm/components/accordion',  // todo: derive from path
   };
 };

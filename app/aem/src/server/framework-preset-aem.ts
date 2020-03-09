@@ -3,6 +3,7 @@ import * as path from 'path';
 import { Configuration } from 'webpack';
 
 const modGen = (baseDir, varName, id) => {
+  // todo: only proxy the models atually defined as models.
   return `const ${varName} = require('@storybook/aem').modelProxy(${JSON.stringify(id)});`;
 };
 

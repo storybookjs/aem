@@ -1,0 +1,38 @@
+/**
+ * HTL use class that instantiates the respective story model.
+ */
+class ModelProxy {
+  constructor(id) {
+    this.id = id;
+  }
+
+  /**
+   * Called by the htlengine runtime when a script uses the data-sly-call plugin.
+   * @param {object} context The runtime globals
+   * @returns A use-class like instance or object.
+   */
+  async use(context) {
+    const { content, models = {} } = context;
+    let model = models[this.id];
+    if (!model) {
+      throw Error(`no such model: ${this.id}`);
+    }
+    if (model.default) {
+      model = model.default;
+    }
+    return new model(content);
+  }
+}
+
+/**
+ * A simple proxy that passes the respective Module id to the model proxy.
+ * @param {string} id Module Id.
+ * @returns {ModelProxy} A ModelProxy class.
+ */
+export function modelProxy(id) {
+  return new Proxy(ModelProxy, {
+    construct(target, argArray, newTarget) {
+      return new target(id);
+    }
+  });
+}

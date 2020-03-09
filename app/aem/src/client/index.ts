@@ -9,6 +9,7 @@ export {
   raw,
   aemMetadata,
   modelProxy,
+  GenericModel,
 } from './preview/index';
 
 if (module && module.hot && module.hot.decline) {

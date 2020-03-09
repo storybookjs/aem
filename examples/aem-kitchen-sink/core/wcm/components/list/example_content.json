@@ -1,0 +1,14 @@
+{
+  ":type": "core/wcm/components/list",
+  ":items": {
+    "item_1": {
+      "title": "item 1"
+    },
+    "item_2": {
+      "title": "item 2"
+    },
+    "item_3": {
+      "title": "item 3"
+    }
+  }
+}

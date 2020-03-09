@@ -1,10 +1,10 @@
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import { aemMetadata } from '@storybook/aem';
-import MyText from './text.html';
+
 // todo: simplify; include automatically during compilation
 
 export default {
-  title: 'Text',
+  title: 'AEM Text',
   decorators: [
     withKnobs,
     aemMetadata({
@@ -21,9 +21,7 @@ export default {
   },
 };
 
-// models used to render this component. the model can either be a proper use-class, a
-// content object (model.json) or a resource path.
-// todo: this could further be automated by creating a _ModelLoader_ that is fed with all the use-classes
+// models used to render this component.
 const models = {
   'com.adobe.cq.wcm.core.components.models.Text': require('../../../../models/com.adobe.cq.wcm.core.components.models.Text'),
 };
@@ -37,6 +35,7 @@ export const Text = () => {
       isRichText: boolean('isRichText', false),
     },
     template: MyText,
+    resourceType: 'core/wcm/components/text',  // todo: derive from path
   };
 };
 
@@ -49,6 +48,7 @@ export const RichText = () => {
       isRichText: boolean('isRichText', true),
     },
     template: MyText,
+    resourceType: 'core/wcm/components/text',  // todo: derive from path
     aemMetadata: {
       decorationTag: null
     },
@@ -83,20 +83,16 @@ export const TextWithModelJson = () => {
   };
 };
 
-export const TextWithModelFromContent = () => {
+export const TextWithGenericModel = () => {
   return {
     // example of using a generic model, backed with content
     models: {
-      'com.adobe.cq.wcm.core.components.models.Text': '/text0001'
+      'com.adobe.cq.wcm.core.components.models.Text': GenericModel,
     },
     // note: you can use knobs to alter content data!
     content: {
-      ':items': {
-        text0001: {
-          text: text('text', 'Hello, world.' ),
-          isRichText: false,
-        }
-      }
+      text: text('text', '<h1>Hello, world.</h1>' ),
+      isRichText: boolean('isRichText', true),
     },
     template: MyText,
     noDecoration: true

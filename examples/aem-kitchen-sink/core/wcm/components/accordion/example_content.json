@@ -2,6 +2,7 @@
   ":type": "core/wcm/components/accordion",
   "headingElement": "h3",
   "singleExpansion": false,
+  "expandedItems": [],
   ":items": {
     "item_1": {
       ":type": "core/wcm/components/text",

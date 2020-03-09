@@ -140,12 +140,9 @@ export default class List  {
    * @since com.adobe.cq.wcm.core.components.models 12.2.0
    */
   get listItems() {
-    // return some mock data
-    return [
-      { title: 'item 1' },
-      { title: 'item 2' },
-      { title: 'item 3' },
-    ].map((c) => new ListItem(c));
+    // in AEM this is a list of child pages, or search results, etc.
+    // here we just return the items from the content.
+    return (Object.values(this.content[':items']) || []).map((item) => new ListItem(item));
   }
 
   /**
