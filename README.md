@@ -100,30 +100,19 @@ With the htlengine used in JavaScript, it is not possible to use the java classe
 
 There are several ways to provide the required functionality to the javascript world.
 
-#### 1. Plain Objects
+##### 1. GenericModel
 
-The probably simplest way is to provide a plain object, where the keys correspond to the property names. The value can either be a primitive value, a javascript getter (eg: `get title() { }`) or a function (eg: `title: () => ()`)).
+Storybook provides a `GenericModel` that you can register as model. The `GenericModel` uses the underlying content and a heuristic to automatically export the properties.
 
-A easy way is to request the respective json resource with the `model` selector. eg:
-
-```console
-$ curl localhost:4502/content/en/welcome/jcr:content/par/0001.model.json
-```
-
-And then register the model in the story:
+The models needs to be registered in the story:
 
 ```js
-    models: {
-      'com.adobe.cq.wcm.core.components.models.Text': {
-        text: 'Hello, world',
-        isRichText: false
-      }
-    }
+  import { GenericModel } from '@storybook/aem';
+
+  models: {
+    'com.adobe.cq.wcm.core.components.models.Text': GenericModel
+  }
 ````
-_Hint_: The `model.json` can also be imported with a `require()` statement.
-
-
-**Caveat**: The same _model_ object is used with all instances of the respective model. So for example rendering a parsys, that includes several `Text` components, that use all the same _model_ object, will render the same output.
 
 #### 2. Javascript use classes
 
@@ -144,28 +133,38 @@ For example:
 
 **Note**: In the future, there might be functionality to register multiple use-classes automatically.
 
-#### 3. Providing a resource path to a content object
+##### 3. Extending the GenericModel
 
-There might be cases where a larger content object (in form of a `*.model.json`) dump is provided. Then a story can just provide a resource path into the content and a model is implicitly mapped to
-the respective resource. This is similar to (1).
+In case the `GenericModel` doesn't satisfy all the needs for rapid prototyping, it can easily be extended. For example to provide some computed or more complex content that will eventually by provided by a java class in AEM.
 
 For Example:
 
+**person.js**
 ```js
-    models: {
-      'com.adobe.cq.wcm.core.components.models.Text': '/text0001'
-    },
-    content: {
-      ':items': {
-        text0001: {
-          text: 'Hello, world',
-          isRichText: false,
-        }
-      }
-    }
+export default class Person extends GenericModel {
+  get fullName() {
+    return `${this.content.firstName} ${this.content.lastName}`
+  }
+}
 ```
 
-**Note**: In the future, the content path would be derived from the current resource path, so that it will be very simple to render a complex component. It might even become the default (e.g. merge with (1) above.
+**person.stories.js**
+```js
+    models: {
+      'person': require('../models/person')
+    },
+```
+
+**person.html**
+```htl
+<div data-sly-use.personModel="person">
+    <dl>
+        <dt>First Name:</dt><dd>${personModel.firstName}</dd>
+        <dt>Last Name:</dt><dd>${personModel.lastName}</dd>
+        <dt>Full Name:</dt><dd>${personModel.fullName}</dd>
+    </dl>
+</div>
+```
 
 ### TODO
 
