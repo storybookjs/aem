@@ -13,7 +13,7 @@ To build and test out this project complete the following:
 ## Usage
 See [example](./examples/aem-kitchen-sink/core/wcm/components/text/text.stories.js):
 
-#### Story configuration
+### Story configuration
 As a part of the storybook configuration setup there are options you can use to customize your use case:
 - Template (required): HTL/HTML File Reference or Inline HTML
 - Models (required): Used to render a component and can either be a proper use-class, a content object (model.json) or a resource path (string). When using the later, the respective content needs to be provided with the `content` object described below.
@@ -53,11 +53,11 @@ export const Example = () => {
 };
 ```
 
-#### AEM metadata decorator
+### AEM metadata decorator
 The aem metadata decorator allows for the application of properties such as the decoration tag and the component includes to all of the stories (depending on where its used - in the preview or in the story config). Use the following syntax to apply the decorator:
 
 
-##### Using the decorator in the Preview.js file
+#### Using the decorator in the Preview.js file
 ```
 import { aemMetadata } from '@storybook/aem';
 
@@ -74,7 +74,7 @@ addDecorator(aemMetadata({
 }));
 ```
 
-##### Using the decorator in the story config file
+#### Using the decorator in the story config file
 ```
 export default {
   title: 'Accordion',
@@ -94,7 +94,7 @@ export default {
 };
 ```
 
-#### Including Styles and JS from client libs
+### Including Styles and JS from client libs
 In order to provide a component with its styles, you must reuire the dependencies inside the story config.
 Example:
 ```
@@ -103,7 +103,7 @@ require('./clientlibs/site/js/accordion.js');
 ```
 * We are working on a solution using webpack to automatically pick up on your clientlib changes
 
-#### Use Classes / Sling Models
+### Use Classes / Sling Models
 
 In AEM, most HTL scripts bind java classes in the `data-sly-use` attribute which makes the business logic available to the scripts. Most often, those classes implement _Sling Models_ which offer a simple annotation based way to define the resource properties that should be exported to the script. The _Sling Models_ are also used to generated the `*.model.json` view of a resource.
 
@@ -113,7 +113,7 @@ With the htlengine used in JavaScript, it is not possible to use the java classe
 
 There are several ways to provide the required functionality to the javascript world.
 
-##### 1. Plain Objects
+#### 1. Plain Objects
 
 The probably simplest way is to provide a plain object, where the keys correspond to the property names. The value can either be a primitive value, a javascript getter (eg: `get title() { }`) or a function (eg: `title: () => ()`)).
 
@@ -138,7 +138,7 @@ _Hint_: The `model.json` can also be imported with a `require()` statement.
 
 **Caveat**: The same _model_ object is used with all instances of the respective model. So for example rendering a parsys, that includes several `Text` components, that use all the same _model_ object, will render the same output.
 
-##### 2. Javascript use classes
+#### 2. Javascript use classes
 
 A more sophisticated way is to actually implement a use-class in javascript that can generate some of the dynamic, computed properties, similar to your java class. After the class is loaded, it is instantiated with the runtime global object passed as argument to the constructor.
 
@@ -157,7 +157,7 @@ For example:
 
 **Note**: In the future, there might be functionality to register multiple use-classes automatically.
 
-##### 3. Providing a resource path to a content object
+#### 3. Providing a resource path to a content object
 
 There might be cases where a larger content object (in form of a `*.model.json`) dump is provided. Then a story can just provide a resource path into the content and a model is implicitly mapped to
 the respective resource. This is similar to (1).
@@ -180,18 +180,18 @@ For Example:
 
 **Note**: In the future, the content path would be derived from the current resource path, so that it will be very simple to render a complex component. It might even become the default (e.g. merge with (1) above.
 
-#### TODO
+### TODO
 
-##### app
+#### app
 
 - make models and component loading automatic (during compile time)
   (see ComponentLoader and GenericModel)
 - inject clientlibs css and js. using webpack
 
-##### examples / models
+#### examples / models
 - the real AEM core components have a lot of logic in their model classes.
   in order to display them properly, they need to be partially ported to JS.
 
-##### htlengine
+#### htlengine
 
 - better error reporting (add file, line, col): eg: `Error: Error: mismatched input 'in' expecting {'}', '@'}`
