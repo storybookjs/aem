@@ -23,6 +23,7 @@ export interface DecorationTag {
 export interface AemMetadata {
   components?: any [];
   decorationTag?: DecorationTag;
+  clientLibCategories?: string [];
 }
 
 export interface RenderMainArgs {

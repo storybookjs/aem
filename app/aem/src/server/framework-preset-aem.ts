@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as path from 'path';
 import { Configuration } from 'webpack';
+import AemClientLibPlugin from './aem-clientlib-plugin';
 
 const modGen = (baseDir, varName, id) => {
   return `const ${varName} = require('@storybook/aem').modelProxy(${JSON.stringify(id)});`;
@@ -37,5 +38,9 @@ export function webpack(config: Configuration) {
         }
       ],
     },
+    plugins: [
+      ...config.plugins,
+      new AemClientLibPlugin(),
+    ]
   };
 }
