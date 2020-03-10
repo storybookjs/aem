@@ -28,5 +28,8 @@
   "devDependencies": {
     "chalk": "^3.0.0",
     "shelljs": "^0.8.3"
+  },
+  "dependencies": {
+    "xml2json": "^0.12.0"
   }
 }
