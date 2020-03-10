@@ -94,15 +94,6 @@ export default {
 };
 ```
 
-### Including Styles and JS from client libs
-In order to provide a component with its styles, you must reuire the dependencies inside the story config.
-Example:
-```
-require('./clientlibs/site/css/accordion.css');
-require('./clientlibs/site/js/accordion.js');
-```
-* We are working on a solution using webpack to automatically pick up on your clientlib changes
-
 ### Use Classes / Sling Models
 
 In AEM, most HTL scripts bind java classes in the `data-sly-use` attribute which makes the business logic available to the scripts. Most often, those classes implement _Sling Models_ which offer a simple annotation based way to define the resource properties that should be exported to the script. The _Sling Models_ are also used to generated the `*.model.json` view of a resource.
@@ -186,7 +177,7 @@ For Example:
 
 - make models and component loading automatic (during compile time)
   (see ComponentLoader and GenericModel)
-- inject clientlibs css and js. using webpack
+- Auto-detect clientlib dependencies and categories
 
 #### examples / models
 - the real AEM core components have a lot of logic in their model classes.
