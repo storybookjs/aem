@@ -18,12 +18,15 @@ module.exports = async function(source) {
 
   if (json['jcr:root'] && json['jcr:root']['componentGroup']) {
     const chunkName = json['jcr:root']['componentGroup'];
-    code.push(`require('${chunkName}');`)
+    try {
+      require(chunkName);
+      code.push(`require('${chunkName}');`)
+    } catch (e) {}
   }
 
-  code.push(`const component = ${JSON.stringify(component)};\n
-    component.module = require('${this.context}/${pathBaseName}.html');\n
-    module.exports = component\n`);
+  code.push(`const component = ${JSON.stringify(component)};`)
+  code.push(`component.module = require('${this.context}/${pathBaseName}.html');`)
+  code.push(`module.exports = component`);
 
   return code.join('\n');
 };
