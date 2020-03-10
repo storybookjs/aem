@@ -1,29 +1,29 @@
 const path = require('path');
 const parser = require('xml2json');
+const JCR_ROOT_KEY = 'jcr:root';
+const JCR_TITLE_KEY = 'jcr:title';
 
 module.exports = async function(source) {
   const resourceType = this.context.substring(this.rootContext.length + 1);
   const json = JSON.parse(parser.toJson(source));
-  const name = json['jcr:root'] ? json['jcr:root']['jcr:title'] : path.basename(this.context);
-  const code = [];
+  const pathBaseName = path.basename(this.context);
+  const code = []
 
   const component = {
     resourceType,
     properties: {
-      'jcr:title': `${name}`,
+      JCR_TITLE_KEY: `${json[JCR_ROOT_KEY] ? json[JCR_ROOT_KEY][JCR_TITLE_KEY] : pathBaseName}`,
     }
   };
 
   if (json['jcr:root'] && json['jcr:root']['componentGroup']) {
     const chunkName = json['jcr:root']['componentGroup'];
-    code.join(`require('${json['jcr:root']['componentGroup']}')\n`)
+    code.push(`require('${chunkName}');`)
   }
-  
-  if (component && this.context && name) {
-    code.join(`const component = ${JSON.stringify(component)};\n
-     component.module = require('${this.context}/${name}.html');\n
-     module.exports = component;\n`);
-  }
+
+  code.push(`const component = ${JSON.stringify(component)};\n
+    component.module = require('${this.context}/${pathBaseName}.html');\n
+    module.exports = component\n`);
 
   return code.join('\n');
 };
