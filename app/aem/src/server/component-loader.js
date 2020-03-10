@@ -1,14 +1,16 @@
 const path = require('path');
 const parser = require('xml2json');
+const JCR_ROOT_KEY = 'jcr:root';
+const JCR_TITLE_KEY = 'jcr:title';
 
 module.exports = async function(source) {
   const resourceType = this.context.substring(this.rootContext.length + 1);
   const json = JSON.parse(parser.toJson(source));
-  const name = path.basename(this.context);
+  const name = json[JCR_ROOT_KEY] ? json[JCR_ROOT_KEY][JCR_TITLE_KEY] : path.basename(this.context);
   const component = {
     resourceType,
     properties: {
-      'jcr:title': `${json['jcr:root'] ? json['jcr:root']['jcr:title'] : name}`,
+      JCR_TITLE_KEY: `${name}`,
     }
   };
 
