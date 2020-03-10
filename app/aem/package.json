@@ -41,10 +41,12 @@
     "@types/webpack-env": "^1.15.0",
     "babel-loader": "^8.0.6",
     "core-js": "^3.0.1",
+    "glob": "^7.1.6",
     "global": "^4.3.2",
     "htl-loader": "2.0.0",
     "regenerator-runtime": "^0.13.3",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "xml2json": "^0.12.0"
   },
   "peerDependencies": {
     "babel-loader": "^7.0.0 || ^8.0.0"
