@@ -34,7 +34,16 @@ export function webpack(config: Configuration) {
               loader: path.resolve(__dirname, './aem-component-loader.js'),
             }
           ]
+        },
+        {
+          test: /\.txt$/,
+          use: [
+            {
+              loader: path.resolve(__dirname, './aem-clientlib-text-loader.js'),
+            }
+          ]
         }
+        
       ],
     },
   };
