@@ -1,6 +1,6 @@
 const path = require('path');
-const glob = require('glob');
 const parser = require('xml2json');
+const txtLoader = require.resolve('./aem-clientlib-txt-loader.js');
 const JCR_ROOT_KEY = 'jcr:root';
 const JCR_TITLE_KEY = 'jcr:title';
 
@@ -11,11 +11,22 @@ const getRequiredHTL = (component, context, pathBaseName) => {
 }
 
 const getRequiredClientLibs = (componentDir) => {
-  const requireStatements = [];
-  glob.sync(`${componentDir}/**/clientlibs/**/{css,js,less}.txt`).forEach((file)=> {
-    requireStatements.push(`require('${path.resolve(file)}')`)
-  })
-  return requireStatements;
+// Generate the code to load and watch all
+  // js.txt or css.txt files
+  const loadClientLibCode = !componentDir
+    ? ""
+    : `
+    var txtFileLoadContext = require.context(
+      '!!${txtLoader}!${componentDir}/', 
+      /* include subdirectories: */ 
+      true, 
+      /* all js.txt and css.txt files */
+      /(^|\\\/)(js|css)\.txt$/
+    );
+    // Execute all files
+    txtFileLoadContext.keys().forEach(function (file) { txtFileLoadContext(file) });
+  `;
+  return loadClientLibCode;
 }
 
 module.exports = async function(source) {

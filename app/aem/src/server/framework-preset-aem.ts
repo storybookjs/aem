@@ -35,15 +35,6 @@ export function webpack(config: Configuration) {
             }
           ]
         },
-        {
-          test: /\.txt$/,
-          use: [
-            {
-              loader: path.resolve(__dirname, './aem-clientlib-txt-loader.js'),
-            }
-          ]
-        }
-        
       ],
     },
   };
