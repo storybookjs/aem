@@ -22,15 +22,15 @@ module.exports = async function(source) {
   const resourceType = this.context.substring(this.rootContext.length + 1);
   const json = JSON.parse(parser.toJson(source));
   const pathBaseName = path.basename(this.context);
-  const code = []
-
+  
   const component = {
     resourceType,
     properties: {
       JCR_TITLE_KEY: `${json[JCR_ROOT_KEY] ? json[JCR_ROOT_KEY][JCR_TITLE_KEY] : pathBaseName}`,
     }
   };
-
+  
+  const code = []
   code = code.concat(getRequiredClientLibs(this.context));
   code.push(getRequiredHTL(component, this.context, pathBaseName));
   return code.join('\n');
