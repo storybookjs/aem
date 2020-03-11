@@ -1,28 +1,23 @@
-const path = require('path');
-const BASE_VARIABLE = '#base';
-const EQUAL_DELIMETER = "=";
+const NEW_LINE = '\n';
 
-module.exports = async function(source) {
-    const basePath;
-    const requireStatements = [];
-    const dependencyArray = source.split('\n');
-    
-    if(dependencyArray) {
-      const cleanedBase = dependencyArray[0].replace(' ', '').trim();
-      if(cleanedBase.indexOf(BASE_VARIABLE === 0)) {
-        basePath = cleanedBase.split(EQUAL_DELIMETER)[1];
-      }
-      dependencyArray.forEach((dep, i) => {
-        if(dep.trim().length > 0) {
-          if(basePath) {
-            if(i > 0) {
-              requireStatements.push(`require('${path.resolve(`${this.context}/${basePath}/${dep}`)}')`)
-            }
-          } else {
-            requireStatements.push(`require('${path.resolve(`${this.context}/${dep}`)}')`)
-          }
-        }
-      });
-    }
-    return requireStatements.join('\n');
+function extractBasePath(basePathExpression) {
+  return basePathExpression.replace(/^\s*#base\s*=\s*/, '');
+}
+
+function resolveDependencyFolder(contextPath, source) {
+  const baseExpression = source.split(NEW_LINE).find(line => /^\s*#\s*base/.test(line));
+  return contextPath + (baseExpression ? `/${extractBasePath(baseExpression)}` : '');
+}
+
+module.exports = function(source) {
+  const depedencies = source
+    .split(NEW_LINE)
+    // Ignore commented lines starting with a #
+    .filter(line => !/^\s*#/.test(line))
+    // Ignore empty rows
+    .filter((line) => line);
+
+  const dependencyFolder = resolveDependencyFolder(this.context, source);
+  const requireCalls = depedencies.map(dependency => `require('${dependencyFolder}/${dependency.trim()}');`);
+  return requireCalls.join(NEW_LINE);
 };
