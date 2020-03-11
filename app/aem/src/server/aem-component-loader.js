@@ -1,5 +1,6 @@
 const path = require('path');
 const glob = require('glob');
+const fs = require('fs');
 const parser = require('xml2json');
 const JCR_ROOT_KEY = 'jcr:root';
 const JCR_TITLE_KEY = 'jcr:title';
@@ -12,8 +13,27 @@ const getRequiredHTL = (component, context, pathBaseName) => {
 
 const getRequiredClientLibs = (componentDir) => {
   const requireStatements = [];
-  glob.sync(`${componentDir}/**/clientlibs/**/{css,less,js}/*`).forEach((file)=> {
-    requireStatements.push(`require('${path.resolve(file)}')`)
+  glob.sync(`${componentDir}/**/clientlibs/**/{css,js,less}.txt`).forEach((file)=> {
+    const dependencyArray = fs.readFileSync(file, 'utf8').split('\n');
+    if(dependencyArray) {
+      const basePath = '';
+      const cleanedBase = dependencyArray[0].replace(' ', '').trim();
+      if(cleanedBase.indexOf('#base' === 0)) {
+        basePath = cleanedBase.split("=")[1];
+      }
+      dependencyArray.forEach((dep, i) => {
+        if(dep.trim().length > 0) {
+          const parentDirectory = path.join(file, '..');
+          if(basePath) {
+            if(i > 0) {
+              requireStatements.push(`require('${path.resolve(`${parentDirectory}/${basePath}/${dep}`)}')`)
+            }
+          } else {
+            requireStatements.push(`require('${path.resolve(`${parentDirectory}/${dep}`)}')`)
+          }
+        }
+      });
+    }
   })
   return requireStatements;
 }
