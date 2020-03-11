@@ -5,16 +5,17 @@ const JCR_ROOT_KEY = 'jcr:root';
 const JCR_TITLE_KEY = 'jcr:title';
 
 const getRequiredHTL = (component, context, pathBaseName) => {
-  return `const component = ${JSON.stringify(component)};
+  return `
+   var component = ${JSON.stringify(component)};
    component.module = require('${context}/${pathBaseName}.html');
    module.exports = component;`;
 }
 
 const getRequiredClientLibs = (componentDir) => {
-// Generate the code to load and watch all
+  // Generate the code to load and watch all
   // js.txt or css.txt files
   const loadClientLibCode = !componentDir
-    ? ""
+    ? ''
     : `
     var txtFileLoadContext = require.context(
       '!!${txtLoader}!${componentDir}/', 
@@ -24,7 +25,7 @@ const getRequiredClientLibs = (componentDir) => {
       /(^|\\\/)(js|css)\.txt$/
     );
     // Execute all files
-    txtFileLoadContext.keys().forEach(function (file) { txtFileLoadContext(file) });
+    txtFileLoadContext.keys().forEach(txtFileLoadContext);
   `;
   return loadClientLibCode;
 }
@@ -41,8 +42,5 @@ module.exports = async function(source) {
     }
   };
   
-  const code = []
-  code = code.concat(getRequiredClientLibs(this.context));
-  code.push(getRequiredHTL(component, this.context, pathBaseName));
-  return code.join('\n');
+  return [getRequiredClientLibs(this.context), getRequiredHTL(component, this.context, pathBaseName)].join('\n');
 };
