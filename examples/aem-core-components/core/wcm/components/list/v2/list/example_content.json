@@ -1,5 +1,5 @@
 {
-  ":type": "core/wcm/components/list",
+  ":type": "core/wcm/components/list/v2/list",
   ":items": {
     "item_1": {
       "title": "item 1"

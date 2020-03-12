@@ -35,9 +35,6 @@ export const Text = () => {
       text: text('text', 'Hello, world.' ),
       isRichText: boolean('isRichText', false),
     },
-    props: {
-      'jcr:title': 'Text (v2)'
-    },
     template: TextTemplate,
   };
 };
@@ -49,9 +46,6 @@ export const RichText = () => {
     content: {
       text: text('text', '<h1>Hello, world.</h1>' ),
       isRichText: boolean('isRichText', true),
-    },
-    props: {
-      'jcr:title': 'Text (v2)'
     },
     template: TextTemplate,
     aemMetadata: {

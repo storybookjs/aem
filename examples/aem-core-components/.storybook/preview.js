@@ -5,9 +5,9 @@ import { aemMetadata } from '@storybook/aem';
 addDecorator(withA11y);
 addDecorator(aemMetadata({
   components: [
-    require('../components/accordion/.content.xml'),
-    require('../components/list/.content.xml'),
-    require('../components/text/.content.xml'),
+    require('../core/wcm/components/accordion/v1/accordion/.content.xml'),
+    require('../core/wcm/components/list/v2/list/.content.xml'),
+    require('../core/wcm/components/text/v2/text/.content.xml'),
   ],
 }));
 
