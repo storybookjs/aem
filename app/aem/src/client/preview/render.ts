@@ -22,7 +22,9 @@ const createRuntime = (wcmmode, content, resourceLoaderPath, compLoader, compone
   runtime.setGlobal({
     models,
     wcmmode,
-    component: {},
+    component: {
+      properties: {}
+    },
     content,
   });
   runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
