@@ -31,10 +31,10 @@ export function webpack(config: Configuration) {
           test: /\.content\.xml$/,
           use: [
             {
-              loader: path.resolve(__dirname, './component-loader.js'),
+              loader: path.resolve(__dirname, './aem-component-loader.js'),
             }
           ]
-        }
+        },
       ],
     },
   };
