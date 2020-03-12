@@ -9,6 +9,10 @@ function resolveDependencyFolder(contextPath, source) {
   return contextPath + (baseExpression ? `/${extractBasePath(baseExpression)}` : '');
 }
 
+function isAbsolutePath(path) {
+  return path.charAt(0) === '/';
+}
+
 module.exports = function(source) {
   const depedencies = source
     .split(NEW_LINE)
@@ -18,6 +22,8 @@ module.exports = function(source) {
     .filter((line) => line);
 
   const dependencyFolder = resolveDependencyFolder(this.context, source);
-  const requireCalls = depedencies.map(dependency => `require('${dependencyFolder}/${dependency.trim()}');`);
+  const requireCalls = depedencies.map(dependency => 
+    `require('${dependencyFolder}${isAbsolutePath(dependency) ? dependency.trim() : `/${dependency.trim()}`}');`);
   return requireCalls.join(NEW_LINE);
+  
 };

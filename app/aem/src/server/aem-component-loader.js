@@ -38,9 +38,10 @@ module.exports = async function(source) {
   const component = {
     resourceType,
     properties: {
-      JCR_TITLE_KEY: `${json[JCR_ROOT_KEY] ? json[JCR_ROOT_KEY][JCR_TITLE_KEY] : pathBaseName}`,
+      [JCR_TITLE_KEY]: `${json[JCR_ROOT_KEY] ? json[JCR_ROOT_KEY][JCR_TITLE_KEY] : pathBaseName}`,
     }
   };
+  console.log(component)
   
   return [getRequiredClientLibs(this.context), getRequiredHTL(component, this.context, pathBaseName)].join('\n');
 };
