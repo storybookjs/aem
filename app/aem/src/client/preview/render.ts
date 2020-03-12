@@ -16,15 +16,13 @@ const rootElement = document.getElementById('root');
 /**
  * Gets the runtime object with all params set
  */
-const createRuntime = (wcmmode, props, content, resourceLoaderPath, compLoader, components, models) => {
+const createRuntime = (wcmmode, content, resourceLoaderPath, compLoader, components, models) => {
   const resolver = new ResourceResolver(content || {}, compLoader, components);
   const runtime = new Runtime();
   runtime.setGlobal({
     models,
     wcmmode,
-    component: {
-      properties: props
-    },
+    component: {},
     content,
   });
   runtime.withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true));
@@ -48,7 +46,7 @@ export default async function renderMain({
     ].join('\n'),
   };
 
-  const { resourceLoaderPath, resourceType, props, content, aemMetadata = {}, wcmmode = {}, models = {} } = storyFn() as any;
+  const { resourceLoaderPath, resourceType, content, aemMetadata = {}, wcmmode = {}, models = {} } = storyFn() as any;
   const decorationTag = aemMetadata ? aemMetadata.decorationTag : null;
   const components = aemMetadata ? aemMetadata.components : [];
   const compLoader = new ComponentLoader();
@@ -64,7 +62,7 @@ export default async function renderMain({
       template = info.module;
     }
   }
-  const runtime = createRuntime(wcmmode, props, content, resourceLoaderPath, compLoader, components, models);
+  const runtime = createRuntime(wcmmode, content, resourceLoaderPath, compLoader, components, models);
   let element = typeof template === TYPE_FUNCTION ? await template(runtime) : template;
 
   if (element instanceof Node === false && typeof element !== TYPE_STRING) {

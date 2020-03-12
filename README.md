@@ -18,7 +18,6 @@ As a part of the storybook configuration setup there are options you can use to 
 - Template (required): HTL/HTML File Reference or Inline HTML
 - Models (required): Used to render a component and can either be a proper use-class, a content object (model.json) or a resource path (string). When using the later, the respective content needs to be provided with the `content` object described below.
 - Content (optional): Mocked authored content that can be used in conjunction with knobs
-- Props (optional): Mocked JCR props that can be used in conjunction with knobs
 - AEM Metadata (optional): An assortment of metadata used to provide your component context such as:
   - Component dependencies: for nested components, you only need to provide a template but you must include require all nested component's xml files in order for them to render (They can also be defined at the story config level or in the preview using the aemMetadata decorator)
   - Decoration tags: tags/ classes that can be applied to the outside of your component as a wrapper and can be used to mock the java tag annotations({} or null)
@@ -34,9 +33,6 @@ export const Example = () => {
     content: {
       text: text('text', 'Hello, world.' ),
       isRichText: boolean('isRichText', false),
-    },
-    props: {
-      'jcr:title': 'Text (v2)'
     },
     aemMetadata: {
       components: [

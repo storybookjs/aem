@@ -36,9 +36,6 @@ export const Text = () => {
       text: text('text', 'Hello, world.' ),
       isRichText: boolean('isRichText', false),
     },
-    props: {
-      'jcr:title': 'Text (v2)'
-    },
     template: MyText,
   };
 };
@@ -50,9 +47,6 @@ export const RichText = () => {
     content: {
       text: text('text', '<h1>Hello, world.</h1>' ),
       isRichText: boolean('isRichText', true),
-    },
-    props: {
-      'jcr:title': 'Text (v2)'
     },
     template: MyText,
     aemMetadata: {
@@ -84,9 +78,6 @@ export const TextWithModelJson = () => {
       text: text('text', 'Hello, world.' ),
       isRichText: false,
     },
-    props: {
-      'jcr:title': 'Text (v2)'
-    },
     template: MyText,
     noDecoration: true
   };
@@ -106,9 +97,6 @@ export const TextWithModelFromContent = () => {
           isRichText: false,
         }
       }
-    },
-    props: {
-      'jcr:title': 'Text (v2)'
     },
     template: MyText,
     noDecoration: true
