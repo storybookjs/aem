@@ -23,9 +23,6 @@ export const Accordion = () => {
       'com.adobe.cq.wcm.core.components.models.Text': require('../../../../models/com.adobe.cq.wcm.core.components.models.Text'),
     },
     content: exampleContent,
-    props: {
-      'jcr:title': 'Accordion (v1)'
-    },
     resourceLoaderPath: '/',
     resourceType: 'core/wcm/components/accordion',  // todo: derive from path
   };

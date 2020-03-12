@@ -37,7 +37,6 @@ export interface RenderMainArgs {
 
 export interface StoryFnAemReturnType {
   content?: any;
-  props?: any;
   resourceLoaderPath?: string;
   template?: any;
   wcmmode?: any;

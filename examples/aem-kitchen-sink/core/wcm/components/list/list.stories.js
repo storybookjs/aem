@@ -12,9 +12,6 @@ export const List = () => {
     models: {
       'com.adobe.cq.wcm.core.components.models.List': require('../../../../models/com.adobe.cq.wcm.core.components.models.List'),
     },
-    props: {
-      'jcr:title': 'List (v2)'
-    },
     template: MyList
   };
 };
