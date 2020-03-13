@@ -13,8 +13,8 @@ export const BasicList = () => {
     content: {
       ":type": "components/list",
       "showDescription": boolean('showDescription', false, 'List'),
-      "showModificationDate": boolean('showModificationDate', false, 'List'),
       "linkItems": boolean('linkItems', false, 'List'),
+      "showModificationDate": false,
       "items": [
         {
           "lastModified": 1572285728871,
@@ -51,8 +51,8 @@ export const ListWithDescription = () => {
     content: {
       ":type": "components/list",
       "showDescription": boolean('showDescription', true, 'List'),
-      "showModificationDate": boolean('showModificationDate', false, 'List'),
       "linkItems": boolean('linkItems', false, 'List'),
+      "showModificationDate": false,
       "items": [
         {
           "lastModified": 1572285728871,
@@ -90,8 +90,8 @@ export const ListWithLinksDoesntWorkSeeTODOInCode = () => {
     content: {
       ":type": "components/list",
       "showDescription": boolean('showDescription', false, 'List'),
-      "showModificationDate": boolean('showModificationDate', false, 'List'),
       "linkItems": boolean('linkItems', true, 'List'),
+      "showModificationDate": false,
       "items": [
         {
           "lastModified": 1572285728871,
