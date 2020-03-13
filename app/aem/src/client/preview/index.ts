@@ -1,7 +1,8 @@
 /* eslint-disable prefer-destructuring */
 import { start } from '@storybook/core/client';
 import { ClientStoryApi, Loadable } from '@storybook/addons';
-export { modelProxy } from './helpers/GenericModel';
+export { GenericModel } from './helpers/GenericModel';
+export { modelProxy } from './helpers/model-proxy';
 
 import './globals';
 import render from './render';

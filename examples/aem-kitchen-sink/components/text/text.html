@@ -1,0 +1,6 @@
+<div data-sly-use.textModel="Text"
+     data-sly-test.text="${textModel.text}"
+     class="cmp-text">
+    <p class="cmp-text__paragraph"
+       data-sly-unwrap="${textModel.isRichText}">${text @ context = textModel.isRichText ? 'html' : 'text'}</p>
+</div>

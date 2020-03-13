@@ -1,59 +1,53 @@
 /**
- * Generic model implementation that either instantiates a use-class or mocks a Sling Model class.
+ * Generic model implementation automatically exposes the properties and collections from the
+ * underlying model content.
  */
-class GenericModel {
-  constructor(id) {
-    this.id = id;
-  }
+export class GenericModel {
+  constructor(content = {}) {
+    this.content = content;
+    const self = this;
 
-  /**
-   * Called by the htlengine runtime when a script uses the data-sly-call plugin.
-   * @param {object} context The runtime globals
-   * @returns A use-class like instance or object.
-   */
-  async use(context) {
-    const { content, models = {} } = context;
-    let model = models[this.id];
-    if (!model) {
-      throw Error(`no such model: ${this.id}`);
-    }
-    if (model.default) {
-      model = model.default;
-    }
-    if (typeof model === 'function') {
-      return new model(content);
-    } else if (typeof model === 'object') {
-      return model;
-    } else if (typeof model === 'string') {
-      if (!content) {
-        throw Error(`no model for ${this.id} and no content defined.`);
-      }
-      const node = model.split('/').reduce((current, seg) => {
-        if (!seg) {
-          return current;
+    /**
+     * Proxy handler for the abstract model. It assumes best practices when mapping the underlying
+     * sling model to the potential use cases.
+     */
+    return new Proxy(this, {
+      get(target, prop) {
+        // property / getter / function of sub class has priority
+        if (prop in self) {
+          return self[prop];
         }
-        if (!current || !current[':items']) {
-          return null;
+        if (prop in content) {
+          return content[prop];
         }
-        return current[':items'][seg];
-      }, content);
-      if (!node) {
-        throw Error(`no model for ${this.id} and node at path '${model}' does not exist in content.`);
-      }
-      return node;
-    }
+        if (prop === 'items') {
+          const items = content[':items'];
+          if (!items) {
+            return [];
+          }
+          const listItems = Object.entries(items).map(([name, item]) => new GenericModel({
+            ':name': name,
+            ...item,
+          }));
+          // hack to provide a size property of the expected java collection.
+          listItems.size = listItems.length;
+          return listItems;
+        }
+        if (prop === 'name') {
+          return content[':name'];
+        }
+        if (prop === 'path') {
+          return content[':path'];
+        }
+        return undefined;
+      },
+      has(target, key) {
+        return key in content
+          || key in self
+          || key === 'items'
+          || key === 'name'
+          || key === 'path'
+      },
+    });
   }
-}
-
-/**
- * A simple proxy that passes the respective Module id to the generic model.
- * @param {string} id Module Id.
- * @returns {GenericModel} A proxied GenericModel class.
- */
-export function modelProxy(id) {
-  return new Proxy(GenericModel, {
-    construct(target, argArray, newTarget) {
-      return new target(id);
-    }
-  });
 }

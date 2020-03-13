@@ -46,7 +46,7 @@ export default class ListItem {
    * @return the last modified date of this list item or {@code null}
    * @since com.adobe.cq.wcm.core.components.models 12.2.0
    */
-  get lLastModified() {
+  get lastModified() {
     return 0;
   }
 
