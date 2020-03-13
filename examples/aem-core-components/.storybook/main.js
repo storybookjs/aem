@@ -1,5 +1,6 @@
 module.exports = {
   stories: [
+    `../../welcome/*.stories.*`,
     `../core/wcm/components/**/*.stories.*`,
   ],
   addons: [
