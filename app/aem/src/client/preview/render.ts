@@ -48,9 +48,10 @@ export default async function renderMain({
     ].join('\n'),
   };
 
-  const { resourceLoaderPath, resourceType, content, aemMetadata = {}, wcmmode = {}, models = {} } = storyFn() as any;
+  const { resourceLoaderPath, resourceType, content, aemMetadata = {}, wcmmode = {}} = storyFn() as any;
   const decorationTag = aemMetadata ? aemMetadata.decorationTag : null;
   const components = aemMetadata ? aemMetadata.components : [];
+  const models = aemMetadata ? aemMetadata.models : {};
   const compLoader = new ComponentLoader();
   let { template } = storyFn() as any;
 

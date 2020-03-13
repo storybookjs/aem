@@ -11,6 +11,7 @@ export const aemMetadata = (metadata: Partial<AemMetadata>) => (storyFn: () => a
     aemMetadata: {
       components: [...(metadata.components || []), ...(storyMetadata.components || [])],
       decorationTag: metadata.decorationTag || storyMetadata.decorationTag || {},
+      models: metadata.models || storyMetadata.models || {},
     },
   };
 };
