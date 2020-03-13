@@ -1,30 +1,117 @@
-import exampleContent from './example_content';
-import { aemMetadata, GenericModel } from '@storybook/aem';
+import { aemMetadata } from '@storybook/aem';
+import { withKnobs, text, boolean, array } from "@storybook/addon-knobs";
+
 
 export default {
   title: 'Accordion',
   decorators: [
+    withKnobs,
     aemMetadata({
       decorationTag: {
         cssClasses: ['accordion','component'],
         tagName: 'article'
       }
     }),
-  ]
+  ],
+  parameters: {
+    knobs: {
+      escapeHTML: false,
+    },
+  },
 };
 
-export const Accordion = () => {
+export const BasicAccordion = () => {
   return {
-    // models used to render this component.
-    // todo: this could further be automated by creating a _ModelLoader_ that is fed with all the use-classes
-    models: {
-      'Accordion': GenericModel,
-      'Text': GenericModel,
+    content: {
+      ":type": "components/accordion",
+      "headingElement": "h1",
+      "singleExpansion": boolean('Single expansion', false, 'Accordion'),
+      "expandedItems": array('Expanded Items(comma delimeted - Ex. item_1,item_2,...)', [], ',', 'Accordion'),
+      ":items": {
+        "item_1": {
+          ":type": "components/text",
+          "title": text('Title', 'Title 1', 'Item 1'),
+          "text": text('Text', 'Accordion Item 1', 'Item 1'),
+          "textIsRich": boolean('Is rich text?', false, 'Item 1'),
+        },
+        "item_2": {
+          ":type": "components/text",
+          "title": text('Title', 'Title 2', 'Item 2'),
+          "text": text('Text', 'Accordion Item 2', 'Item 2'),
+          "textIsRich": boolean('Is rich text?', false, 'Item 2'),
+        },
+        "item_3": {
+          ":type": "components/text",
+          "title": text('Title', 'Title 3', 'Item 3'),
+          "text": text('Text', 'Accordion Item 3', 'Item 3'),
+          "textIsRich": boolean('Is rich text?', false, 'Item 3'),
+        }
+      }
     },
-    content: exampleContent,
+    resourceType: 'components/accordion',
+  };
+};
 
-    // this example just specifies the resource type and let's the renderer automatically load
-    // the correct HTL template and render it,
+export const AccordionWithSingleExpansion = () => {
+  return {
+    content: {
+      ":type": "components/accordion",
+      "headingElement": "h1",
+      "singleExpansion": boolean('Single expansion', true, 'Accordion'),
+      "expandedItems": array('Expanded Items(comma delimeted - Ex. item_1,item_2,...)', [], ',', 'Accordion'),
+      ":items": {
+        "item_1": {
+          ":type": "components/text",
+          "title": text('Title', 'Title 1', 'Item 1'),
+          "text": text('Text', 'Accordion Item 1', 'Item 1'),
+          "textIsRich": boolean('Is rich text?', false, 'Item 1'),
+        },
+        "item_2": {
+          ":type": "components/text",
+          "title": text('Title', 'Title 2', 'Item 2'),
+          "text": text('Text', 'Accordion Item 2', 'Item 2'),
+          "textIsRich": boolean('Is rich text?', false, 'Item 2'),
+        },
+        "item_3": {
+          ":type": "components/text",
+          "title": text('Title', 'Title 3', 'Item 3'),
+          "text": text('Text', 'Accordion Item 3', 'Item 3'),
+          "textIsRich": boolean('Is rich text?', false, 'Item 3'),
+        }
+      }
+    },
+    resourceType: 'components/accordion',
+  };
+};
+
+export const AccordionWithStartingExpandedItems = () => {
+  return {
+    content: {
+      ":type": "components/accordion",
+      "headingElement": "h1",
+      "singleExpansion": boolean('Single expansion', false, 'Accordion'),
+      "expandedItems": array('Expanded Items(comma delimeted - Ex. item_1,item_2,...)', ['item_1','item_3'], ',', 'Accordion'),
+      ":items": {
+        "item_1": {
+          ":type": "components/text",
+          "title": text('Title', 'Title 1', 'Item 1'),
+          "text": text('Text', 'Accordion Item 1', 'Item 1'),
+          "textIsRich": boolean('Is rich text?', false, 'Item 1'),
+        },
+        "item_2": {
+          ":type": "components/text",
+          "title": text('Title', 'Title 2', 'Item 2'),
+          "text": text('Text', 'Accordion Item 2', 'Item 2'),
+          "textIsRich": boolean('Is rich text?', false, 'Item 2'),
+        },
+        "item_3": {
+          ":type": "components/text",
+          "title": text('Title', 'Title 3', 'Item 3'),
+          "text": text('Text', 'Accordion Item 3', 'Item 3'),
+          "textIsRich": boolean('Is rich text?', false, 'Item 3'),
+        }
+      }
+    },
     resourceType: 'components/accordion',
   };
 };

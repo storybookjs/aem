@@ -22,21 +22,11 @@ export default {
   },
 };
 
-// models used to render this component.
-const models = {
-  'person': require('../../models/person'),
-};
-
 export const Person = () => {
   return {
-    models,
-    // note: you can use knobs to alter content data!
     content: {
       firstName: text('First Name', 'John' ),
       lastName: text('Last Name', 'Doe' ),
-    },
-    props: {
-      'jcr:title': 'Person Component'
     },
     template: PersonTemplate,
   };
