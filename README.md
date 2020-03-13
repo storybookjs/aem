@@ -124,7 +124,7 @@ A more sophisticated way is to actually implement a use-class in javascript that
 
 A very simple example can be found here: [com.adobe.cq.wcm.core.components.models.Text](./examples/aem-kitchen-sink/models/com.adobe.cq.wcm.core.components.models.Text.js)
 
-The models needs to be registered in the story:
+The models needs to be registered in the story or in the preview using the aemMetadata Decorator:
 
 For example:
 
