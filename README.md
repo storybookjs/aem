@@ -11,25 +11,22 @@ To build and test out this project complete the following:
 5) From the examples/aem-kitchen-sink directory, run "yarn storybook"
 
 ## Usage
-See [example](./examples/aem-kitchen-sink/core/wcm/components/text/text.stories.js):
+See [example](./examples/aem-kitchen-sink/components/list/list.stories.js):
 
 ### Story configuration
 As a part of the storybook configuration setup there are options you can use to customize your use case:
 - Template (required): HTL/HTML File Reference or Inline HTML
-- Models (required): Used to render a component and can either be a proper use-class, a content object (model.json) or a resource path (string). When using the later, the respective content needs to be provided with the `content` object described below.
 - Content (optional): Mocked authored content that can be used in conjunction with knobs
-- AEM Metadata (optional): An assortment of metadata used to provide your component context such as:
+- AEM Metadata: An assortment of metadata used to provide your component context such as:
   - Component dependencies: for nested components, you only need to provide a template but you must include require all nested component's xml files in order for them to render (They can also be defined at the story config level or in the preview using the aemMetadata decorator)
   - Decoration tags: tags/ classes that can be applied to the outside of your component as a wrapper and can be used to mock the java tag annotations({} or null)
+  - Models (required): Used to render a component and can either be a proper use-class, a content object (model.json) or a resource path (string). When using the later, the respective content needs to be provided with the `content` object.
 
 ```
 import Example from ('./example.html'); // HTL File or HTML File
 export const Example = () => {
   return {
     template: MyText,
-    models: {
-      'com.adobe.cq.wcm.core.components.models.Text': require('../../../../models/com.adobe.cq.wcm.core.components.models.Text'),
-    },
     content: {
       text: text('text', 'Hello, world.' ),
       isRichText: boolean('isRichText', false),
@@ -44,6 +41,9 @@ export const Example = () => {
         cssClasses: ['text','component'],
         tagName: 'article' // type of wrapper element
       }
+      models: {
+        'com.adobe.cq.wcm.core.components.models.Text': GenericModel
+      },
     }
   };
 };
@@ -62,11 +62,16 @@ addDecorator(aemMetadata({
     require('../core/wcm/components/accordion/.content.xml'),
     require('../core/wcm/components/list/.content.xml'),
     require('../core/wcm/components/text/.content.xml'),
+    require('../core/wcm/components/person/.content.xml'),
   ],
   decorationTag: {
     cssClasses: ['text','component'],
     tagName: 'article'
-  }
+  },
+  models: {
+    'com.adobe.cq.wcm.core.components.models.Text': GenericModel
+    'person': require('../models/person'),
+  },
 }));
 ```
 
@@ -78,7 +83,6 @@ export default {
     aemMetadata({
       components: [
         require('../core/wcm/components/accordion/.content.xml'),
-        require('../core/wcm/components/list/.content.xml'),
         require('../core/wcm/components/text/.content.xml'),
       ],
       decorationTag: {
@@ -120,7 +124,7 @@ A more sophisticated way is to actually implement a use-class in javascript that
 
 A very simple example can be found here: [com.adobe.cq.wcm.core.components.models.Text](./examples/aem-kitchen-sink/models/com.adobe.cq.wcm.core.components.models.Text.js)
 
-The models needs to be registered in the story:
+The models needs to be registered in the story or in the preview using the aemMetadata Decorator:
 
 For example:
 
