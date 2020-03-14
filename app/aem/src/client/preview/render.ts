@@ -1,5 +1,5 @@
 import { document, Node } from 'global';
-import { RenderMainArgs, ShowErrorArgs, DecorationTag } from './types/types';
+import { RenderMainArgs, ShowErrorArgs, DecorationTag, AemMetadata } from './types/types';
 import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
@@ -15,7 +15,9 @@ const ROOT_ELEMENT = document.getElementById('root');
 /**
  * Gets the runtime object with all params set
  */
-const createRuntime = (wcmmode: any, content: Object, resourceLoaderPath: string, components: any [], models: Object) => {
+const createRuntime = (wcmmode: any, content: Object, resourceLoaderPath: string, aemMetadata: AemMetadata) => {
+  const models: Object = aemMetadata ? aemMetadata.models : {};
+  const components: any [] = aemMetadata ? aemMetadata.components : [];
   return new Runtime()
     .setGlobal({ models, wcmmode, component: { properties: {} }, content })
     .withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true))
@@ -35,6 +37,11 @@ const getErrorMessage = (selectedStory: string, selectedKind: string): ShowError
   };
 }
 
+/**
+ * Function that creates and returns a decoration element based on the decration tag data provided
+ * @param decorationTag 
+ * @param element 
+ */
 const getDecorationElement = (decorationTag: DecorationTag, element: Element) => {
   let decorationElement;
   if (decorationTag) {
@@ -78,8 +85,9 @@ const resetRoot = () => {
  * @param resourceType 
  * @param components 
  */
-const getTemplate = (storyFn: any, resourceType: any, components: any[]) => {
+const getTemplate = (storyFn: any, resourceType: any, aemMetadata: AemMetadata) => {
   const { template } = storyFn() as any;
+  const components: any [] = aemMetadata ? aemMetadata.components : [];
   const info = resourceType ? new ComponentLoader().resolve(resourceType, components) : null;
   return !template && info 
             ? (info.module ? info.module : `unable to load ${resourceType}`)
@@ -87,9 +95,9 @@ const getTemplate = (storyFn: any, resourceType: any, components: any[]) => {
 }
 
 export default async function renderMain({ storyFn, selectedKind, selectedStory, showMain, showError, forceRender}: RenderMainArgs) {
-  const { resourceLoaderPath, resourceType, content, aemMetadata = {}, wcmmode = {}, models = {} } = storyFn() as any;
-  const runtime: any = createRuntime(wcmmode, content, resourceLoaderPath, aemMetadata ? aemMetadata.components : [], models);
-  const template: any = getTemplate(storyFn, resourceType, aemMetadata ? aemMetadata.components : []);
+  const { resourceLoaderPath, resourceType, content, aemMetadata = {}, wcmmode = {} } = storyFn() as any;
+  const runtime: any = createRuntime(wcmmode, content, resourceLoaderPath, aemMetadata);
+  const template: any = getTemplate(storyFn, resourceType, aemMetadata);
   const element: any = typeof template === TYPE_FUNCTION ? await template(runtime) : template;
   const decorationTag: DecorationTag = aemMetadata ? aemMetadata.decorationTag : null;
 

@@ -1,8 +1,5 @@
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import { aemMetadata } from '@storybook/aem';
-import models from '../../../../../../models';
-
-// todo: simplify; include automatically during compilation
 
 export default {
   title: 'AEM Text',
@@ -24,8 +21,6 @@ export default {
 
 export const Text = () => {
   return {
-    models,
-    // note: you can use knobs to alter content data!
     content: {
       text: text('text', 'Hello, world.' ),
       isRichText: boolean('isRichText', false),
@@ -36,8 +31,6 @@ export const Text = () => {
 
 export const RichText = () => {
   return {
-    models,
-    // note: you can use knobs to alter content data!
     content: {
       text: text('text', '<h1>Hello, world.</h1>' ),
       isRichText: boolean('isRichText', true),

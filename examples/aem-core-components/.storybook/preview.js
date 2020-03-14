@@ -1,6 +1,7 @@
 import { addParameters, addDecorator } from '@storybook/client-api';
 import { withA11y } from '@storybook/addon-a11y';
 import { aemMetadata } from '@storybook/aem';
+import models from '../models';
 
 addDecorator(withA11y);
 addDecorator(aemMetadata({
@@ -9,6 +10,7 @@ addDecorator(aemMetadata({
     require('../core/wcm/components/list/v2/list/.content.xml'),
     require('../core/wcm/components/text/v2/text/.content.xml'),
   ],
+  models,
 }));
 
 addParameters({

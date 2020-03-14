@@ -1,5 +1,4 @@
-import { GenericModel } from '@storybook/aem';
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { withKnobs, boolean } from "@storybook/addon-knobs";
 import exampleContent from './example_content';
 import ListTemplate from './list.html';
 
@@ -12,9 +11,6 @@ export default {
 
 export const List = () => {
   return {
-    models: {
-      'List': GenericModel,
-    },
     content: {
       ...exampleContent,
       showDescription: boolean('showDescription', false),

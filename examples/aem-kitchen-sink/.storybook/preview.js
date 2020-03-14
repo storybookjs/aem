@@ -1,6 +1,6 @@
 import { addParameters, addDecorator } from '@storybook/client-api';
 import { withA11y } from '@storybook/addon-a11y';
-import { aemMetadata } from '@storybook/aem';
+import { aemMetadata, GenericModel } from '@storybook/aem';
 
 addDecorator(withA11y);
 addDecorator(aemMetadata({
@@ -9,6 +9,12 @@ addDecorator(aemMetadata({
     require('../components/list/.content.xml'),
     require('../components/text/.content.xml'),
   ],
+  models: {
+    'Accordion': GenericModel,
+    'Text': GenericModel,
+    'List': GenericModel,
+    'person': require('../models/person'),
+  }
 }));
 
 addParameters({
