@@ -2,7 +2,9 @@ import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
 
 export default class ResourceResolver {
   content = null;
+
   loader = null;
+
   components = null;
 
   constructor(content, componentLoader, components) {
@@ -13,7 +15,7 @@ export default class ResourceResolver {
 
   createResourceLoader(parentPath) {
     if (!Array.isArray(parentPath)) {
-      parentPath = parentPath.split('/').filter((s) => !!s);
+      parentPath = parentPath.split('/').filter(s => !!s);
     }
     return async (runtime, uri) => {
       console.log('loading', uri);
@@ -21,7 +23,7 @@ export default class ResourceResolver {
       if (!uri.startsWith('/')) {
         path = parentPath.concat(uri.split('/'));
       }
-      path = path.filter((s) => !!s);
+      path = path.filter(s => !!s);
       // todo: implement relative path...
       let c = this.content;
       let i = 0;
@@ -52,6 +54,6 @@ export default class ResourceResolver {
           content: c,
         });
       return comp.module(localRuntime);
-    }
+    };
   }
 }

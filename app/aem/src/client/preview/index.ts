@@ -1,12 +1,13 @@
 /* eslint-disable prefer-destructuring */
 import { start } from '@storybook/core/client';
 import { ClientStoryApi, Loadable } from '@storybook/addons';
-export { GenericModel } from './helpers/GenericModel';
-export { modelProxy } from './helpers/model-proxy';
 
 import './globals';
 import render from './render';
 import { StoryFnAemReturnType, IStorybookSection } from './types/types';
+
+export { GenericModel } from './helpers/GenericModel';
+export { modelProxy } from './helpers/model-proxy';
 
 const framework = 'aem';
 

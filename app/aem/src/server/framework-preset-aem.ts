@@ -24,7 +24,7 @@ export function webpack(config: Configuration) {
                 includeRuntime: false,
                 globalName: 'context',
                 runtimeVars: ['wcmmode', 'component'],
-              }
+              },
             },
           ],
         },
@@ -33,8 +33,8 @@ export function webpack(config: Configuration) {
           use: [
             {
               loader: path.resolve(__dirname, './aem-component-loader.js'),
-            }
-          ]
+            },
+          ],
         },
       ],
     },

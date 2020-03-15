@@ -1,0 +1,6 @@
+app/aem/dist
+app/aem/node_modules
+node_modules
+
+# Lint ignore examples for now
+examples
