@@ -15,13 +15,13 @@ export interface ShowErrorArgs {
   description: string;
 }
 
-export interface DecorationTag { 
-  cssClasses?: string [];
+export interface DecorationTag {
+  cssClasses?: string[];
   tagName?: string;
 }
 
 export interface AemMetadata {
-  components?: any [];
+  components?: any[];
   decorationTag?: DecorationTag;
   models: any;
 }

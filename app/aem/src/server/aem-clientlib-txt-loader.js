@@ -19,11 +19,14 @@ module.exports = function(source) {
     // Ignore commented lines starting with a #
     .filter(line => !/^\s*#/.test(line))
     // Ignore empty rows
-    .filter((line) => line);
+    .filter(line => line);
 
   const dependencyFolder = resolveDependencyFolder(this.context, source);
-  const requireCalls = depedencies.map(dependency => 
-    `require('${dependencyFolder}${isAbsolutePath(dependency) ? dependency.trim() : `/${dependency.trim()}`}');`);
+  const requireCalls = depedencies.map(
+    dependency =>
+      `require('${dependencyFolder}${
+        isAbsolutePath(dependency) ? dependency.trim() : `/${dependency.trim()}`
+      }');`
+  );
   return requireCalls.join(NEW_LINE);
-  
 };

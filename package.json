@@ -9,6 +9,8 @@
   },
   "scripts": {
     "build": "npx tsc ./app/aem/src/**/* --watch --outDir ./app/aem/dist --listEmittedFiles true --allowjs true",
+    "lint": "yarn lint:js",
+    "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.json,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "workspaces": [
@@ -26,7 +28,11 @@
   },
   "homepage": "https://github.com/CodeByAlex/storybook-aem-native#readme",
   "devDependencies": {
+    "@storybook/eslint-config-storybook": "^2.2.0",
+    "@storybook/linter-config": "^2.3.0",
     "chalk": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
     "shelljs": "^0.8.3"
   }
 }

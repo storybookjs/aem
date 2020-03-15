@@ -25,10 +25,13 @@ export class GenericModel {
           if (!items) {
             return [];
           }
-          const listItems = Object.entries(items).map(([name, item]) => new GenericModel({
-            ':name': name,
-            ...item,
-          }));
+          const listItems = Object.entries(items).map(
+            ([name, item]) =>
+              new GenericModel({
+                ':name': name,
+                ...item,
+              })
+          );
           // hack to provide a size property of the expected java collection.
           listItems.size = listItems.length;
           return listItems;
@@ -42,11 +45,7 @@ export class GenericModel {
         return undefined;
       },
       has(target, key) {
-        return key in content
-          || key in self
-          || key === 'items'
-          || key === 'name'
-          || key === 'path'
+        return key in content || key in self || key === 'items' || key === 'name' || key === 'path';
       },
     });
   }

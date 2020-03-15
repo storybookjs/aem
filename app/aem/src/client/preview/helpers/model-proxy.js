@@ -33,6 +33,6 @@ export function modelProxy(id) {
   return new Proxy(ModelProxy, {
     construct(target, argArray, newTarget) {
       return new target(id);
-    }
+    },
   });
 }
