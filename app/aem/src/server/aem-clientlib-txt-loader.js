@@ -13,7 +13,7 @@ function isAbsolutePath(path) {
   return path.charAt(0) === '/';
 }
 
-module.exports = function(source) {
+export default function aemClientLibTxtLoader(source) {
   const depedencies = source
     .split(NEW_LINE)
     // Ignore commented lines starting with a #
@@ -29,4 +29,4 @@ module.exports = function(source) {
       }');`
   );
   return requireCalls.join(NEW_LINE);
-};
+}

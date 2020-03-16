@@ -1,6 +1,33 @@
 app/aem/dist
 app/aem/node_modules
 node_modules
+dist
+lib/**/dll
+build
+coverage
+docs/public
+storybook-static
+built-storybooks
+lib/cli/test
+lib/codemod/src/transforms/__testfixtures__
+scripts/storage
+*.bundle.js
+*.js.map
+*.d.ts
+examples/ember-cli/.storybook/preview-head.html
+examples/official-storybook/tests/addon-jest.test.js
+examples/cra-ts-kitchen-sink/*.json
+examples/cra-ts-kitchen-sink/public/*
+examples/cra-ts-essentials/*.json
+examples/cra-ts-essentials/public/*
+examples/rax-kitchen-sink/src/document/*
+.yarn
+!.remarkrc.js
+!.babelrc.js
+!.eslintrc.js
+!.eslintrc-markdown.js
+!.jest.config.js
+!.storybook
 
 # Lint ignore examples for now
 examples

@@ -1,4 +1,5 @@
 import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
+import { window } from 'global';
 
 export default class ResourceResolver {
   content = null;
@@ -13,22 +14,20 @@ export default class ResourceResolver {
     this.components = components;
   }
 
-  createResourceLoader(parentPath) {
-    if (!Array.isArray(parentPath)) {
-      parentPath = parentPath.split('/').filter(s => !!s);
-    }
+  createResourceLoader(parentPath: string) {
+    const parsedParentPath = parentPath.split('/').filter((s: any) => s);
+
     return async (runtime, uri) => {
-      console.log('loading', uri);
       let path = uri.split('/');
       if (!uri.startsWith('/')) {
-        path = parentPath.concat(uri.split('/'));
+        path = parsedParentPath.concat(uri.split('/'));
       }
       path = path.filter(s => !!s);
       // todo: implement relative path...
       let c = this.content;
       let i = 0;
       while (c && i < path.length && c[':items']) {
-        c = c[':items'][path[i++]];
+        c = c[':items'][path[(i += 1)]];
       }
       if (!c) {
         // todo: remove debug
@@ -47,7 +46,7 @@ export default class ResourceResolver {
         .withResourceLoader(this.createResourceLoader(path))
         .withDomFactory(new Runtime.VDOMFactory(window.document.implementation))
         .setGlobal({
-          ...runtime._globals,
+          ...runtime.globals,
           component: {
             properties: comp.properties,
           },

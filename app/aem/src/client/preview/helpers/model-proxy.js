@@ -20,6 +20,7 @@ class ModelProxy {
     if (model.default) {
       model = model.default;
     }
+    // eslint-disable-next-line new-cap
     return new model(content);
   }
 }
@@ -32,6 +33,7 @@ class ModelProxy {
 export function modelProxy(id) {
   return new Proxy(ModelProxy, {
     construct(target, argArray, newTarget) {
+      // eslint-disable-next-line new-cap
       return new target(id);
     },
   });

@@ -45,6 +45,7 @@
     "htl-loader": "2.0.0",
     "regenerator-runtime": "^0.13.3",
     "typescript": "^3.7.5",
+    "webpack": "^4.42.0",
     "xml2json": "^0.12.0"
   },
   "peerDependencies": {

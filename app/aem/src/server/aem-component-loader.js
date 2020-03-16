@@ -1,5 +1,5 @@
-const path = require('path');
-const parser = require('xml2json');
+import { basename } from 'path';
+import { toJson } from 'xml2json';
 
 const txtLoader = require.resolve('./aem-clientlib-txt-loader.js');
 const JCR_ROOT_KEY = 'jcr:root';
@@ -23,7 +23,7 @@ const getRequiredClientLibs = componentDir => {
       /* include subdirectories: */ 
       true, 
       /* all js.txt and css.txt files */
-      /(^|\\\/)(js|css)\.txt$/
+      /(^|\\/)(js|css).txt$/
     );
     // Execute all files
     txtFileLoadContext.keys().forEach(txtFileLoadContext);
@@ -31,10 +31,10 @@ const getRequiredClientLibs = componentDir => {
   return loadClientLibCode;
 };
 
-module.exports = async function(source) {
+export default async function aemComponentLoader(source) {
   const resourceType = this.context.substring(this.rootContext.length + 1);
-  const json = JSON.parse(parser.toJson(source));
-  const pathBaseName = path.basename(this.context);
+  const json = JSON.parse(toJson(source));
+  const pathBaseName = basename(this.context);
 
   const component = {
     resourceType,
@@ -47,4 +47,4 @@ module.exports = async function(source) {
     getRequiredClientLibs(this.context),
     getRequiredHTL(component, this.context, pathBaseName),
   ].join('\n');
-};
+}
