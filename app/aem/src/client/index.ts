@@ -13,5 +13,6 @@ export {
 } from './preview/index';
 
 if (module && module.hot && module.hot.decline) {
+  const self = this;
   module.hot.decline();
 }
