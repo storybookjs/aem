@@ -14,7 +14,7 @@ export default class ResourceResolver {
     this.components = components;
   }
 
-  createResourceLoader(parentPath) {
+  createResourceLoader(parentPath: string) {
     const parsedParentPath = parentPath.split('/').filter((s: any) => s);
 
     return async (runtime, uri) => {
