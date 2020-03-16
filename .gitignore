@@ -2,3 +2,4 @@ node_modules
 app/aem/dist
 yarn.lock
 .cache
+ts3.5
