@@ -5,7 +5,6 @@
 export class GenericModel {
   constructor(content = {}) {
     this.content = content;
-    const self = this;
 
     /**
      * Proxy handler for the abstract model. It assumes best practices when mapping the underlying
@@ -14,8 +13,8 @@ export class GenericModel {
     return new Proxy(this, {
       get(target, prop) {
         // property / getter / function of sub class has priority
-        if (prop in self) {
-          return self[prop];
+        if (prop in this) {
+          return this[prop];
         }
         if (prop in content) {
           return content[prop];
@@ -45,7 +44,7 @@ export class GenericModel {
         return undefined;
       },
       has(target, key) {
-        return key in content || key in self || key === 'items' || key === 'name' || key === 'path';
+        return key in content || key in this || key === 'items' || key === 'name' || key === 'path';
       },
     });
   }

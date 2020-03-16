@@ -1,4 +1,5 @@
-import { document, Node } from 'global';
+/* eslint-disable valid-typeof */
+import { document, Node, window } from 'global';
 import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
 import { RenderMainArgs, ShowErrorArgs, DecorationTag, AemMetadata } from './types/types';
 import ComponentLoader from './helpers/ComponentLoader';
@@ -54,14 +55,22 @@ const getErrorMessage = (selectedStory: string, selectedKind: string): ShowError
 const getDecorationElement = (decorationTag: DecorationTag, element: Element) => {
   let decorationElement;
   if (decorationTag) {
-    const decorationElementType = decorationTag.hasOwnProperty(PROPERTY_TAG_NAME)
+    const decorationElementType = Object.prototype.hasOwnProperty.call(
+      decorationTag,
+      PROPERTY_TAG_NAME
+    )
       ? decorationTag.tagName
       : DIV_TAG;
-    const decorationElementClass = decorationTag.hasOwnProperty(PROPERTY_CSS_CLASSES)
+    const decorationElementClass = Object.prototype.hasOwnProperty.call(
+      decorationTag,
+      PROPERTY_CSS_CLASSES
+    )
       ? decorationTag.cssClasses.join(' ')
       : 'component';
     decorationElement = document.createElement(decorationElementType);
     decorationElement.setAttribute(ATTRIBUTE_CLASS, decorationElementClass);
+
+    // eslint-disable-next-line no-unused-expressions
     typeof element === TYPE_STRING
       ? (decorationElement.innerHTML = element)
       : decorationElement.appendChild(element);
@@ -104,12 +113,9 @@ const resetRoot = () => {
 const getTemplate = (storyFn: any, resourceType: any, aemMetadata: AemMetadata) => {
   const { template } = storyFn() as any;
   const components: any[] = aemMetadata ? aemMetadata.components : [];
-  const info = resourceType ? new ComponentLoader().resolve(resourceType, components) : null;
-  return !template && info
-    ? info.module
-      ? info.module
-      : `unable to load ${resourceType}`
-    : template;
+  let info = resourceType ? new ComponentLoader().resolve(resourceType, components) : null;
+  info = info && info.module ? info.module : `unable to load ${resourceType}`;
+  return !template ? info : template;
 };
 
 export default async function renderMain({
@@ -143,6 +149,7 @@ export default async function renderMain({
       if (decorationTag) {
         ROOT_ELEMENT.appendChild(decorationElement);
       } else {
+        // eslint-disable-next-line no-unused-expressions
         typeof element === TYPE_STRING
           ? (ROOT_ELEMENT.innerHTML = element)
           : ROOT_ELEMENT.appendChild(element);

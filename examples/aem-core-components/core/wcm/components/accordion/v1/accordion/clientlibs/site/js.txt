@@ -1,3 +1,0 @@
-#base=js
-polyfills.js
-accordion.js
