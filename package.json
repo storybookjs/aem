@@ -21,6 +21,24 @@
   "lint-staged": {
     "*.html": [
       "yarn lint:js --fix"
+    ],
+    "*.js": [
+      "yarn lint:js --fix"
+    ],
+    "*.json": [
+      "yarn lint:js --fix"
+    ],
+    "*.jsx": [
+      "yarn lint:js --fix"
+    ],
+    "*.mjs": [
+      "yarn lint:js --fix"
+    ],
+    "*.ts": [
+      "yarn lint:js --fix"
+    ],
+    "*.tsx": [
+      "yarn lint:js --fix"
     ]
   },
   "workspaces": [
