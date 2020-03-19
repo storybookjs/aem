@@ -14,28 +14,30 @@ export default class ResourceResolver {
     this.components = components;
   }
 
-  createResourceLoader(parentPath: string) {
-    const parsedParentPath = parentPath.split('/').filter((s: any) => s);
+  createResourceLoader(passedPath: any) {
+    const parentPath = Array.isArray(passedPath)
+      ? passedPath
+      : passedPath.split('/').filter((s: any) => s);
 
     return async (runtime, uri) => {
       let path = uri.split('/');
       if (!uri.startsWith('/')) {
-        path = parsedParentPath.concat(uri.split('/'));
+        path = parentPath.concat(uri.split('/'));
       }
       path = path.filter(s => !!s);
       // todo: implement relative path...
-      let c = this.content;
-      let i = 0;
-      while (c && i < path.length && c[':items']) {
-        c = c[':items'][path[(i += 1)]];
+      let { content } = this;
+      const iterator = 0;
+      while (content && iterator < path.length && content[':items']) {
+        content = content[':items'][path];
       }
-      if (!c) {
+      if (!content) {
         // todo: remove debug
         return `no such resource: ${uri}...`;
       }
 
       // try to get component
-      const type = c[':type'];
+      const type = content[':type'];
       const comp = this.loader.resolve(type, this.components);
       if (!comp) {
         // todo: remove debug
@@ -50,7 +52,7 @@ export default class ResourceResolver {
           component: {
             properties: comp.properties,
           },
-          content: c,
+          content,
         });
       return comp.module(localRuntime);
     };

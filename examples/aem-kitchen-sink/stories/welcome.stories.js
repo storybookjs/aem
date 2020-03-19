@@ -5,6 +5,8 @@ export default {
   title: 'Welcome',
 };
 
-export const Welcome = () => {
-  return {template: welcome}
+export const Welcome = async () => {
+  return {
+    template: await welcome
+  }
 }

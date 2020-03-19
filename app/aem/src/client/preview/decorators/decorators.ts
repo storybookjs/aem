@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { AemMetadata } from '../types/types';
 
-export const aemMetadata = (metadata: Partial<AemMetadata>) => (storyFn: () => any) => {
-  const story = storyFn();
+export const aemMetadata = (metadata: Partial<AemMetadata>) => async (storyFn: () => any) => {
+  const story = await storyFn();
   const storyMetadata = story.aemMetadata || {};
   metadata = metadata || {};
 

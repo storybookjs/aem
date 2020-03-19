@@ -110,8 +110,8 @@ const resetRoot = () => {
  * @param resourceType
  * @param components
  */
-const getTemplate = (storyFn: any, resourceType: any, aemMetadata: AemMetadata) => {
-  const { template } = storyFn() as any;
+const getTemplate = async (storyFn: any, resourceType: any, aemMetadata: AemMetadata) => {
+  const { template } = (await storyFn()) as any;
   const components: any[] = aemMetadata ? aemMetadata.components : [];
   let info = resourceType ? new ComponentLoader().resolve(resourceType, components) : null;
   info = info && info.module ? info.module : `unable to load ${resourceType}`;
@@ -132,9 +132,9 @@ export default async function renderMain({
     content,
     aemMetadata = {},
     wcmmode = {},
-  } = storyFn() as any;
-  const runtime: any = createRuntime(wcmmode, content, resourceLoaderPath, aemMetadata);
-  const template: any = getTemplate(storyFn, resourceType, aemMetadata);
+  } = (await storyFn()) as any;
+  const runtime: any = await createRuntime(wcmmode, content, resourceLoaderPath, aemMetadata);
+  const template: any = await getTemplate(storyFn, resourceType, aemMetadata);
   const element: any = typeof template === TYPE_FUNCTION ? await template(runtime) : template;
   const decorationTag: DecorationTag = aemMetadata ? aemMetadata.decorationTag : null;
 
