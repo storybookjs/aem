@@ -13,10 +13,10 @@ function getCommand(watch) {
     args.push('-w');
   }
 
-  // return `${tsc} ${args.join(' ')} && ${downlevelDts} dist ts3.5/dist`;
-  // return `${tsc} ${args.join(' ')}`;
-  // return `npx tsc ./app/aem/src/**/* --outDir ./app/aem/dist --listEmittedFiles true --allowjs true`
-  return `npx tsc ./src/**/* --outDir ./dist --listEmittedFiles true --allowjs true`
+  // All three of these options work
+  return `${tsc} ./src/**/* ${args.join(' ')} && ${downlevelDts} dist ts3.5/dist`;
+  // return `${tsc} ./src/**/* ${args.join(' ')}`;
+  // return `npx tsc ./src/**/* --outDir ./dist --listEmittedFiles true --allowjs true`
 }
 
 function handleExit(code, stderr, errorCallback) {
