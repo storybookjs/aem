@@ -26,18 +26,18 @@ export default class ResourceResolver {
       }
       path = path.filter(s => !!s);
       // todo: implement relative path...
-      let c = this.content;
-      const i = 0;
-      while (c && i < path.length && c[':items']) {
-        c = c[':items'][path];
+      let { content } = this;
+      const iterator = 0;
+      while (content && iterator < path.length && content[':items']) {
+        content = content[':items'][path];
       }
-      if (!c) {
+      if (!content) {
         // todo: remove debug
         return `no such resource: ${uri}...`;
       }
 
       // try to get component
-      const type = c[':type'];
+      const type = content[':type'];
       const comp = this.loader.resolve(type, this.components);
       if (!comp) {
         // todo: remove debug
@@ -52,7 +52,7 @@ export default class ResourceResolver {
           component: {
             properties: comp.properties,
           },
-          content: c,
+          content,
         });
       return comp.module(localRuntime);
     };
