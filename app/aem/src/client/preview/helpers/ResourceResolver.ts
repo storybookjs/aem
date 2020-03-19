@@ -26,7 +26,7 @@ export default class ResourceResolver {
       }
       path = path.filter(s => !!s);
       // todo: implement relative path...
-      let c = await this.content;
+      let c = this.content;
       const i = 0;
       while (c && i < path.length && c[':items']) {
         c = c[':items'][path];
