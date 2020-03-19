@@ -7,28 +7,16 @@ function getCommand(watch) {
   const tsc = path.join(__dirname, '..', 'node_modules', '.bin', 'tsc');
   const downlevelDts = path.join(__dirname, '..', 'node_modules', '.bin', 'downlevel-dts');
 
-  const args = ['--outDir ./dist', '--listEmittedFiles true'];
-
-  /**
-   * Only emit declarations if it does not need to be compiled with tsc
-   * Currently, angular and storyshots (that contains an angular component) need to be compiled
-   * with tsc. (see comments in compile-babel.js)
-   */
-  const isAngular = process.cwd().includes(path.join('app', 'angular'));
-  const isStoryshots = process.cwd().includes(path.join('addons', 'storyshots'));
-  if (!isAngular && !isStoryshots) {
-    args.push('--emitDeclarationOnly --declaration true');
-  }
-
-  if (isAngular) {
-    args.push('--declaration true');
-  }
+  const args = ['--outDir ./dist', '--listEmittedFiles true', '--allowjs true'];
 
   if (watch) {
     args.push('-w');
   }
 
-  return `${tsc} ${args.join(' ')} && ${downlevelDts} dist ts3.5/dist`;
+  // return `${tsc} ${args.join(' ')} && ${downlevelDts} dist ts3.5/dist`;
+  // return `${tsc} ${args.join(' ')}`;
+  // return `npx tsc ./app/aem/src/**/* --outDir ./app/aem/dist --listEmittedFiles true --allowjs true`
+  return `npx tsc ./src/**/* --outDir ./dist --listEmittedFiles true --allowjs true`
 }
 
 function handleExit(code, stderr, errorCallback) {
@@ -62,6 +50,7 @@ function tscfy(options = {}) {
   }
 
   const command = getCommand(watch);
+  console.log('command:', command)
   const { code, stderr } = shell.exec(command, { silent });
 
   handleExit(code, stderr, errorCallback);
