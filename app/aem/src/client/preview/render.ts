@@ -65,7 +65,11 @@ const getDecorationElement = (decorationTag: DecorationTag, element: Element) =>
       decorationTag,
       PROPERTY_CSS_CLASSES
     )
-      ? decorationTag.cssClasses.join(' ')
+      ? decorationTag.cssClasses
+          .map((value: any) => {
+            return typeof value === 'function' ? value() : value;
+          })
+          .join(' ')
       : 'component';
     decorationElement = document.createElement(decorationElementType);
     decorationElement.setAttribute(ATTRIBUTE_CLASS, decorationElementClass);
