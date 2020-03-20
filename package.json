@@ -8,7 +8,7 @@
     "example": "examples"
   },
   "scripts": {
-    "build": "npx tsc ./app/aem/src/**/* --watch --outDir ./app/aem/dist --listEmittedFiles true --allowjs true",
+    "build": "node ./scripts/watch-tsc.js",
     "lint": "yarn lint:js",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.json,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "test": "echo \"Error: no test specified\" && exit 1"

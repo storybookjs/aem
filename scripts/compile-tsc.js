@@ -5,18 +5,14 @@ const shell = require('shelljs');
 
 function getCommand(watch) {
   const tsc = path.join(__dirname, '..', 'node_modules', '.bin', 'tsc');
-  const downlevelDts = path.join(__dirname, '..', 'node_modules', '.bin', 'downlevel-dts');
 
-  const args = ['--outDir ./dist', '--listEmittedFiles true', '--allowjs true'];
+  const args = ['--outDir ./app/framework/dist', '--listEmittedFiles true'];
 
   if (watch) {
     args.push('-w');
   }
 
-  // return `${tsc} ${args.join(' ')} && ${downlevelDts} dist ts3.5/dist`;
-  // return `${tsc} ${args.join(' ')}`;
-  // return `npx tsc ./app/aem/src/**/* --outDir ./app/aem/dist --listEmittedFiles true --allowjs true`
-  return `npx tsc ./src/**/* --outDir ./dist --listEmittedFiles true --allowjs true`
+  return `${tsc} ${args.join(' ')}`;
 }
 
 function handleExit(code, stderr, errorCallback) {
@@ -39,18 +35,7 @@ function tscfy(options = {}) {
     return;
   }
 
-  const content = fs.readFileSync(tsConfigFile);
-  const tsConfig = JSON.parse(content);
-
-  if (tsConfig && tsConfig.lerna && tsConfig.lerna.disabled === true) {
-    if (!silent) {
-      console.log('Lerna disabled');
-    }
-    return;
-  }
-
   const command = getCommand(watch);
-  console.log('command:', command)
   const { code, stderr } = shell.exec(command, { silent });
 
   handleExit(code, stderr, errorCallback);

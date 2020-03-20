@@ -1480,6 +1480,26 @@
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
+"@storybook/aem@file:app/aem":
+  version "0.0.1"
+  dependencies:
+    "@adobe/htlengine" "4.3.0"
+    "@storybook/addons" "6.0.0-alpha.2"
+    "@storybook/client-api" "6.0.0-alpha.2"
+    "@storybook/core" "6.0.0-alpha.2"
+    "@storybook/core-events" "6.0.0-alpha.2"
+    "@storybook/source-loader" "6.0.0-alpha.2"
+    "@types/webpack" "^4.41.3"
+    "@types/webpack-env" "^1.15.0"
+    babel-loader "^8.0.6"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    htl-loader "2.0.0"
+    regenerator-runtime "^0.13.3"
+    typescript "^3.7.5"
+    webpack "^4.42.0"
+    xml2json "^0.12.0"
+
 "@storybook/api@6.0.0-alpha.2":
   version "6.0.0-alpha.2"
   resolved "https://registry.yarnpkg.com/@storybook/api/-/api-6.0.0-alpha.2.tgz#de097ec556fd9e304bad0a5bd3ca0e7ca684e750"
