@@ -1480,8 +1480,10 @@
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
-"@storybook/aem@file:app/aem":
-  version "0.0.1"
+"@storybook/aem@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@storybook/aem/-/aem-0.0.2.tgz#9d350973f560976f9077d1770b6b9114317154c8"
+  integrity sha512-1vjXvlEWh1XYb64309CbuAnP1qVt6AnSUJ/BriBvvrRQyIQbKe47yJyoGUTWr+6WMK2iI8oPAxwKlOTZj6HI6w==
   dependencies:
     "@adobe/htlengine" "4.3.0"
     "@storybook/addons" "6.0.0-alpha.2"

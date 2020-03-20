@@ -6,7 +6,7 @@ const shell = require('shelljs');
 function getCommand(watch) {
   const tsc = path.join(__dirname, '..', 'node_modules', '.bin', 'tsc');
 
-  const args = ['./src/**/*', '--outDir ./dist', '--listEmittedFiles true', '--allowjs true'];
+  const args = ['--outDir ./app/aem/dist', '--listEmittedFiles true'];
 
   if (watch) {
     args.push('-w');

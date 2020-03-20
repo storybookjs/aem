@@ -1,6 +1,6 @@
 {
   "name": "@storybook/aem",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Storybook for AEM: View AEM components in isolation with hot reloading.",
   "keywords": [
     "storybook",
@@ -16,9 +16,12 @@
   },
   "license": "MIT",
   "files": [
+    "bin/**/*",
+    "dist/**/*",
     "README.md",
     "*.js",
-    "*.d.ts"
+    "*.d.ts",
+    "ts3.5/**/*"
   ],
   "main": "dist/client/index.js",
   "typings": "dist/client/index.d.ts",
