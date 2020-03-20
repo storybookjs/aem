@@ -1,5 +1,7 @@
 node_modules
 app/aem/dist
+**/dist
 yarn.lock
 .cache
 ts3.5
+**/yarn-error.log
