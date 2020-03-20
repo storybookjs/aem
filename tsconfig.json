@@ -15,7 +15,8 @@
     "target": "es5",
     "types": ["jest"],
     "lib": ["es2017", "dom"],
-    "allowJs": true
+    "allowJs": true,
+    "rootDir": "./app/aem/src"
   },
   "exclude": [
     "**/dist",
@@ -23,6 +24,10 @@
     "**/node_modules",
     "**/*.spec.ts",
     "**/__tests__",
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "examples",
+    "scripts",
+    "app/aem/bin",
+    "app/aem/standalone.js"
   ]
 }

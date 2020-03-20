@@ -1,6 +1,6 @@
 /* eslint-disable valid-typeof */
 import { document, Node, window } from 'global';
-import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
+import { default as Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
 import { RenderMainArgs, ShowErrorArgs, DecorationTag, AemMetadata } from './types/types';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
@@ -26,7 +26,7 @@ const createRuntime = (
   const components: any[] = aemMetadata ? aemMetadata.components : [];
   return new Runtime()
     .setGlobal({ models, wcmmode, component: { properties: {} }, content })
-    .withDomFactory(new Runtime.VDOMFactory(window.document.implementation).withKeepFragment(true))
+    .withDomFactory(new VDOMFactory(window.document.implementation).withKeepFragment(true))
     .withResourceLoader(
       new ResourceResolver(content || {}, new ComponentLoader(), components).createResourceLoader(
         resourceLoaderPath || '/'

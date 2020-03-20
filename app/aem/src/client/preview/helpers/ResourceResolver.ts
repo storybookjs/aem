@@ -1,4 +1,4 @@
-import * as Runtime from '@adobe/htlengine/src/runtime/Runtime';
+import { default as Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
 import { window } from 'global';
 
 export default class ResourceResolver {
@@ -46,7 +46,7 @@ export default class ResourceResolver {
       // create a new runtime for this component
       const localRuntime = new Runtime()
         .withResourceLoader(this.createResourceLoader(path))
-        .withDomFactory(new Runtime.VDOMFactory(window.document.implementation))
+        .withDomFactory(new VDOMFactory(window.document.implementation))
         .setGlobal({
           ...runtime.globals,
           component: {
