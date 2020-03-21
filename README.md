@@ -170,18 +170,5 @@ export default class Person extends GenericModel {
 </div>
 ```
 
-### TODO
-
-#### app
-
-- make models and component loading automatic (during compile time)
-  (see ComponentLoader and GenericModel)
-- Auto-detect clientlib dependencies and categories
-
-#### examples / models
-- the real AEM core components have a lot of logic in their model classes.
-  in order to display them properly, they need to be partially ported to JS.
-
-#### htlengine
-
-- better error reporting (add file, line, col): eg: `Error: Error: mismatched input 'in' expecting {'}', '@'}`
+### Interested in helping out?
+Check out our issues here: https://github.com/storybookjs/aem/issues
