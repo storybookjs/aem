@@ -1,12 +1,12 @@
-const fs = require('fs');
-const log = require('../../../utils/logger');
-const toCamelCase = require('../../../utils/toCamelCase');
+import * as fs from 'fs';
+import { log } from '../../../utils/logger';
+import { toCamelCase } from '../../../utils/toCamelCase';
 
 module.exports = config => {
-    console.log('config:', config)
-    console.log('config:', config.stories)
-    const componentPath = `${config.componentPath}/${config.component}`;
-    let fileContents = `/**
+  console.log('config:', config);
+  console.log('config:', config.stories);
+  const componentPath = `${config.componentPath}/${config.component}`;
+  let fileContents = `/**
   * Storybook content for the ${config.component} component that can be POSTed in AEM JCR via SlingPostServlet.
   * Use the 'sb-aem content' command to POST to AEM - obviously AEM Must be running for this to work.
   * 
@@ -20,32 +20,31 @@ module.exports = config => {
   *   7. Here you can see the complete JSON signature of the component, use this as a reference to fill out your content objects below
   */\n\n`;
 
-    fileContents += `module.exports = {`
-    fileContents += `
+  fileContents += `module.exports = {`;
+  fileContents += `
     empty: {
         "jcr:primaryType":"nt:unstructured",
         "sling:resourceType":"${config.namespace}/components/content/${config.component}"
     }`;
 
-    if (typeof config.stories === 'string') {
-        if ( config.stories.indexOf(',') !== -1) config.stories = config.stories.split(',');
-        else config.stories = [config.stories];
-    }
-    
+  if (typeof config.stories === 'string') {
+    if (config.stories.indexOf(',') !== -1) config.stories = config.stories.split(',');
+    else config.stories = [config.stories];
+  }
 
-    config.stories.forEach( story => {
-        let storyName = toCamelCase(story)
-        fileContents += `,
+  config.stories.forEach(story => {
+    const storyName = toCamelCase(story);
+    fileContents += `,
     ${storyName}: {
         "jcr:primaryType":"nt:unstructured",
         "sling:resourceType":"${config.namespace}/components/content/${config.component}"
     }`;
-    });
+  });
 
-    fileContents += '\n};'
+  fileContents += '\n};';
 
-    fs.writeFile(`${componentPath}/${config.component}.content.js`, fileContents, (err) => {
-        if (err) throw err;
-        log(`Created ${componentPath}/${config.component}.stories.js`);
-    });
-}
+  fs.writeFile(`${componentPath}/${config.component}.content.js`, fileContents, err => {
+    if (err) throw err;
+    log(`Created ${componentPath}/${config.component}.stories.js`);
+  });
+};

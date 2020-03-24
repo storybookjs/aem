@@ -15,7 +15,7 @@
     "target": "es5",
     "types": ["jest"],
     "lib": ["es2017", "dom"],
-    "allowJs": true,
+    "allowJs": true
   },
   "exclude": [
     "**/dist",
