@@ -4,7 +4,7 @@ module.exports = {
   collectCoverageFrom: ['app/**/*.{js,jsx,ts,tsx}'],
   coverageDirectory: '.coverage',
   coveragePathIgnorePatterns: ['/node_modules/'],
-  moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
+  moduleFileExtensions: ['js', 'json', 'ts', 'node'],
   roots: ['<rootDir>/app'],
   testEnvironment: 'node',
   testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
