@@ -4,17 +4,31 @@ This project has been created to provide native Storybook support for Adobe Expe
 
 To build and test out this project complete the following:
 
-1) This project is built with yarn workspaces so you will need to install yarn
-2) From the root directory, run "yarn"
-3) From the root directory, run "yarn build"
-4) Change directories to examples/aem-kitchen-sink
-5) From the examples/aem-kitchen-sink directory, run "yarn storybook"
+1. This project is built with yarn workspaces so you will need to install yarn
+2. From the root directory, run "yarn"
+3. From the root directory, run "yarn build"
+4. Change directories to examples/aem-kitchen-sink
+5. From the examples/aem-kitchen-sink directory, run "yarn storybook"
+
+## Testing
+
+Storybook AEM uses Jest for unit testing. To run unit tests use the following commands:
+
+- Running all tests:
+  - `yarn test`
+- Run with watch mode enabled:
+  - `yarn test:watch`
+- Run tests and generate a coverage report:
+  - `yarn test:coverage`
 
 ## Usage
+
 See [example](./examples/aem-kitchen-sink/components/list/list.stories.js):
 
 ### Story configuration
+
 As a part of the storybook configuration setup there are options you can use to customize your use case:
+
 - Template (required): HTL/HTML File Reference or Inline HTML
 - Content (optional): Mocked authored content that can be used in conjunction with knobs
 - AEM Metadata: An assortment of metadata used to provide your component context such as:
@@ -50,10 +64,11 @@ export const Example = () => {
 ```
 
 ### AEM metadata decorator
+
 The aem metadata decorator allows for the application of properties such as the decoration tag and the component includes to all of the stories (depending on where its used - in the preview or in the story config). Use the following syntax to apply the decorator:
 
-
 #### Using the decorator in the Preview.js file
+
 ```
 import { aemMetadata } from '@storybook/aem';
 
@@ -76,6 +91,7 @@ addDecorator(aemMetadata({
 ```
 
 #### Using the decorator in the story config file
+
 ```
 export default {
   title: 'Accordion',
@@ -116,7 +132,7 @@ The models needs to be registered in the story:
   models: {
     'com.adobe.cq.wcm.core.components.models.Text': GenericModel
   }
-````
+```
 
 #### 2. Javascript use classes
 
@@ -144,15 +160,17 @@ In case the `GenericModel` doesn't satisfy all the needs for rapid prototyping, 
 For Example:
 
 **person.js**
+
 ```js
 export default class Person extends GenericModel {
   get fullName() {
-    return `${this.content.firstName} ${this.content.lastName}`
+    return `${this.content.firstName} ${this.content.lastName}`;
   }
 }
 ```
 
 **person.stories.js**
+
 ```js
     models: {
       'person': require('../models/person')
@@ -160,6 +178,7 @@ export default class Person extends GenericModel {
 ```
 
 **person.html**
+
 ```htl
 <div data-sly-use.personModel="person">
     <dl>
@@ -171,4 +190,5 @@ export default class Person extends GenericModel {
 ```
 
 ### Interested in helping out?
+
 Check out our issues here: https://github.com/storybookjs/aem/issues

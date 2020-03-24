@@ -11,7 +11,9 @@
     "build": "node ./scripts/watch-tsc.js",
     "lint": "yarn lint:js",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.json,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors"
   },
   "husky": {
     "hooks": {
@@ -58,13 +60,16 @@
   "devDependencies": {
     "@storybook/eslint-config-storybook": "^2.2.0",
     "@storybook/linter-config": "^2.3.0",
+    "@types/jest": "^25.1.4",
     "chalk": "^3.0.0",
     "cross-env": "^7.0.2",
     "downlevel-dts": "^0.4.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
+    "jest": "^25.1.0",
     "lint-staged": "^10.0.8",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.3",
+    "ts-jest": "^25.2.1"
   },
   "dependencies": {
     "npmlog": "^4.1.2"
