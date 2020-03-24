@@ -1,4 +1,4 @@
-const fetchFromAEM = require('./fetchFromAEM');
+import { fetchFromAEM } from './fetchFromAEM';
 
 const createPage = async config => {
   const response = await fetchFromAEM({
