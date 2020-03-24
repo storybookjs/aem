@@ -1,7 +1,6 @@
 const path = require('path');
 const prompts = require('prompts');
 
-const log = require('../../utils/logger');
 const error = require('../../utils/error');
 const Install = require('./install');
 const Export = require('./export');

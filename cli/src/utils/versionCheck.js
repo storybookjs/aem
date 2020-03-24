@@ -1,7 +1,7 @@
 const npm = require('npm');
 const chalk = require('chalk');
 
-const { version } = require('../../package.json');
+const { version } = require('../../package.json'); //Why is this pointing to the package json of the lib?
 
 const getLatestVersion = async (callback) => {
     return await npm.load({ loaded: false }, async (err) => {

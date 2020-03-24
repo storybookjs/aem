@@ -1,13 +1,3 @@
-const coralComponentTypes = [
-    'granite/ui/components/coral/foundation/form/select',
-    'granite/ui/components/coral/foundation/form/checkbox',
-    'granite/ui/components/coral/foundation/well',
-    'cq/gui/components/authoring/dialog',
-    'granite/ui/components/coral/foundation/container',
-    'granite/ui/components/coral/foundation/tabs',
-    'granite/ui/components/coral/foundation/fixedcolumns',
-];
-
 const relevantCoralComponentTypes = [
     'granite/ui/components/coral/foundation/form/select',
     'granite/ui/components/coral/foundation/form/checkbox',
@@ -71,7 +61,6 @@ const parseEditDialog = (json,parentKey,grandParentKey) => {
             editDialog.extraClientlibs = json['extraClientlibs'].replace(/\[|\]/g, '').split(',');
         }
         Object.keys(json).forEach(key => {
-            // console.log('json:', json)
             if (typeof json[key] === 'object') {
                 if (isUseful(key)) editDialog.fields[key] = {};
                 parseEditDialog(json[key],key,parentKey);
@@ -81,64 +70,9 @@ const parseEditDialog = (json,parentKey,grandParentKey) => {
                     else editDialog.fields[key] = cleanupValue(json[key]);
                 }
             }
-
-
-
-
-            // if (isUseful(key)) {
-            //     console.log('\nuseful key:', key)
-            //     if (typeof json[key] === 'object') {
-            //         editDialog.fields[key] = {};
-            //         parseEditDialog(json[key],key,parentKey);
-            //     } else {
-            //         editDialog.fields[key] = json[key];
-            //     }
-            // } else {
-            //     console.log('\nnot useful key:', key)
-            // }
         });
     }
-/*
-        Object.keys(json).forEach(key => {
-            if (
-                uselessKeys.indexOf(key) === -1 && 
-                key !== 'jcr:primaryType' &&
-                json[key] !== 'nt:unstructred' 
-            ) {
-                    // relevantCoralComponentTypes.indexOf(key) !== -1
-                if (
-                    parentKey &&
-                    (
-                        uselessKeys.indexOf(parentKey) === -1 ||
-                        (
-                            uselessKeys.indexOf(parentKey) !== -1 &&
-                            uselessKeys.indexOf(grandParentKey) === -1
-                        )
-                    )
-                ) {
-                    // console.log(`\n---\n${parentKey}.${key}:`,json[key])
-                    if (typeof json[key] === 'object') {
-                        editDialog[key] = {};
-                    } else {
-                        if (editDialog.hasOwnProperty(grandParentKey)) editDialog[grandParentKey][parentKey][key] = json[key];
-                        else {
-                            if (!editDialog.hasOwnProperty(parentKey)) editDialog[parentKey] = {};
-                            editDialog[parentKey][key] = convertJavaBoolToBoolean(json[key]);
-                        }
-                    }
-                } else editDialog[key] = json[key];
-            }
-            if (typeof json[key] === 'object') parseEditDialog(json[key],key,parentKey);
-        });
-    }
-*/
-
-
     return editDialog;
 };
-
-// console.log('editDialog')
-// console.dir(editDialog);
-
 module.exports = parseEditDialog;
 

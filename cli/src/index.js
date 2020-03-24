@@ -9,9 +9,6 @@ module.exports = () => {
     checkVersion();
 
     switch(cmd) {
-        case 'init':
-            require('./cmds/init/init')(args);
-            break;
         case 'story':
         case 'stories':
             require('./cmds/stories/story')(args);
