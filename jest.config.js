@@ -2,7 +2,7 @@ module.exports = {
   cacheDirectory: '.cache/jest',
   clearMocks: true,
   collectCoverageFrom: ['app/**/*.{js,jsx,ts,tsx}'],
-  coverageDirectory: 'coverage',
+  coverageDirectory: '.coverage',
   coveragePathIgnorePatterns: ['/node_modules/'],
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
   roots: ['<rootDir>/app'],

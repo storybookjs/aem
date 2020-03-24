@@ -6,3 +6,4 @@ yarn.lock
 ts3.5
 **/yarn-error.log
 .vscode/
+.coverage/
