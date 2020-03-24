@@ -1,12 +1,12 @@
-# storybook-aem
+# Storybook AEM CLI
 
-Storybook-aem is a command line application - CLI - that is used with [@storybook/aem](https://www.npmjs.com/package/@storybook/aem). It provides useful commands that will speed up your workflow.
+Storybook AEM CLI is a command line application that is used with [@storybook/aem](https://www.npmjs.com/package/@storybook/aem). It provides useful commands that will speed up your workflow.
 
 ## Installation
-To install `storybook-aem` run `npm install storybook-aem -g` from the directory with your `package.json` file. Also add it to your project as a development dependency.
+To install the Storybook AEM CLI run `npm install @storybook/aem-cli -g` from the directory with your `package.json` file. Also add it to your project as a development dependency.
 
 ## Commands
-There are several commands provided by `storybook-aem`. You can find a list of them by running `storybook-aem` from your terminal. Or by running the `storybook-aem help` command. Ensure you are running the `storybook-aem` commands from the folder with your `package.json` file.
+There are several commands provided by the Storybook AEM CLI. You can find a list of them by running `storybook-aem` from your terminal. Or by running the `storybook-aem help` command. Ensure you are running the `storybook-aem` commands from the folder with your `package.json` file.
 
 ```
 Usage: storybook-aem <command> <options>
