@@ -1,4 +1,4 @@
-import { default as Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
+import { Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
 import { window } from 'global';
 
 export default class ResourceResolver {

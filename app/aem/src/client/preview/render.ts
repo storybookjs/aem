@@ -1,6 +1,6 @@
 /* eslint-disable valid-typeof */
 import { document, Node, window } from 'global';
-import { default as Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
+import { Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
 import { RenderMainArgs, ShowErrorArgs, DecorationTag, AemMetadata } from './types/types';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
