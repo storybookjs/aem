@@ -33,7 +33,7 @@ The `sb-aem package install` command will POST the content package zip file into
 The `sb-aem package export` command will rebuild the content package specified, and then download it to the configured location in your codebase.
 
 #### Package and Maven 
-TODO: ADD EXAMPLE TO EXAMPLES
+TODO: ADD EXAMPLE TO EXAMPLES REPO
 See the [example.pom.xml](https://github.com/icfnext/storybook-aem/tree/master/packages/storybook-aem/example.pom.xml) file to see how you can add a maven build profile to take advantage of the `sb-aem package` command. The example adds support for a new maven profile `install-storybook` that can be used like so: `mvn clean install -P install-storybook`. Additionally, this [example.pom.xml](https://github.com/icfnext/storybook-aem/tree/master/packages/storybook-aem/example.pom.xml) expects two scripts in the package.json file:
 
 ```
