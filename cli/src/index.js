@@ -12,9 +12,6 @@ module.exports = () => {
         case 'init':
             require('./cmds/init/init')(args);
             break;
-        case 'component':
-            require('./cmds/component/component')(args);
-            break;
         case 'story':
         case 'stories':
             require('./cmds/stories/story')(args);
