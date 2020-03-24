@@ -16,7 +16,6 @@
     "types": ["jest"],
     "lib": ["es2017", "dom"],
     "allowJs": true,
-    "rootDir": "./app/aem/src"
   },
   "exclude": [
     "**/dist",
@@ -28,6 +27,7 @@
     "examples",
     "scripts",
     "app/aem/bin",
-    "app/aem/standalone.js"
+    "app/aem/standalone.js",
+    "tsconfig.json"
   ]
 }

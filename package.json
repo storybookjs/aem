@@ -45,7 +45,8 @@
   },
   "workspaces": [
     "app/*",
-    "examples/*"
+    "examples/*",
+    "cli/*"
   ],
   "repository": {
     "type": "git",
