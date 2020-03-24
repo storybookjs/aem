@@ -36,7 +36,7 @@ module.exports = () => {
             log([
                 `${chalk.italic(cmd)} is not a valid command.`,
                 ``,
-                `Usage: ${chalk.italic('storybook-aem <command>')}`,
+                `Usage: ${chalk.italic('sb-aem <command>')}`,
                 ``,
                 `Where <command> is on of:`,
                 `  init, help, story, version`,

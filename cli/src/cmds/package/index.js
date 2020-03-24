@@ -10,7 +10,7 @@ const cwd = process.cwd();
 
 module.exports = async args => {
     const packageJSON = require(path.resolve(cwd, 'package.json'));
-    const storybookConfig = packageJSON['storybook-aem'];
+    const storybookConfig = packageJSON['@storybook/aem-cli'];
     
     if (Object.entries(packageJSON).length === 0) {
         error('No package.json file found. Please run this from the directory with the package.json file for your project', true);

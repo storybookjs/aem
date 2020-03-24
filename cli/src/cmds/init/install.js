@@ -9,7 +9,7 @@ module.exports = async config => {
     const packageJSONPath = path.resolve(cwd, config.projectRoot, config.relativeProjectRoot, config.packageJSON)
 
     const packageJSON = require(packageJSONPath);
-    packageJSON['storybook-aem'] = { ...config };
+    packageJSON['@storybook/aem-cli'] = { ...config };
     /*
         Need to figure out relative pathing
         let storybookLocalPath = `${config.uiApps}/.storybook`;

@@ -18,7 +18,7 @@ module.exports = async args => {
         error('No package.json file found. Please run this from the directory with the package.json file for your project', true);
     } else {
 
-        let config = packageJSON['storybook-aem'];
+        let config = packageJSON['@storybook/aem-cli'];
         let storyConfig = {};
 
         const componentBasePath = path.resolve(cwd, config.projectRoot, config.relativeProjectRoot, config.componentPath );

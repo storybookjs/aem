@@ -10,7 +10,7 @@ const getCQTemplate = async config => {
         const xml = fs.readFileSync(cqTemplatePath, 'utf-8');
         
         if (!xml) {
-            console.log(`[storybook-aem] There was no _cq_template.xml file. Skipping default content.`);
+            console.log(`[sb-aem] There was no _cq_template.xml file. Skipping default content.`);
             return false;
 
         } else {
@@ -21,7 +21,7 @@ const getCQTemplate = async config => {
             return xmlToJSONCleanup(json);
         }
     } catch(e) {
-        console.error(`[storybook-aem] There was an error reading the _cq_template.xml for the '${config.component}' component`,e);
+        console.error(`[sb-aem] There was an error reading the _cq_template.xml for the '${config.component}' component`,e);
         return false;
     }
 };

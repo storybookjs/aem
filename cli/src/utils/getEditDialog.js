@@ -12,7 +12,7 @@ const getEditDialog = config => {
         const xml = fs.readFileSync(cqDialogPath, 'utf-8');
         
         if (!xml) {
-            console.log(`[storybook-aem] There was no _cq_dialog/.content.xml. Skipping default content.`);
+            console.log(`[sb-aem] There was no _cq_dialog/.content.xml. Skipping default content.`);
             return false;
 
         } else {
@@ -20,7 +20,7 @@ const getEditDialog = config => {
             return parseEditDialog(json);
         }
     } catch(e) {
-        console.error(`[storybook-aem] There was an error reading the _cq_dialog/.content.xml for the '${config.component}' component`,e);
+        console.error(`[sb-aem] There was an error reading the _cq_dialog/.content.xml for the '${config.component}' component`,e);
         return false;
     }
 };

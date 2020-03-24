@@ -4,23 +4,23 @@ const log = require('../utils/logger');
 const menus = {
     main: [
       `\n`,
-      `Usage: ${chalk.italic('storybook-aem <command> <options>')}\n`,
+      `Usage: ${chalk.italic('sb-aem <command> <options>')}\n`,
       `Commands:`,
       `  init .................. Start a new project, or add to existing project`,
       `  story ................. Creates/Updates your component story file, Adds story definition, Creates AEM Content example`,
       `  package ............... Imports & Exports content package from AEM => Code => AEM`,
       `  component ............. WIP - Create a new component in your project. Generates files in the specified component folder`,
       `  content ............... WIP - Create AEM Content saved in the JCR from [component].content.js files`,
-      `  help .................. Show help menu for storybook-aem`,
-      `  version, v ............ Show storybook-aem version`,
+      `  help .................. Show help menu for sb-aem`,
+      `  version, v ............ Show sb-aem version`,
       ``
     ].join('\n'),
 
-    init: [`storybook-aem init`].join('\n'),
+    init: [`sb-aem init`].join('\n'),
 
     story: [
         `\n`,
-        `storybook-aem story`,
+        `sb-aem story`,
         ``,
         `- Use this command during your development or documentation process`,
         `- Configure for which component type you want to make stories `,
@@ -38,7 +38,7 @@ const menus = {
 
     component: [
         `\n`,
-        `storybook-aem component <options>`,
+        `sb-aem component <options>`,
         ``,
         `--name, -n ..... the name of the component. Should match the folder name`,
         ``
@@ -46,7 +46,7 @@ const menus = {
 
     content: [
         `\n`,
-        `storybook-aem component <options>`,
+        `sb-aem component <options>`,
         ``,
         `--location, -l ..... the location to use`,
         ``
