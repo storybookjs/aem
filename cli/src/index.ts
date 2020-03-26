@@ -1,12 +1,13 @@
 const chalk = require('chalk');
 const logger1 = require('./utils/logger');
-const { checkVersion } = require('./utils/versionCheck');
+//const { checkVersion } = require('./utils/versionCheck');
 
 module.exports = () => {
   const args = process.argv.slice(2);
   const cmd = args[0];
 
-  checkVersion();
+  // We can't check the version until this package is actually published on NPM.
+  //checkVersion();
 
   switch (cmd) {
     case 'story':
