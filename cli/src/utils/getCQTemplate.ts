@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const xml2json = require('xml2json');
 const xmlToJSONCleanup = require('./xmlToJSONCleanup');
-import log from './logger';
+import { log } from './logger';
 
 export const getCQTemplate = async config => {
   const cqTemplatePath = path.resolve(
@@ -29,7 +29,7 @@ export const getCQTemplate = async config => {
     ] = `${config.namespace}/components/${config.componentType}/${config.component}`;
 
     return xmlToJSONCleanup(json);
-  } catch () {
+  } catch {
     // This is not an error scenario. It is okay to not have a _cq_template.
     log(`[sb-aem] No _cq_template.xml found for the '${config.component}' component. Default content will be generated.`);
     return false;
