@@ -1,9 +1,7 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "types": ["webpack-env"],
-    "allowJs": true
+    "rootDir": "src",
+    "outDir": "dist"
   },
   "include": ["src/**/*"]
 }

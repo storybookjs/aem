@@ -4,10 +4,14 @@
   "description": "CLI tool for Storybook AEM",
   "main": "src/index.js",
   "files": [
-    "src/index.js"
+    "dist"
   ],
   "scripts": {
-    "prepare": "node ../scripts/prepare.js"
+    "prepare": "tsc",
+    "watch": "tsc --watch"
+  },
+  "bin": {
+    "sb-aem": "bin/sb-aem"
   },
   "keywords": [
     "storybook",
@@ -15,11 +19,15 @@
     "cli"
   ],
   "dependencies": {
+    "base-64": "^0.1.0",
     "chalk": "^3.0.0",
     "form-data": "^3.0.0",
     "node-fetch": "^2.6.0",
+    "npm": "^6.14.4",
     "prompts": "^2.3.2",
     "xml2json": "^0.12.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
 }

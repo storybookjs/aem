@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const log = require('./utils/logger');
+const logger1 = require('./utils/logger');
 const { checkVersion } = require('./utils/versionCheck');
 
 module.exports = () => {
@@ -24,7 +24,7 @@ module.exports = () => {
       require('./cmds/help')(args);
       break;
     default:
-      log(
+      logger1(
         [
           `${chalk.italic(cmd)} is not a valid command.`,
           ``,
