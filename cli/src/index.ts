@@ -1,13 +1,11 @@
-const chalk = require('chalk');
-const logger1 = require('./utils/logger');
-//const { checkVersion } = require('./utils/versionCheck');
+import * as chalk from 'chalk';
+import { log } from './utils/logger';
 
 module.exports = () => {
   const args = process.argv.slice(2);
   const cmd = args[0];
 
-  // We can't check the version until this package is actually published on NPM.
-  //checkVersion();
+  // TODO: Import the version check and call that method here.
 
   switch (cmd) {
     case 'story':
@@ -25,7 +23,7 @@ module.exports = () => {
       require('./cmds/help')(args);
       break;
     default:
-      logger1(
+      log(
         [
           `${chalk.italic(cmd)} is not a valid command.`,
           ``,
