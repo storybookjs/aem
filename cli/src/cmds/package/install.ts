@@ -5,44 +5,51 @@ import * as chalk from 'chalk';
 import { exec } from 'child_process';
 import { log } from '../../utils/logger';
 import { fetchFromAEM } from '../../utils/fetchFromAEM';
+import * as util from 'util';
+import * as zip from 'zip-promise';
 
+const execPromise = util.promisify(exec);
 const cwd = process.cwd();
 
 export const install = async (args, config) => {
-  log(`Checking for Storybook AEM Content Package configuration...`);
-  const packageManagerURL = `/crx/packmgr/service.jsp`;
-  const storybookPackagePath = path.resolve(
-    cwd,
-    config.projectRoot,
-    config.relativeProjectRoot,
-    config.localPackagePath,
-    config.packageName
-  );
-  if (!fs.existsSync(storybookPackagePath)) {
-    throw log(chalk.red(`error, could not find Storybook AEM Content Package`));
-  }
+    const packageManagerURL = `/crx/packmgr/service.jsp`;
+    const storybookPackageDirectory = path.resolve(cwd, config.projectRoot, config.relativeProjectRoot, config.localPackagePath);
+    const storybookPackagePath = path.resolve(storybookPackageDirectory, config.packageName);
 
-  const form = new (FormData as any)();
-  form.append('file', fs.createReadStream(storybookPackagePath));
-  form.append('name', `/packages/${config.packageName}`);
-  form.append('force', 'true');
-  form.append('install', 'true');
+    try {
+      log(`Zipping Storybook library ...`);
+      await zip.folder(storybookPackageDirectory, storybookPackagePath);
 
-  log(`Attempting to create Storybook AEM Content Package in AEM...`);
-  await fetchFromAEM({
-    url: packageManagerURL,
-    method: 'POST',
-    body: form,
-  });
-  log(`Storybook AEM Content Package successfully created in AEM!`);
-  log(
-    [
-      `You can see the Storybook AEM Content here:\n`,
-      `  http://localhost:4502/sites.html${config.aemContentPath}\n`,
-    ].join('\n')
-  );
+      log(`Checking for Storybook AEM Content Package ...`);
+      if (!fs.existsSync(storybookPackagePath)) {
+          throw log(chalk.red(`error, could not find Storybook AEM Content Package`));
+      }
 
-  if (!args.includes('--quiet')) {
-    exec(`open http://localhost:4502/sites.html${config.aemContentPath}`);
-  }
+      const form = new FormData();
+      form.append('file', fs.createReadStream(storybookPackagePath));
+      form.append('name', `/packages/` + encodeURIComponent(config.packageName));
+      form.append('force', 'true');
+      form.append('install', 'true');
+
+      log(`Installing Storybook AEM Content Package to AEM...`);
+      await fetchFromAEM({
+          url: packageManagerURL,
+          method: 'POST',
+          body: form
+      });
+
+      log(`Cleaning up...`);
+      await execPromise(`rm -rf "${storybookPackagePath}"`);
+
+      log([
+          `You can see the Storybook AEM Content here:\n`,
+          `  http://localhost:4502/sites.html${config.aemContentPath}\n`
+      ].join('\n'));
+
+      if (!args.includes('--quiet')) {
+          execPromise(`open http://localhost:4502/sites.html${config.aemContentPath}`);
+      }
+    } catch (e) {
+      throw log("There was an error installing the content package", chalk.red(e));
+    }
 };
