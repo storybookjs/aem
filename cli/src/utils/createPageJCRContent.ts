@@ -1,4 +1,4 @@
-const fetchFromAEM = require('./fetchFromAEM');
+const { fetchFromAEM } = require('./fetchFromAEM');
 
 const createPageJCRContent = async config => {
   const params = [
