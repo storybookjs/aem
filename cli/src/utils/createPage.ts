@@ -1,6 +1,6 @@
 import { fetchFromAEM } from './fetchFromAEM';
 
-const createPage = async config => {
+export const createPage = async config => {
   const response = await fetchFromAEM({
     url: `${config.aemContentPath}/${config.component}?jcr:primaryType=cq:Page`,
     method: 'POST',
@@ -10,5 +10,3 @@ const createPage = async config => {
   if (await response.ok) return true;
   return false;
 };
-
-module.exports = createPage;

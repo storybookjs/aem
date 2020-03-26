@@ -1,7 +1,7 @@
 const { fetchFromAEM } = require('../../utils/fetchFromAEM');
-const createPage = require('../../utils/createPage');
-const createPageJCRContent = require('../../utils/createPageJCRContent');
-const createStories = require('../../utils/createStories');
+const { createPage } = require('../../utils/createPage');
+const { createPageJCRContent } = require('../../utils/createPageJCRContent');
+const { createStories } = require('../../utils/createStories');
 const { log } = require('../../utils/logger');
 
 export const createContentFromStories = async config => {
