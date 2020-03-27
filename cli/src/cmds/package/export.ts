@@ -13,6 +13,8 @@ export const exportPackage = async (args, config) => {
     try {
         const localPackageDirectory = path.resolve(cwd, config.projectRoot, config.relativeProjectRoot, config.localPackagePath);
         const localPackagePath = path.resolve(localPackageDirectory, config.packageName);
+        const jcrContentPath = path.resolve(localPackageDirectory, 'jcr_root');
+        const metaInfPath = path.resolve(localPackageDirectory, 'META-INF');
         const packageManagerUrl = `/crx/packmgr/service/.json`;
 
         let packageUrl = `/etc/packages`;
@@ -30,6 +32,8 @@ export const exportPackage = async (args, config) => {
         await execPromise(`curl -u admin:admin ${fullPackageUrl} -o "${localPackagePath}"`);
 
         log(`Unzipping new Storybook Library ...`);
+        await execPromise(`rm -rf "${jcrContentPath}"`);
+        await execPromise(`rm -rf "${metaInfPath}"`);
         await fs.createReadStream(localPackagePath)
           .pipe(unzipper.Extract({ path: localPackageDirectory }))
           .promise();
