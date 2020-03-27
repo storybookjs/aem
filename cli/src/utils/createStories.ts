@@ -57,7 +57,9 @@ export const createStories = async config => {
     console.log(`[sb-aem] You can now view and edit your story content`);
     console.log(`[sb-aem] Story content -> ${editorURL}`);
 
-    exec(`open ${editorURL}`);
+    if (config.openBrowser) {
+      exec(`open ${editorURL}`);
+    }
 
     return true;
   }

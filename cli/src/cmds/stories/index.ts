@@ -1,8 +1,7 @@
 import * as path from 'path';
 import * as prompts from 'prompts';
 import { error } from '../../utils/error';
-import { install } from './install';
-import { exportPackage } from './export';
+import { createStory } from './story';
 
 const cwd = process.cwd();
 
@@ -23,23 +22,32 @@ module.exports = async args => {
       'No package.json file found. Please run this from the directory with the package.json file for your project',
       true
     );
-  } else if (args.includes('install')) install(args, storybookConfig);
-  else if (args.includes('export')) exportPackage(args, storybookConfig);
-  else {
+  } else if (args.includes('create') && args.includes('all')) {
+    storybookConfig.singleStory = false;
+    storybookConfig.openBrowser = false;
+    createStory(args, storybookConfig);
+  } else if (args.includes('create')) {
+    storybookConfig.singleStory = true;
+    createStory(args, storybookConfig);
+  } else {
     // Ask questions to see what they want to do
     const response = await prompts({
       type: 'autocomplete',
       name: 'operation',
-      message: [
-        'Do you want to install content into AEM from Code?',
-        '  Or export content from AEM into the codebase?',
-      ].join('\n'),
+      message: 'Do you want to create a story or create stories for all components?',
       choices: [
-        { title: 'Install', value: 'install' },
-        { title: 'Export', value: 'export' },
+        { title: 'Single story', value: 'single' },
+        { title: 'All stories', value: 'all' },
       ],
     });
-    if (response.operation === 'install') install(args, storybookConfig);
-    if (response.operation === 'export') exportPackage(args, storybookConfig);
+
+    if (response.operation === 'single') {
+      storybookConfig.singleStory = true;
+      createStory(args, storybookConfig);
+    } else if (response.operation === 'all') {
+      storybookConfig.singleStory = false;
+      storybookConfig.openBrowser = false;
+      createStory(args, storybookConfig);
+    }
   }
 };

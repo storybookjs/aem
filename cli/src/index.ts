@@ -10,7 +10,7 @@ module.exports = () => {
   switch (cmd) {
     case 'story':
     case 'stories':
-      require('./cmds/stories/story')(args);
+      require('./cmds/stories')(args);
       break;
     case 'package':
       require('./cmds/package')(args);
