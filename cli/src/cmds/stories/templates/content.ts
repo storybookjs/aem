@@ -1,10 +1,10 @@
 import * as fs from 'fs';
-import { log } from '../../../utils/logger';
-import { toCamelCase } from '../../../utils/toCamelCase';
+import { log, toCamelCase } from '../../../utils';
 
+/* eslint-disable no-param-reassign */
 module.exports = config => {
-  console.log('config:', config);
-  console.log('config:', config.stories);
+  log('config:', config);
+  log('config:', config.stories);
   const componentPath = `${config.componentPath}/${config.component}`;
   let fileContents = `/**
   * Storybook content for the ${config.component} component that can be POSTed in AEM JCR via SlingPostServlet.

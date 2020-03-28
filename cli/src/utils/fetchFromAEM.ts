@@ -1,5 +1,6 @@
-const fetch = require('node-fetch');
-const base64 = require('base-64');
+import fetch from 'node-fetch';
+import base64 from 'base-64';
+import { log } from './index';
 
 export const fetchFromAEM = async config => {
   const errorMessage = config.errorMessage || 'Error Fetching from AEM';
@@ -13,7 +14,7 @@ export const fetchFromAEM = async config => {
       Authorization: `Basic ${base64.encode(`admin:admin`)}`,
     },
     body: config.body || null,
-  }).catch(error => console.log(errorMessage, error));
+  }).catch(error => log(errorMessage, error));
 
   return response;
 };

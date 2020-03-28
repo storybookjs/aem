@@ -1,6 +1,6 @@
 const fetchFromAEM = require('./fetchFromAEM');
 
-const createPageJCRContent = async config => {
+export const createPageJCRContent = async config => {
   const params = [
     `jcr:primaryType=cq:PageContent`,
     `sling:resourceType=${config.aemContentDefaultPageResourceType}`,
@@ -17,5 +17,3 @@ const createPageJCRContent = async config => {
   if (await response.ok) return true;
   return false;
 };
-
-module.exports = createPageJCRContent;

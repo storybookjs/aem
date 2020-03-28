@@ -1,9 +1,9 @@
 const fetchFromAEM = require('../../utils/fetchFromAEM');
 const createPage = require('../../utils/createPage');
 const createPageJCRContent = require('../../utils/createPageJCRContent');
-const createStories = require('../../utils/createStories');
-const log = require('../../utils/logger');
+const { createStories, log } = require('../../utils');
 
+/* eslint-disable consistent-return */
 export const createContentFromStories = async config => {
   if (!config || !config.createAEMContent || config.stories.length === 0) return false;
 

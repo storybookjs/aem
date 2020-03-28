@@ -1,6 +1,5 @@
-const { getInstalledVersion } = require('../utils/versionCheck');
-const logger2 = require('../utils/logger');
+const { getInstalledVersion, log } = require('../utils');
 
 module.exports = async args => {
-  logger2(`Installed Version: ${getInstalledVersion()}`);
+  log(`Installed Version: ${getInstalledVersion()}`);
 };
