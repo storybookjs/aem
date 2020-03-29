@@ -8,7 +8,8 @@
     "example": "examples"
   },
   "scripts": {
-    "build": "node ./scripts/watch-tsc.js",
+    "build": "yarn build:tsc",
+    "build:tsc": "lerna exec --scope @storybook/* --parallel -- cross-env-shell node \\$LERNA_ROOT_PATH/scripts/watch-tsc.js",
     "lint": "yarn lint:js",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.json,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "test": "jest",
@@ -46,7 +47,7 @@
   "workspaces": [
     "app/*",
     "examples/*",
-    "cli/*"
+    "cli"
   ],
   "repository": {
     "type": "git",
@@ -63,11 +64,13 @@
     "@storybook/linter-config": "^2.3.0",
     "@types/jest": "^25.1.4",
     "chalk": "^3.0.0",
+    "concurrently": "^5.1.0",
     "cross-env": "^7.0.2",
     "downlevel-dts": "^0.4.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "lerna": "^3.20.2",
     "lint-staged": "^10.0.8",
     "shelljs": "^0.8.3",
     "ts-jest": "^25.2.1"
