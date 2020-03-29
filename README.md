@@ -28,7 +28,7 @@ Storybook AEM uses Jest for unit testing. To run unit tests use the following co
 
 ## Usage
 
-See [example](./examples/aem-kitchen-sink/components/list/list.stories.js):
+To see an example of a story for a HTL List Component click [here](./examples/aem-kitchen-sink/components/list/list.stories.js)!
 
 ### Story configuration
 
