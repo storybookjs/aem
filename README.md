@@ -1,4 +1,9 @@
-# Storybook Adobe Experience Manager (AEM) App
+<p align="center">
+  <a href="https://storybook.js.org/">
+    <img src="./.github/sb-aem-logo.svg" alt="Storybook AEM App Logo" width="400" height="200">
+  </a>
+</p>
+<h1 align="center">Storybook Adobe Experience Manager (AEM) App</h1>
 
 This project has been created to provide native Storybook support for Adobe Experience Manager. It is a work in progress and has not been published yet. If you are interested in helping out or learning more about this project, you can join the discord channel [here](https://discord.gg/z5pGCKQ) to see what we've been up to.
 
