@@ -2,13 +2,22 @@
   "name": "@storybook/aem-cli",
   "version": "0.0.1",
   "description": "CLI tool for Storybook AEM",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "homepage": "https://github.com/storybookjs/aem/cli",
+  "bugs": {
+    "url": "https://github.com/storybookjs/aem/issues"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "cli"
+  },
+  "license": "MIT",
   "files": [
-    "dist"
+    "dist/**/*",
+    "README.md"
   ],
   "scripts": {
-    "prepare": "tsc",
-    "watch": "tsc --watch"
+    "prepare": "node ../scripts/prepare.js"
   },
   "bin": {
     "sb-aem": "bin/sb-aem"
@@ -31,5 +40,8 @@
   },
   "devDependencies": {
     "typescript": "^3.8.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
