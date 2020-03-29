@@ -20,6 +20,7 @@ function toWords(input: any) {
 export function toCamelCase(input: any) {
   const inputArray = toWords(input);
   let result = '';
+  /* eslint-disable no-plusplus */
   for (let i = 0; i < inputArray.length; i++) {
     const currentStr = inputArray[i];
     let tempStr = currentStr.toLowerCase();

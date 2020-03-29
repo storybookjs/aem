@@ -3,7 +3,7 @@ const getDirectories = require('./getDirectories');
 
 const cwd = process.cwd();
 
-module.exports = (config, directoryPath) => {
+export const getChoicesFromDirectories = (config, directoryPath) => {
   const directories = getDirectories(
     path.resolve(cwd, config.projectRoot, config.relativeProjectRoot, directoryPath)
   );

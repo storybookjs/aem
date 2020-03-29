@@ -1,16 +1,15 @@
 import * as path from 'path';
 import * as prompts from 'prompts';
-import { toCamelCase } from '../../utils/toCamelCase';
-import { error } from '../../utils/error';
-import { getDirectories } from '../../utils/getDirectories';
+import { error, getDirectories, toCamelCase } from '../../utils';
 import { getStoriesTemplate } from './templates/stories';
 import { createContentFromStories } from '../content/contentFromStories';
 
 const cwd = process.cwd();
+const packageJSONPath = path.resolve(cwd, 'package.json');
+/* eslint-disable import/no-dynamic-require */
+const packageJSON = require(packageJSONPath);
 
 module.exports = async args => {
-  const packageJSON = require(path.resolve(cwd, 'package.json'));
-
   if (Object.entries(packageJSON).length === 0) {
     error(
       'No package.json file found. Please run this from the directory with the package.json file for your project',
@@ -62,6 +61,7 @@ module.exports = async args => {
         initial: true,
       },
       {
+        /* eslint-disable no-constant-condition */
         type: prev => (true ? 'list' : null),
         name: 'stories',
         message: 'Add a comma separated list of stories:',

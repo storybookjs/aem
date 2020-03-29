@@ -1,4 +1,5 @@
-const xmlToJSONCleanup = json => {
+/* eslint-disable no-param-reassign */
+export const xmlToJSONCleanup = json => {
   Object.keys(json).forEach(key => {
     // Remove all xmlns keys, they aren't allowed in the POST call
     if (key.includes('xmlns')) delete json[key];
@@ -10,5 +11,3 @@ const xmlToJSONCleanup = json => {
 
   return json;
 };
-
-module.exports = xmlToJSONCleanup;

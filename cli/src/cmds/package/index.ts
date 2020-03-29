@@ -1,13 +1,14 @@
 import * as path from 'path';
 import * as prompts from 'prompts';
-import { error } from '../../utils/error';
+import { error } from '../../utils';
 import { install } from './install';
 import { exportPackage } from './export';
 
-const cwd = process.cwd();
+const packageJSONPath = path.resolve(process.cwd(), 'package.json');
+/* eslint-disable import/no-dynamic-require */
+const packageJSON = require(packageJSONPath);
 
 module.exports = async args => {
-  const packageJSON = require(path.resolve(cwd, 'package.json'));
   const storybookConfig = packageJSON['@storybook/aem-cli'];
 
   if (Object.entries(packageJSON).length === 0) {

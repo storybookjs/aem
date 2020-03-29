@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { log } from '../../../utils/logger';
+import { log, error } from '../../../utils';
 
 export const getStoriesTemplate = config => {
   const storyPath = path.resolve(
@@ -68,7 +68,7 @@ export const getStoriesTemplate = config => {
       fileContents.push(`};`);
     }
   } catch (err) {
-    console.error(err);
+    throw error(err, true);
   }
 
   config.stories.forEach(story => {

@@ -1,13 +1,14 @@
 const chalk = require('chalk');
 const logger1 = require('./utils/logger');
-//const { checkVersion } = require('./utils/versionCheck');
+// const { checkVersion } = require('./utils');
 
+/* eslint-disable global-require */
 module.exports = () => {
   const args = process.argv.slice(2);
   const cmd = args[0];
 
   // We can't check the version until this package is actually published on NPM.
-  //checkVersion();
+  // checkVersion();
 
   switch (cmd) {
     case 'story':

@@ -1,5 +1,5 @@
 import * as chalk from 'chalk';
-import { log } from '../utils/logger';
+import { log } from '../utils';
 
 const menus = {
   main: [
