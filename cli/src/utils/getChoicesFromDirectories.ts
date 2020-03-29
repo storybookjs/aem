@@ -1,5 +1,5 @@
-const path = require('path');
-const getDirectories = require('./getDirectories');
+import * as path from 'path';
+import { getDirectories } from './getDirectories';
 
 const cwd = process.cwd();
 

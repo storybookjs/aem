@@ -1,6 +1,5 @@
+import { exec } from 'child_process';
 import { fetchFromAEM, getCQTemplate, log } from './index';
-
-const { exec } = require('child_process');
 
 export const createStories = async config => {
   const baseURL = `${config.aemContentPath}/${config.component}/jcr:content${config.aemContentDefaultPageContentPath}`;

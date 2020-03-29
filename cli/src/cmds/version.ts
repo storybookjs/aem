@@ -1,5 +1,5 @@
-const { getInstalledVersion, log } = require('../utils');
+import { getInstalledVersion, log } from '../utils';
 
-module.exports = async args => {
+export const versionCommand = async args => {
   log(`Installed Version: ${getInstalledVersion()}`);
 };

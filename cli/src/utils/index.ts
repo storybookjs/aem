@@ -5,6 +5,7 @@ import { error } from './error';
 import { fetchFromAEM } from './fetchFromAEM';
 import { getChoicesFromDirectories } from './getChoicesFromDirectories';
 import { getCQTemplate } from './getCQTemplate';
+import { getConfig } from './getConfig';
 import { getDirectories } from './getDirectories';
 import { getEditDialog } from './getEditDialog';
 import { log } from './log';
@@ -21,6 +22,7 @@ export {
   fetchFromAEM,
   getChoicesFromDirectories,
   getCQTemplate,
+  getConfig,
   getDirectories,
   getEditDialog,
   log,

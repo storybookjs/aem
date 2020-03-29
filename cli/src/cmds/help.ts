@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import { log } from '../utils';
 
 const menus = {
@@ -6,11 +6,9 @@ const menus = {
     `\n`,
     `Usage: ${chalk.italic('sb-aem <command> <options>')}\n`,
     `Commands:`,
-    `  init .................. Start a new project, or add to existing project`,
+    `  init .................. WIP - Start a new project, or add to existing project`,
     `  story ................. Creates/Updates your component story file, Adds story definition, Creates AEM Content example`,
     `  package ............... Imports & Exports content package from AEM => Code => AEM`,
-    `  component ............. WIP - Create a new component in your project. Generates files in the specified component folder`,
-    `  content ............... WIP - Create AEM Content saved in the JCR from [component].content.js files`,
     `  help .................. Show help menu for sb-aem`,
     `  version, v ............ Show sb-aem version`,
     ``,
@@ -35,25 +33,9 @@ const menus = {
     ` heading that contains the name of the story.`,
     ``,
   ].join('\n'),
-
-  component: [
-    `\n`,
-    `sb-aem component <options>`,
-    ``,
-    `--name, -n ..... the name of the component. Should match the folder name`,
-    ``,
-  ].join('\n'),
-
-  content: [
-    `\n`,
-    `sb-aem component <options>`,
-    ``,
-    `--location, -l ..... the location to use`,
-    ``,
-  ].join('\n'),
 };
 
-module.exports = args => {
+export function helpCommand(args) {
   const subCmd = args[0] === 'help' ? args[1] : args[0];
   log(menus[subCmd] || menus.main);
-};
+}
