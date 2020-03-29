@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const logger1 = require('./utils/logger');
+const { log } = require('./utils');
 // const { checkVersion } = require('./utils');
 
 /* eslint-disable global-require */
@@ -26,7 +26,7 @@ module.exports = () => {
       require('./cmds/help')(args);
       break;
     default:
-      logger1(
+      log(
         [
           `${chalk.italic(cmd)} is not a valid command.`,
           ``,
