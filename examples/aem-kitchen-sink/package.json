@@ -2,16 +2,14 @@
   "name": "aem-kitchen-sink",
   "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Fully featured aem storybook demo with events, knobs, docs, backgrounds and more",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-storybook": "build-storybook",
+    "sb-aem": "sb-aem",
     "storybook:debug": "NODE_OPTIONS=--inspect-brk start-storybook -p 9001",
-    "storybook": "start-storybook -p 9001",
-    "sb-aem": "sb-aem"
+    "storybook": "start-storybook -p 9001"
   },
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@storybook/aem": "*",
     "@storybook/addon-a11y": "6.0.0-alpha.2",
