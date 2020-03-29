@@ -1,4 +1,9 @@
-# Storybook Adobe Experience Manager (AEM) App
+<p align="center">
+  <a href="https://storybook.js.org/">
+    <img src="./.github/sb-aem-logo.svg" alt="Storybook AEM App Logo" width="400" height="200">
+  </a>
+</p>
+<h1 align="center">Storybook Adobe Experience Manager (AEM) App</h1>
 
 This project has been created to provide native Storybook support for Adobe Experience Manager. It is a work in progress and has not been published yet. If you are interested in helping out or learning more about this project, you can join the discord channel [here](https://discord.gg/z5pGCKQ) to see what we've been up to.
 
@@ -23,7 +28,7 @@ Storybook AEM uses Jest for unit testing. To run unit tests use the following co
 
 ## Usage
 
-See [example](./examples/aem-kitchen-sink/components/list/list.stories.js):
+To see an example of a story for a HTL List Component click [here](./examples/aem-kitchen-sink/components/list/list.stories.js)!
 
 ### Story configuration
 
@@ -192,3 +197,8 @@ export default class Person extends GenericModel {
 ### Interested in helping out?
 
 Check out our issues here: https://github.com/storybookjs/aem/issues
+
+Join our discord here: https://discord.gg/z5pGCKQ
+
+We especially need help with figuring out the proper way to support 3rd party libraries that are defined in the POM and use Java models such as the AEM Core components. If you have any ideas about how to solve this please comment on this issue: https://github.com/storybookjs/aem/issues/45
+

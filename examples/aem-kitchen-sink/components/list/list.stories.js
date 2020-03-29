@@ -14,7 +14,6 @@ export const List = () => {
     content: {
       ...exampleContent,
       showDescription: boolean('showDescription', false),
-      showModificationDate: boolean('showModificationDate', false),
       linkItems: boolean('linkItems', false),
     },
     template: ListTemplate,
