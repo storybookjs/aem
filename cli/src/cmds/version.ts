@@ -1,5 +1,5 @@
 import { getInstalledVersion, log } from '../utils';
 
-export const version = async args => {
+export const Version = async args => {
   log(`Installed Version: ${getInstalledVersion()}`);
 };

@@ -29,5 +29,27 @@
     "@storybook/addon-viewport": "6.0.0-alpha.2",
     "chalk": "^3.0.0",
     "shelljs": "^0.8.3"
+  },
+  "@storybook/aem-cli": {
+    "projectRoot": "aem",
+    "relativeProjectRoot": "../../",
+    "uiApps": "./components",
+    "jcrRootPath": "./components",
+    "namespace": "storybook",
+    "componentPath": "./components",
+    "clientlibsPath": "./components",
+    "packageJSON": "./package.json",
+    "storybookLocation": "./.storybook/",
+    "storybookStoryLocation": "./components",
+    "aemContentPath": "/content/storybook/storybook-library",
+    "aemContentDefaultPageResourceType": "storybook/components/structure/page",
+    "aemContentDefaultPageTemplate": "/conf/storybook/settings/wcm/templates/content-page",
+    "aemContentDefaultPageContentPath": "/root/regioncontainer-main/responsivegrid",
+    "aemStoryHeadingComponentResourceType": "storybook/components/content/text",
+    "aemStoryHeadingComponentTitleProperty": "jcr:title",
+    "storyRoot": "Components",
+    "packageGroup": "storybook",
+    "packageName": "storybook-library.zip",
+    "localPackagePath": "./.storybook/storybook-library/"
   }
 }

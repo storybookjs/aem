@@ -1,11 +1,16 @@
 import chalk from 'chalk';
-import { log } from './utils';
+import { getConfig, log } from './utils';
+import { Help } from './cmds/help';
+import { Package } from './cmds/package';
+import { Story } from './cmds/stories/story';
+import { Version } from './cmds/version';
+
 // const { checkVersion } = require('./utils');
 
-/* eslint-disable global-require */
 module.exports = () => {
   const args = process.argv.slice(2);
   const cmd = args[0];
+  const config = getConfig();
 
   // We can't check the version until this package is actually published on NPM.
   // checkVersion();
@@ -13,17 +18,17 @@ module.exports = () => {
   switch (cmd) {
     case 'story':
     case 'stories':
-      require('./cmds/stories/story')(args);
+      Story(args, config);
       break;
     case 'package':
-      require('./cmds/package')(args);
+      Package(args, config);
       break;
     case 'v':
     case 'version':
-      require('./cmds/version')(args);
+      Version(args);
       break;
     case 'help':
-      require('./cmds/help')(args);
+      Help(args);
       break;
     default:
       log(
