@@ -4,8 +4,11 @@ import { error } from '../../utils';
 import { install } from './install';
 import { exportPackage } from './export';
 
-export async function Package(args, config) {
-  if (args.includes('install')) install(args, config);
+const INSTALL = 'install';
+const EXPORT = 'export';
+
+export async function packageCommand(args, config) {
+  if (args.includes(INSTALL)) install(args, config);
   else if (args.includes('export')) exportPackage(args, config);
   else {
     // Ask questions to see what they want to do
@@ -21,7 +24,7 @@ export async function Package(args, config) {
         { title: 'Export', value: 'export' },
       ],
     });
-    if (response.operation === 'install') install(args, config);
-    if (response.operation === 'export') exportPackage(args, config);
+    if (response.operation === INSTALL) install(args, config);
+    if (response.operation === EXPORT) exportPackage(args, config);
   }
 }

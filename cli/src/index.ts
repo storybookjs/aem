@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import { getConfig, log } from './utils';
-import { Help } from './cmds/help';
-import { Package } from './cmds/package';
-import { Story } from './cmds/stories/story';
-import { Version } from './cmds/version';
+import { helpCommand } from './cmds/help';
+import { packageCommand } from './cmds/package';
+import { storyCommand } from './cmds/stories/story';
+import { versionCommand } from './cmds/version';
 
 // const { checkVersion } = require('./utils');
 
@@ -18,17 +18,17 @@ module.exports = () => {
   switch (cmd) {
     case 'story':
     case 'stories':
-      Story(args, config);
+      storyCommand(args, config);
       break;
     case 'package':
-      Package(args, config);
+      packageCommand(args, config);
       break;
     case 'v':
     case 'version':
-      Version(args);
+      versionCommand(args);
       break;
     case 'help':
-      Help(args);
+      helpCommand(args);
       break;
     default:
       log(

@@ -35,7 +35,7 @@ const menus = {
   ].join('\n'),
 };
 
-export function Help(args) {
+export function helpCommand(args) {
   const subCmd = args[0] === 'help' ? args[1] : args[0];
   log(menus[subCmd] || menus.main);
 }
