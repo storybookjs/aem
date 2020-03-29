@@ -1,21 +1,47 @@
 {
-    "name": "@storybook/aem-cli",
-    "version": "0.0.1",
-    "description": "CLI tool for Storybook AEM",
-    "main": "src/index.js",
-    "files": [
-      "src/index.js"
-    ],
-    "scripts": {
-        "prepare": "node ../../scripts/prepare.js"
-    },
-    "keywords": [
-      "storybook",
-      "aem",
-      "cli"
-    ],
-    "dependencies": {
-    },
-    "devDependencies": {
-    }
+  "name": "@storybook/aem-cli",
+  "version": "0.0.1",
+  "description": "CLI tool for Storybook AEM",
+  "main": "dist/index.js",
+  "homepage": "https://github.com/storybookjs/aem/cli",
+  "bugs": {
+    "url": "https://github.com/storybookjs/aem/issues"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "cli"
+  },
+  "license": "MIT",
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "prepare": "node ../scripts/prepare.js"
+  },
+  "bin": {
+    "sb-aem": "bin/sb-aem"
+  },
+  "keywords": [
+    "storybook",
+    "aem",
+    "cli"
+  ],
+  "dependencies": {
+    "base-64": "^0.1.0",
+    "chalk": "^3.0.0",
+    "form-data": "^3.0.0",
+    "node-fetch": "^2.6.0",
+    "npm": "^6.14.4",
+    "prompts": "^2.3.2",
+    "unzipper": "^0.10.10",
+    "xml2json": "^0.12.0",
+    "zip-promise": "^1.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
+}
