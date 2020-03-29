@@ -197,3 +197,7 @@ export default class Person extends GenericModel {
 ### Interested in helping out?
 
 Check out our issues here: https://github.com/storybookjs/aem/issues
+Join our discord here: https://discord.gg/z5pGCKQ
+
+We especially need help with figuring out the proper way to support 3rd party libraries that are defined in the POM and use Java models such as the AEM Core components. If you have any ideas about how to solve this please comment on this issue: https://github.com/storybookjs/aem/issues/45
+
