@@ -1,5 +1,5 @@
-const chalk = require('chalk');
-const { log } = require('./utils');
+import chalk from 'chalk';
+import { log } from './utils';
 // const { checkVersion } = require('./utils');
 
 /* eslint-disable global-require */

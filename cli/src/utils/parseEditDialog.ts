@@ -78,4 +78,3 @@ export const parseEditDialog = (json: any, parentKey: any) => {
   }
   return editDialog;
 };
-module.exports = parseEditDialog;
