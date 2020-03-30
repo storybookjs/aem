@@ -5,7 +5,7 @@
   "description": "Fully featured aem storybook demo with events, knobs, docs, backgrounds and more",
   "scripts": {
     "build-storybook": "build-storybook",
-    "sb-aem": "sb-aem",
+    "sba": "sba",
     "storybook:debug": "NODE_OPTIONS=--inspect-brk start-storybook -p 9001",
     "storybook": "start-storybook -p 9001"
   },
