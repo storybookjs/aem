@@ -30,7 +30,9 @@ export const getCQTemplate = async config => {
     return xmlToJSONCleanup(json);
   } catch {
     // This is not an error scenario. It is okay to not have a _cq_template.
-    log(`No _cq_template.xml found for the '${config.component}' component. Default content will be generated.`);
+    log(
+      `No _cq_template.xml found for the '${config.component}' component. Default content will be generated.`
+    );
     return false;
   }
 };

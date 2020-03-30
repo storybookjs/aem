@@ -23,7 +23,7 @@ export async function packageCommand(args, config) {
       ].join('\n'),
       choices: [
         { title: 'Install', value: CHOICE_INSTALL },
-        { title: 'Export', value: CHOICE_EXPORT  },
+        { title: 'Export', value: CHOICE_EXPORT },
       ],
     });
     if (response.operation === CHOICE_INSTALL) install(args, config);

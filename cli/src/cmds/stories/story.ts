@@ -36,46 +36,52 @@ export async function createStory(args, config) {
     componentType.componentType
   );
 
-  let componentConfig: any = {};
+  const componentConfig: any = {};
 
   if (config.singleStory) {
-    componentConfig.components = (await prompts({
-      type: 'autocomplete',
-      name: 'components',
-      message: 'Generate a Storybook Story for which component?',
-      choices: getDirectories(componentPath).map(component => {
-        return { title: component, value: component };
-      }),
-      format: res => {
-        return [ res ];
-      },
-    })).components;
+    componentConfig.components = (
+      await prompts({
+        type: 'autocomplete',
+        name: 'components',
+        message: 'Generate a Storybook Story for which component?',
+        choices: getDirectories(componentPath).map(component => {
+          return { title: component, value: component };
+        }),
+        format: res => {
+          return [res];
+        },
+      })
+    ).components;
   } else {
     componentConfig.components = getDirectories(componentPath);
   }
 
-  componentConfig.hasStories = (await prompts({
-    type: 'confirm',
-    name: 'hasStories',
-    message:
-      'Would you like to add some initial stories? We will add the default empty story for you',
-    initial: true,
-  })).hasStories;
+  componentConfig.hasStories = (
+    await prompts({
+      type: 'confirm',
+      name: 'hasStories',
+      message:
+        'Would you like to add some initial stories? We will add the default empty story for you',
+      initial: true,
+    })
+  ).hasStories;
 
   if (config.singleStory) {
-    componentConfig.stories = (await prompts({
-      type: prev => (prev ? 'list' : null),
-      name: 'stories',
-      message: 'Add a comma separated list of stories:',
-      separator: ',',
-      format: res => {
-        if (!res.length) return false;
-        // else return res.map( story => toCamelCase(story));
-        return res;
-      }
-    })).stories;
+    componentConfig.stories = (
+      await prompts({
+        type: prev => (prev ? 'list' : null),
+        name: 'stories',
+        message: 'Add a comma separated list of stories:',
+        separator: ',',
+        format: res => {
+          if (!res.length) return false;
+          // else return res.map( story => toCamelCase(story));
+          return res;
+        },
+      })
+    ).stories;
   } else {
-    componentConfig.stories = [ ];
+    componentConfig.stories = [];
   }
 
   error(componentConfig.components, false);
@@ -117,4 +123,4 @@ export async function createStory(args, config) {
       createContentFromStories(fullConfig);
     }
   });
-};
+}
