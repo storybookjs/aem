@@ -7,7 +7,7 @@ import { createContentFromStories } from '../content/contentFromStories';
 const cwd = process.cwd();
 
 /* eslint-disable no-param-reassign */
-export async function storyCommand(args, config) {
+export async function createStory(args, config) {
   let storyConfig: any = {};
 
   const componentBasePath = path.resolve(

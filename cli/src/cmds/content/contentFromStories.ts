@@ -1,4 +1,4 @@
-const { createPageJCRContent, createPage, fetchFromAEM, createStories, log } from '../../utils';
+import { createPageJCRContent, createPage, fetchFromAEM, createStories, log } from '../../utils';
 
 /* eslint-disable consistent-return */
 export const createContentFromStories = async config => {
