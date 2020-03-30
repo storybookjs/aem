@@ -4,21 +4,21 @@ import { log } from '../utils';
 const menus = {
   main: [
     `\n`,
-    `Usage: ${chalk.italic('sb-aem <command> <options>')}\n`,
+    `Usage: ${chalk.italic('sba <command> <options>')}\n`,
     `Commands:`,
     `  init .................. WIP - Start a new project, or add to existing project`,
     `  story ................. Creates/Updates your component story file, Adds story definition, Creates AEM Content example`,
     `  package ............... Imports & Exports content package from AEM => Code => AEM`,
-    `  help .................. Show help menu for sb-aem`,
-    `  version, v ............ Show sb-aem version`,
+    `  help .................. Show help menu for sba`,
+    `  version, v ............ Show sba version`,
     ``,
   ].join('\n'),
 
-  init: [`sb-aem init`].join('\n'),
+  init: [`sba init`].join('\n'),
 
   story: [
     `\n`,
-    `sb-aem story`,
+    `sba story`,
     ``,
     `- Use this command during your development or documentation process`,
     `- Configure for which component type you want to make stories `,

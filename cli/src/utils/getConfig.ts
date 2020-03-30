@@ -15,7 +15,7 @@ export function getConfig() {
     );
   } else if (!packageJSON[NAMESPACE]) {
     error(
-      'No @storybook/aem-cli configuration found. Please run sb-aem init to setup your project configuration',
+      'No @storybook/aem-cli configuration found. Please run `sba init` to setup your project configuration',
       true
     );
   }

@@ -20,7 +20,7 @@
     "prepare": "node ../scripts/prepare.js"
   },
   "bin": {
-    "sb-aem": "bin/sb-aem"
+    "sba": "bin/sba"
   },
   "keywords": [
     "storybook",

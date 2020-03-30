@@ -8,8 +8,8 @@ module.exports = config => {
   const componentPath = `${config.componentPath}/${config.component}`;
   let fileContents = `/**
   * Storybook content for the ${config.component} component that can be POSTed in AEM JCR via SlingPostServlet.
-  * Use the 'sb-aem content' command to POST to AEM - obviously AEM Must be running for this to work.
-  * 
+  * Use the 'sba content' command to POST to AEM - obviously AEM Must be running for this to work.
+  *
   * In order to see a complete example of the JSON signature, follow these steps:
   *   1. Author every value possible for the componen in question using AEM author
   *   2. Copy the path to the page - e.g. /content/we-retail/us/en
