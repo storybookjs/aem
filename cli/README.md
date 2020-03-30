@@ -30,21 +30,21 @@ The `sba story create` command will follow the same prompts as `sba story` but i
 The `sba story create all` command will follow the same prompts as `sba story` but it will assume that you want to create all the stories of the selected directory.
 
 ### Package
-The `storybook-aem package` command comes with two subcommands - `install` and `export`. When configured, you can use these commands to manage the content for your stories in AEM. If you add an additional step to your maven build, you can also install the content package automatically.
+The `sba package` command comes with two subcommands - `install` and `export`. When configured, you can use these commands to manage the content for your stories in AEM. If you add an additional step to your maven build, you can also install the content package automatically.
 
-To set this up you first need to create a package in the [AEM package manager](http://localhost:4502/crx/packmgr/index.jsp) that is configured with filters that include the content needed for your stories. Then you will need to configure and run the `storybook-aem package export` command as explained below. After this you should add any .content.xml files that are unnecessary to your .gitignore to avoid unnecessary content from being saved to the code base and to avoid merge conflicts.
+To set this up you first need to create a package in the [AEM package manager](http://localhost:4502/crx/packmgr/index.jsp) that is configured with filters that include the content needed for your stories. Then you will need to configure and run the `sba package export` command as explained below. After this you should add any .content.xml files that are unnecessary to your .gitignore to avoid unnecessary content from being saved to the code base and to avoid merge conflicts.
 
 #### Package Export
 
-The `storybook-aem package export` command will rebuild the specified content package and then download the contents to the configured location in your codebase. The zip file will not be be retained, instead the `jcr_root` and `META-INF` will be saved to the codebase. This should allow for both manual changes and easy version control of the content.
+The `sba package export` command will rebuild the specified content package and then download the contents to the configured location in your codebase. The zip file will not be be retained, instead the `jcr_root` and `META-INF` will be saved to the codebase. This should allow for both manual changes and easy version control of the content.
 
-This command requires that a `localPackagePath` configuration be added to the `storybook-aem` section of your `package.json` file. This configuration should point to the directory within the codebase that you want to save the package to. This directory should not contain anything other than the `jcr_root`, and `META-INF` directories of the package, as created by the `export` command. It is suggested to point this configuration at a `.storybook/aem-library` directory, which will need manually created.
+This command requires that a `localPackagePath` configuration be added to the `sba` section of your `package.json` file. This configuration should point to the directory within the codebase that you want to save the package to. This directory should not contain anything other than the `jcr_root`, and `META-INF` directories of the package, as created by the `export` command. It is suggested to point this configuration at a `.storybook/aem-library` directory, which will need manually created.
 
 #### Package Install
 
-The `storybook-aem package install` command will create an AEM package from the `localPackagePath` directory as explained in the previous section. It will POST this content package zip file into AEM and replicate it for use in AEM. By default, the install command will also open your default browser to the package content that was just installed. You can pass the `--quiet` option to prevent this.
+The `sba package install` command will create an AEM package from the `localPackagePath` directory as explained in the previous section. It will POST this content package zip file into AEM and replicate it for use in AEM. By default, the install command will also open your default browser to the package content that was just installed. You can pass the `--quiet` option to prevent this.
 
-This command required that a `aemContentPath` configuration be added to the `storybook-aem` section of your `package.json` file. This is the path that will be opened with the Site Editor in AEM after the package is installed.
+This command required that a `aemContentPath` configuration be added to the `sba` section of your `package.json` file. This is the path that will be opened with the Site Editor in AEM after the package is installed.
 
 #### Package and Maven
 TODO: ADD EXAMPLE TO EXAMPLES REPO
