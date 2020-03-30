@@ -5,10 +5,10 @@ import { packageCommand } from './cmds/package';
 import { storyCommand } from './cmds/stories';
 import { versionCommand } from './cmds/version';
 
-const ARG_QUIET = '--quiet';
-
 // TODO: Once the package is published import and use checkVersion.
 // import { checkVersion } from './utils';
+
+const ARG_QUIET = '--quiet';
 
 module.exports = () => {
   const args = process.argv.slice(2);

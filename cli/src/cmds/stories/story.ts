@@ -64,7 +64,7 @@ export async function createStory(args, config) {
 
   if (config.singleStory) {
     componentConfig.stories = (await prompts({
-      type: prev => (true ? 'list' : null),
+      type: prev => (prev ? 'list' : null),
       name: 'stories',
       message: 'Add a comma separated list of stories:',
       separator: ',',
@@ -110,11 +110,11 @@ export async function createStory(args, config) {
       });
     });
 
-    const componentConfig = { ...config, component, stories };
-    getStoriesTemplate(componentConfig);
+    const fullConfig = { ...config, component, stories };
+    getStoriesTemplate(fullConfig);
 
     if (config.createAEMContent) {
-      createContentFromStories(componentConfig);
+      createContentFromStories(fullConfig);
     }
   });
 };
