@@ -149,6 +149,7 @@ export default async function renderMain({
   showMain();
 
   if ((ROOT_ELEMENT && element instanceof Node !== false) || typeof element === TYPE_STRING) {
+    const elementType = typeof element;
     // Build the decoration tag so we can check it to prevent unnecessary rerenders
     const decorationElement = getDecorationElement(decorationTag, element);
     // Don't re-mount the element if it didn't change and neither did the story
@@ -157,12 +158,12 @@ export default async function renderMain({
       if (decorationTag) {
         ROOT_ELEMENT.appendChild(decorationElement);
         simulateDOMContentLoaded();
-      } else {
-        // eslint-disable-next-line no-unused-expressions
-        typeof element === TYPE_STRING
-          ? (ROOT_ELEMENT.innerHTML = element)
-          : ROOT_ELEMENT.appendChild(element);
+      } else if (elementType === TYPE_STRING) {
+        ROOT_ELEMENT.innerHTML = element;
         simulatePageLoad(ROOT_ELEMENT);
+      } else {
+        ROOT_ELEMENT.appendChild(element);
+        simulateDOMContentLoaded();
       }
     }
   } else {
