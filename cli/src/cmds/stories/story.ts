@@ -84,9 +84,7 @@ export async function createStory(args, config) {
     componentConfig.stories = [];
   }
 
-  error(componentConfig.components, false);
   config = { ...config, ...storyConfig, ...componentConfig };
-  error(config.components, false);
 
   if (config.aemContentPath) {
     config.createAEMContent = await prompts({
