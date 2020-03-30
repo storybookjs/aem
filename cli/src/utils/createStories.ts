@@ -56,7 +56,9 @@ export const createStories = async config => {
     log(`You can now view and edit your story content`);
     log(`Story content -> ${editorURL}`);
 
-    exec(`open ${editorURL}`);
+    if (config.openBrowser) {
+      exec(`open ${editorURL}`);
+    }
 
     return true;
   }

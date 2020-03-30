@@ -1,15 +1,17 @@
 import * as path from 'path';
-import * as prompts from 'prompts';
+import prompts from 'prompts';
 import { error } from '../../utils';
 import { install } from './install';
 import { exportPackage } from './export';
 
-const INSTALL = 'install';
-const EXPORT = 'export';
+const ARG_INSTALL = 'install';
+const ARG_EXPORT = 'export';
+const CHOICE_INSTALL = 'CHOICE_INSTALL';
+const CHOICE_EXPORT = 'CHOICE_EXPORT';
 
 export async function packageCommand(args, config) {
-  if (args.includes(INSTALL)) install(args, config);
-  else if (args.includes('export')) exportPackage(args, config);
+  if (args.includes(ARG_INSTALL)) install(args, config);
+  else if (args.includes(ARG_EXPORT)) exportPackage(args, config);
   else {
     // Ask questions to see what they want to do
     const response = await prompts({
@@ -20,11 +22,11 @@ export async function packageCommand(args, config) {
         '  Or export content from AEM into the codebase?',
       ].join('\n'),
       choices: [
-        { title: 'Install', value: 'install' },
-        { title: 'Export', value: 'export' },
+        { title: 'Install', value: CHOICE_INSTALL },
+        { title: 'Export', value: CHOICE_EXPORT },
       ],
     });
-    if (response.operation === INSTALL) install(args, config);
-    if (response.operation === EXPORT) exportPackage(args, config);
+    if (response.operation === CHOICE_INSTALL) install(args, config);
+    if (response.operation === CHOICE_EXPORT) exportPackage(args, config);
   }
 }

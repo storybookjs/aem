@@ -3,15 +3,24 @@ import * as path from 'path';
 import { log, error } from '../../../utils';
 
 export const getStoriesTemplate = config => {
-  const storyPath = path.resolve(
-    process.cwd(),
-    config.projectRoot,
-    config.relativeProjectRoot,
-    config.componentPath,
-    config.componentType,
-    config.component,
-    `${config.component}.stories.js`
-  );
+  let storyPath;
+  if (config.storybookStoryLocation) {
+    storyPath = path.resolve(
+      process.cwd(),
+      config.storybookStoryLocation,
+      `${config.component}.stories.js`
+    );
+  } else {
+    storyPath = path.resolve(
+      process.cwd(),
+      config.projectRoot,
+      config.relativeProjectRoot,
+      config.componentPath,
+      config.componentType,
+      config.component,
+      `${config.component}.stories.js`
+    );
+  }
   const fileExists = fs.existsSync(storyPath);
   const fileContents = [];
 

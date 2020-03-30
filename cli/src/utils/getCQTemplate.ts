@@ -28,10 +28,10 @@ export const getCQTemplate = async config => {
     ] = `${config.namespace}/components/${config.componentType}/${config.component}`;
 
     return xmlToJSONCleanup(json);
-  } catch (e) {
+  } catch {
+    // This is not an error scenario. It is okay to not have a _cq_template.
     log(
-      `There was an error reading the _cq_template.xml for the '${config.component}' component`,
-      e
+      `No _cq_template.xml found for the '${config.component}' component. Default content will be generated.`
     );
     return false;
   }

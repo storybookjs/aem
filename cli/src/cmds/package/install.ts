@@ -52,7 +52,7 @@ export const install = async (args, config) => {
       ].join('\n')
     );
 
-    if (!args.includes('--quiet')) {
+    if (config.openBrowser) {
       execPromise(`open http://localhost:4502/sites.html${config.aemContentPath}`);
     }
   } catch (e) {

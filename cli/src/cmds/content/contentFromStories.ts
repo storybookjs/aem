@@ -1,7 +1,4 @@
-const fetchFromAEM = require('../../utils/fetchFromAEM');
-const createPage = require('../../utils/createPage');
-const createPageJCRContent = require('../../utils/createPageJCRContent');
-const { createStories, log } = require('../../utils');
+import { createPageJCRContent, createPage, fetchFromAEM, createStories, log } from '../../utils';
 
 /* eslint-disable consistent-return */
 export const createContentFromStories = async config => {

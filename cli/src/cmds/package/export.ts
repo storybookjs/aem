@@ -5,6 +5,8 @@ import * as util from 'util';
 import * as unzipper from 'unzipper';
 import { log, fetchFromAEM } from '../../utils';
 
+const JCR_ROOT = 'jcr_root';
+const META_INF = 'META-INF';
 const execPromise = util.promisify(exec);
 const cwd = process.cwd();
 
@@ -17,6 +19,8 @@ export const exportPackage = async (args, config) => {
       config.localPackagePath
     );
     const localPackagePath = path.resolve(localPackageDirectory, config.packageName);
+    const jcrContentPath = path.resolve(localPackageDirectory, JCR_ROOT);
+    const metaInfPath = path.resolve(localPackageDirectory, META_INF);
     const packageManagerUrl = `/crx/packmgr/service/.json`;
 
     let packageUrl = `/etc/packages`;
@@ -34,6 +38,8 @@ export const exportPackage = async (args, config) => {
     await execPromise(`curl -u admin:admin ${fullPackageUrl} -o "${localPackagePath}"`);
 
     log(`Unzipping new Storybook Library ...`);
+    await execPromise(`rm -rf "${jcrContentPath}"`);
+    await execPromise(`rm -rf "${metaInfPath}"`);
     await fs
       .createReadStream(localPackagePath)
       .pipe(unzipper.Extract({ path: localPackageDirectory }))

@@ -25,6 +25,10 @@ TKTKTK More description and refactoring of the `init` command is to come.
 ### Story
 The `sb-aem story` command is the most used command provided. Running this command will provide you with a series of prompts to get started adding stories. It will ask for which component and type of component you want to make stories. From there it will create the story definition, and if desired, will also create content in AEM for your story.
 
+The `sb-aem story create` command will follow the same prompts as `sb-aem story` but it will assume that you want to create a single story.
+
+The `sb-aem story create all` command will follow the same prompts as `sb-aem story` but it will assume that you want to create all the stories of the selected directory.
+
 ### Package
 The `storybook-aem package` command comes with two subcommands - `install` and `export`. When configured, you can use these commands to manage the content for your stories in AEM. If you add an additional step to your maven build, you can also install the content package automatically.
 
