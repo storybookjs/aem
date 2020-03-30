@@ -57,19 +57,21 @@ export async function createStory(args, config) {
   }
 
   componentConfig.hasStories = (
-    await prompts({
-      type: 'confirm',
-      name: 'hasStories',
-      message:
-        'Would you like to add some initial stories? We will add the default empty story for you',
-      initial: true,
-    })
+    await prompts()
   ).hasStories;
+
+  error(componentConfig.hasStories, false);
 
   if (config.singleStory) {
     componentConfig.stories = (
-      await prompts({
-        type: prev => (prev ? 'list' : null),
+      await prompts([ {
+          type: 'confirm',
+          name: 'hasStories',
+          message:
+            'Would you like to add some initial stories? We will add the default empty story for you',
+          initial: true,
+        }, {
+        type: prev => (!! prev ? 'list' : null),
         name: 'stories',
         message: 'Add a comma separated list of stories:',
         separator: ',',
@@ -78,13 +80,11 @@ export async function createStory(args, config) {
           // else return res.map( story => toCamelCase(story));
           return res;
         },
-      })
+      }])
     ).stories;
   } else {
     componentConfig.stories = [];
   }
-
-  config = { ...config, ...storyConfig, ...componentConfig };
 
   if (config.aemContentPath) {
     config.createAEMContent = await prompts({
@@ -95,6 +95,8 @@ export async function createStory(args, config) {
       format: res => res,
     });
   }
+
+  config = { ...config, ...storyConfig, ...componentConfig };
 
   config.components.forEach(component => {
     const stories = [];
