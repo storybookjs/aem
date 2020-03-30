@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as prompts from 'prompts';
+import prompts from 'prompts';
 import { error, getDirectories, toCamelCase } from '../../utils';
 import { getStoriesTemplate } from './templates/stories';
 import { createContentFromStories } from '../content/contentFromStories';

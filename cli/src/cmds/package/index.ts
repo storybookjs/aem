@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as prompts from 'prompts';
+import prompts from 'prompts';
 import { error } from '../../utils';
 import { install } from './install';
 import { exportPackage } from './export';
