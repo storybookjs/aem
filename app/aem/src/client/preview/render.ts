@@ -7,7 +7,7 @@ import { document, Node, window } from 'global';
 import { RenderMainArgs, ShowErrorArgs, DecorationTag, AemMetadata } from './types/types';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
-import { simulatePageLoad } from './helpers/simulate-pageload';
+import { simulatePageLoad, simulateDOMContentLoaded } from './helpers/simulate-pageload';
 
 const DIV_TAG = 'div';
 const TYPE_STRING = 'string';
@@ -156,14 +156,14 @@ export default async function renderMain({
       resetRoot();
       if (decorationTag) {
         ROOT_ELEMENT.appendChild(decorationElement);
+        simulateDOMContentLoaded();
       } else {
         // eslint-disable-next-line no-unused-expressions
         typeof element === TYPE_STRING
           ? (ROOT_ELEMENT.innerHTML = element)
           : ROOT_ELEMENT.appendChild(element);
+        simulatePageLoad(ROOT_ELEMENT);
       }
-
-      simulatePageLoad(ROOT_ELEMENT);
     }
   } else {
     showError(getErrorMessage(selectedKind, selectedStory));

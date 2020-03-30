@@ -7,7 +7,7 @@
     "item_1": {
       ":type": "components/text",
       "text": "Accordion Item 1",
-      "title": "Title 1",
+      "title": "Title 1 - Open",
       "textIsRich": true
     },
     "item_2": {

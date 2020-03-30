@@ -21,7 +21,7 @@ const runScriptTypes = [
 ];
 
 // trigger DOMContentLoaded
-function simulateDOMContentLoaded() {
+export function simulateDOMContentLoaded() {
   const DOMContentLoadedEvent = document.createEvent('Event');
   DOMContentLoadedEvent.initEvent('DOMContentLoaded', true, true);
   document.dispatchEvent(DOMContentLoadedEvent);
@@ -92,5 +92,7 @@ export function simulatePageLoad($container) {
     // insert the script tags sequentially
     // to preserve execution order
     insertScriptsSequentially(scriptsToExecute, simulateDOMContentLoaded, undefined);
+  } else {
+    simulateDOMContentLoaded();
   }
 }
