@@ -1,9 +1,13 @@
 /* eslint-disable valid-typeof */
+// We need the default as Runtime,
+// or else the Runtime class doesn't get properly resolved
+/* eslint-disable import/no-named-default */
+import { default as Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
 import { document, Node, window } from 'global';
-import { Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
 import { RenderMainArgs, ShowErrorArgs, DecorationTag, AemMetadata } from './types/types';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
+import { simulatePageLoad } from './helpers/simulate-pageload';
 
 const DIV_TAG = 'div';
 const TYPE_STRING = 'string';
@@ -158,6 +162,8 @@ export default async function renderMain({
           ? (ROOT_ELEMENT.innerHTML = element)
           : ROOT_ELEMENT.appendChild(element);
       }
+
+      simulatePageLoad(ROOT_ELEMENT);
     }
   } else {
     showError(getErrorMessage(selectedKind, selectedStory));

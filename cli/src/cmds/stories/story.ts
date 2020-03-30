@@ -56,31 +56,32 @@ export async function createStory(args, config) {
     componentConfig.components = getDirectories(componentPath);
   }
 
-  componentConfig.hasStories = (
-    await prompts()
-  ).hasStories;
+  componentConfig.hasStories = (await prompts()).hasStories;
 
   error(componentConfig.hasStories, false);
 
   if (config.singleStory) {
     componentConfig.stories = (
-      await prompts([ {
+      await prompts([
+        {
           type: 'confirm',
           name: 'hasStories',
           message:
             'Would you like to add some initial stories? We will add the default empty story for you',
           initial: true,
-        }, {
-        type: prev => (!! prev ? 'list' : null),
-        name: 'stories',
-        message: 'Add a comma separated list of stories:',
-        separator: ',',
-        format: res => {
-          if (!res.length) return false;
-          // else return res.map( story => toCamelCase(story));
-          return res;
         },
-      }])
+        {
+          type: prev => (prev ? 'list' : null),
+          name: 'stories',
+          message: 'Add a comma separated list of stories:',
+          separator: ',',
+          format: res => {
+            if (!res.length) return false;
+            // else return res.map( story => toCamelCase(story));
+            return res;
+          },
+        },
+      ])
     ).stories;
   } else {
     componentConfig.stories = [];
