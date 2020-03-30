@@ -1,3 +1,5 @@
+import { log } from './index';
+
 const relevantCoralComponentTypes = [
   'granite/ui/components/coral/foundation/form/select',
   'granite/ui/components/coral/foundation/form/checkbox',
@@ -41,13 +43,15 @@ const editDialog = {
 };
 
 export const parseEditDialog = (json: any, parentKey: any) => {
-  console.log('\n---\nparseEditDialog\n');
+  log('\n---\nparseEditDialog\n');
+  /* eslint-disable no-console */
   console.assert(Object.keys(json).length > 1, Object.keys(json) as any);
   // skip jcr:root
   if (Object.keys(json).length <= 1) {
     if (Object.prototype.hasOwnProperty.call(json, 'jcr:root'))
       parseEditDialog(json['jcr:root'], 'jcr:root');
   } else {
+    /* eslint-disable no-console */
     console.dir(json);
     // extract name of dialog
     if (
@@ -74,4 +78,3 @@ export const parseEditDialog = (json: any, parentKey: any) => {
   }
   return editDialog;
 };
-module.exports = parseEditDialog;

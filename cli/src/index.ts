@@ -1,26 +1,34 @@
 import * as chalk from 'chalk';
-import { log } from './utils/logger';
+import { getConfig, log } from './utils';
+import { helpCommand } from './cmds/help';
+import { packageCommand } from './cmds/package';
+import { storyCommand } from './cmds/stories';
+import { versionCommand } from './cmds/version';
+
+// const { checkVersion } = require('./utils');
 
 module.exports = () => {
   const args = process.argv.slice(2);
   const cmd = args[0];
+  const config = getConfig();
 
-  // TODO: Import the version check and call that method here.
+  // We can't check the version until this package is actually published on NPM.
+  // checkVersion();
 
   switch (cmd) {
     case 'story':
     case 'stories':
-      require('./cmds/stories')(args);
+      storyCommand(args, config);
       break;
     case 'package':
-      require('./cmds/package')(args);
+      packageCommand(args, config);
       break;
     case 'v':
     case 'version':
-      require('./cmds/version')(args);
+      versionCommand(args);
       break;
     case 'help':
-      require('./cmds/help')(args);
+      helpCommand(args);
       break;
     default:
       log(

@@ -1,12 +1,13 @@
 import * as path from 'path';
 import * as prompts from 'prompts';
-import { error } from '../../utils/error';
+import { error } from '../../utils';
 import { install } from './install';
 import { exportPackage } from './export';
 
-const cwd = process.cwd();
+const INSTALL = 'install';
+const EXPORT = 'export';
 
-module.exports = async args => {
+export async function packageCommand(args, config) {
   const packageJSON = require(path.resolve(cwd, 'package.json'));
   const storybookConfig = packageJSON['@storybook/aem-cli'];
 
@@ -39,7 +40,7 @@ module.exports = async args => {
         { title: 'Export', value: 'export' },
       ],
     });
-    if (response.operation === 'install') install(args, storybookConfig);
-    if (response.operation === 'export') exportPackage(args, storybookConfig);
+    if (response.operation === INSTALL) install(args, config);
+    if (response.operation === EXPORT) exportPackage(args, config);
   }
-};
+}

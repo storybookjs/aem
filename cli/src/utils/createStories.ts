@@ -1,7 +1,5 @@
-import { fetchFromAEM } from './fetchFromAEM';
-import { getCQTemplate } from './getCQTemplate';
-
-const { exec } = require('child_process');
+import { exec } from 'child_process';
+import { fetchFromAEM, getCQTemplate, log } from './index';
 
 export const createStories = async config => {
   const baseURL = `${config.aemContentPath}/${config.component}/jcr:content${config.aemContentDefaultPageContentPath}`;
@@ -10,6 +8,7 @@ export const createStories = async config => {
 
   const content = {};
 
+  /* eslint-disable array-callback-return */
   config.stories.map(story => {
     // Heading First
     const heading = {
@@ -52,10 +51,10 @@ export const createStories = async config => {
   });
 
   if (await componentCreation.ok) {
-    console.log(`[sb-aem] Successfully created AEM Content for your stories`);
-    console.log(`[sb-aem] Your stories have been successfully created.`);
-    console.log(`[sb-aem] You can now view and edit your story content`);
-    console.log(`[sb-aem] Story content -> ${editorURL}`);
+    log(`Successfully created AEM Content for your stories`);
+    log(`Your stories have been successfully created.`);
+    log(`You can now view and edit your story content`);
+    log(`Story content -> ${editorURL}`);
 
     if (config.openBrowser) {
       exec(`open ${editorURL}`);
@@ -63,6 +62,6 @@ export const createStories = async config => {
 
     return true;
   }
-  console.log(`[sb-aem] There was a problem creating the AEM content for your stories`);
+  log(`There was a problem creating the AEM content for your stories`);
   return false;
 };

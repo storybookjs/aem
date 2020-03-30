@@ -1,8 +1,7 @@
-const path = require('path');
-const fs = require('fs');
-const xml2json = require('xml2json');
-const xmlToJSONCleanup = require('./xmlToJSONCleanup');
-import { log } from './logger';
+import * as path from 'path';
+import * as fs from 'fs';
+import xml2json from 'xml2json';
+import { log, xmlToJSONCleanup } from './index';
 
 export const getCQTemplate = async config => {
   const cqTemplatePath = path.resolve(
@@ -19,7 +18,7 @@ export const getCQTemplate = async config => {
     const xml = fs.readFileSync(cqTemplatePath, 'utf-8');
 
     if (!xml) {
-      console.log(`[sb-aem] There was no _cq_template.xml file. Skipping default content.`);
+      log(`There was no _cq_template.xml file. Skipping default content.`);
       return false;
     }
     const json = JSON.parse(xml2json.toJson(xml))['jcr:root'];

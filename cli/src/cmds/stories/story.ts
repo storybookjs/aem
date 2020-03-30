@@ -1,14 +1,13 @@
 import * as path from 'path';
 import * as prompts from 'prompts';
-import { toCamelCase } from '../../utils/toCamelCase';
-import { error } from '../../utils/error';
-import { getDirectories } from '../../utils/getDirectories';
+import { error, getDirectories, toCamelCase } from '../../utils';
 import { getStoriesTemplate } from './templates/stories';
 import { createContentFromStories } from '../content/contentFromStories';
 
 const cwd = process.cwd();
 
-export const createStory = async (args, config) => {
+/* eslint-disable no-param-reassign */
+export async function storyCommand(args, config) {
   let storyConfig: any = {};
 
   const componentBasePath = path.resolve(

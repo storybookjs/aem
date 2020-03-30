@@ -1,4 +1,4 @@
-const { readdirSync } = require('fs');
+import { readdirSync } from 'fs';
 
 export const getDirectories = source => {
   return readdirSync(source, { withFileTypes: true })

@@ -1,9 +1,9 @@
-const path = require('path');
-const getDirectories = require('./getDirectories');
+import * as path from 'path';
+import { getDirectories } from './getDirectories';
 
 const cwd = process.cwd();
 
-module.exports = (config, directoryPath) => {
+export const getChoicesFromDirectories = (config, directoryPath) => {
   const directories = getDirectories(
     path.resolve(cwd, config.projectRoot, config.relativeProjectRoot, directoryPath)
   );
