@@ -5,32 +5,58 @@
 </p>
 <h1 align="center">Storybook Adobe Experience Manager (AEM) App</h1>
 
+## Table of Contents
+
+* [About the Project](#about-the-project)
+  * [Libraries](#libraries)
+  * [Technologies](#technologies)
+* [Getting Started](#getting-started)
+  * [Installation](#installation)
+  * [Usage](#usage)
+    * [Story Configuration](#story-configuration)
+    * [AEM Metadata Decorator](#aem-metadata-decorator)
+    * [Use Classes and Sling Models](#use-classes-and-sling-models)
+* [Contributing](#contributing)
+
+## About The project
+
 This project has been created to provide native Storybook support for Adobe Experience Manager. It is a work in progress and has not been published yet. If you are interested in helping out or learning more about this project, <b>you can join the discord channel [here](https://discord.gg/z5pGCKQ)</b> to see what we've been up to.
 
-To build and test out this project complete the following:
+### Libraries
 
-1. This project is built with yarn workspaces so you will need to install yarn
-2. From the root directory, run "yarn"
-3. From the root directory, run "yarn build"
-4. Change directories to examples/aem-kitchen-sink
-5. From the examples/aem-kitchen-sink directory, run "yarn storybook"
+* `@storybook/aem` - an application that provides Storybook support for Adobe Experience Manager(AEM)
+* `@storybook/aem-cli` - a cli tool that helps build out your storybook stories and much more absed on your AEM componentry and much more
 
-## Testing
+### Technologies
 
-Storybook AEM uses Jest for unit testing. To run unit tests use the following commands:
+* Storybook: https://storybook.js.org/
+* Adobe HTL Engine: https://github.com/adobe/htlengine
+* HTL Loader: https://github.com/backflip/htl-loader#readme
+* TypeScript: https://www.typescriptlang.org/
+* Webpack: https://webpack.js.org/
+* Lerna: https://lerna.js.org/
+* Jest: https://jestjs.io/
+* Husky: https://github.com/typicode/husky
+* ESLint: https://eslint.org/
+* Prettier: https://prettier.io/
 
-- Running all tests:
-  - `yarn test`
-- Run with watch mode enabled:
-  - `yarn test:watch`
-- Run tests and generate a coverage report:
-  - `yarn test:coverage`
+## Getting Started
 
-## Usage
+### Installation
 
-To see an example of a story for a HTL List Component click [here](./examples/aem-kitchen-sink/components/list/list.stories.js)!
+If your AEM project is using the suggested structure, you will want to first run `npm init` from your ui.apps directory. Running that command will create a package.json file that will allow you to include the necessary libraries.
 
-### Story configuration
+To get started with your Storybook AEM instance, from the ui.apps directory, run `npm install @storybook/aem --save-dev` to pull down the proper Storybook library. If you would like further help setting up your Storybook configurations, you can install the Storybook AEM CLI Tool (optional) by running `npm install @storybook/aem-cli`. You can find more information about the cli tool [here](./cli/README.md).
+
+### Usage
+
+In the root directory of your ui.apps folder (or whereever youve chosen to include your package.json file, make sure to include a .storybook folder. You can follow this tutorial to help you set that up: https://www.learnstorybook.com/intro-to-storybook/react/en/get-started/. You can also see our example configuration [here](./examples/aem-kitchen-sink/.storybook).
+
+When creating a new HTL component, we suggest that you create a storybook configuration within the same directory as your code so that you can easily associate which HTL component goes along with which storybook file. To see an example of a story for an HTL List Component click [here](./examples/aem-kitchen-sink/components/list/list.stories.js)!
+
+Like any other Storybook Framework app, Storybook AEM supports both [CSF](https://storybook.js.org/docs/formats/component-story-format/) and [MDX](https://storybook.js.org/docs/formats/mdx-syntax/) formats.
+
+#### Story Configuration
 
 As a part of the storybook configuration setup there are options you can use to customize your use case:
 
@@ -52,8 +78,6 @@ export const Example = () => {
     },
     aemMetadata: {
       components: [
-        require('../core/wcm/components/accordion/.content.xml'),
-        require('../core/wcm/components/list/.content.xml'),
         require('../core/wcm/components/text/.content.xml'),
       ],
       decorationTag: {
@@ -68,11 +92,11 @@ export const Example = () => {
 };
 ```
 
-### AEM metadata decorator
+#### AEM Metadata Decorator
 
 The aem metadata decorator allows for the application of properties such as the decoration tag and the component includes to all of the stories (depending on where its used - in the preview or in the story config). Use the following syntax to apply the decorator:
 
-#### Using the decorator in the Preview.js file
+##### Using the Decorator in the Preview.js File
 
 ```
 import { aemMetadata } from '@storybook/aem';
@@ -95,7 +119,7 @@ addDecorator(aemMetadata({
 }));
 ```
 
-#### Using the decorator in the story config file
+##### Using the Decorator in the Story Config File
 
 ```
 export default {
@@ -115,7 +139,7 @@ export default {
 };
 ```
 
-### Use Classes / Sling Models
+#### Use Classes and Sling Models
 
 In AEM, most HTL scripts bind java classes in the `data-sly-use` attribute which makes the business logic available to the scripts. Most often, those classes implement _Sling Models_ which offer a simple annotation based way to define the resource properties that should be exported to the script. The _Sling Models_ are also used to generated the `*.model.json` view of a resource.
 
@@ -139,7 +163,7 @@ The models needs to be registered in the story:
   }
 ```
 
-#### 2. Javascript use classes
+##### 2. Javascript Use Classes
 
 A more sophisticated way is to actually implement a use-class in javascript that can generate some of the dynamic, computed properties, similar to your java class. After the class is loaded, it is instantiated with the runtime global object passed as argument to the constructor.
 
@@ -194,11 +218,12 @@ export default class Person extends GenericModel {
 </div>
 ```
 
-### Interested in helping out?
+### Contributing
+
+For more information about how to start contributing to this project, see our [contributing file](./CONTRIBUTING.md).
 
 Check out our issues here: https://github.com/storybookjs/aem/issues
 
 Join our discord here: https://discord.gg/z5pGCKQ
 
 We especially need help with figuring out the proper way to support 3rd party libraries that are defined in the POM and use Java models such as the AEM Core components. If you have any ideas about how to solve this please comment on this issue: https://github.com/storybookjs/aem/issues/45
-
