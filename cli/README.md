@@ -6,28 +6,28 @@ Storybook AEM CLI is a command line application that is used with [@storybook/ae
 To install the Storybook AEM CLI run `npm install @storybook/aem-cli -g` from the directory with your `package.json` file. Also add it to your project as a development dependency.
 
 ## Commands
-There are several commands provided by the Storybook AEM CLI. You can find a list of them by running `sb-aem` from your terminal. Or by running the `sb-aem help` command. Ensure you are running the `sb-aem` commands from the folder with your `package.json` file.
+There are several commands provided by the Storybook AEM CLI. You can find a list of them by running `sba` from your terminal. Or by running the `sba help` command. Ensure you are running the `sba` commands from the folder with your `package.json` file.
 
 ```
-Usage: sb-aem <command> <options>
+Usage: sba <command> <options>
 
 Commands:
   init .................. Start a new project, or add to existing project
   story ................. Creates/Updates your component story file, Adds story definition, Creates AEM Content example
   package ............... Imports & Exports content package from AEM => Code => AEM
-  help .................. Show help menu for sb-aem
-  version, v ............ Show sb-aem version
+  help .................. Show help menu for sba
+  version, v ............ Show sba version
 ```
 
 ### Init
 TKTKTK More description and refactoring of the `init` command is to come.
 
 ### Story
-The `sb-aem story` command is the most used command provided. Running this command will provide you with a series of prompts to get started adding stories. It will ask for which component and type of component you want to make stories. From there it will create the story definition, and if desired, will also create content in AEM for your story.
+The `sba story` command is the most used command provided. Running this command will provide you with a series of prompts to get started adding stories. It will ask for which component and type of component you want to make stories. From there it will create the story definition, and if desired, will also create content in AEM for your story.
 
-The `sb-aem story create` command will follow the same prompts as `sb-aem story` but it will assume that you want to create a single story.
+The `sba story create` command will follow the same prompts as `sba story` but it will assume that you want to create a single story.
 
-The `sb-aem story create all` command will follow the same prompts as `sb-aem story` but it will assume that you want to create all the stories of the selected directory.
+The `sba story create all` command will follow the same prompts as `sba story` but it will assume that you want to create all the stories of the selected directory.
 
 ### Package
 The `storybook-aem package` command comes with two subcommands - `install` and `export`. When configured, you can use these commands to manage the content for your stories in AEM. If you add an additional step to your maven build, you can also install the content package automatically.
@@ -48,19 +48,19 @@ This command required that a `aemContentPath` configuration be added to the `sto
 
 #### Package and Maven
 TODO: ADD EXAMPLE TO EXAMPLES REPO
-See the [example.pom.xml](https://github.com/icfnext/storybook-aem/tree/master/packages/storybook-aem/example.pom.xml) file to see how you can add a maven build profile to take advantage of the `sb-aem package` command. The example adds support for a new maven profile `install-storybook` that can be used like so: `mvn clean install -P install-storybook`. Additionally, this [example.pom.xml](https://github.com/icfnext/storybook-aem/tree/master/packages/storybook-aem/example.pom.xml) expects two scripts in the package.json file:
+See the [example.pom.xml](https://github.com/icfnext/storybook-aem/tree/master/packages/storybook-aem/example.pom.xml) file to see how you can add a maven build profile to take advantage of the `sba package` command. The example adds support for a new maven profile `install-storybook` that can be used like so: `mvn clean install -P install-storybook`. Additionally, this [example.pom.xml](https://github.com/icfnext/storybook-aem/tree/master/packages/storybook-aem/example.pom.xml) expects two scripts in the package.json file:
 
 ```
 {
   "scripts": {
-    "storybook-library:install-maven": "sb-aem package install --quiet",
-    "storybook-library:export": "sb-aem package export",
+    "storybook-library:install-maven": "sba package install --quiet",
+    "storybook-library:export": "sba package export",
   }
 }
 ```
 
 ### Version
-The `sb-aem version` command shows the installed version of `sb-aem` you are using. On every command ran, there is a check if the latest version of `sb-aem` is installed.
+The `sba version` command shows the installed version of `sba` you are using. On every command ran, there is a check if the latest version of `sba` is installed.
 
 ### Help
-The `sb-aem help <subcommand>` command will show the help documentation for `sb-aem` or the specified subcommand.
+The `sba help <subcommand>` command will show the help documentation for `sba` or the specified subcommand.

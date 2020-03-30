@@ -46,10 +46,10 @@ module.exports = () => {
         [
           `${chalk.italic(cmd)} is not a valid command.`,
           ``,
-          `Usage: ${chalk.italic('sb-aem <command>')}`,
+          `Usage: ${chalk.italic('sba <command>')}`,
           ``,
           `Where <command> is on of:`,
-          `  init, help, story, version`,
+          `  init, help, story, package, version`,
           ``,
         ].join('\n')
       );
