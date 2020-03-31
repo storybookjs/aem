@@ -70,7 +70,7 @@ function insertScriptsSequentially(scriptsToExecute, callback, index) {
 }
 
 export function simulatePageLoad($container) {
-  let $scriptsRoot = document.querySelector(`#${SCRIPTS_ROOT_ID}`);
+  let $scriptsRoot = document.getElementById(SCRIPTS_ROOT_ID);
   if (!$scriptsRoot) {
     $scriptsRoot = document.createElement('div');
     $scriptsRoot.id = SCRIPTS_ROOT_ID;
