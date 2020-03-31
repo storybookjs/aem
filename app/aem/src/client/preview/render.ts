@@ -157,14 +157,15 @@ export default async function renderMain({
       resetRoot();
       if (decorationTag) {
         ROOT_ELEMENT.appendChild(decorationElement);
-        simulateDOMContentLoaded();
-      } else if (elementType === TYPE_STRING) {
-        ROOT_ELEMENT.innerHTML = element;
-        simulatePageLoad(ROOT_ELEMENT);
       } else {
-        ROOT_ELEMENT.appendChild(element);
-        simulateDOMContentLoaded();
+        /* eslint-disable no-unused-expressions */
+        elementType === TYPE_STRING
+          ? (ROOT_ELEMENT.innerHTML = element)
+          : ROOT_ELEMENT.appendChild(element);
       }
+
+      if (elementType === TYPE_STRING) simulatePageLoad(ROOT_ELEMENT);
+      else simulateDOMContentLoaded();
     }
   } else {
     showError(getErrorMessage(selectedKind, selectedStory));
