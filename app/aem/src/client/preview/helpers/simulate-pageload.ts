@@ -20,6 +20,9 @@ const runScriptTypes = [
   'text/x-javascript',
 ];
 
+const SCRIPT = 'script';
+const SCRIPTS_ROOT_ID = 'scripts-root';
+
 // trigger DOMContentLoaded
 export function simulateDOMContentLoaded() {
   const DOMContentLoadedEvent = document.createEvent('Event');
@@ -67,15 +70,15 @@ function insertScriptsSequentially(scriptsToExecute, callback, index) {
 }
 
 export function simulatePageLoad($container) {
-  let $scriptsRoot = document.querySelector('#scripts-root');
+  let $scriptsRoot = document.querySelector(`#${SCRIPTS_ROOT_ID}`);
   if (!$scriptsRoot) {
     $scriptsRoot = document.createElement('div');
-    $scriptsRoot.id = 'scripts-root';
+    $scriptsRoot.id = SCRIPTS_ROOT_ID;
     document.body.appendChild($scriptsRoot);
   } else {
     $scriptsRoot.innerHTML = '';
   }
-  const $scripts = Array.from($container.querySelectorAll('script'));
+  const $scripts = Array.from($container.querySelectorAll(SCRIPT));
 
   if ($scripts.length) {
     const scriptsToExecute = [];
