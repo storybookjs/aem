@@ -1,6 +1,6 @@
 {
   "name": "@storybook/aem-cli",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "CLI tool for Storybook AEM",
   "main": "dist/index.js",
   "homepage": "https://github.com/storybookjs/aem/cli",
