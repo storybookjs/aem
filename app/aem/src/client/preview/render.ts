@@ -1,9 +1,13 @@
 /* eslint-disable valid-typeof */
+// We need the default as Runtime,
+// or else the Runtime class doesn't get properly resolved
+/* eslint-disable import/no-named-default */
+import { default as Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
 import { document, Node, window } from 'global';
-import { Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
 import { RenderMainArgs, ShowErrorArgs, DecorationTag, AemMetadata } from './types/types';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
+import { simulatePageLoad, simulateDOMContentLoaded } from './helpers/simulate-pageload';
 
 const DIV_TAG = 'div';
 const TYPE_STRING = 'string';
@@ -145,6 +149,7 @@ export default async function renderMain({
   showMain();
 
   if ((ROOT_ELEMENT && element instanceof Node !== false) || typeof element === TYPE_STRING) {
+    const elementType = typeof element;
     // Build the decoration tag so we can check it to prevent unnecessary rerenders
     const decorationElement = getDecorationElement(decorationTag, element);
     // Don't re-mount the element if it didn't change and neither did the story
@@ -152,11 +157,13 @@ export default async function renderMain({
       resetRoot();
       if (decorationTag) {
         ROOT_ELEMENT.appendChild(decorationElement);
+        simulateDOMContentLoaded();
+      } else if (elementType === TYPE_STRING) {
+        ROOT_ELEMENT.innerHTML = element;
+        simulatePageLoad(ROOT_ELEMENT);
       } else {
-        // eslint-disable-next-line no-unused-expressions
-        typeof element === TYPE_STRING
-          ? (ROOT_ELEMENT.innerHTML = element)
-          : ROOT_ELEMENT.appendChild(element);
+        ROOT_ELEMENT.appendChild(element);
+        simulateDOMContentLoaded();
       }
     }
   } else {

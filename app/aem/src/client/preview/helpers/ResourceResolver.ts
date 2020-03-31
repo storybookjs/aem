@@ -1,4 +1,7 @@
-import { Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
+// We need the default as Runtime,
+// or else the Runtime class doesn't get properly resolved
+/* eslint-disable import/no-named-default */
+import { default as Runtime, VDOMFactory } from '@adobe/htlengine/src/runtime/Runtime';
 import { window } from 'global';
 
 export default class ResourceResolver {
