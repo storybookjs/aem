@@ -25,7 +25,7 @@ This project has been created to provide native Storybook support for Adobe Expe
 ### Libraries
 
 * `@storybook/aem` - an application that provides Storybook support for Adobe Experience Manager(AEM)
-* `@storybook/aem-cli` - a cli tool that helps build out your storybook stories and much more absed on your AEM componentry and much more
+* `@storybook/aem-cli` - a cli tool that helps build out your storybook stories and much more based on your AEM componentry and much more
 
 ### Technologies
 
