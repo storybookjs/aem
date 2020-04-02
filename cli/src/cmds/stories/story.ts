@@ -49,7 +49,7 @@ export async function createStory(args, config) {
             title: component,
             value: {
               component: component,
-              resourceType: path.join(componentBasePath.split('jcr_root/apps')[1], component)
+              resourceType: path.join(componentPath.split('jcr_root/apps/')[1], component)
             }
           };
         }),
@@ -62,7 +62,7 @@ export async function createStory(args, config) {
     componentConfig.components = getDirectories(componentPath).map(component => {
       return {
         name: component,
-        resourceType:  path.join(componentBasePath.split('jcr_root/apps')[1], component)
+        resourceType:  path.join(componentPath.split('jcr_root/apps/')[1], component)
       }
     });
   }
