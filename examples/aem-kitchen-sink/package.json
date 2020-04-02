@@ -10,6 +10,9 @@
     "storybook": "start-storybook -p 9001"
   },
   "license": "MIT",
+  "dependencies": {
+    "@adobe/aem-core-components-storified": "*"
+  },
   "devDependencies": {
     "@storybook/aem": "*",
     "@storybook/addon-a11y": "6.0.0-alpha.2",
