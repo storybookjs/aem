@@ -45,7 +45,13 @@ export async function createStory(args, config) {
         name: 'components',
         message: 'Generate a Storybook Story for which component?',
         choices: getDirectories(componentPath).map(component => {
-          return { title: component, value: component };
+          return {
+            title: component,
+            value: {
+              component: component,
+              resourceType: path.join(componentBasePath.split('jcr_root/apps')[1], component)
+            }
+          };
         }),
         format: res => {
           return [res];
@@ -53,12 +59,15 @@ export async function createStory(args, config) {
       })
     ).components;
   } else {
-    componentConfig.components = getDirectories(componentPath);
+    componentConfig.components = getDirectories(componentPath).map(component => {
+      return {
+        name: component,
+        resourceType:  path.join(componentBasePath.split('jcr_root/apps')[1], component)
+      }
+    });
   }
 
   componentConfig.hasStories = (await prompts()).hasStories;
-
-  error(componentConfig.hasStories, false);
 
   if (config.singleStory) {
     componentConfig.stories = (
@@ -105,7 +114,7 @@ export async function createStory(args, config) {
     config.stories.forEach(story => {
       let contentPath = null;
       if (config.createAEMContent) {
-        contentPath = `${config.aemContentPath}/${component}/jcr:content${
+        contentPath = `${config.aemContentPath}/${component.component}/jcr:content${
           config.aemContentDefaultPageContentPath
         }/${toCamelCase(story)}`;
       }
@@ -117,7 +126,13 @@ export async function createStory(args, config) {
       });
     });
 
-    const fullConfig = { ...config, component, stories };
+    const fullConfig = {
+      ...config,
+      component: component.component,
+      resourceType: component.resourceType,
+      stories
+    };
+
     getStoriesTemplate(fullConfig);
 
     if (config.createAEMContent) {

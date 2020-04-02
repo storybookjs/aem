@@ -15,21 +15,14 @@ export const createStories = async config => {
       'jcr:primaryType': 'nt:unstructured',
       'sling:resourceType': `${config.aemStoryHeadingComponentResourceType}`,
     };
-    heading[
-      `${config.aemStoryHeadingComponentTitleProperty}`
-    ] = `Story Content for '${story.name}' story`;
+    heading[`${config.aemStoryHeadingComponentTitleProperty}`] = `Story Content for '${story.name}' story`;
 
     // Then Component
     let component = {};
 
     if (!cqTemplate) {
       component['jcr:primaryType'] = 'nt:unstructured';
-      component[
-        'sling:resourceType'
-      ] = `${config.namespace}/components/${config.componentType}/${config.component}`;
-      component[
-        `${config.aemStoryHeadingComponentTitleProperty}`
-      ] = `Story Content for '${story.name}' story`;
+      component['sling:resourceType'] = config.resourceType;
     } else {
       component = cqTemplate;
     }
