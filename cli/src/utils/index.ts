@@ -1,3 +1,4 @@
+import { componentList} from './componentList';
 import { createPage } from './createPage';
 import { createPageJCRContent } from './createPageJCRContent';
 import { createStories } from './createStories';
@@ -15,6 +16,7 @@ import { getLatestVersion, getInstalledVersion, checkVersion } from './versionCh
 import { xmlToJSONCleanup } from './xmlToJSONCleanup';
 
 export {
+  componentList,
   createPage,
   createPageJCRContent,
   createStories,

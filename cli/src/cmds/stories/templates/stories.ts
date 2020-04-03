@@ -8,17 +8,13 @@ export const getStoriesTemplate = config => {
     storyPath = path.resolve(
       process.cwd(),
       config.storybookStoryLocation,
-      `${config.component}.stories.js`
+      `${config.component.name}.stories.js`
     );
   } else {
     storyPath = path.resolve(
       process.cwd(),
-      config.projectRoot,
-      config.relativeProjectRoot,
-      config.componentPath,
-      config.componentType,
-      config.component,
-      `${config.component}.stories.js`
+      config.component.relativePath
+      `${config.component.name}.stories.js`
     );
   }
   const fileExists = fs.existsSync(storyPath);
@@ -36,12 +32,12 @@ export const getStoriesTemplate = config => {
         name: 'empty',
         displayName: 'Empty Story',
         contentPath: config.aemContentPath
-          ? `${config.aemContentPath}/${config.component}/jcr:content${config.aemContentDefaultPageContentPath}/empty`
+          ? `${config.aemContentPath}/${config.component.name}/jcr:content${config.aemContentDefaultPageContentPath}/empty`
           : ``,
       });
 
       fileContents.push(`/**`);
-      fileContents.push(` * Storybook stories for the ${config.component} component`);
+      fileContents.push(` * Storybook stories for the ${config.component.name} component`);
       fileContents.push(` */`);
 
       if (config.jsFramework === 'react') {
@@ -53,22 +49,38 @@ export const getStoriesTemplate = config => {
         fileContents.push(`import { fetchFromAEM } from 'storybook-aem-wrappers';`);
       }
 
-      fileContents.push(`import { Grid } from 'storybook-aem-grid';`);
-      fileContents.push(`import { StyleSystem } from 'storybook-aem-style-system';`);
+      if (config.storybookAEMGrid) {
+        fileContents.push(`import { Grid } from 'storybook-aem-grid';`);
+      }
+
+      if (config.storybookAEMStyleSystem) {
+        fileContents.push(`import { StyleSystem } from 'storybook-aem-style-system';`);
+      }
+
       fileContents.push(``);
 
       const defaultTitle = config.storyRoot
-        ? `${config.storyRoot}/${config.component}`
-        : `${config.component}`;
+        ? `${config.storyRoot}/${config.component.name}`
+        : `${config.component.name}`;
       fileContents.push(`export default {`);
       fileContents.push(`    title: '${defaultTitle}',`);
       if (config.jsFramework !== 'react') {
         fileContents.push(`    decorators: [`);
         fileContents.push(`        aemMetadata({`);
         fileContents.push(`            decorationTag: {`);
-        fileContents.push(
-          `                cssClasses: ['${config.component}', 'component', StyleSystem, Grid],`
-        );
+        fileContents.push(`                cssClasses: [`);
+        fileContents.push(`                    '${config.component.name}',`);
+        fileContents.push(`                    'component',`);
+
+        if (config.storybookAEMStyleSystem) {
+          fileContents.push(`                    StyleSystem,`);
+        }
+
+        if (config.storybookAEMGrid) {
+          fileContents.push(`                    Grid,`);
+        }
+
+        fileContents.push(`                ],`);
         fileContents.push(`                tagName: 'div'`);
         fileContents.push(`            }`);
         fileContents.push(`        })`);
@@ -92,9 +104,16 @@ export const getStoriesTemplate = config => {
       fileContents.push(`export const ${story.name} = () => (`);
       fileContents.push(`    <Wrapper`);
       fileContents.push(`        contentPath={${story.name}ContentPath}`);
-      fileContents.push(`        styleSystem={StyleSystem()}`);
-      fileContents.push(`        grid={Grid()}`);
-      fileContents.push(`        classes="${config.component}"`);
+
+      if (config.storybookAEMStyleSystem) {
+        fileContents.push(`        styleSystem={StyleSystem()}`);
+      }
+
+      if (config.storybookAEMGrid) {
+        fileContents.push(`        grid={Grid()}`);
+      }
+
+      fileContents.push(`        classes="${config.component.name}"`);
       fileContents.push(`    />`);
       fileContents.push(`);`);
     }
@@ -108,10 +127,10 @@ export const getStoriesTemplate = config => {
   fs.writeFile(storyPath, fileContents.join('\n'), err => {
     if (err) throw err;
     log(
-      `Created or Updated ${config.componentType}/${config.component}/${config.component}.stories.js`
+      `Created or Updated ${config.component.name}.stories.js`
     );
   });
 
-  log(`Story file created for the ${config.component}`);
+  log(`Story file created for the ${config.component.name}`);
   log(`Story file -> ${storyPath}`);
 };

@@ -24,7 +24,7 @@ module.exports = config => {
   fileContents += `
     empty: {
         "jcr:primaryType":"nt:unstructured",
-        "sling:resourceType":"${config.namespace}/components/content/${config.component}"
+        "sling:resourceType":"${config.component.resourceType}"
     }`;
 
   if (typeof config.stories === 'string') {
@@ -37,7 +37,7 @@ module.exports = config => {
     fileContents += `,
     ${storyName}: {
         "jcr:primaryType":"nt:unstructured",
-        "sling:resourceType":"${config.namespace}/components/content/${config.component}"
+        "sling:resourceType":"${config.component.resourceType}"
     }`;
   });
 

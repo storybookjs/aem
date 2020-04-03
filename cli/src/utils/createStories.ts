@@ -2,9 +2,9 @@ import { exec } from 'child_process';
 import { fetchFromAEM, getCQTemplate, log } from './index';
 
 export const createStories = async config => {
-  const baseURL = `${config.aemContentPath}/${config.component}/jcr:content${config.aemContentDefaultPageContentPath}`;
+  const baseURL = `${config.aemContentPath}/${config.component.name}/jcr:content${config.aemContentDefaultPageContentPath}`;
   const cqTemplate = await getCQTemplate(config);
-  const editorURL = `http://localhost:4502/editor.html${config.aemContentPath}/${config.component}.html`;
+  const editorURL = `http://localhost:4502/editor.html${config.aemContentPath}/${config.component.name}.html`;
 
   const content = {};
 
@@ -22,12 +22,12 @@ export const createStories = async config => {
 
     if (!cqTemplate) {
       component['jcr:primaryType'] = 'nt:unstructured';
-      component['sling:resourceType'] = config.resourceType;
+      component['sling:resourceType'] = config.component.resourceType;
     } else {
       component = cqTemplate;
     }
 
-    component['jcr:storybookStory'] = `${config.component}|${story.displayName}`;
+    component['jcr:storybookStory'] = `${config.component.name}|${story.displayName}`;
 
     content[`${story.name}Heading`] = heading;
     content[`${story.name}`] = component;
