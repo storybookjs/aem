@@ -1,6 +1,6 @@
 import * as path from 'path';
 import prompts from 'prompts';
-import { error, getDirectories, toCamelCase, componentList } from '../../utils';
+import { error, getDirectories, toCamelCase, componentList, log } from '../../utils';
 import { getStoriesTemplate } from './templates/stories';
 import { createContentFromStories } from '../content/contentFromStories';
 
@@ -65,6 +65,8 @@ export async function createStory(args, config) {
         },
       ])
     ).stories;
+
+    if (! storyConfig.stories) storyConfig.stories = [];
   } else {
     storyConfig.stories = [];
   }
