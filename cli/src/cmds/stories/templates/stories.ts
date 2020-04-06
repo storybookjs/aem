@@ -43,7 +43,8 @@ export const createStories = async config => {
         componentName: config.component.name,
         cssClasses: cssClasses,
         tagName: TAGNAME_DIV,
-        stories: stories
+        stories: stories,
+        onlyAppendNewStories: storyFileExists
     });
 
     const beautifiedFullFile = beautify(existingContents + storyFileString, { "brace_style": "collapse,preserve-inline" });
