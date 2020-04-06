@@ -6,12 +6,11 @@ import { createContentFromStories } from '../content/contentFromStories';
 
 const cwd = process.cwd();
 
-/* eslint-disable no-param-reassign */
 export async function createStory(args, config) {
-  let storyConfig: any = {};
+  const storyConfig: any = {};
 
   if (Array.isArray(config.componentPaths) && config.componentPaths.length === 1) {
-    storyConfig.componentType = config.componentPaths[0];
+    [storyConfig.componentType] = config.componentPaths;
   } else if (Array.isArray(config.componentPaths)) {
     storyConfig.componentType = (
       await prompts({
@@ -20,12 +19,15 @@ export async function createStory(args, config) {
         message: 'Generate a Story for which component type?',
         choices: config.componentPaths.map(componentTypePath => ({
           title: path.basename(componentTypePath),
-          value: componentTypePath
+          value: componentTypePath,
         })),
       })
     ).componentType;
   } else {
-    error('"componentPaths" must be configured on the "@storybook/aem-cli" property of the package.json. Please provide either a string containing the path to the component list or an array of strings to multiple directories containing components.', true);
+    error(
+      '"componentPaths" must be configured on the "@storybook/aem-cli" property of the package.json. Please provide either a string containing the path to the component list or an array of strings to multiple directories containing components.',
+      true
+    );
   }
 
   if (config.singleStory) {
@@ -36,7 +38,7 @@ export async function createStory(args, config) {
         message: 'Generate a Storybook Story for which component?',
         choices: componentList(storyConfig.componentType, config).map(component => ({
           title: component.name,
-          value: component
+          value: component,
         })),
         format: res => [res],
       })
@@ -51,9 +53,11 @@ export async function createStory(args, config) {
         {
           type: 'confirm',
           name: 'hasStories',
-          message: 'Would you like to add some initial stories? We will add the default empty story for you',
+          message:
+            'Would you like to add some initial stories? We will add the default empty story for you',
           initial: true,
-        }, {
+        },
+        {
           type: prev => (prev ? 'list' : null),
           name: 'stories',
           message: 'Add a comma separated list of stories:',
@@ -66,7 +70,7 @@ export async function createStory(args, config) {
       ])
     ).stories;
 
-    if (! storyConfig.stories) storyConfig.stories = [];
+    if (!storyConfig.stories) storyConfig.stories = [];
   } else {
     storyConfig.stories = [];
   }
@@ -76,7 +80,7 @@ export async function createStory(args, config) {
       type: 'confirm',
       name: 'createAEMContent',
       message: `Create content in AEM for the stories?`,
-      initial: true
+      initial: true,
     });
   }
 

@@ -1,4 +1,4 @@
-import { componentList} from './componentList';
+import { componentList } from './componentList';
 import { createPage } from './createPage';
 import { createPageJCRContent } from './createPageJCRContent';
 import { createStories } from './createStories';

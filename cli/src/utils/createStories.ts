@@ -15,7 +15,9 @@ export const createStories = async config => {
       'jcr:primaryType': 'nt:unstructured',
       'sling:resourceType': `${config.aemStoryHeadingComponentResourceType}`,
     };
-    heading[`${config.aemStoryHeadingComponentTitleProperty}`] = `Story Content for '${story.name}' story`;
+    heading[
+      `${config.aemStoryHeadingComponentTitleProperty}`
+    ] = `Story Content for '${story.name}' story`;
 
     // Then Component
     let component = {};
