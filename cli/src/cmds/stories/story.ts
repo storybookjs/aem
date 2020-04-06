@@ -88,7 +88,7 @@ export async function createStory(args, config) {
       if (storyConfig.createAEMContent) {
         contentPath = `${config.aemContentPath}/${component.name}/jcr:content${
           config.aemContentDefaultPageContentPath
-        }/${toCamelCase(story)}`;
+        }/${story.toLowerCase()}`;
       }
 
       stories.push({

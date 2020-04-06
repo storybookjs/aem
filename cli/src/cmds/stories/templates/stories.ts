@@ -23,7 +23,7 @@ export const createStories = async config => {
       { wrap: true, text: 'component' }
     ];
 
-    if (! storyFileExists) {
+    if (!storyFileExists) {
       stories.unshift(getEmptyStory(config));
     }
 
