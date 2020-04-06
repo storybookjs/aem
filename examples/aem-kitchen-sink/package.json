@@ -29,17 +29,17 @@
     "shelljs": "^0.8.3"
   },
   "@storybook/aem-cli": {
-    "projectRoot": "aem",
-    "relativeProjectRoot": "../../",
+    "storybookLocation": ".storybook",
+    "localPackagePath": ".storybook/storybook-library/",
     "uiApps": "./components",
-    "jcrRootPath": "./components",
-    "namespace": "storybook",
-    "componentPath": "./components",
-    "clientlibsPath": "./components",
-    "packageJSON": "./package.json",
-    "storybookLocation": "./.storybook/",
-    "storybookStoryLocation": "./components",
-    "aemContentPath": "/content/storybook/storybook-library",
+    "componentPaths": [
+      "./components"
+    ],
+    "storybookAEMStyleSystem": false,
+    "storybookAEMGrid": false,
+    "storybookAEMPageTemplate": false,
+    "storybookAEMConfluence": false,
+    "storybookAEMFoundation": false,
     "aemContentDefaultPageResourceType": "storybook/components/structure/page",
     "aemContentDefaultPageTemplate": "/conf/storybook/settings/wcm/templates/content-page",
     "aemContentDefaultPageContentPath": "/root/regioncontainer-main/responsivegrid",
@@ -48,6 +48,6 @@
     "storyRoot": "Components",
     "packageGroup": "storybook",
     "packageName": "storybook-library.zip",
-    "localPackagePath": "./.storybook/storybook-library/"
+    "aemContentPath": "/content/storybook/storybook-library"
   }
 }
