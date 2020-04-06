@@ -32,7 +32,7 @@ const createRuntime = (
     .setGlobal({ models, wcmmode, component: { properties: {} }, content })
     .withDomFactory(new VDOMFactory(window.document.implementation).withKeepFragment(true))
     .withResourceLoader(
-      new ResourceResolver(content || {}, new ComponentLoader(), components).createResourceLoader(
+      new ResourceResolver(content || {}, new ComponentLoader(components)).createResourceLoader(
         resourceLoaderPath || '/'
       )
     );
@@ -116,14 +116,20 @@ const resetRoot = () => {
  * Gets The HTL template
  * @param storyFn
  * @param resourceType
- * @param components
  */
 const getTemplate = async (storyFn: any, resourceType: any, aemMetadata: AemMetadata) => {
   const { template } = (await storyFn()) as any;
-  const components: any[] = aemMetadata ? aemMetadata.components : [];
-  let info = resourceType ? new ComponentLoader().resolve(resourceType, components) : null;
-  info = info && info.module ? info.module : `unable to load ${resourceType}`;
-  return !template ? info : template;
+  // if the story exposes a template property, always use it.
+  if (template) {
+    return template;
+  }
+  // else, try to resolve via component loader
+  const componentLoader = new ComponentLoader(aemMetadata ? aemMetadata.components : []);
+  const script = componentLoader.resolveScript(resourceType);
+  if (!script) {
+    return `unable to load template for ${resourceType}`;
+  }
+  return script;
 };
 
 export default async function renderMain({

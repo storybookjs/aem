@@ -9,12 +9,9 @@ export default class ResourceResolver {
 
   loader = null;
 
-  components = null;
-
-  constructor(content, componentLoader, components) {
+  constructor(content, componentLoader) {
     this.content = content;
     this.loader = componentLoader;
-    this.components = components;
   }
 
   createResourceLoader(passedPath: any) {
@@ -41,7 +38,7 @@ export default class ResourceResolver {
 
       // try to get component
       const type = content[':type'];
-      const comp = this.loader.resolve(type, this.components);
+      const comp = this.loader.resolve(type);
       if (!comp) {
         // todo: remove debug
         return `no such component: ${type}`;
