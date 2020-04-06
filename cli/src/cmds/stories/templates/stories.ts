@@ -1,136 +1,79 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { promisify } from 'util';
+import { js as beautify } from 'js-beautify';
 import { log, error } from '../../../utils';
+import storiesRender from './stories-render';
+import { IMPORT_FETCH_FROM_AEM, IMPORT_AEM_METADATA, IMPORT_AEM_STYLE_SYSTEM, IMPORT_GRID } from './import-config';
+import StoryConfig from './story-config';
 
-export const getStoriesTemplate = config => {
-  let storyPath;
-  if (config.storybookStoryLocation) {
-    storyPath = path.resolve(
-      process.cwd(),
-      config.storybookStoryLocation,
-      `${config.component.name}.stories.js`
-    );
-  } else {
-    storyPath = path.resolve(
-      process.cwd(),
-      config.component.relativePath
-      `${config.component.name}.stories.js`
-    );
-  }
-  const fileExists = fs.existsSync(storyPath);
-  const fileContents = [];
+const existsPromise = promisify(fs.exists);
+const readFilePromise = promisify(fs.readFile);
+const writeFilePromise = promisify(fs.writeFile);
+const TAGNAME_DIV = 'div';
 
-  try {
-    // Add the existing file to the fileContents
-    if (fileExists) {
-      fileContents.push(fs.readFileSync(storyPath, 'utf8'));
-    } else {
-      // Create the basics for the file
+export const createStories = async config => {
+    const imports = [ IMPORT_FETCH_FROM_AEM, IMPORT_AEM_METADATA ];
+    const storyPath = getStoryPath(config);
+    const stories = getStoryConfigs(config.stories);
+    const storyFileExists = await existsPromise(storyPath);
+    const existingContents = storyFileExists ? await readFilePromise(storyPath, 'utf8') : '';
+    const cssClasses = [
+      { wrap: true, text: config.component.name },
+      { wrap: true, text: 'component' }
+    ];
 
-      // Add the empty story to the list
-      config.stories.unshift({
-        name: 'empty',
-        displayName: 'Empty Story',
-        contentPath: config.aemContentPath
-          ? `${config.aemContentPath}/${config.component.name}/jcr:content${config.aemContentDefaultPageContentPath}/empty`
-          : ``,
-      });
-
-      fileContents.push(`/**`);
-      fileContents.push(` * Storybook stories for the ${config.component.name} component`);
-      fileContents.push(` */`);
-
-      if (config.jsFramework === 'react') {
-        fileContents.push(`import React, { Component } from 'react';`);
-      }
-
-      if (config.jsFramework !== 'react') {
-        fileContents.push(`import { aemMetadata } from '@storybook/aem';`);
-        fileContents.push(`import { fetchFromAEM } from 'storybook-aem-wrappers';`);
-      }
-
-      if (config.storybookAEMGrid) {
-        fileContents.push(`import { Grid } from 'storybook-aem-grid';`);
-      }
-
-      if (config.storybookAEMStyleSystem) {
-        fileContents.push(`import { StyleSystem } from 'storybook-aem-style-system';`);
-      }
-
-      fileContents.push(``);
-
-      const defaultTitle = config.storyRoot
-        ? `${config.storyRoot}/${config.component.name}`
-        : `${config.component.name}`;
-      fileContents.push(`export default {`);
-      fileContents.push(`    title: '${defaultTitle}',`);
-      if (config.jsFramework !== 'react') {
-        fileContents.push(`    decorators: [`);
-        fileContents.push(`        aemMetadata({`);
-        fileContents.push(`            decorationTag: {`);
-        fileContents.push(`                cssClasses: [`);
-        fileContents.push(`                    '${config.component.name}',`);
-        fileContents.push(`                    'component',`);
-
-        if (config.storybookAEMStyleSystem) {
-          fileContents.push(`                    StyleSystem,`);
-        }
-
-        if (config.storybookAEMGrid) {
-          fileContents.push(`                    Grid,`);
-        }
-
-        fileContents.push(`                ],`);
-        fileContents.push(`                tagName: 'div'`);
-        fileContents.push(`            }`);
-        fileContents.push(`        })`);
-        fileContents.push(`    ],`);
-      }
-      fileContents.push(`};`);
+    if (! storyFileExists) {
+      stories.unshift(getEmptyStory(config));
     }
-  } catch (err) {
-    throw error(err, true);
-  }
 
-  config.stories.forEach(story => {
-    fileContents.push(``);
-    fileContents.push(`const ${story.name}ContentPath = "${story.contentPath || ''}";`);
-    if (config.jsFramework !== 'react') {
-      fileContents.push(`export const ${story.name} = () => ({`);
-      fileContents.push(`    template: async () => fetchFromAEM(${story.name}ContentPath)`);
-      fileContents.push(`});`);
+    if (config.storybookAEMStyleSystem) {
+        cssClasses.push({ wrap: false, text: 'StyleSystem' });
+        imports.push(IMPORT_AEM_STYLE_SYSTEM);
     }
-    if (config.jsFramework === 'react') {
-      fileContents.push(`export const ${story.name} = () => (`);
-      fileContents.push(`    <Wrapper`);
-      fileContents.push(`        contentPath={${story.name}ContentPath}`);
 
-      if (config.storybookAEMStyleSystem) {
-        fileContents.push(`        styleSystem={StyleSystem()}`);
-      }
-
-      if (config.storybookAEMGrid) {
-        fileContents.push(`        grid={Grid()}`);
-      }
-
-      fileContents.push(`        classes="${config.component.name}"`);
-      fileContents.push(`    />`);
-      fileContents.push(`);`);
+    if (config.storybookAEMGrid) {
+        cssClasses.push({ wrap: false, text: 'Grid' });
+        imports.push(IMPORT_GRID);
     }
-    fileContents.push(`${story.name}.story = {`);
-    fileContents.push(`    name: '${story.displayName}',`);
-    fileContents.push(`    parameters: {`);
-    fileContents.push(`    }`);
-    fileContents.push(`};`);
-  });
 
-  fs.writeFile(storyPath, fileContents.join('\n'), err => {
-    if (err) throw err;
-    log(
-      `Created or Updated ${config.component.name}.stories.js`
-    );
-  });
+    const storyFileString = storiesRender({
+        imports: imports,
+        storyRoot: config.storyRoot,
+        componentName: config.component.name,
+        cssClasses: cssClasses,
+        tagName: TAGNAME_DIV,
+        stories: stories
+    });
 
-  log(`Story file created for the ${config.component.name}`);
-  log(`Story file -> ${storyPath}`);
+    const beautifiedFullFile = beautify(existingContents + storyFileString, { "brace_style": "collapse,preserve-inline" });
+
+    await writeFilePromise(storyPath, beautifiedFullFile);
+
+    log(`Created or Updated ${storyPath}`);
+    log(`Story file created for the ${config.component}`);
 };
+
+function getStoryPath(config) {
+    return path.resolve(
+        process.cwd(),
+        config.storybookStoryLocation ? config.storybookStoryLocation : config.component.relativePath,
+        `${config.component.name}.stories.js`
+    );
+}
+
+function getEmptyStory(config) {
+    return new StoryConfig({
+        name: 'empty',
+        contentPath: config.aemContentPath
+            ? `${config.aemContentPath}/${config.component.name}/jcr:content${config.aemContentDefaultPageContentPath}/empty`
+            : ``,
+    });
+}
+
+function getStoryConfigs(storyData) {
+    return storyData.map(story => new StoryConfig({
+        name: story.name,
+        contentPath: story.contentPath
+    }));
+}

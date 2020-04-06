@@ -1,7 +1,7 @@
 import * as path from 'path';
 import prompts from 'prompts';
-import { error, getDirectories, toCamelCase, componentList, log } from '../../utils';
-import { getStoriesTemplate } from './templates/stories';
+import { error, getDirectories, toCamelCase, componentList } from '../../utils';
+import { createStories } from './templates/stories';
 import { createContentFromStories } from '../content/contentFromStories';
 
 const cwd = process.cwd();
@@ -100,7 +100,7 @@ export async function createStory(args, config) {
 
     const fullConfig = { ...config, ...storyConfig, component, stories };
 
-    getStoriesTemplate(fullConfig);
+    createStories(fullConfig);
 
     error(fullConfig.createAEMContent, false);
     if (fullConfig.createAEMContent) {
