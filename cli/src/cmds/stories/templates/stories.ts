@@ -12,25 +12,18 @@ import {
 } from './import-config';
 import StoryConfig from './story-config';
 
-const existsPromise = promisify(fs.exists);
 const readFilePromise = promisify(fs.readFile);
 const writeFilePromise = promisify(fs.writeFile);
 const TAGNAME_DIV = 'div';
 
 export const createStories = async config => {
   const imports = [IMPORT_FETCH_FROM_AEM, IMPORT_AEM_METADATA];
-  const storyPath = getStoryPath(config);
   const stories = getStoryConfigs(config.stories);
-  const storyFileExists = await existsPromise(storyPath);
-  const existingContents = storyFileExists ? await readFilePromise(storyPath, 'utf8') : '';
+  const existingContents = config.storyFileExists ? await readFilePromise(config.storyPath, 'utf8') : '';
   const cssClasses = [
     { wrap: true, text: config.component.name },
     { wrap: true, text: 'component' },
   ];
-
-  if (!storyFileExists) {
-    stories.unshift(getEmptyStory(config));
-  }
 
   if (config.storybookAEMStyleSystem) {
     cssClasses.push({ wrap: false, text: 'StyleSystem' });
@@ -49,35 +42,18 @@ export const createStories = async config => {
     cssClasses,
     tagName: TAGNAME_DIV,
     stories,
-    onlyAppendNewStories: storyFileExists,
+    onlyAppendNewStories: config.storyFileExists,
   });
 
   const beautifiedFullFile = beautify(existingContents + storyFileString, {
     brace_style: 'collapse,preserve-inline',
   });
 
-  await writeFilePromise(storyPath, beautifiedFullFile);
+  await writeFilePromise(config.storyPath, beautifiedFullFile);
 
-  log(`Created or Updated ${storyPath}`);
-  log(`Story file created for the ${config.component}`);
+  log(`Created or Updated ${config.storyPath}`);
+  log(`Story file created for the ${config.component.name}`);
 };
-
-function getStoryPath(config) {
-  return path.resolve(
-    process.cwd(),
-    config.storybookStoryLocation ? config.storybookStoryLocation : config.component.relativePath,
-    `${config.component.name}.stories.js`
-  );
-}
-
-function getEmptyStory(config) {
-  return new StoryConfig({
-    name: 'empty',
-    contentPath: config.aemContentPath
-      ? `${config.aemContentPath}/${config.component.name}/jcr:content${config.aemContentDefaultPageContentPath}/empty`
-      : ``,
-  });
-}
 
 function getStoryConfigs(storyData) {
   return storyData.map(

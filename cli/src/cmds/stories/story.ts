@@ -1,9 +1,12 @@
 import * as path from 'path';
+import * as fs from 'fs';
 import prompts from 'prompts';
-import { error, getDirectories, toCamelCase, componentList } from '../../utils';
+import { promisify } from 'util';
+import { error, getDirectories, toCamelCase, componentList, log } from '../../utils';
 import { createStories } from './templates/stories';
 import { createContentFromStories } from '../content/contentFromStories';
 
+const existsPromise = promisify(fs.exists);
 const cwd = process.cwd();
 
 export async function createStory(args, config) {
@@ -87,28 +90,51 @@ export async function createStory(args, config) {
   storyConfig.components.forEach(component => {
     const stories = [];
 
-    storyConfig.stories.forEach(story => {
-      let contentPath = null;
-      if (storyConfig.createAEMContent) {
-        contentPath = `${config.aemContentPath}/${component.name}/jcr:content${
-          config.aemContentDefaultPageContentPath
-        }/${story.toLowerCase()}`;
+    config.storyPath = getStoryPath(config, component);
+    existsPromise(config.storyPath)
+    .then((storyFileExists) => {
+      config.storyFileExists = storyFileExists;
+
+      if (!config.storyFileExists) {
+        stories.push({
+          name: 'empty',
+          displayName: 'Empty',
+          contentPath: config.aemContentPath
+            ? `${config.aemContentPath}/${component.name}/jcr:content${config.aemContentDefaultPageContentPath}/empty`
+            : ``,
+        });
       }
 
-      stories.push({
-        name: toCamelCase(story),
-        displayName: story,
-        contentPath,
+      storyConfig.stories.forEach(story => {
+        let contentPath = null;
+        if (storyConfig.createAEMContent) {
+          contentPath = `${config.aemContentPath}/${component.name}/jcr:content${
+            config.aemContentDefaultPageContentPath
+          }/${story.toLowerCase()}`;
+        }
+
+        stories.push({
+          name: toCamelCase(story),
+          displayName: story,
+          contentPath,
+        });
       });
+
+      const fullConfig = { ...config, ...storyConfig, component, stories };
+
+      createStories(fullConfig);
+
+      if (fullConfig.createAEMContent) {
+        createContentFromStories(fullConfig);
+      }
     });
-
-    const fullConfig = { ...config, ...storyConfig, component, stories };
-
-    createStories(fullConfig);
-
-    error(fullConfig.createAEMContent, false);
-    if (fullConfig.createAEMContent) {
-      createContentFromStories(fullConfig);
-    }
   });
+}
+
+function getStoryPath(config, component) {
+  return path.resolve(
+    process.cwd(),
+    config.storybookStoryLocation ? config.storybookStoryLocation : component.relativePath,
+    `${component.name}.stories.js`
+  );
 }

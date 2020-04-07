@@ -41,7 +41,8 @@ Commands:
     "aemStoryHeadingComponentResourceType": "{String} The resource type of the component to use as a story heading to separate the content of different stories.",
     "aemStoryHeadingComponentTitleProperty": "{String} The node name of the title property of the heading component.",
     "storyRoot": "{String} The name of the story group in AEM.",
-    "aemContentPath": "{String} The AEM content path where the pages in AEM will be created."
+    "aemContentPath": "{String} The AEM content path where the pages in AEM will be created.",
+    "createAEMContent": "{Boolean} Whether or not the story command should create content in AEM."
   }
 }
 ```

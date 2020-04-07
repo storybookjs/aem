@@ -12,12 +12,7 @@ const cwd = process.cwd();
 
 export const install = async (args, config) => {
   const packageManagerURL = `/crx/packmgr/service.jsp`;
-  const storybookPackageDirectory = path.resolve(
-    cwd,
-    config.projectRoot,
-    config.relativeProjectRoot,
-    config.localPackagePath
-  );
+  const storybookPackageDirectory = path.resolve(cwd, config.localPackagePath);
   const storybookPackagePath = path.resolve(storybookPackageDirectory, config.packageName);
 
   try {
