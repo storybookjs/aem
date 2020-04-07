@@ -22,7 +22,7 @@ export const createContentFromStories = async config => {
     ) {
       log(`Component Page exists and has page content on expected template.`);
       log(`Creating content for stories...`);
-      createStories(config);
+      await createStories(config);
     }
   } else if (pageCheckResponse.status === 404) {
     log(`Component page doesn't exist.`);

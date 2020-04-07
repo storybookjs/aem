@@ -88,39 +88,31 @@ export async function createStory(args, config) {
   }
 
   storyConfig.components.forEach(component => {
-    const stories = [];
+    const fullConfig = { ...config, ...storyConfig, component, stories: [] };
 
-    config.storyPath = getStoryPath(config, component);
-    existsPromise(config.storyPath)
-    .then((storyFileExists) => {
-      config.storyFileExists = storyFileExists;
+    fullConfig.storyPath = getStoryPath(fullConfig, component);
+    existsPromise(fullConfig.storyPath).then(storyFileExists => {
+      fullConfig.storyFileExists = storyFileExists;
 
-      if (!config.storyFileExists) {
-        stories.push({
+      if (!fullConfig.storyFileExists) {
+        fullConfig.stories.push({
           name: 'empty',
           displayName: 'Empty',
-          contentPath: config.aemContentPath
-            ? `${config.aemContentPath}/${component.name}/jcr:content${config.aemContentDefaultPageContentPath}/empty`
-            : ``,
+          contentPathName: 'empty',
         });
       }
 
-      storyConfig.stories.forEach(story => {
-        let contentPath = null;
-        if (storyConfig.createAEMContent) {
-          contentPath = `${config.aemContentPath}/${component.name}/jcr:content${
-            config.aemContentDefaultPageContentPath
-          }/${story.toLowerCase()}`;
-        }
+      if (storyConfig.createAEMContent) {
+        fullConfig.baseContentPath = `${fullConfig.aemContentPath}/${component.name}/jcr:content${fullConfig.aemContentDefaultPageContentPath}`;
+      }
 
-        stories.push({
+      storyConfig.stories.forEach(story => {
+        fullConfig.stories.push({
           name: toCamelCase(story),
           displayName: story,
-          contentPath,
+          contentPathName: story.toLowerCase().replace(/\s/g, ''),
         });
       });
-
-      const fullConfig = { ...config, ...storyConfig, component, stories };
 
       createStories(fullConfig);
 

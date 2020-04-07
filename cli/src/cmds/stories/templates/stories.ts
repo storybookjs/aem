@@ -18,8 +18,10 @@ const TAGNAME_DIV = 'div';
 
 export const createStories = async config => {
   const imports = [IMPORT_FETCH_FROM_AEM, IMPORT_AEM_METADATA];
-  const stories = getStoryConfigs(config.stories);
-  const existingContents = config.storyFileExists ? await readFilePromise(config.storyPath, 'utf8') : '';
+  const stories = getStoryConfigs(config.stories, config.baseContentPath);
+  const existingContents = config.storyFileExists
+    ? await readFilePromise(config.storyPath, 'utf8')
+    : '';
   const cssClasses = [
     { wrap: true, text: config.component.name },
     { wrap: true, text: 'component' },
@@ -55,12 +57,14 @@ export const createStories = async config => {
   log(`Story file created for the ${config.component.name}`);
 };
 
-function getStoryConfigs(storyData) {
+function getStoryConfigs(storyData, baseContentPath) {
   return storyData.map(
     story =>
       new StoryConfig({
         name: story.name,
-        contentPath: story.contentPath,
+        displayName: story.displayName,
+        contentPathName: story.contentPathName,
+        baseContentPath,
       })
   );
 }

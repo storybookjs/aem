@@ -2,7 +2,6 @@ import { exec } from 'child_process';
 import { fetchFromAEM, getCQTemplate, log } from './index';
 
 export const createStories = async config => {
-  const baseURL = `${config.aemContentPath}/${config.component.name}/jcr:content${config.aemContentDefaultPageContentPath}`;
   const cqTemplate = await getCQTemplate(config);
   const editorURL = `http://localhost:4502/editor.html${config.aemContentPath}/${config.component.name}.html`;
 
@@ -31,12 +30,12 @@ export const createStories = async config => {
 
     component['jcr:storybookStory'] = `${config.component.name}|${story.displayName}`;
 
-    content[`${story.name}Heading`] = heading;
-    content[`${story.name}`] = component;
+    content[`${story.contentPathName}heading`] = heading;
+    content[`${story.contentPathName}`] = component;
   });
 
   const componentCreation = await fetchFromAEM({
-    url: `${baseURL}?${[
+    url: `${config.baseContentPath}?${[
       `:contentType=json`,
       `:operation=import`,
       `:content=${JSON.stringify(content)}`,

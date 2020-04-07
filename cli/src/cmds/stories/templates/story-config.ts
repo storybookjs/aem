@@ -2,17 +2,29 @@ import { titleCase } from 'title-case';
 
 interface StoryArguments {
   name: string;
-  contentPath: string;
+  displayName: string;
+  baseContentPath: string;
+  contentPathName: string;
 }
 
 export default class StoryConfig {
   name: string;
 
-  contentPath: string;
+  displayName: string;
+
+  baseContentPath: string;
+
+  contentPathName: string;
 
   constructor(args: StoryArguments) {
     this.name = args.name;
-    this.contentPath = args.contentPath;
+    this.displayName = args.displayName;
+    this.baseContentPath = args.baseContentPath;
+    this.contentPathName = args.contentPathName;
+  }
+
+  get contentPath() {
+    return `${this.baseContentPath}/${this.contentPathName}`;
   }
 
   get contentPathIdentifier() {
@@ -24,7 +36,7 @@ export default class StoryConfig {
   }
 
   get prettyName() {
-    return `${titleCase(this.name)} Story`;
+    return `${titleCase(this.displayName)} Story`;
   }
 
   render() {
