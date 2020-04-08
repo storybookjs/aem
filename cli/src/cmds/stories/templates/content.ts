@@ -3,8 +3,6 @@ import { log, toCamelCase } from '../../../utils';
 
 /* eslint-disable no-param-reassign */
 module.exports = config => {
-  log('config:', config);
-  log('config:', config.stories);
   const componentPath = `${config.componentPath}/${config.component}`;
   let fileContents = `/**
   * Storybook content for the ${config.component} component that can be POSTed in AEM JCR via SlingPostServlet.
@@ -24,7 +22,7 @@ module.exports = config => {
   fileContents += `
     empty: {
         "jcr:primaryType":"nt:unstructured",
-        "sling:resourceType":"${config.namespace}/components/content/${config.component}"
+        "sling:resourceType":"${config.component.resourceType}"
     }`;
 
   if (typeof config.stories === 'string') {
@@ -37,7 +35,7 @@ module.exports = config => {
     fileContents += `,
     ${storyName}: {
         "jcr:primaryType":"nt:unstructured",
-        "sling:resourceType":"${config.namespace}/components/content/${config.component}"
+        "sling:resourceType":"${config.component.resourceType}"
     }`;
   });
 

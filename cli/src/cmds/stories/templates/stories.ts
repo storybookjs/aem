@@ -1,117 +1,70 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { promisify } from 'util';
+import { js as beautify } from 'js-beautify';
 import { log, error } from '../../../utils';
+import storiesRender from './stories-render';
+import {
+  IMPORT_FETCH_FROM_AEM,
+  IMPORT_AEM_METADATA,
+  IMPORT_AEM_STYLE_SYSTEM,
+  IMPORT_GRID,
+} from './import-config';
+import StoryConfig from './story-config';
 
-export const getStoriesTemplate = config => {
-  let storyPath;
-  if (config.storybookStoryLocation) {
-    storyPath = path.resolve(
-      process.cwd(),
-      config.storybookStoryLocation,
-      `${config.component}.stories.js`
-    );
-  } else {
-    storyPath = path.resolve(
-      process.cwd(),
-      config.projectRoot,
-      config.relativeProjectRoot,
-      config.componentPath,
-      config.componentType,
-      config.component,
-      `${config.component}.stories.js`
-    );
-  }
-  const fileExists = fs.existsSync(storyPath);
-  const fileContents = [];
+const readFilePromise = promisify(fs.readFile);
+const writeFilePromise = promisify(fs.writeFile);
+const TAGNAME_DIV = 'div';
 
-  try {
-    // Add the existing file to the fileContents
-    if (fileExists) {
-      fileContents.push(fs.readFileSync(storyPath, 'utf8'));
-    } else {
-      // Create the basics for the file
+export const createStories = async config => {
+  const imports = [IMPORT_FETCH_FROM_AEM, IMPORT_AEM_METADATA];
+  const stories = getStoryConfigs(config.stories, config.baseContentPath);
+  const existingContents = config.storyFileExists
+    ? await readFilePromise(config.storyPath, 'utf8')
+    : '';
+  const cssClasses = [
+    { wrap: true, text: config.component.name },
+    { wrap: true, text: 'component' },
+  ];
 
-      // Add the empty story to the list
-      config.stories.unshift({
-        name: 'empty',
-        displayName: 'Empty Story',
-        contentPath: config.aemContentPath
-          ? `${config.aemContentPath}/${config.component}/jcr:content${config.aemContentDefaultPageContentPath}/empty`
-          : ``,
-      });
-
-      fileContents.push(`/**`);
-      fileContents.push(` * Storybook stories for the ${config.component} component`);
-      fileContents.push(` */`);
-
-      if (config.jsFramework === 'react') {
-        fileContents.push(`import React, { Component } from 'react';`);
-      }
-
-      if (config.jsFramework !== 'react') {
-        fileContents.push(`import { aemMetadata } from '@storybook/aem';`);
-        fileContents.push(`import { fetchFromAEM } from 'storybook-aem-wrappers';`);
-      }
-
-      fileContents.push(`import { Grid } from 'storybook-aem-grid';`);
-      fileContents.push(`import { StyleSystem } from 'storybook-aem-style-system';`);
-      fileContents.push(``);
-
-      const defaultTitle = config.storyRoot
-        ? `${config.storyRoot}/${config.component}`
-        : `${config.component}`;
-      fileContents.push(`export default {`);
-      fileContents.push(`    title: '${defaultTitle}',`);
-      if (config.jsFramework !== 'react') {
-        fileContents.push(`    decorators: [`);
-        fileContents.push(`        aemMetadata({`);
-        fileContents.push(`            decorationTag: {`);
-        fileContents.push(
-          `                cssClasses: ['${config.component}', 'component', StyleSystem, Grid],`
-        );
-        fileContents.push(`                tagName: 'div'`);
-        fileContents.push(`            }`);
-        fileContents.push(`        })`);
-        fileContents.push(`    ],`);
-      }
-      fileContents.push(`};`);
-    }
-  } catch (err) {
-    throw error(err, true);
+  if (config.storybookAEMStyleSystem) {
+    cssClasses.push({ wrap: false, text: 'StyleSystem' });
+    imports.push(IMPORT_AEM_STYLE_SYSTEM);
   }
 
-  config.stories.forEach(story => {
-    fileContents.push(``);
-    fileContents.push(`const ${story.name}ContentPath = "${story.contentPath || ''}";`);
-    if (config.jsFramework !== 'react') {
-      fileContents.push(`export const ${story.name} = () => ({`);
-      fileContents.push(`    template: async () => fetchFromAEM(${story.name}ContentPath)`);
-      fileContents.push(`});`);
-    }
-    if (config.jsFramework === 'react') {
-      fileContents.push(`export const ${story.name} = () => (`);
-      fileContents.push(`    <Wrapper`);
-      fileContents.push(`        contentPath={${story.name}ContentPath}`);
-      fileContents.push(`        styleSystem={StyleSystem()}`);
-      fileContents.push(`        grid={Grid()}`);
-      fileContents.push(`        classes="${config.component}"`);
-      fileContents.push(`    />`);
-      fileContents.push(`);`);
-    }
-    fileContents.push(`${story.name}.story = {`);
-    fileContents.push(`    name: '${story.displayName}',`);
-    fileContents.push(`    parameters: {`);
-    fileContents.push(`    }`);
-    fileContents.push(`};`);
+  if (config.storybookAEMGrid) {
+    cssClasses.push({ wrap: false, text: 'Grid' });
+    imports.push(IMPORT_GRID);
+  }
+
+  const storyFileString = storiesRender({
+    imports,
+    storyRoot: config.storyRoot,
+    componentName: config.component.name,
+    cssClasses,
+    tagName: TAGNAME_DIV,
+    stories,
+    onlyAppendNewStories: config.storyFileExists,
   });
 
-  fs.writeFile(storyPath, fileContents.join('\n'), err => {
-    if (err) throw err;
-    log(
-      `Created or Updated ${config.componentType}/${config.component}/${config.component}.stories.js`
-    );
+  const beautifiedFullFile = beautify(existingContents + storyFileString, {
+    brace_style: 'collapse,preserve-inline',
   });
 
-  log(`Story file created for the ${config.component}`);
-  log(`Story file -> ${storyPath}`);
+  await writeFilePromise(config.storyPath, beautifiedFullFile);
+
+  log(`Created or Updated ${config.storyPath}`);
+  log(`Story file created for the ${config.component.name}`);
 };
+
+function getStoryConfigs(storyData, baseContentPath) {
+  return storyData.map(
+    story =>
+      new StoryConfig({
+        name: story.name,
+        displayName: story.displayName,
+        contentPathName: story.contentPathName,
+        baseContentPath,
+      })
+  );
+}

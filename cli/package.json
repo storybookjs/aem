@@ -36,7 +36,9 @@
     "prompts": "^2.3.2",
     "unzipper": "^0.10.10",
     "xml2json": "^0.12.0",
-    "zip-promise": "^1.1.1"
+    "zip-promise": "^1.1.1",
+    "js-beautify": "^1.11.0",
+    "title-case": "^3.0.2"
   },
   "devDependencies": {
     "typescript": "^3.8.3"

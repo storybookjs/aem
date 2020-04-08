@@ -12,12 +12,7 @@ const cwd = process.cwd();
 
 export const exportPackage = async (args, config) => {
   try {
-    const localPackageDirectory = path.resolve(
-      cwd,
-      config.projectRoot,
-      config.relativeProjectRoot,
-      config.localPackagePath
-    );
+    const localPackageDirectory = path.resolve(cwd, config.localPackagePath);
     const localPackagePath = path.resolve(localPackageDirectory, config.packageName);
     const jcrContentPath = path.resolve(localPackageDirectory, JCR_ROOT);
     const metaInfPath = path.resolve(localPackageDirectory, META_INF);

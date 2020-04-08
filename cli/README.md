@@ -12,17 +12,41 @@ There are several commands provided by the Storybook AEM CLI. You can find a lis
 Usage: sba <command> <options>
 
 Commands:
-  init .................. Start a new project, or add to existing project
   story ................. Creates/Updates your component story file, Adds story definition, Creates AEM Content example
   package ............... Imports & Exports content package from AEM => Code => AEM
   help .................. Show help menu for sba
   version, v ............ Show sba version
 ```
 
-### Init
-TKTKTK More description and refactoring of the `init` command is to come.
-
 ### Story
+
+#### Required configurations
+
+```
+{
+  ...
+  "@storybook/aem-cli": {
+    "storybookLocation": "{String} The path to the '.storybook' directory.",
+    "storybookStoryLocation": "{String:Optional} The path to the stories directory. If this does not exist then the stories will be created side by side with the components.",
+    "appsPath": "{String} the path to the 'apps' directory under your ui.apps module.",
+    "componentPaths": "{Array|String} The paths to the component directories",
+    "storybookAEMStyleSystem": "{Boolean} Whether or not you want to use the StyleSystem plugin.",
+    "storybookAEMGrid": "{Boolean} Whether or not to use the AEM grid plugin.",
+    "storybookAEMPageTemplate": "{Boolean} Whether or not to use the page template plugin.",
+    "storybookAEMConfluence": "{Boolean} Whether or not to use the Confluence plugin.",
+    "storybookAEMFoundation": "{Boolean} Whether or not to use the foundation plugin.",
+    "aemContentDefaultPageResourceType": "{String} The resource type of the page to use for creating stories",
+    "aemContentDefaultPageTemplate": "{String} The conf path to the page template within AEM.",
+    "aemContentDefaultPageContentPath": "{String} The page content path under the jcr:root node to create the components. This should be based on the resource type of the page.",
+    "aemStoryHeadingComponentResourceType": "{String} The resource type of the component to use as a story heading to separate the content of different stories.",
+    "aemStoryHeadingComponentTitleProperty": "{String} The node name of the title property of the heading component.",
+    "storyRoot": "{String} The name of the story group in AEM.",
+    "aemContentPath": "{String} The AEM content path where the pages in AEM will be created.",
+    "createAEMContent": "{Boolean} Whether or not the story command should create content in AEM."
+  }
+}
+```
+
 The `sba story` command is the most used command provided. Running this command will provide you with a series of prompts to get started adding stories. It will ask for which component and type of component you want to make stories. From there it will create the story definition, and if desired, will also create content in AEM for your story.
 
 The `sba story create` command will follow the same prompts as `sba story` but it will assume that you want to create a single story.

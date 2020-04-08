@@ -1,67 +1,57 @@
 import * as path from 'path';
+import * as fs from 'fs';
 import prompts from 'prompts';
-import { error, getDirectories, toCamelCase } from '../../utils';
-import { getStoriesTemplate } from './templates/stories';
+import { promisify } from 'util';
+import { error, getDirectories, toCamelCase, componentList, log } from '../../utils';
+import { createStories } from './templates/stories';
 import { createContentFromStories } from '../content/contentFromStories';
 
+const existsPromise = promisify(fs.exists);
 const cwd = process.cwd();
 
-/* eslint-disable no-param-reassign */
 export async function createStory(args, config) {
-  let storyConfig: any = {};
+  const storyConfig: any = {};
 
-  const componentBasePath = path.resolve(
-    cwd,
-    config.projectRoot,
-    config.relativeProjectRoot,
-    config.componentPath
-  );
-  const componentType = await prompts([
-    {
-      type: 'autocomplete',
-      name: 'componentType',
-      message: 'Generate a Story for which component type?',
-      choices: getDirectories(componentBasePath).map(component => {
-        return { title: component, value: component };
-      }),
-    },
-  ]);
-  storyConfig = { ...storyConfig, ...componentType };
-
-  const componentPath = path.resolve(
-    cwd,
-    config.projectRoot,
-    config.relativeProjectRoot,
-    config.componentPath,
-    componentType.componentType
-  );
-
-  const componentConfig: any = {};
+  if (Array.isArray(config.componentPaths) && config.componentPaths.length === 1) {
+    [storyConfig.componentType] = config.componentPaths;
+  } else if (Array.isArray(config.componentPaths)) {
+    storyConfig.componentType = (
+      await prompts({
+        type: 'autocomplete',
+        name: 'componentType',
+        message: 'Generate a Story for which component type?',
+        choices: config.componentPaths.map(componentTypePath => ({
+          title: path.basename(componentTypePath),
+          value: componentTypePath,
+        })),
+      })
+    ).componentType;
+  } else {
+    error(
+      '"componentPaths" must be configured on the "@storybook/aem-cli" property of the package.json. Please provide either a string containing the path to the component list or an array of strings to multiple directories containing components.',
+      true
+    );
+  }
 
   if (config.singleStory) {
-    componentConfig.components = (
+    storyConfig.components = (
       await prompts({
         type: 'autocomplete',
         name: 'components',
         message: 'Generate a Storybook Story for which component?',
-        choices: getDirectories(componentPath).map(component => {
-          return { title: component, value: component };
-        }),
-        format: res => {
-          return [res];
-        },
+        choices: componentList(storyConfig.componentType, config).map(component => ({
+          title: component.name,
+          value: component,
+        })),
+        format: res => [res],
       })
     ).components;
   } else {
-    componentConfig.components = getDirectories(componentPath);
+    storyConfig.components = componentList(storyConfig.componentType, config);
   }
 
-  componentConfig.hasStories = (await prompts()).hasStories;
-
-  error(componentConfig.hasStories, false);
-
   if (config.singleStory) {
-    componentConfig.stories = (
+    storyConfig.stories = (
       await prompts([
         {
           type: 'confirm',
@@ -77,51 +67,66 @@ export async function createStory(args, config) {
           separator: ',',
           format: res => {
             if (!res.length) return false;
-            // else return res.map( story => toCamelCase(story));
             return res;
           },
         },
       ])
     ).stories;
+
+    if (!storyConfig.stories) storyConfig.stories = [];
   } else {
-    componentConfig.stories = [];
+    storyConfig.stories = [];
   }
 
   if (config.aemContentPath) {
-    config.createAEMContent = await prompts({
+    storyConfig.createAEMContent = await prompts({
       type: 'confirm',
       name: 'createAEMContent',
       message: `Create content in AEM for the stories?`,
       initial: true,
-      format: res => res,
     });
   }
 
-  config = { ...config, ...storyConfig, ...componentConfig };
+  storyConfig.components.forEach(component => {
+    const fullConfig = { ...config, ...storyConfig, component, stories: [] };
 
-  config.components.forEach(component => {
-    const stories = [];
+    fullConfig.storyPath = getStoryPath(fullConfig, component);
+    existsPromise(fullConfig.storyPath).then(storyFileExists => {
+      fullConfig.storyFileExists = storyFileExists;
 
-    config.stories.forEach(story => {
-      let contentPath = null;
-      if (config.createAEMContent) {
-        contentPath = `${config.aemContentPath}/${component}/jcr:content${
-          config.aemContentDefaultPageContentPath
-        }/${toCamelCase(story)}`;
+      if (!fullConfig.storyFileExists) {
+        fullConfig.stories.push({
+          name: 'empty',
+          displayName: 'Empty',
+          contentPathName: 'empty',
+        });
       }
 
-      stories.push({
-        name: toCamelCase(story),
-        displayName: story,
-        contentPath,
+      if (storyConfig.createAEMContent) {
+        fullConfig.baseContentPath = `${fullConfig.aemContentPath}/${component.name}/jcr:content${fullConfig.aemContentDefaultPageContentPath}`;
+      }
+
+      storyConfig.stories.forEach(story => {
+        fullConfig.stories.push({
+          name: toCamelCase(story),
+          displayName: story,
+          contentPathName: story.toLowerCase().replace(/\s/g, ''),
+        });
       });
+
+      createStories(fullConfig);
+
+      if (fullConfig.createAEMContent) {
+        createContentFromStories(fullConfig);
+      }
     });
-
-    const fullConfig = { ...config, component, stories };
-    getStoriesTemplate(fullConfig);
-
-    if (config.createAEMContent) {
-      createContentFromStories(fullConfig);
-    }
   });
+}
+
+function getStoryPath(config, component) {
+  return path.resolve(
+    process.cwd(),
+    config.storybookStoryLocation ? config.storybookStoryLocation : component.relativePath,
+    `${component.name}.stories.js`
+  );
 }

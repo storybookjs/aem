@@ -6,11 +6,7 @@ import { log, xmlToJSONCleanup } from './index';
 export const getCQTemplate = async config => {
   const cqTemplatePath = path.resolve(
     process.cwd(),
-    config.projectRoot,
-    config.relativeProjectRoot,
-    config.componentPath,
-    config.componentType,
-    config.component,
+    config.component.relativePath,
     `_cq_template.xml`
   );
 
@@ -23,15 +19,13 @@ export const getCQTemplate = async config => {
     }
     const json = JSON.parse(xml2json.toJson(xml))['jcr:root'];
     // Add the sling:resourceType so that the component can be created
-    json[
-      'sling:resourceType'
-    ] = `${config.namespace}/components/${config.componentType}/${config.component}`;
+    json['sling:resourceType'] = config.component.resourceType;
 
     return xmlToJSONCleanup(json);
   } catch {
     // This is not an error scenario. It is okay to not have a _cq_template.
     log(
-      `No _cq_template.xml found for the '${config.component}' component. Default content will be generated.`
+      `No _cq_template.xml found for the '${config.component.name}' component. Default content will be generated.`
     );
     return false;
   }
