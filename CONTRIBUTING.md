@@ -25,7 +25,7 @@ Storybook AEM uses Jest for unit testing. To run unit tests use the following co
 
 Whenever you make a new commit to a branch, your code will be run through the following `eslint` check to ensure that the quality of code is consistent across the repo.
 
-## Want a new feature or are looking to ahve a bug resolved?
+## Want a new feature or are looking to have a bug resolved?
 If you have found a bug or need a feature implemented make sure to create an issue here: https://github.com/storybookjs/aem/issues/new
 
 If you plan to fix the issue or develop the feature, assign it to yourself.

@@ -1,11 +1,22 @@
 import { resolve } from 'path';
+import * as fs from 'fs';
+import chalk from 'chalk';
 import { error } from './index';
 
 const cwd = process.cwd();
 const NAMESPACE = '@storybook/aem-cli';
 const packageJSONPath = resolve(cwd, 'package.json');
-/* eslint-disable import/no-dynamic-require */
-const packageJSON = require(packageJSONPath);
+
+if (!fs.existsSync(packageJSONPath)) {
+  error(
+    chalk.red(
+      'The package.json was not found in this directory. Are you sure you are in a directory configured for Storybook AEM?'
+    ),
+    true
+  );
+}
+
+const packageJSON = getPackageJSON(packageJSONPath);
 
 export function getConfig() {
   if (Object.entries(packageJSON).length === 0) {
@@ -21,4 +32,20 @@ export function getConfig() {
   }
 
   return packageJSON[NAMESPACE];
+}
+
+function getPackageJSON(path) {
+  try {
+    /* eslint-disable import/no-dynamic-require, global-require */
+    return require(path);
+  } catch {
+    error(
+      chalk.red(
+        'The package.json found in this directory was not valid JSON. You might want to check the format of your package.json file.'
+      ),
+      true
+    );
+
+    return undefined;
+  }
 }
