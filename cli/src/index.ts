@@ -1,11 +1,11 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import { getConfig, log } from './utils';
 import { helpCommand } from './cmds/help';
 import { packageCommand } from './cmds/package';
 import { storyCommand } from './cmds/stories';
 import { versionCommand } from './cmds/version';
 
-// TODO: Once the package is published import and use checkVersion.
+// TODO: Import the check version util. Check that this check version is properly implemented. It looks like the code is commented out.
 // import { checkVersion } from './utils';
 
 const ARG_QUIET = '--quiet';
@@ -15,7 +15,7 @@ module.exports = () => {
   const cmd = args[0];
   const config = getConfig();
 
-  // TODO: We can't check the version until this package is actually published on NPM.
+  // TODO Call the check version method.
   // checkVersion();
 
   if (args.includes(ARG_QUIET)) {
@@ -44,7 +44,7 @@ module.exports = () => {
     default:
       log(
         [
-          `${chalk.italic(cmd)} is not a valid command.`,
+          `${chalk.italic(`sba ${cmd}`)} is not a valid command.`,
           ``,
           `Usage: ${chalk.italic('sba <command>')}`,
           ``,
