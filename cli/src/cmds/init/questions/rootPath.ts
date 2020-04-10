@@ -4,7 +4,7 @@ export default async () => {
   return (await prompts({
       type: 'select',
       name: 'projectRoot',
-      message: 'Select the project root folder',
+      message: 'Select the top level project root folder',
       choices: getRootDirectoryChoices()
   })).projectRoot;
 };
