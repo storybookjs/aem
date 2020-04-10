@@ -5,7 +5,7 @@ export default async () => {
       type: 'select',
       name: 'projectRoot',
       message: 'Select the top level project root folder',
-      choices: getRootDirectoryChoices()
+      choices: getRootDirectoryChoices().reverse()
   })).projectRoot;
 };
 

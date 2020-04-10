@@ -5,22 +5,33 @@ import { getChoicesFromDirectories, log } from '../../../utils';
 const cwd = process.cwd();
 
 export default async (args, config, absoluteRootPath) => {
-  const relativeProjectRoot =  path.relative(cwd, absoluteRootPath);
-  const appsPath = [ relativeProjectRoot ];
+  const containsJcrRoot = (await prompts({
+    type: 'toggle',
+    name: 'containsJcrRoot',
+    message: 'Does your project contain a "jcr_root" directory?',
+    initial: true,
+    active: 'Yes',
+    inactive: 'No',
+  })).containsJcrRoot;
 
-  let pathSegment = '';
-  while (appsPath[appsPath.length - 1] !== 'jcr_root') {
-    pathSegment = (await prompts({
-      type: 'select',
-      name: 'pathSegment',
-      message: `Navigate to the 'jcr_root/apps' folder`,
-      choices: getChoicesFromDirectories(path.join(...appsPath))
-    })).pathSegment;
+  if (containsJcrRoot) {
+    const relativeProjectRoot =  path.relative(cwd, absoluteRootPath);
+    const appsPath = [ relativeProjectRoot ];
 
-    appsPath.push(pathSegment);
+    let pathSegment = '';
+    while (appsPath[appsPath.length - 1] !== 'jcr_root') {
+      pathSegment = (await prompts({
+        type: 'select',
+        name: 'pathSegment',
+        message: `Navigate to the 'jcr_root/apps' folder`,
+        choices: getChoicesFromDirectories(path.join(...appsPath))
+      })).pathSegment;
+
+      appsPath.push(pathSegment);
+    }
+
+    config.appsPath = path.join(...appsPath);
   }
-
-  config.appsPath = path.join(...appsPath);
 
   return config;
 };
