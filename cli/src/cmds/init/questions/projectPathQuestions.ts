@@ -14,10 +14,10 @@ export default async (args, config, absoluteRootPath) => {
     pathSegment = (await prompts({
       type: 'select',
       name: 'pathSegment',
-      message: `Navigate to the directory containing your components.\n  If you have more than one component directory they can be added in the "@storybook/aem-cli" section of the package.json.`,
+      message: `Navigate to the directory containing your components.\n  If you have more than one component directory they can be added in the "@storybook/aem-cli" section of the package.json.\n  `,
       choices: [
-        ...getChoicesFromDirectories(path.join(...componentPath)),
-        { title: 'Finished navigating', value: CHOICE_FINISHED_NAVIGATING }
+        { title: 'Finished navigating', value: CHOICE_FINISHED_NAVIGATING },
+        ...getChoicesFromDirectories(path.join(...componentPath))
       ]
     })).pathSegment;
 

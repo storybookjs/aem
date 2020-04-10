@@ -2,6 +2,7 @@ import rootPathQuestions from './questions/rootPathQuestions';
 import packageJSONQuestions from './questions/packageJSONQuestions';
 import projectPathQuestions from './questions/projectPathQuestions';
 import storybookQuestions from './questions/storybookQuestions';
+import addonQuestions from './questions/addonQuestions';
 import install from './install';
 
 /*
@@ -19,6 +20,7 @@ export const initCommand = async args => {
 
   answers = { ...answers, ...(await projectPathQuestions(args, answers, absoluteRootPath)) };
   answers = { ...answers, ...(await storybookQuestions(args, answers, absoluteRootPath)) };
+  answers = { ...answers, ...(await addonQuestions(args, answers, absoluteRootPath)) };
 
   return install(answers);
 };
