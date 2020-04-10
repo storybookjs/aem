@@ -6,7 +6,7 @@ import middlewareFileTemplate from './templates/middleware';
 import previewFileTemplate from './templates/preview';
 import mainFileTemplate from './templates/main';
 import { promisify } from 'util';
-import { createStory } from '../stories/story';
+import { storyCommand } from '../stories';
 import { log, getPackageJSON } from '../../utils';
 
 const writeFilePromise = promisify(fs.writeFile);
@@ -57,8 +57,9 @@ export default async answers => {
 
   // TODO Create preview-head.js or otherwise figure out how to include the clientlibs
 
-  log('Lets create your first story');
-  await createStory([], answers);
+  // TODO This isn't working: It is continueing on without waiting for the story command to finish.
+  //log('Lets create your first story');
+  //await storyCommand([], answers);
 
   let packages = [
     '@storybook/aem',

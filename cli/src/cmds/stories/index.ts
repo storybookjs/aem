@@ -24,7 +24,7 @@ export const storyCommand = async (args, config) => {
     const response = await prompts({
       type: 'autocomplete',
       name: 'operation',
-      message: 'Do you want to create a story or create stories for all components?',
+      message: 'Do you want to create a single story or create stories for all components?',
       choices: [
         { title: 'Single story', value: CHOICE_SINGLE_STORY },
         { title: 'All stories', value: CHOICE_ALL_STORIES },
