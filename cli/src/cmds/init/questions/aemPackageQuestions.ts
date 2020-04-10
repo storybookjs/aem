@@ -18,19 +18,20 @@ export default async (args, config, absoluteRootPath) => {
         {
           type: 'text',
           name: 'packageGroup',
-          message: 'Please enter the name of the package group'
+          message: 'Please enter the name of the package group',
         },
         {
           type: 'text',
           name: 'packageName',
-          message: 'Please enter the .zip file name of the content package'
+          message: 'Please enter the .zip file name of the content package',
         },
         {
           type: 'text',
           name: 'aemContentPath',
-          message: 'Please enter the local path within the code base to where you want to store the AEM content package. This will default to ".stories/library"',
-          format: val => val ? val : '.stories/aem-library'
-        }
+          message:
+            'Please enter the local path within the code base to where you want to store the AEM content package. This will default to ".stories/library"',
+          format: val => val || '.stories/aem-library',
+        },
       ]);
     }
   }

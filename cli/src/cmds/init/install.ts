@@ -15,7 +15,9 @@ export default async answers => {
 
   fs.writeFileSync(packageJSONPath, JSON.stringify(packageJSON, null, 2));
 
-  log('Your package.json was updated. Please check the "@storybook/aem-cli" section for any configurations that we could not automatically determine. They will be marked with the text "<Please fill in this config>".');
+  log(
+    'Your package.json was updated. Please check the "@storybook/aem-cli" section for any configurations that we could not automatically determine. They will be marked with the text "<Please fill in this config>".'
+  );
 
   /*
     if (answers.storybookLocation) {
