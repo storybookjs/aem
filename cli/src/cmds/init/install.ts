@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import npm from 'npm';
 import ncp from 'ncp';
+import { createStory } from '../stories/story';
 import { log, getPackageJSON } from '../../utils';
 
 const cwd = process.cwd();
@@ -38,6 +39,10 @@ export default async answers => {
   }
 
   // TODO Create preview-head.js or otherwise figure out how to include the clientlibs
+
+  // TODO Create the first story.
+  log('Lets create your first story');
+  await createStory([], answers);
 
   let packages = [
     '@storybook/aem',
