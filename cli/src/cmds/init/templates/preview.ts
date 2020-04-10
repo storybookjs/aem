@@ -7,4 +7,4 @@ addDecorator(aemMetadata({
   models: {
   }
 }));
-`
+`;

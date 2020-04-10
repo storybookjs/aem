@@ -5,7 +5,10 @@ import storybookQuestions from './questions/storybookQuestions';
 import addonQuestions from './questions/addonQuestions';
 import aemContentQuestions from './questions/aemContentQuestions';
 import aemPackageQuestions from './questions/aemPackageQuestions';
+import createFiles from './createFiles';
 import install from './install';
+import { storyCommand } from '../stories';
+import { log } from '../../utils';
 
 export const initCommand = async args => {
   await packageJSONQuestions();
@@ -24,5 +27,10 @@ export const initCommand = async args => {
     storyRoot: 'Components',
   };
 
-  return install(answers);
+  const packages = await createFiles(answers);
+
+  log('Lets create some stories');
+  await storyCommand([], answers);
+
+  install(packages);
 };

@@ -1,4 +1,5 @@
 import prompts from 'prompts';
+import path from 'path';
 
 export default async (args, config, absoluteRootPath) => {
   let aemContentAnswers = await prompts({
@@ -16,33 +17,36 @@ export default async (args, config, absoluteRootPath) => {
       ...(await prompts([
         {
           type: 'text',
+          name: 'aemContentPath',
+          message: 'Enter the AEM content path that you want the design system at',
+          initial: `/content/${path.basename(absoluteRootPath)}-design-system`,
+          format: val => val || `/content/${path.basename(absoluteRootPath)}-design-system`,
+        },
+        {
+          type: 'text',
           name: 'aemContentDefaultPageResourceType',
-          message:
-            'Please enter the resource type of the page component to use to create AEM pages for your stories.\n  You can leave this blank and update the package.json file later.',
+          message: 'Enter the resource type of the page component',
         },
         {
           type: 'text',
           name: 'aemContentDefaultPageTemplate',
-          message:
-            'Please enter the full path to the page template that you want to use to create AEM pages for your stories.\n  You can leave this blank and update the package.json file later.',
+          message: 'Enter the full AEM path of the page template',
         },
         {
           type: 'text',
           name: 'aemContentDefaultPageContentPath',
-          message:
-            'Please enter the sub path under the page where the components should go. This is the path relative to the "jcr:root" node.\n  You can leave this blank and update the package.json file later.',
+          message: 'Enter the path to the parsys relative to the pages jcr:root node',
         },
         {
           type: 'text',
           name: 'aemStoryHeadingComponentResourceType',
-          message:
-            'Please enter the resource type of the story heading component to use to separate the stories. This is so that the stories in the AEM page are clearly separated.\n  You can leave this blank and update the package.json file later.',
+          message: 'Enter the resource type of the story heading component',
         },
         {
           type: 'text',
           name: 'aemStoryHeadingComponentTitleProperty',
-          message:
-            'Please enter the title property of the story heading component. This will default to "jcr:title" if nothing is entered.',
+          message: 'Enter the title property of the story heading component',
+          initial: 'jcr:title',
           format: val => val || 'jcr:title',
         },
       ])),

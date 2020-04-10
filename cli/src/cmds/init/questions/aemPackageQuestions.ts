@@ -1,6 +1,9 @@
 import prompts from 'prompts';
+import path from 'path';
+import { titleCase } from 'title-case';
 
 export default async (args, config, absoluteRootPath) => {
+  const defaultName = path.basename(absoluteRootPath);
   let packageProps: any = {};
 
   if (config.createAEMContent) {
@@ -18,18 +21,23 @@ export default async (args, config, absoluteRootPath) => {
         {
           type: 'text',
           name: 'packageGroup',
-          message: 'Please enter the name of the package group',
+          message: 'Enter the name of the package group',
+          initial: `${defaultName}`,
+          format: val => val || `${defaultName}`,
         },
         {
           type: 'text',
           name: 'packageName',
-          message: 'Please enter the .zip file name of the content package',
+          message: 'Enter the .zip file name of the content package',
+          initial: `${titleCase(defaultName)} Design System`,
+          format: val => val || `${titleCase(defaultName)} Design System`,
         },
         {
           type: 'text',
-          name: 'aemContentPath',
+          name: 'localPackagePath',
           message:
-            'Please enter the local path within the code base to where you want to store the AEM content package. This will default to ".stories/library"',
+            'Enter the local path within the code base to where you want to store the AEM content package',
+          initial: '.stories/aem-library',
           format: val => val || '.stories/aem-library',
         },
       ]);

@@ -1,4 +1,4 @@
-export default ({storyPath}) => `
+export default ({ storyPath }) => `
 module.exports = {
   stories: [
     '${storyPath}'
@@ -6,4 +6,4 @@ module.exports = {
   addons: [
   ]
 };
-`
+`;

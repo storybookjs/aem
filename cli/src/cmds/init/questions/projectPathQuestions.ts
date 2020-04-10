@@ -17,7 +17,7 @@ export default async (args, config, absoluteRootPath) => {
       await prompts({
         type: 'select',
         name: 'pathSegment',
-        message: `Navigate to the directory containing your components.\n  If you have more than one component directory they can be added in the "@storybook/aem-cli" section of the package.json.\n  `,
+        message: `Navigate to the directory containing your components`,
         choices: [
           { title: 'Select this folder', value: CHOICE_FINISHED_NAVIGATING },
           ...getChoicesFromDirectories(path.join(...componentPath)),

@@ -18,4 +18,4 @@ module.exports = function expressMiddleware (router) {
         changeOrigin: true
     }));
 }
-`
+`;
