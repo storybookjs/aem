@@ -2,9 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import npm from 'npm';
 import ncp from 'ncp';
+import middlewareFileTemplate from './templates/middleware';
+import previewFileTemplate from './templates/preview';
+import mainFileTemplate from './templates/main';
+import { promisify } from 'util';
 import { createStory } from '../stories/story';
 import { log, getPackageJSON } from '../../utils';
 
+const writeFilePromise = promisify(fs.writeFile);
 const cwd = process.cwd();
 
 export default async answers => {
@@ -20,27 +25,38 @@ export default async answers => {
   if (answers.storybookLocation) {
     let storybookDirectory = path.resolve(cwd, answers.storybookLocation);
     if (!fs.existsSync(storybookDirectory)){
-        fs.mkdirSync(storybookDirectory);
+      fs.mkdirSync(storybookDirectory);
     }
   }
 
   if (answers.storybookStoryLocation) {
-    let storybookStoriesDirectory = path.resolve(cwd, answers.storybookStoryLocation);
+    const storybookStoriesDirectory = path.resolve(cwd, answers.storybookStoryLocation);
     if (!fs.existsSync(storybookStoriesDirectory)){
-        fs.mkdirSync(storybookStoriesDirectory);
+      fs.mkdirSync(storybookStoriesDirectory);
     }
   }
 
-  // TODO Create main.js
-  // TODO Create preview.js
+  const mainFilePath = path.resolve(cwd, answers.storybookLocation, 'main.js');
+  if (!fs.existsSync(mainFilePath)){
+    await writeFilePromise(mainFilePath, mainFileTemplate({
+      storyPath: path.join(path.relative(answers.storybookLocation, answers.storybookStoryLocation), '**', '*.stories.*')
+    }));
+  }
+
+  const previewFilePath = path.resolve(cwd, answers.storybookLocation, 'preview.js');
+  if (!fs.existsSync(previewFilePath)){
+    await writeFilePromise(previewFilePath, previewFileTemplate());
+  }
 
   if (answers.createAEMContent) {
-    // TODO Create middleware.js
+    const middlewareFilePath = path.resolve(cwd, answers.storybookLocation, 'middleware.js');
+    if (!fs.existsSync(middlewareFilePath)){
+      await writeFilePromise(middlewareFilePath, middlewareFileTemplate());
+    }
   }
 
   // TODO Create preview-head.js or otherwise figure out how to include the clientlibs
 
-  // TODO Create the first story.
   log('Lets create your first story');
   await createStory([], answers);
 
