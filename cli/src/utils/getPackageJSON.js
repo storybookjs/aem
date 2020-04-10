@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { error } from './index';
+import { error } from './error';
 
 export const getPackageJSON = path => {
   try {
