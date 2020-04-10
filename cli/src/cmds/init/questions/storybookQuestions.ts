@@ -27,7 +27,7 @@ export default async (args, config, rootPath) => {
       inactive: 'No',
     },
     {
-      type: (prev) => prev ? 'toggle' : null,
+      type: prev => (prev ? 'toggle' : null),
       name: 'storybookStoryLocation',
       message: 'Use default story file location? e.g. "stories"',
       initial: true,
@@ -45,6 +45,6 @@ export default async (args, config, rootPath) => {
   return {
     ...config,
     storybookLocation: storybookAnswers.storybookLocation,
-    storybookStoryLocation: storybookAnswers.storybookStoryLocation
+    storybookStoryLocation: storybookAnswers.storybookStoryLocation,
   };
 };

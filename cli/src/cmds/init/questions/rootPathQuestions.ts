@@ -1,12 +1,14 @@
 import prompts from 'prompts';
 
 export default async () => {
-  return (await prompts({
+  return (
+    await prompts({
       type: 'select',
       name: 'projectRoot',
       message: 'Select the top level project root folder',
-      choices: getRootDirectoryChoices().reverse()
-  })).projectRoot;
+      choices: getRootDirectoryChoices().reverse(),
+    })
+  ).projectRoot;
 };
 
 function getRootDirectoryChoices() {
@@ -14,11 +16,11 @@ function getRootDirectoryChoices() {
   const directories = cwd.split('/');
   const choices = [];
 
-  directories.forEach( directory => {
-      choices.push({
-          title: `${cwd.split(directory)[0]}${directory}`,
-          value: `${cwd.split(directory)[0]}${directory}`
-      });
+  directories.forEach(directory => {
+    choices.push({
+      title: `${cwd.split(directory)[0]}${directory}`,
+      value: `${cwd.split(directory)[0]}${directory}`,
+    });
   });
 
   return choices;

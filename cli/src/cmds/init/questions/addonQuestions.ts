@@ -1,7 +1,7 @@
 import prompts from 'prompts';
 
 export default async (args, config, rootPath) => {
-  const addonAnswers = (await prompts([
+  const addonAnswers = await prompts([
     {
       type: 'toggle',
       name: 'storybookAEMStyleSystem',
@@ -17,8 +17,8 @@ export default async (args, config, rootPath) => {
       initial: true,
       active: 'Yes',
       inactive: 'No',
-    }
-  ]));
+    },
+  ]);
 
   return { ...config, ...addonAnswers };
 };
