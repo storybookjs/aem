@@ -11,7 +11,7 @@
     "build": "yarn build:tsc",
     "build:tsc": "lerna exec --scope @storybook/* --parallel -- cross-env-shell node \\$LERNA_ROOT_PATH/scripts/watch-tsc.js",
     "build-kitchen-sink-storybook": "cd ./examples/aem-kitchen-sink && build-storybook",
-    "netlify-build": "npm-run-all yarn build-kitchen-sink-storybook",
+    "netlify-build": "npm-run-all yarn yarn build build-kitchen-sink-storybook",
     "lint": "yarn lint:js",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.json,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "test": "jest",
