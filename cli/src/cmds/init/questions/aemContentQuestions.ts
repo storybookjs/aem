@@ -1,5 +1,8 @@
 import prompts from 'prompts';
 import path from 'path';
+import { resourceTypePrompt } from '../../../utils';
+
+const cwd = process.cwd();
 
 export default async (args, config, absoluteRootPath) => {
   let aemContentAnswers = await prompts({
@@ -12,45 +15,35 @@ export default async (args, config, absoluteRootPath) => {
   });
 
   if (aemContentAnswers.createAEMContent) {
-    aemContentAnswers = {
-      ...aemContentAnswers,
-      ...(await prompts([
-        {
-          type: 'text',
-          name: 'aemContentPath',
-          message: 'Enter the AEM content path that you want the design system at',
-          initial: `/content/${path.basename(absoluteRootPath)}-design-system`,
-          format: val => val || `/content/${path.basename(absoluteRootPath)}-design-system`,
-        },
-        {
-          type: 'text',
-          name: 'aemContentDefaultPageResourceType',
-          message: 'Enter the resource type of the page component',
-        },
-        {
-          type: 'text',
-          name: 'aemContentDefaultPageTemplate',
-          message: 'Enter the full AEM path of the page template',
-        },
-        {
-          type: 'text',
-          name: 'aemContentDefaultPageContentPath',
-          message: 'Enter the path to the parsys relative to the pages jcr:root node',
-        },
-        {
-          type: 'text',
-          name: 'aemStoryHeadingComponentResourceType',
-          message: 'Enter the resource type of the story heading component',
-        },
-        {
-          type: 'text',
-          name: 'aemStoryHeadingComponentTitleProperty',
-          message: 'Enter the title property of the story heading component',
-          initial: 'jcr:title',
-          format: val => val || 'jcr:title',
-        },
-      ])),
-    };
+    const appsPath = path.join(cwd, config.appsPath);
+    const componentPath = path.join(cwd, config.componentPaths[0]);
+
+    aemContentAnswers.aemContentPath = (await prompts({
+      type: 'text',
+      name: 'aemContentPath',
+      message: 'Enter the AEM content path that you want the design system at',
+      initial: `/content/${path.basename(absoluteRootPath)}-design-system`,
+      format: val => val || `/content/${path.basename(absoluteRootPath)}-design-system`,
+    })).aemContentPath;
+
+    aemContentAnswers.aemContentDefaultPageResourceType = await resourceTypePrompt(appsPath, 'Navigate to the page type that you want to use');
+    aemContentAnswers.aemContentDefaultPageTemplate = await resourceTypePrompt(appsPath, 'Navigate to the template that you want to use');
+
+    aemContentAnswers.aemContentPath = (await prompts({
+      type: 'text',
+      name: 'aemContentDefaultPageContentPath',
+      message: 'Enter the path to the parsys relative to the pages jcr:root node',
+    })).aemContentPath;
+
+    aemContentAnswers.aemStoryHeadingComponentResourceType = await resourceTypePrompt(componentPath, 'Navigate to the heading component that you want to use');
+
+    aemContentAnswers.aemContentPath = (await prompts({
+      type: 'text',
+      name: 'aemStoryHeadingComponentTitleProperty',
+      message: 'Enter the title property of the story heading component',
+      initial: 'jcr:title',
+      format: val => val || 'jcr:title',
+    })).aemContentPath;
   }
 
   return { ...config, ...aemContentAnswers };

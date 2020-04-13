@@ -14,9 +14,7 @@ export default async () => {
     const { packageChoice } = await prompts({
       type: 'select',
       name: 'packageChoice',
-      message: `No package.json file found.\n  If is in another directory or you want to create the package.json yourself please quit and run ${chalk.underline.bold(
-        'sba init'
-      )} from that directory.\n  What do you want to do?\n  `,
+      message: `No package.json file found in this directory. What do you want to do?`,
       choices: [
         { title: 'npm init', value: CHOICE_NPM },
         { title: 'yarn init', value: CHOICE_YARN },
