@@ -21,7 +21,7 @@ Commands:
 
 ### Init
 
-The `sba init` command will initialize the `@storybook/aem` section of the package.json and create the folder structure. The `--use-defaults` option will reduce the number of questions asked.
+The `sba init` command will initialize the `@storybook/aem` section of the package.json and create the folder structure. The `--use-defaults` option will reduce the number of questions asked. It assumes that your components already exist within the codebase.
 
 ### Story
 
