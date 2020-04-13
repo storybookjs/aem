@@ -15,10 +15,10 @@ export const storyCommand = async (args, config) => {
   if (args.includes(ARG_CREATE) && args.includes(ARG_ALL)) {
     storyConfig.singleStory = false;
     storyConfig.openBrowser = false;
-    createStory(args, storyConfig);
+    await createStory(args, storyConfig);
   } else if (args.includes(ARG_CREATE)) {
     storyConfig.singleStory = true;
-    createStory(args, storyConfig);
+    await createStory(args, storyConfig);
   } else {
     // Ask questions to see what they want to do
     const response = await prompts({
@@ -33,11 +33,11 @@ export const storyCommand = async (args, config) => {
 
     if (response.operation === CHOICE_SINGLE_STORY) {
       storyConfig.singleStory = true;
-      createStory(args, storyConfig);
+      await createStory(args, storyConfig);
     } else if (response.operation === CHOICE_ALL_STORIES) {
       storyConfig.singleStory = false;
       storyConfig.openBrowser = false;
-      createStory(args, storyConfig);
+      await createStory(args, storyConfig);
     }
   }
 };
