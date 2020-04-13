@@ -1,4 +1,3 @@
-import prompts from 'prompts';
 import path from 'path';
 import { log, navigatePrompt } from '../../../utils';
 
