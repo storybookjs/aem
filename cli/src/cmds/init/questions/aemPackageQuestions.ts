@@ -10,7 +10,7 @@ export default async (args, config, absoluteRootPath) => {
     const { createAEMPackage } = await prompts({
       type: 'toggle',
       name: 'createAEMPackage',
-      message: `Do you wish to create an AEM content package for your stories?`,
+      message: `Do you wish to create an AEM content package for your stories? You will need to create this in AEM manually.`,
       initial: true,
       active: 'Yes',
       inactive: 'No',

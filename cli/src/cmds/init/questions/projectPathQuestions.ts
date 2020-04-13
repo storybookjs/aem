@@ -5,7 +5,10 @@ import { log, navigatePrompt } from '../../../utils';
 const cwd = process.cwd();
 
 export default async (args, config, absoluteRootPath) => {
-  const componentPath = await navigatePrompt(absoluteRootPath, 'Navigate to the directory containing your components');
+  const componentPath = await navigatePrompt(
+    absoluteRootPath,
+    'Navigate to the directory containing your components'
+  );
   const projectPathAnswers: any = {};
 
   if (componentPath.includes('jcr_root')) {

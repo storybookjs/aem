@@ -30,8 +30,8 @@ export const initCommand = async args => {
   const packages = await createFiles(answers);
 
   // This does not wait for the user prompt, it skipps to the npm install.
-  //log('Lets create some stories');
-  //await storyCommand([], answers);
+  // log('Lets create some stories');
+  // await storyCommand([], answers);
 
   install(packages);
 };
