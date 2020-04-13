@@ -18,8 +18,8 @@ function getRootDirectoryChoices() {
 
   directories.forEach(directory => {
     choices.push({
-      title: `${cwd.split(directory)[0]}${directory}`,
-      value: `${cwd.split(directory)[0]}${directory}`,
+      title: cwd.split(directory)[0] + directory,
+      value: cwd.split(directory)[0] + directory,
     });
   });
 

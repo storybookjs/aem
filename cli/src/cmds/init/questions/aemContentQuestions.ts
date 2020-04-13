@@ -8,7 +8,7 @@ export default async (args, config, absoluteRootPath) => {
   const aemContentAnswers = await prompts({
     type: 'toggle',
     name: 'createAEMContent',
-    message: `Do you wish to create content in AEM for your stories?`,
+    message: 'Do you wish to create content in AEM for your stories?',
     initial: true,
     active: 'Yes',
     inactive: 'No',
@@ -37,20 +37,20 @@ export default async (args, config, absoluteRootPath) => {
       'Navigate to the template that you want to use'
     );
 
-    aemContentAnswers.aemContentPath = (
+    aemContentAnswers.aemContentDefaultPageContentPath = (
       await prompts({
         type: 'text',
         name: 'aemContentDefaultPageContentPath',
         message: 'Enter the path to the parsys relative to the pages jcr:root node',
       })
-    ).aemContentPath;
+    ).aemContentDefaultPageContentPath;
 
     aemContentAnswers.aemStoryHeadingComponentResourceType = await resourceTypePrompt(
       componentPath,
       'Navigate to the heading component that you want to use'
     );
 
-    aemContentAnswers.aemContentPath = (
+    aemContentAnswers.aemStoryHeadingComponentTitleProperty = (
       await prompts({
         type: 'text',
         name: 'aemStoryHeadingComponentTitleProperty',
@@ -58,7 +58,7 @@ export default async (args, config, absoluteRootPath) => {
         initial: 'jcr:title',
         format: val => val || 'jcr:title',
       })
-    ).aemContentPath;
+    ).aemStoryHeadingComponentTitleProperty;
   }
 
   return { ...config, ...aemContentAnswers };

@@ -14,7 +14,7 @@ export default async () => {
     const { packageChoice } = await prompts({
       type: 'select',
       name: 'packageChoice',
-      message: `No package.json file found in this directory. What do you want to do?`,
+      message: 'No package.json file found in this directory. What do you want to do?',
       choices: [
         { title: 'npm init', value: CHOICE_NPM },
         { title: 'yarn init', value: CHOICE_YARN },
@@ -23,9 +23,9 @@ export default async () => {
     });
 
     if (packageChoice === CHOICE_NPM) {
-      await execPromise(`npm init -y`);
+      await execPromise('npm init -y');
     } else if (packageChoice === CHOICE_NPM) {
-      await execPromise(`yarn init -y`);
+      await execPromise('yarn init -y');
     } else {
       process.exit(1);
     }
