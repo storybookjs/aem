@@ -8,10 +8,11 @@
     "example": "examples"
   },
   "scripts": {
-    "build": "yarn build:tsc",
-    "build:tsc": "lerna exec --scope @storybook/* --parallel -- cross-env-shell node \\$LERNA_ROOT_PATH/scripts/watch-tsc.js",
+    "build": "yarn build-watch:tsc",
+    "build-watch:tsc": "lerna exec --scope @storybook/* --parallel -- cross-env-shell node \\$LERNA_ROOT_PATH/scripts/watch-tsc.js",
+    "build:tsc": "lerna exec --scope @storybook/* --parallel -- cross-env-shell node \\$LERNA_ROOT_PATH/scripts/tsc.js",
     "build-kitchen-sink-storybook": "cd ./examples/aem-kitchen-sink && build-storybook",
-    "netlify-build": "npm-run-all yarn build-kitchen-sink-storybook",
+    "netlify-build": "npm-run-all yarn build:tsc build-kitchen-sink-storybook",
     "lint": "yarn lint:js",
     "lint:js": "cross-env NODE_ENV=production eslint --cache --cache-location=.cache/eslint --ext .js,.jsx,.json,.html,.ts,.tsx,.mjs --report-unused-disable-directives .",
     "test": "jest",
