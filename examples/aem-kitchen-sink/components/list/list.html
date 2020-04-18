@@ -2,5 +2,7 @@
     data-sly-list.item="${list.items}"
     data-sly-use.itemTemplate="item.html"
     class="cmp-list">
-    <li class="cmp-list__item" data-sly-call="${itemTemplate.item @ list = list, item = item}"></li>
+    <li class="cmp-list__item" 
+        data-sly-call="${itemTemplate.item @ list=list, item = item}"
+        data-sly-test="${item.title != ''}"></li>
 </ul>
