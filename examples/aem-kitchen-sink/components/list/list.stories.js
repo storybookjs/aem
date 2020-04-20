@@ -1,6 +1,7 @@
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 import ListTemplate from './list.html';
-import { schema } from './list.stories.schema';
+import Schema from './list.schema';
+import { contentFromSchema } from '../../.storybook/schema';
 
 export default {
   title: 'List',
@@ -10,51 +11,54 @@ export default {
 };
 
 export const List = () => ({
-  content: schema({
-    ":items": 4
+  content: contentFromSchema(Schema(),{
+    linkItems: true,
+    ":items": [{
+      "title": "test"
+    },{},{}]
   }, true),
   template: ListTemplate,
 });
 
 export const ListWithLinks = () => ({
-    content: schema({
+    content: contentFromSchema(Schema(),{
       linkItems: true,
-      ":items": 5
+      ":items": [{},{},{},{},{}]
     }, true),
     template: ListTemplate,
 });
 
 export const ListWithDescription = () => ({
-    content: schema({
+    content: contentFromSchema(Schema(),{
       showDescription: true,
-      ":items": 10
+      ":items": [{},{},{},{},{},{},{},{},{}]
     }, true),
     template: ListTemplate,
 });
 
 export const ListWithModificationDate = () => ({
-    content: schema({
+    content: contentFromSchema(Schema(),{
       showModificationDate: true,
-      ":items": 10
+      ":items": [{},{},{},{},{},{}]
     }, true),
     template: ListTemplate,
 });
 
 export const ListWithLinksAndDescription = () => ({
-    content: schema({
+    content: contentFromSchema(Schema(),{
       linkItems: true,
       showDescription: true,
-      ":items": 2
+      ":items": [{},{},{},{},{}]
     }, true),
     template: ListTemplate,
 });
 
 export const ListWithLinksDescriptionAndModificationDate = () => ({
-    content: schema({
+    content: contentFromSchema(Schema(),{
       linkItems: true,
       showDescription: true,
       showModificationDate: true,
-      ":items": 4
+      ":items": [{},{},]
     }, true),
     template: ListTemplate,
 });
