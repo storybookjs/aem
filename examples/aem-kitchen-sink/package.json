@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@storybook/aem": "*",
+    "@storybook/aem-cli": "*",
     "@storybook/addon-a11y": "6.0.0-alpha.2",
     "@storybook/addon-actions": "6.0.0-alpha.2",
     "@storybook/addon-backgrounds": "6.0.0-alpha.2",
