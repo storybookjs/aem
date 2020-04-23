@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { minify } from 'html-minifier';
 
+const cwd = process.cwd();
+
 const htmlFiles = [];
 /* eslint-disable consistent-return */
 const getAllHTMLFiles = async rootPath => {
@@ -25,10 +27,11 @@ const getAllHTMLFiles = async rootPath => {
   return htmlFiles;
 };
 
+/* eslint-disable no-shadow */
 const readAllFiles = async files => {
   files.forEach(filename => {
     /* eslint-disable no-param-reassign */
-    fs.readFile(path.resolve(__dirname, filename), 'utf-8', async (err, fileContent) => {
+    fs.readFile(path.resolve(cwd, filename), 'utf-8', async (err, fileContent) => {
       if (err) {
         console.error('Could not read file', err);
         return;
@@ -40,7 +43,7 @@ const readAllFiles = async files => {
         // preventAttributesEscaping: true,
         removeTagWhitespace: true,
       });
-      getDataSly(filename, fileContent);
+      const { include, resource, use, files } = await getDataSly(filename, fileContent);
     });
   });
 
@@ -48,7 +51,11 @@ const readAllFiles = async files => {
 };
 
 const getDataSly = async (filename, fileContent) => {
-  const includes = [];
+  const include = [];
+  const use = [];
+  const resource = [];
+  const other = [];
+  const files = [];
   const dataSlyRegex = /(data-sly-(.*?)="(.*?)")/g;
 
   fileContent.match(dataSlyRegex).forEach(attribute => {
@@ -66,12 +73,46 @@ const getDataSly = async (filename, fileContent) => {
     if (attributeValue.endsWith(`"`) || attributeValue.endsWith(`'`))
       attributeValue = attributeValue.slice(0, -1);
 
-    if (attributeType === `include` || attributeType === `use` || attributeType === `resource`) {
-      includes.push(attributeValue);
+    if (attributeValue.includes('.html') || attributeValue.includes('/'))
+      files.push(attributeValue);
+
+    switch (attributeType) {
+      case `include`: {
+        include.push(attributeValue);
+        break;
+      }
+      case `use`: {
+        if (!attributeValue.includes(`.html`) || !attributeValue.includes(`/`))
+          use.push(attributeValue);
+        break;
+      }
+      case `resource`: {
+        resource.push(attributeValue);
+        break;
+      }
+      default: {
+        other.push({ [attributeType]: attributeValue });
+        break;
+      }
     }
   });
-  /* eslint-disable no-console */
-  console.log(`\nFile: ${filename}`, `\nIncludes:`, includes);
+
+  if (include.length || use.length || resource.length || other.length || files.length) {
+    /* eslint-disable no-console */
+    console.log(`\nFile: ${filename}`);
+    /* eslint-disable no-console */
+    if (include.length) console.log(`- Includes:`, include);
+    /* eslint-disable no-console */
+    if (use.length) console.log(`- Models:`, use);
+    /* eslint-disable no-console */
+    if (resource.length) console.log(`- Resources:`, resource);
+    /* eslint-disable no-console */
+    if (other.length) console.log(`- Other:`, other);
+    /* eslint-disable no-console */
+    if (files.length) console.log(`- Files:`, files);
+  }
+
+  return { include, resource, use, files };
 };
 
 // const getAllIncludes = async (filename,fileContent) => {
@@ -85,8 +126,8 @@ const getDataSly = async (filename, fileContent) => {
 // };
 
 export const analyzeCommand = async (args, config) => {
-  const componentsPath = config.componentPaths.forEach(async componentPath => {
-    const files = await getAllHTMLFiles();
+  config.componentPaths.forEach(async componentPath => {
+    const files = await getAllHTMLFiles(path.resolve(cwd, componentPath));
     const includes = await readAllFiles(files);
   });
 };
