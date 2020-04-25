@@ -1,25 +1,16 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { minify } from 'html-minifier';
+import { getDataSly } from './getDataSly';
 
 const cwd = process.cwd();
 
 export const readFiles = async files => {
-  const fileContents = [];
-
-  files.forEach(filename => {
+  return files.map(filename => {
     const content = readFileSync(resolve(cwd, filename), 'utf-8');
-
-    fileContents.push(
-      minify(content, {
-        collapseWhitespace: true,
-        removeComments: true,
-        keepClosingSlash: true,
-        preventAttributesEscaping: true,
-        removeTagWhitespace: true,
-      })
-    );
+    const dataSly = getDataSly(content);
+    return {
+      filename,
+      dataSly,
+    };
   });
-
-  return fileContents;
 };
