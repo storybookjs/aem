@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { minify } from 'html-minifier';
 import { getAllHTMLFiles } from './getAllHtmlFiles';
+import { readFiles } from './readFiles';
 
 const cwd = process.cwd();
 
@@ -131,8 +132,6 @@ const cwd = process.cwd();
 export const analyzeCommand = async (args, config) => {
   config.componentPaths.forEach(async componentPath => {
     const files = await getAllHTMLFiles(path.resolve(cwd, componentPath), '.html');
-    console.log('files:', files);
-    // const includes = await readAllFiles(files);
-    // console.log('includes:', includes)
+    const fileContents = await readFiles(files);
   });
 };
