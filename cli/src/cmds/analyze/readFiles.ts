@@ -7,8 +7,7 @@ const cwd = process.cwd();
 export const readFiles = async files => {
   const fileContents = [];
 
-  for (let i = 0; i < files.length; i += 1) {
-    const filename = files[i];
+  files.forEach(filename => {
     const content = readFileSync(resolve(cwd, filename), 'utf-8');
 
     fileContents.push(
@@ -20,7 +19,7 @@ export const readFiles = async files => {
         removeTagWhitespace: true,
       })
     );
-  }
+  });
 
   return fileContents;
 };
