@@ -1,19 +1,44 @@
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { minify } from 'html-minifier';
 import { getReferencedFiles } from './getReferencedFiles';
 import { getUseModels } from './getUseModels';
 import { getModelSchema } from './getModelSchema';
 import { getCss } from './getCss';
 import { getJs } from './getJs';
+import { log } from '../../utils';
 
-const cwd = process.cwd();
+const minifyHTL = htl => {
+  return minify(htl, {
+    collapseBooleanAttributes: true,
+    collapseWhitespace: true,
+    decodeEntities: true,
+    html5: true,
+    keepClosingSlash: true,
+    minifyCSS: true,
+    minifyJS: true,
+    removeComments: true,
+    trimCustomFragments: true,
+    useShortDoctype: true,
+  });
+};
 
-export const readFiles = async files => {
-  return files.map(filename => {
-    const htl = readFileSync(resolve(cwd, filename), 'utf-8');
-    return {
-      filename,
-      htl,
+/* eslint-disable no-param-reassign */
+export const readFiles = files => {
+  /* eslint-disable array-callback-return */
+  Object.keys(files).map(key => {
+    const { filepath } = files[key];
+    const htl = readFileSync(filepath, 'utf-8');
+    let minifiedHTL = htl;
+    try {
+      minifiedHTL = minifyHTL(htl);
+    } catch (e) {
+      /* eslint-disable no-console */
+      console.warn(`\nError minifying HTL of file: ${filepath}\n\n`, e, `\n`);
+    }
+    log(`Analyzing file: ${filepath}`);
+    files[key] = {
+      ...files[key],
+      htl: minifiedHTL,
       css: getCss(),
       js: getJs(),
       referencedFiles: getReferencedFiles(htl),
@@ -21,4 +46,5 @@ export const readFiles = async files => {
       modelSchema: getModelSchema(htl),
     };
   });
+  return files;
 };

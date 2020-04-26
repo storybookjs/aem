@@ -1,13 +1,12 @@
-import path from 'path';
+import { resolve } from 'path';
 import { getAllHTMLFiles } from './getAllHtmlFiles';
 import { readFiles } from './readFiles';
-
-const cwd = process.cwd();
+import { cacheContent } from './cacheContent';
 
 export const analyzeCommand = async (args, config) => {
   config.componentPaths.forEach(async componentPath => {
-    const files = await getAllHTMLFiles(path.resolve(cwd, componentPath), '.html');
-    const fileContents = await readFiles(files);
-    // console.log(JSON.stringify(fileContents,null,2));
+    const files = await getAllHTMLFiles(resolve(process.cwd(), componentPath), '.html');
+    const fileContents = readFiles(files);
+    cacheContent(fileContents, config);
   });
 };
