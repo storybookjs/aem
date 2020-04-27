@@ -1,26 +1,11 @@
 import { readFileSync } from 'fs';
-import { minify } from 'html-minifier';
+import { minifyHTL } from './minifyHTL';
 import { getReferencedFiles } from './getReferencedFiles';
 import { getUseModels } from './getUseModels';
 import { getModelSchema } from './getModelSchema';
 import { getCss } from './getCss';
 import { getJs } from './getJs';
 import { log } from '../../utils';
-
-const minifyHTL = htl => {
-  return minify(htl, {
-    collapseBooleanAttributes: true,
-    collapseWhitespace: true,
-    decodeEntities: true,
-    html5: true,
-    keepClosingSlash: true,
-    minifyCSS: true,
-    minifyJS: true,
-    removeComments: true,
-    trimCustomFragments: true,
-    useShortDoctype: true,
-  });
-};
 
 /* eslint-disable no-param-reassign */
 export const readFiles = files => {

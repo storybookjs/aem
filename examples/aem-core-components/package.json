@@ -51,6 +51,9 @@
     "storyRoot": "Components",
     "packageGroup": "storybook",
     "packageName": "storybook-library.zip",
-    "aemContentPath": "/content/storybook/storybook-library"
+    "aemContentPath": "/content/storybook/storybook-library",
+    "libs": [
+      "/apps/core/wcm/components"
+    ]
   }
 }
