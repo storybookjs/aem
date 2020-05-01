@@ -19,8 +19,7 @@ export const libsCommand = async (args, config) => {
     cache[type] = {
       html: {},
       entry: ``,
-      js: ``,
-      css: ``,
+      clientlibs: {},
     };
   });
 

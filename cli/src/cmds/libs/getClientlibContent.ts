@@ -15,11 +15,12 @@ export const getClientlibContent = async (fileArray, cache) => {
     if (cssResponse.ok) css = await cssResponse.text();
     if (jsResponse.ok) js = await jsResponse.text();
 
-    const componentType = path.split('clientlibs')[0];
+    /* eslint-disable prefer-const */
+    let [componentType, name] = path.split('clientlibs');
+    if (name.startsWith('/')) name = name.substr(1);
 
     if (cache[componentType]) {
-      cache[componentType].css = css;
-      cache[componentType].js = js;
+      cache[componentType].clientlibs[name] = { css, js };
     } else {
       cache.clientlibs[componentType] = { css, js };
     }
