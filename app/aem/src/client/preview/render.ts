@@ -8,6 +8,7 @@ import { RenderMainArgs, ShowErrorArgs, DecorationTag, AemMetadata } from './typ
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
 import { simulatePageLoad, simulateDOMContentLoaded } from './helpers/simulate-pageload';
+import runtimeVariables from './helpers/runtime-variables';
 
 const DIV_TAG = 'div';
 const TYPE_STRING = 'string';
@@ -28,8 +29,17 @@ const createRuntime = (
 ) => {
   const models: Record<string, any> = aemMetadata ? aemMetadata.models : {};
   const components: any[] = aemMetadata ? aemMetadata.components : [];
+
+  const runtimeGlobals = {
+    ...runtimeVariables(),
+    models, // this is an internal object that is used in the model proxy
+    content, // this is internal module.json content. todo: think of better abstraction
+    properties: content, // not quite right, since content here is module.json content
+    wcmmode,
+  };
+
   return new Runtime()
-    .setGlobal({ models, wcmmode, component: { properties: {} }, content })
+    .setGlobal(runtimeGlobals)
     .withDomFactory(new VDOMFactory(window.document.implementation).withKeepFragment(true))
     .withResourceLoader(
       new ResourceResolver(content || {}, new ComponentLoader(components)).createResourceLoader(

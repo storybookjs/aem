@@ -1,0 +1,66 @@
+<h1>Global Variables Example</h1>
+<p>
+    Shows how the global variables that are available in the
+    <a href="https://sling.apache.org/documentation/bundles/scripting/scripting-htl.html#global-objects">Sling HTL Engine</a>
+    are handled in Storybook AEM.
+</p>
+
+<h2>properties</h2>
+the properties (aka ValueMap) of the current resource:
+
+<h3>Example:</h3>
+<code>
+    ${"<div>\u0024{properties.text\u007d</div>" @ context = "text"}
+</code>
+<h4>gives:</h4>
+<p>
+<div>${properties.text}</div>
+</p>
+
+<h2>log</h2>
+Maps to <code>console</code>. only useful in use classes.
+
+<h2>wcmmode</h2>
+Always <code>{}</code>
+
+<h2>component</h2>
+Storybook component object.
+
+<h2>Unsupported</h2>
+
+<p>
+    The following global variables are all mapped to a <em>dummy</em> object that return a debug message.
+</p>
+
+
+<code>componentContext</code>,
+<code>currentDesign</code>,
+<code>currentNode</code>,
+<code>currentPage</code>,
+<code>currentSession</code>,
+<code>currentStyle</code>,
+<code>designer</code>,
+<code>editContext</code>,
+<code>inheritedPageProperties</code>,
+<code>out</code>,
+<code>pageManager</code>,
+<code>pageProperties</code>,
+<code>reader</code>,
+<code>request</code>,
+<code>resolver</code>,
+<code>resource</code>,
+<code>resourceDesign</code>,
+<code>resourcePage</code>,
+<code>response</code>,
+<code>sling</code>,
+<code>slyWcmHelper</code>,
+<code>xssAPI</code>,
+
+<h3>Example:</h3>
+<code>
+    ${"<div>\u0024{currentNode.path\u007d</div>" @ context = "text"}
+</code>
+<h4>gives:</h4>
+<p>
+    <div>${currentNode.path}</div>
+</p>

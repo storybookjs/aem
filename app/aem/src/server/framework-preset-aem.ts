@@ -1,8 +1,9 @@
 import * as path from 'path';
 import { Configuration } from 'webpack';
+import runtimeVariables from '../client/preview/helpers/runtime-variables';
 
 const modGen = (baseDir, varName, id) => {
-  // todo: only proxy the models atually defined as models.
+  // todo: only proxy the models that are actually defined as models.
   return `const ${varName} = require('@storybook/aem').modelProxy(${JSON.stringify(id)});`;
 };
 
@@ -22,7 +23,7 @@ export function webpack(config: Configuration) {
                 moduleImportGenerator: modGen,
                 includeRuntime: false,
                 globalName: 'context',
-                runtimeVars: ['wcmmode', 'component'],
+                runtimeVars: Object.keys(runtimeVariables()),
               },
             },
           ],
