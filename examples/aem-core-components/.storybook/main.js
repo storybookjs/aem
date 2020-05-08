@@ -16,3 +16,5 @@ module.exports = {
     "@storybook/addon-viewport"
   ]
 };
+
+AEMRegisterJcrRoot(require('../config').jcrRoots);
