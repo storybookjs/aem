@@ -1,6 +1,6 @@
 module.exports = {
   stories: [
-    `../core/wcm/components/**/*.stories.*`,
+    `../jcr_root/apps/core/wcm/components/**/*.stories.*`,
   ],
   addons: [
     "@storybook/addon-docs",
@@ -16,3 +16,5 @@ module.exports = {
     "@storybook/addon-viewport"
   ]
 };
+
+AEMRegisterJcrRoot(require('../config').jcrRoots);

@@ -17,3 +17,6 @@ module.exports = {
     "@storybook/addon-viewport"
   ]
 };
+
+// need to specify the additional jcrRoots from dependencies
+AEMRegisterJcrRoot(require('@adobe/aem-core-components-storified/config').jcrRoots);

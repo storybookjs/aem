@@ -218,6 +218,20 @@ export default class Person extends GenericModel {
 </div>
 ```
 
+### Extending from other projects.
+
+Extending from other projects is mostly straight forward, just import the components and models accordingly.
+A 3rd party project might choose to deliberately export the list of components and models, so just import
+their definition. see the `examples/aem-core-components` and how they imported in `examples/aem-kitchen-sink`. 
+
+However, if the 3rd party projects use template references, the HTL compiler can't resolve them. So they need
+to be specified during build time. This is currently only possible by using the `AEMRegisterJcrRoot` function.
+See [aem-kitchen-sink/.storybook/main.js](./examples/aem-kitchen-sink/.storybook/main.js#L22).
+
+The `AEMRegisterJcrRoot` function can also be used, if your project's content root is not the project directory.
+See [aem-core-components/.storybook/main.js](./examples/aem-core-components/.storybook/main.js#L20).
+
+
 ### Contributing
 
 For more information about how to start contributing to this project, see our [contributing file](./CONTRIBUTING.md).
