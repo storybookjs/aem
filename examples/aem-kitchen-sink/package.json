@@ -35,6 +35,13 @@
   "@storybook/aem-cli": {
     "storybookLocation": ".storybook",
     "localPackagePath": ".storybook/storybook-library/",
+    "dependencies": {
+      "package": ".storybook/dependencies/",
+      "libs": [
+        "/apps/core/wcm/components",
+        "/libs/wcm/foundation/components/parsys/newpar"
+      ]
+    },
     "uiApps": "./components",
     "componentPaths": [
       "./components"
