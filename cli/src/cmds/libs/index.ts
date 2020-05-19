@@ -6,9 +6,11 @@ import { getComponentTypes } from './getComponentTypes';
 import { getFileContent } from './getFileContent';
 import { getClientlibContent } from './getClientlibContent';
 import { createPackageDefinition } from './createPackageDefinition';
+import { installPackage } from './installPackage';
 
 export const libsCommand = async (args, config) => {
-  createPackageDefinition(args, config);
+  await createPackageDefinition(args, config);
+  await installPackage(args, config);
 
   // const htmlQuery = `/bin/querybuilder.json?type=nt:file&nodename=*.html&path=/apps/core/wcm/components&p.limit=-1`;
   // const htmlResponse = await fetchFromAEM({ url: htmlQuery });

@@ -9,7 +9,7 @@
     <f0
       jcr:primaryType="nt:unstructured"
       mode="replace"
-      root="/apps/core/wcm/components"
+      root="/apps/core/wcm/components/"
       rules="[]"/>
     <f1
       jcr:primaryType="nt:unstructured"

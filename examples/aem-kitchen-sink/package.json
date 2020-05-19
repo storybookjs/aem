@@ -34,11 +34,13 @@
   },
   "@storybook/aem-cli": {
     "storybookLocation": ".storybook",
-    "localPackagePath": ".storybook/storybook-library/",
+    "localPackagePath": ".storybook/dependencies/components/",
     "dependencies": {
-      "package": ".storybook/dependencies/",
+      "path": ".storybook/dependencies/",
+      "package": "storybook-dependencies.zip",
+      "componentsFolder": "components/",
       "libs": [
-        "/apps/core/wcm/components",
+        "/apps/core/wcm/components/",
         "/libs/wcm/foundation/components/parsys/newpar"
       ]
     },
@@ -58,7 +60,6 @@
     "aemStoryHeadingComponentTitleProperty": "jcr:title",
     "storyRoot": "Components",
     "packageGroup": "storybook",
-    "packageName": "storybook-library.zip",
-    "aemContentPath": "/content/storybook/storybook-library"
+    "packageName": "dependencies.zip"
   }
 }
