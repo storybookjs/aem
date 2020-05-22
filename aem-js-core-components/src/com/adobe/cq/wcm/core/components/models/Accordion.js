@@ -1,4 +1,4 @@
-import Container from './com.adobe.cq.wcm.core.components.models.Container';
+import Container from './Container';
 
 /**
  * Defines the {@code Accordion} Sling Model used for the {@code /apps/core/wcm/components/accordion} component.

@@ -1,4 +1,4 @@
-import ListItem from './com.adobe.cq.wcm.core.components.models.ListItem';
+import ListItem from './ListItem';
 
 /**
  * A base interface to be extended by containers such as the {@link Carousel}, {@link Tabs} and {@link Accordion} models.

@@ -1,4 +1,4 @@
-import ListItem from './com.adobe.cq.wcm.core.components.models.ListItem';
+import ListItem from './ListItem';
 
 /**
  * Defines the {@code List} Sling Model used for the {@code /apps/core/wcm/components/list} component. This component

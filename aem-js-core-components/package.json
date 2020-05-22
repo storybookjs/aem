@@ -1,20 +1,20 @@
 {
-  "name": "aem-kitchen-sink",
+  "name": "aem-js-core-components",
   "private": true,
   "version": "1.0.0",
-  "description": "Fully featured aem storybook demo with events, knobs, docs, backgrounds and more",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build-storybook": "build-storybook",
-    "sba": "sba",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook:debug": "NODE_OPTIONS=--inspect-brk start-storybook -p 9001",
-    "storybook": "start-storybook -p 9001"
+    "storybook": "start-storybook -p 9001",
+    "sba": "sba"
   },
-  "license": "MIT",
-  "dependencies": {
-    "aem-js-core-components": "*"
-  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "@storybook/aem": "*",
+    "@storybook/aem-cli": "*",
     "@storybook/addon-a11y": "6.0.0-alpha.2",
     "@storybook/addon-actions": "6.0.0-alpha.2",
     "@storybook/addon-backgrounds": "6.0.0-alpha.2",
@@ -34,9 +34,9 @@
   "@storybook/aem-cli": {
     "storybookLocation": ".storybook",
     "localPackagePath": ".storybook/storybook-library/",
-    "uiApps": "./components",
+    "uiApps": "./jcr_root/apps/core/wcm/components",
     "componentPaths": [
-      "./components"
+      "./jcr_root/apps/core/wcm/components"
     ],
     "storybookAEMStyleSystem": false,
     "storybookAEMGrid": false,
@@ -51,6 +51,9 @@
     "storyRoot": "Components",
     "packageGroup": "storybook",
     "packageName": "storybook-library.zip",
-    "aemContentPath": "/content/storybook/storybook-library"
+    "aemContentPath": "/content/storybook/storybook-library",
+    "libs": [
+      "/apps/core/wcm/components"
+    ]
   }
 }
