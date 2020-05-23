@@ -52,7 +52,7 @@
     "app/*",
     "examples/*",
     "cli",
-    "aem-js-core-components"
+    "aem-sb-js-core-components"
   ],
   "repository": {
     "type": "git",

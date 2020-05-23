@@ -2,7 +2,7 @@ import { addParameters, addDecorator } from '@storybook/client-api';
 import { withA11y } from '@storybook/addon-a11y';
 import { aemMetadata, GenericModel } from '@storybook/aem';
 
-import AEMCoreComponents from 'aem-js-core-components';
+import AEMCoreComponents from 'aem-sb-js-core-components';
 
 addDecorator(withA11y);
 addDecorator(aemMetadata({
