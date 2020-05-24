@@ -1,12 +1,24 @@
-import content from './example_content';
+import { withKnobs, text } from "@storybook/addon-knobs";
 
 export default {
-  title: 'AEM Button'
+  title: 'AEM Button',
+  decorators: [
+    withKnobs
+  ],
+  parameters: {
+    knobs: {
+      escapeHTML: false,
+    },
+  },
 };
 
 export const Button = () => {
   return {
-    content,
+    content: {
+      link: text('Link', 'https://www.adobe.com'),
+      icon: text('Icon', 'adobe'),
+      text: text('Text', 'Hello world'),
+    },
     resourceType: 'core/wcm/components/button/v1/button',  // todo: derive from path
   };
 };
