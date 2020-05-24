@@ -6,5 +6,6 @@ module.exports = {
   'com.adobe.cq.wcm.core.components.models.Component': require('./src/com/adobe/cq/wcm/core/components/models/Component'),
   'com.adobe.cq.wcm.core.components.models.Text': require('./src/com/adobe/cq/wcm/core/components/models/Text'),
   'com.adobe.cq.wcm.core.components.models.List': require('./src/com/adobe/cq/wcm/core/components/models/List'),
-  'com.adobe.cq.wcm.core.components.models.ListItem': require('./src/com/adobe/cq/wcm/core/components/models/ListItem')
+  'com.adobe.cq.wcm.core.components.models.ListItem': require('./src/com/adobe/cq/wcm/core/components/models/ListItem'),
+  'com.adobe.cq.wcm.core.components.models.ProgressBar': require('./src/com/adobe/cq/wcm/core/components/models/ProgressBar')
 };
