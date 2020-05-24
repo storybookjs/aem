@@ -1,0 +1,30 @@
+{
+    "jcr:primaryType"   : "nt:unstructured",
+    "jcr:createdBy"     : "admin",
+    "jcr:lastModifiedBy": "admin",
+    "jcr:created"       : "Wed Nov 02 2016 15:32:37 GMT+0100",
+    "name"              : "local-name",
+    "jcr:title"         : "local-title",
+    "helpMessage"       : "local-helpMessage",
+    "type"              : "checkbox",
+    "jcr:lastModified"  : "Wed Nov 09 2016 14:50:06 GMT+0100",
+    "sling:resourceType": "core/wcm/components/form/options",
+    "source"            : "local",
+    "items"       : {
+        "jcr:primaryType": "nt:unstructured",
+        "item0"          : {
+            "jcr:primaryType": "nt:unstructured",
+            "text"           : "local-item1-name",
+            "value"          : "local-item1-value",
+            "selected"       : "true",
+            "disabled"       : "false"
+        },
+        "item1"          : {
+            "jcr:primaryType": "nt:unstructured",
+            "text"           : "local-item2-name",
+            "value"          : "local-item2-value",
+            "selected"       : "false",
+            "disabled"       : "true"
+        }
+    }
+}

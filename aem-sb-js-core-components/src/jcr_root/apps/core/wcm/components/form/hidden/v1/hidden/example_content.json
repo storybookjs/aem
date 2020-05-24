@@ -1,0 +1,11 @@
+{
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:title": "Custom title",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Oct 05 2016 16:28:06 GMT+0530",
+    "constraintMessage": "The value should be a valid email address",
+    "name": "Custom_Name",
+    "id": "hidden-field-id",
+    "value": "Custom value",
+    "sling:resourceType": "core/wcm/components/form/hidden/v1/hidden"
+}
