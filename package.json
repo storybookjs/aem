@@ -51,7 +51,8 @@
   "workspaces": [
     "app/*",
     "examples/*",
-    "cli"
+    "cli",
+    "aem-sb-js-core-components"
   ],
   "repository": {
     "type": "git",

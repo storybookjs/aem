@@ -19,4 +19,4 @@ module.exports = {
 };
 
 // need to specify the additional jcrRoots from dependencies
-AEMRegisterJcrRoot(require('@adobe/aem-core-components-storified/config').jcrRoots);
+AEMRegisterJcrRoot(require('aem-sb-js-core-components/config').jcrRoots);

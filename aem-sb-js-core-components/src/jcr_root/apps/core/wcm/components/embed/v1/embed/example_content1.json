@@ -1,0 +1,6 @@
+{
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "core/wcm/components/embed/v1/embed",
+    "type": "url",
+    "url": "https://www.youtube.com/embed/vpdcMZnYCko"
+}

@@ -1,0 +1,9 @@
+{
+    "jcr:primaryType"        : "cq:Component",
+    "jcr:createdBy"          : "admin",
+    "jcr:title"              : "Image",
+    "sling:resourceSuperType": "core/wcm/components/image/v1/image",
+    "jcr:description"        : "Smart Adaptive Image",
+    "cq:icon"                : "image",
+    "componentGroup"         : ".core-wcm"
+}

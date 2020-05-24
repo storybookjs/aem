@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@adobe/aem-core-components-storified": "*"
+    "aem-sb-js-core-components": "*"
   },
   "devDependencies": {
     "@storybook/aem": "*",
