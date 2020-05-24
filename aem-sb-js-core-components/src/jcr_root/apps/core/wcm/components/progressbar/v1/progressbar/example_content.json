@@ -1,0 +1,5 @@
+{
+    "jcr:primaryType"   : "nt:unstructured",
+    "completed"         : 75,
+    "sling:resourceType": "core/wcm/components/progressbar/v1/progressbar"
+}
