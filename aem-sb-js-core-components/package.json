@@ -29,6 +29,7 @@
     "@storybook/addon-storysource": "6.0.0-alpha.2",
     "@storybook/addon-viewport": "6.0.0-alpha.2",
     "chalk": "^3.0.0",
+    "jquery": "^3.5.1",
     "shelljs": "^0.8.3"
   },
   "@storybook/aem-cli": {
@@ -55,5 +56,9 @@
     "libs": [
       "/apps/core/wcm/components"
     ]
+  },
+  "dependencies": {
+    "jquery-validation": "^1.19.2",
+    "webpack": "^4.43.0"
   }
 }
