@@ -1,4 +1,4 @@
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs, text } from '@storybook/addon-knobs';
 
 export default {
   title: 'AEM Form Button',

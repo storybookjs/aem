@@ -1,5 +1,5 @@
-export default class Button extends AbstractField {
-    static clazz = 'com.adobe.cq.wcm.core.components.models.form.button';
+export default class Button {
+    static clazz = 'com.adobe.cq.wcm.core.components.models.form.Button';
 
     constructor(content) {
        this.content = content;
