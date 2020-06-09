@@ -1,6 +1,7 @@
 // todo: generate automatically
 module.exports = {
   'com.adobe.cq.wcm.core.components.models.Accordion': require('./src/com/adobe/cq/wcm/core/components/models/Accordion'),
+  'com.adobe.cq.wcm.core.components.models.Breadcrumb': require('./src/com/adobe/cq/wcm/core/components/models/Breadcrumb'),
   'com.adobe.cq.wcm.core.components.models.Button': require('./src/com/adobe/cq/wcm/core/components/models/Button'),
   'com.adobe.cq.wcm.core.components.models.Container': require('./src/com/adobe/cq/wcm/core/components/models/Container'),
   'com.adobe.cq.wcm.core.components.models.Component': require('./src/com/adobe/cq/wcm/core/components/models/Component'),

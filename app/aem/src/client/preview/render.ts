@@ -31,7 +31,7 @@ const createRuntime = (
   const components: any[] = aemMetadata ? aemMetadata.components : [];
 
   const runtimeGlobals = {
-    ...runtimeVariables(),
+    ...runtimeVariables(resourceLoaderPath, content),
     models, // this is an internal object that is used in the model proxy
     content, // this is internal module.json content. todo: think of better abstraction
     properties: content, // not quite right, since content here is module.json content
