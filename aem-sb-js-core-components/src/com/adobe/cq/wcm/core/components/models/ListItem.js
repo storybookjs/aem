@@ -27,7 +27,7 @@ export default class ListItem {
    * @since com.adobe.cq.wcm.core.components.models 12.2.0
    */
   get title() {
-    return this.content.title;
+    return this.content.title || this.content['jcr:title'] || this.content[':name'];
   }
 
   /**
