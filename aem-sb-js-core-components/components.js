@@ -7,4 +7,5 @@ module.exports = [
   require('./src/jcr_root/apps/core/wcm/components/title/v2/title/.content.xml'),
   require('./src/jcr_root/apps/core/wcm/components/progressbar/v1/progressbar/.content.xml'),
   require('./src/jcr_root/apps/core/wcm/components/separator/v1/separator/.content.xml'),
+  require('./src/jcr_root/apps/core/wcm/components/tabs/v1/tabs/.content.xml'),
 ];

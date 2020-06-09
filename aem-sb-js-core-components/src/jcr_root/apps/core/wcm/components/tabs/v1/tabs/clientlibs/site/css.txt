@@ -16,4 +16,4 @@
 
 #base=css
 
-tabs.less
+tabs.css
