@@ -26,16 +26,16 @@
     border-bottom: 1px solid transparent;
     padding: .5rem 1rem;
     cursor: pointer;
+}
 
-    &--active {
-        border-color: inherit;
-    }
+.cmp-tabs__tab--active {
+    border-color: inherit;
 }
 
 .cmp-tabs__tabpanel {
     display: none;
+}
 
-    &--active {
-        display: block;
-    }
+.cmp-tabs__tabpanel--active {
+    display: block;
 }

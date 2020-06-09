@@ -8,5 +8,6 @@ module.exports = {
   'com.adobe.cq.wcm.core.components.models.List': require('./src/com/adobe/cq/wcm/core/components/models/List'),
   'com.adobe.cq.wcm.core.components.models.ListItem': require('./src/com/adobe/cq/wcm/core/components/models/ListItem'),
   'com.adobe.cq.wcm.core.components.models.ProgressBar': require('./src/com/adobe/cq/wcm/core/components/models/ProgressBar'),
-  'com.adobe.cq.wcm.core.components.models.Separator': require('./src/com/adobe/cq/wcm/core/components/models/Separator')
+  'com.adobe.cq.wcm.core.components.models.Separator': require('./src/com/adobe/cq/wcm/core/components/models/Separator'),
+  'com.adobe.cq.wcm.core.components.models.Tabs': require('./src/com/adobe/cq/wcm/core/components/models/Tabs'),
 };
