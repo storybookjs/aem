@@ -41,6 +41,11 @@ export function webpack(config: Configuration) {
             },
           ],
         },
+        {
+          test: /\.less/,
+          loaders: ['style-loader', 'css-loader', 'less-loader'],
+          // include: path.resolve(__dirname, '../')
+        },
       ],
     },
   };
