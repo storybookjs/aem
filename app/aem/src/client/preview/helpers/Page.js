@@ -2,7 +2,7 @@
  * Simple AEM page implementation
  */
 export default class Page {
-  constructor(path, node, repo) {
+  constructor(path = '', node = {}, repo) {
     this.path = path;
     this.node = node;
     this.content = node['jcr:content'] || {};
