@@ -1,22 +1,75 @@
 {
-    "jcr:primaryType"     : "nt:unstructured",
-    "fileReference"       : "/content/dam/core/images/Adobe_Systems_logo_and_wordmark.png",
-    "linkURL"             : "/content/teasers",
-    "jcr:title"           : "Teaser",
-    "jcr:description"     : "Description",
-    "actionsEnabled"             : true,
-    "sling:resourceType"  : "core/wcm/components/teaser/v1/teaser",
-    "actions"                : {
-        "jcr:primaryType" : "nt:unstructured",
-        "item0" : {
-            "jcr:primaryType" : "nt:unstructured",
-            "link": "http://www.adobe.com",
-            "text": "Adobe"
+    "id": "teaser-561632a539",
+    "title": "Teaser Title",
+    "description": "<p>Teaser Description</p>\r\n",
+    "linkURL": "/content/core-components-examples/library/page-authoring/teaser.html",
+    "actionsEnabled": true,
+    "imageLinkHidden": false,
+    "titleLinkHidden": false,
+    "actions": [
+        {
+            "id": "teaser-561632a539-cta-d939c6ba30",
+            "url": "/content/core-components-examples/library/page-authoring/teaser.html",
+            "title": "Call To Action",
+            ":type": "nt:unstructured",
+            "dataLayer": {
+                "teaser-561632a539-cta-d939c6ba30": {
+                    "xdm:linkURL": "/content/core-components-examples/library/page-authoring/teaser.html",
+                    "@type": "nt:unstructured",
+                    "dc:title": "Call To Action"
+                }
+            }
         },
-        "item1" : {
-            "jcr:primaryType" : "nt:unstructured",
-            "link": "/content/teasers",
-            "text": "Teasers"
+        {
+            "id": "teaser-561632a539-cta-2e27cc6ee5",
+            "url": "/content/core-components-examples/library.html",
+            "title": "Call To Action",
+            ":type": "nt:unstructured",
+            "dataLayer": {
+                "teaser-561632a539-cta-2e27cc6ee5": {
+                    "xdm:linkURL": "/content/core-components-examples/library.html",
+                    "@type": "nt:unstructured",
+                    "dc:title": "Call To Action"
+                }
+            }
+        }
+    ],
+    "imagePath": "/content/core-components-examples/library/page-authoring/teaser/_jcr_content/root/responsivegrid/demo_1581767054/component/teaser_2781767054.coreimg.jpeg/1591933259064/snowy-mountain-glacier.jpeg",
+    "imageResource": "/dummyImage",
+    ":type": "core-components-examples/components/teaser",
+    "dataLayer": {
+        "teaser-561632a539": {
+            "xdm:linkURL": "/content/core-components-examples/library/page-authoring/teaser.html",
+            "@type": "core-components-examples/components/teaser",
+            "dc:description": "<p>Teaser Description</p>\r\n",
+            "dc:title": "Teaser Title",
+            "repo:modifyDate": "2018-12-07T12:42:09Z"
+        }
+    },
+    ":items": {
+        "dummyImage": {
+            "id": "image-f4b958f398",
+            "alt": "Lava flowing into the ocean",
+            "title": "Lava flowing into the ocean",
+            "src": "/content/core-components-examples/library/page-authoring/image/_jcr_content/root/responsivegrid/demo_554582955/component/image.coreimg.jpeg/1591933259488/lava-into-ocean.jpeg",
+            "uuid": "0f54e1b5-535b-45f7-a46b-35abb19dd6bc",
+            "widths": [],
+            "lazyEnabled": false,
+            ":type": "core/wcm/components/image/v2/image",
+            "dataLayer": {
+                "image-f4b958f398": {
+                    "image": {
+                        "repo:id": "0f54e1b5-535b-45f7-a46b-35abb19dd6bc",
+                        "@type": "image/jpeg",
+                        "xdm:tags": [],
+                        "repo:modifyDate": "2020-06-12T03:40:59Z",
+                        "repo:path": "/content/dam/core-components-examples/library/sample-assets/lava-into-ocean.jpg"
+                    },
+                    "@type": "core/wcm/components/image/v2/image",
+                    "dc:title": "Lava flowing into the ocean",
+                    "repo:modifyDate": "2019-01-22T17:31:15Z"
+                }
+            }
         }
     }
 }

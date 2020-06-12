@@ -72,4 +72,13 @@ export default class ListItem {
     // return this.resource.getName();
     return this.content[':name'] || null;
   }
+
+  /**
+   * @todo: implement correctly ?
+   */
+  get data() {
+    return {
+      json: JSON.stringify(this.content.dataLayer || {}),
+    }
+  }
 }
