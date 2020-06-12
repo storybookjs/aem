@@ -105,8 +105,8 @@ export default class Teaser extends GenericModel {
      * @return {@code true} if teaser has CTAs, {@code false} otherwise
      * @since com.adobe.cq.wcm.core.components.models 12.4.0
      */
-    get isActionsEnabled() {
-        return this.content.isActionsEnabled;
+    get actionsEnabled() {
+        return this.content.actionsEnabled;
     }
 
     /**
@@ -145,8 +145,8 @@ export default class Teaser extends GenericModel {
      * @return {@code true} if link is hidden on the image, {@code false} otherwise
      * @since com.adobe.cq.wcm.core.components.models 12.4.0
      */
-    get isImageLinkHidden() {
-        return this.content.isImageLinkHidden;
+    get imageLinkHidden() {
+        return this.content.imageLinkHidden;
     }
 
     /**
@@ -175,8 +175,8 @@ export default class Teaser extends GenericModel {
      * @return {@code true} if link is hidden on the title, {@code false} otherwise
      * @since com.adobe.cq.wcm.core.components.models 12.4.0
      */
-    get isTitleLinkHidden() {
-        return this.content.isTitleLinkHidden;
+    get titleLinkHidden() {
+        return this.content.titleLinkHidden;
     }
 
     /**

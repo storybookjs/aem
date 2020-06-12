@@ -238,8 +238,8 @@ export default class Image extends GenericModel {
    * @return true if the image should be rendered lazily; false otherwise
    * @since com.adobe.cq.wcm.core.components.models 12.2.0
    */
-  get isLazyEnabled() {
-    return this.content.isLazyEnabled;
+  get lazyEnabled() {
+    return this.content.lazyEnabled;
   }
 
   /**
@@ -266,8 +266,8 @@ export default class Image extends GenericModel {
    * @return true if the image is decorative; false otherwise
    * @since com.adobe.cq.wcm.core.components.models 12.11.0
    */
-  get isDecorative() {
-    return this.content.isDecorative;
+  get decorative() {
+    return this.content.decorative;
   };
 
   /**

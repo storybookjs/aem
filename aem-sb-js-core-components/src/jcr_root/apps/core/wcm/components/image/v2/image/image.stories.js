@@ -15,7 +15,7 @@ export const Image = () => {
   return {
     content: {
       ...content,
-      title: text('title', 'Lava flowing into the ocean'),
+      title: text('title', content.title),
     },
     resourceType: 'core/wcm/components/image/v2/image',  // todo: derive from path
   };
