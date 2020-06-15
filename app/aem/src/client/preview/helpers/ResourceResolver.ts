@@ -34,7 +34,7 @@ export default class ResourceResolver {
         })
       } else {
         path.forEach((seg) => {
-          content = content[':items'][seg];
+          content = content && content[':items'][seg];
         })
       }
 

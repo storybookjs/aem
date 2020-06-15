@@ -1,10 +1,24 @@
 {
-    "jcr:primaryType"   : "nt:unstructured",
-    "jcr:createdBy"     : "admin",
-    "fileReference"     : "/content/dam/core/images/Adobe_Systems_logo_and_wordmark.png",
-    "sling:resourceType": "core/wcm/components/image/v2/image",
-    "cq:policy"         : "coretest/components/content/image/policy_1478854677326",
-    "alt"               : "Adobe Logo",
-    "jcr:title"         : "Adobe Logo",
-    "linkURL"           : "/content/test"
+    "id": "image-f4b958f398",
+    "alt": "Lava flowing into the ocean",
+    "title": "Lava flowing into the ocean",
+    "src": "/content/core-components-examples/library/page-authoring/image/_jcr_content/root/responsivegrid/demo_554582955/component/image.coreimg.jpeg/1591933259488/lava-into-ocean.jpeg",
+    "uuid": "0f54e1b5-535b-45f7-a46b-35abb19dd6bc",
+    "widths": [],
+    "lazyEnabled": false,
+    ":type": "core/wcm/components/image/v2/image",
+    "dataLayer": {
+        "image-f4b958f398": {
+            "image": {
+                "repo:id": "0f54e1b5-535b-45f7-a46b-35abb19dd6bc",
+                "@type": "image/jpeg",
+                "xdm:tags": [],
+                "repo:modifyDate": "2020-06-12T03:40:59Z",
+                "repo:path": "/content/dam/core-components-examples/library/sample-assets/lava-into-ocean.jpg"
+            },
+            "@type": "core/wcm/components/image/v2/image",
+            "dc:title": "Lava flowing into the ocean",
+            "repo:modifyDate": "2019-01-22T17:31:15Z"
+        }
+    }
 }
