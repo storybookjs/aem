@@ -15,11 +15,12 @@ export default {
 export const FormButtonV2 = () => {
   return {
     content: {
-      'name'               : text('name', 'name1'),
+      'name'               : text('Name', 'name1'),
       'value'              : text('Value', 'value1'),
       'type'               : text('Type', 'button'),
-      'id'                 : text('id', 'button-id'),
-      'helpMessage'        : text('helpMessage', 'my help message')
+      'title'               : text('Title', 'title'),
+      'id'                 : text('ID', 'button-id'),
+      'helpMessage'        : text('Help message', 'my help message')
     },
     resourceType: 'core/wcm/components/form/button/v2/button',  // todo: derive from path
   };
