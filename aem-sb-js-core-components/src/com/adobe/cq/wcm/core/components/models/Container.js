@@ -46,16 +46,12 @@ export default class Container {
   static PN_BACKGROUND_COLOR = "backgroundColor";
 
   /**
-   * Returns a list of container items
-   *
-   * @return {Array<ListItem>}List of container items
-   * @since com.adobe.cq.wcm.core.components.models 12.5.0
+   * @protected
    */
-  get items() {
-    const items = this.content[':items'];
-    if (!items) {
-      return [];
-    }
+  readItems() {
+    // todo: the models should either be based on JCR content or content.json.
+    // todo: eg, the tabs is using the JCR content.
+    const items = this.content[':items'] || [];
     const listItems = Object.entries(items).map(([name, item]) => new ListItem({
       ':name': name,
       ...item,
@@ -63,6 +59,19 @@ export default class Container {
     // hack to provide a size property of the expected java collection.
     listItems.size = listItems.length;
     return listItems;
+  }
+
+  /**
+   * Returns a list of container items
+   *
+   * @return {Array<ListItem>}List of container items
+   * @since com.adobe.cq.wcm.core.components.models 12.5.0
+   */
+  get items() {
+    if (!this._items) {
+      this._items = this.readItems();
+    }
+    return this._items;
   }
 
   /**

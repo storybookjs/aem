@@ -21,7 +21,7 @@ class ModelProxy {
       model = model.default;
     }
     // eslint-disable-next-line new-cap
-    return new model(content);
+    return new model(content, context);
   }
 }
 
