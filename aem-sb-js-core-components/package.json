@@ -13,8 +13,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@storybook/aem": "*",
-    "@storybook/aem-cli": "*",
     "@storybook/addon-a11y": "6.0.0-alpha.2",
     "@storybook/addon-actions": "6.0.0-alpha.2",
     "@storybook/addon-backgrounds": "6.0.0-alpha.2",
@@ -28,6 +26,8 @@
     "@storybook/addon-storyshots": "6.0.0-alpha.2",
     "@storybook/addon-storysource": "6.0.0-alpha.2",
     "@storybook/addon-viewport": "6.0.0-alpha.2",
+    "@storybook/aem": "*",
+    "@storybook/aem-cli": "*",
     "chalk": "^3.0.0",
     "shelljs": "^0.8.3"
   },

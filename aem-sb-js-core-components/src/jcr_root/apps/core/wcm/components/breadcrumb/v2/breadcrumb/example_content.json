@@ -1,0 +1,28 @@
+{
+  "content": {
+    "jcr:content": {
+      "jcr:title": "Site",
+      "hideInNav": true
+    },
+    "en": {
+      "jcr:content": {
+        "jcr:title": "English"
+      },
+      "products": {
+        "jcr:content": {
+          "jcr:title": "Products"
+        },
+        "outdoor": {
+          "jcr:content": {
+            "jcr:title": "Outdoor"
+          },
+          "hiking": {
+            "jcr:content": {
+              "jcr:title": "Hiking"
+            }
+          }
+        }
+      }
+    }
+  }
+}

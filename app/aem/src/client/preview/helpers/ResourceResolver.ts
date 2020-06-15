@@ -27,17 +27,24 @@ export default class ResourceResolver {
       path = path.filter(s => !!s);
       // todo: implement relative path...
       let { content } = this;
-      const iterator = 0;
-      while (content && iterator < path.length && content[':items']) {
-        content = content[':items'][path];
+      if (content['jcr:primaryType']) {
+        // assume JCR content
+        path.forEach((seg) => {
+          content = content && content[seg];
+        })
+      } else {
+        path.forEach((seg) => {
+          content = content && content[':items'][seg];
+        })
       }
+
       if (!content) {
         // todo: remove debug
         return `no such resource: ${uri}...`;
       }
 
       // try to get component
-      const type = content[':type'];
+      const type = content[':type'] || content['sling:resourceType'];
       const comp = this.loader.resolve(type);
       if (!comp) {
         // todo: remove debug
