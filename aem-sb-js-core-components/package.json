@@ -55,9 +55,5 @@
     "libs": [
       "/apps/core/wcm/components"
     ]
-  },
-  "dependencies": {
-    "jquery-validation": "^1.19.2",
-    "webpack": "^4.43.0"
   }
 }
