@@ -13,6 +13,7 @@ module.exports = {
   'com.adobe.cq.wcm.core.components.models.ListItem': require('./src/com/adobe/cq/wcm/core/components/models/ListItem'),
   'com.adobe.cq.wcm.core.components.models.ProgressBar': require('./src/com/adobe/cq/wcm/core/components/models/ProgressBar'),
   'com.adobe.cq.wcm.core.components.models.Separator': require('./src/com/adobe/cq/wcm/core/components/models/Separator'),
+  'com.adobe.cq.wcm.core.components.models.form.Button': require('./src/com/adobe/cq/wcm/core/components/models/form/Button'),
   'com.adobe.cq.wcm.core.components.models.form.Text': require('./src/com/adobe/cq/wcm/core/components/models/form/Text'),
   'com.adobe.cq.wcm.core.components.models.Tabs': require('./src/com/adobe/cq/wcm/core/components/models/Tabs'),
 };
