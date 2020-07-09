@@ -14,7 +14,7 @@ module.exports = {
     "@storybook/addon-options",
     "@storybook/addon-storysource",
     "@storybook/addon-viewport",
-    '@storybook/addon-docs/register',
+    '@storybook/addon-docs',
   ]
 };
 
