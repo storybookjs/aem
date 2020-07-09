@@ -61,7 +61,7 @@ Like any other Storybook Framework app, Storybook AEM supports both [CSF](https:
 As a part of the storybook configuration setup there are options you can use to customize your use case:
 
 - Template (required): HTL/HTML File Reference or Inline HTML
-- Content (optional): Mocked authored content that can be used in conjunction with knobs
+- Content (optional): Mocked authored content that can be used in conjunction with knobs/controls
 - AEM Metadata: An assortment of metadata used to provide your component context such as:
   - Component dependencies: for nested components, you only need to provide a template but you must include require all nested component's xml files in order for them to render (They can also be defined at the story config level or in the preview using the aemMetadata decorator)
   - Decoration tags: tags/ classes that can be applied to the outside of your component as a wrapper and can be used to mock the java tag annotations({} or null)
