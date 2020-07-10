@@ -4,6 +4,7 @@ import { helpCommand } from './cmds/help';
 import { packageCommand } from './cmds/package';
 import { storyCommand } from './cmds/stories';
 import { versionCommand } from './cmds/version';
+import { schemaCommand } from './cmds/schema';
 
 // TODO: Import the check version util. Check that this check version is properly implemented. It looks like the code is commented out.
 // import { checkVersion } from './utils';
@@ -27,6 +28,9 @@ module.exports = () => {
   }
 
   switch (cmd) {
+    case 'schema':
+      schemaCommand(args, config);
+      break;
     case 'story':
     case 'stories':
       storyCommand(args, config);
