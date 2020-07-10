@@ -1,26 +1,51 @@
 import path from 'path';
 import fs from 'fs';
+
+import { extractModels } from './utils/extractModels';
+
 const cwd = process.cwd();
 
-const accordionPath = '../../aem-sb-js-core-components/src/jcr_root/apps/core/wcm/components/accordion/v1/accordion/accordion.html';
+const filePath = '../../aem-sb-js-core-components/src/jcr_root/apps/core/wcm/components/accordion/v1/accordion/accordion.html';
+// const filePath = '../../aem-sb-js-core-components/src/jcr_root/apps/core/wcm/components/breadcrumb/v2/breadcrumb/breadcrumb.html';
 
 export const schemaCommand = async (args, config) => {
 
-  const htlFile = fs.readFileSync(path.join(cwd, accordionPath), 'utf-8');
-  const models = extractModels(htlFile);
+  const htlFile = fs.readFileSync(path.join(cwd, filePath), 'utf-8');
+  let models = extractModels(htlFile);
+  models = models.map(model => getModelVariables(model, htlFile));
 
-  console.log('models', models)
+  console.log('models', JSON.stringify(models, null, 2))
+};
+
+
+const getModelVariables = (model, htlFile) => {
+  const { variable, schema } = model;
+  // trying to match anything that starts ${
+  // ends with } 
+  // and get what's in between
+
+  htlFile.split('\n')
+    .filter(line => line.includes(variable) && (line.includes('${') || line.includes('}') || line.includes(`${variable}.`)))
+    .map(line => {
+      const expression = line.split('${')[1].split('}')[0];
+      const expressions = expression
+        .split(' ')
+        .filter(expressionPart => expressionPart.includes(`${variable}.`))
+        .map(expressionPart => {
+          const childVariable = expressionPart.split(`${variable}.`)[1];
+          if (!childVariable.includes('.')) schema[childVariable] = '';
+          else {
+            // eventually make this recursive
+            const [parent, grandchild] = childVariable.split('.');
+            schema[parent] = {
+              [grandchild]: ''
+            }
+          }
+          console.log('childVariable', childVariable)
+          return childVariable;
+        })
+      console.log('expressions', expressions)
+    });
+
+  return model;
 }
-
-const extractModels = htlFile => htlFile.split('\n')
-  .filter(line => line.indexOf(`data-sly-use`) !== -1)
-  .map(line => {
-    let [variable, model] = line.split('data-sly-use')[1].split(`=`);
-    if (variable.startsWith(`.`)) variable = variable.substr(1);
-    if (model.endsWith(`\r`)) model = model.slice(0, -1);
-    if (model.startsWith(`'`) || model.startsWith(`"`)) model = model.substr(1);
-    if (model.endsWith(`'`) || model.endsWith(`"`)) model = model.slice(0, -1);
-    console.log('variable,model', variable, model)
-
-    return { variable, model, schema: {} };
-  });
