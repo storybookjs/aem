@@ -4,7 +4,6 @@ module.exports = {
     `../components/**/*.stories.*`,
   ],
   addons: [
-    "@storybook/addon-docs",
     "@storybook/addon-a11y",
     "@storybook/addon-actions",
     "@storybook/addon-backgrounds",
@@ -14,7 +13,8 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-options",
     "@storybook/addon-storysource",
-    "@storybook/addon-viewport"
+    "@storybook/addon-viewport",
+    '@storybook/addon-docs',
   ]
 };
 

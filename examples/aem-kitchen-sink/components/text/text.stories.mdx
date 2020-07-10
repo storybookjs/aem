@@ -1,0 +1,28 @@
+import { boolean, object, select, text, withKnobs } from '@storybook/addon-knobs';
+import { Story, Meta, Preview, Props } from '@storybook/addon-docs/blocks';
+import { aemMetadata, GenericModel } from '@storybook/aem';
+import TextTemplate from './text.html';
+
+<Meta
+  title="Text-MDX"
+  decorators={[withKnobs]}
+/>
+
+# Text MDX test
+<Preview>
+    <Story name="Text - MDX">
+    {{
+    content: {
+        text: text('text', 'Hello, world.' ),
+        isRichText: boolean('isRichText', false),
+        },
+        template: TextTemplate,
+    }}
+    </Story>
+</Preview>
+
+
+## More info
+
+We want your feedback to help make this more useful! Make sure to add GitHub Issues as you need new features or find bugs.
+If you wan to tackle an issue, make sure to provide any additional documentation here.
