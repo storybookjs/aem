@@ -1,6 +1,8 @@
-import { basename, relative, sep as pathSeparator } from 'path';
+import { basename, relative } from 'path';
 import { toJson } from 'xml2json';
 import { existsSync } from 'fs';
+
+const pathSeparator = require ('os').separator;
 
 const txtLoader = require.resolve('./aem-clientlib-txt-loader.js');
 
