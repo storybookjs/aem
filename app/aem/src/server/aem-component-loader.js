@@ -1,8 +1,6 @@
-import { basename, relative } from 'path';
+import { basename, relative, sep as pathSeparator } from 'path';
 import { toJson } from 'xml2json';
 import { existsSync } from 'fs';
-
-const pathSeparator = require ('os').separator;
 
 const txtLoader = require.resolve('./aem-clientlib-txt-loader.js');
 
@@ -73,6 +71,7 @@ const getResourceType = (rootContext, context) => {
 
 export default async function aemComponentLoader(source) {
   const { context, rootContext } = this;
+  context = context.replaceAll('//', '/')
   const logger = this.getLogger();
   const componentData = JSON.parse(toJson(source));
   const pathBaseName = basename(context);
