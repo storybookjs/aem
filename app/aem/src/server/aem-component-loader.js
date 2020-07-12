@@ -71,7 +71,7 @@ const getResourceType = (rootContext, context) => {
 
 export default async function aemComponentLoader(source) {
   const { context, rootContext } = this;
-  context = context.replaceAll('//', '/')
+  context = context.replace(new RegExp('\/\/', 'g'), '/');
   const logger = this.getLogger();
   const componentData = JSON.parse(toJson(source));
   const pathBaseName = basename(context);
