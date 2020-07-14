@@ -13,7 +13,7 @@ const NAME_LIBS = 'libs';
 const NAME_NODE_MODULES = 'node_modules';
 
 const getRequiredHTL = (logger, component, context, pathBaseName) => {
-  const htlFile = `${context}${sep}${pathBaseName}.html`;
+  const htlFile = `${context}${pathSeparator}${pathBaseName}.html`;
   if (!existsSync(htlFile)) {
     logger.info(`No HTL script for ${pathBaseName}`);
     return '';
@@ -50,7 +50,7 @@ const getRequiredClientLibs = componentDir => {
  * @returns {string} The resource type.
  */
 const getResourceType = (rootContext, context) => {
-  const segs = relative(rootContext, context).split(sep);
+  const segs = relative(rootContext, context).split(pathSeparator);
   // if component is in different module, it will be below a node_modules
   let idx = segs.indexOf(NAME_NODE_MODULES);
   if (idx >= 0) {
@@ -66,7 +66,7 @@ const getResourceType = (rootContext, context) => {
       segs.splice(0, 1);
     }
   }
-  return segs.join(sep);
+  return segs.join(pathSeparator);
 };
 
 export default async function aemComponentLoader(source) {
