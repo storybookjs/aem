@@ -13,7 +13,7 @@ const NAME_LIBS = 'libs';
 const NAME_NODE_MODULES = 'node_modules';
 
 const getRequiredHTL = (logger, component, context, pathBaseName) => {
-  const htlFile = `${context}/${pathBaseName}.html`;
+  const htlFile = `${context}${pathSeparator}${pathBaseName}.html`;
   if (!existsSync(htlFile)) {
     logger.info(`No HTL script for ${pathBaseName}`);
     return '';
@@ -66,12 +66,11 @@ const getResourceType = (rootContext, context) => {
       segs.splice(0, 1);
     }
   }
-  return segs.join('/');
+  return segs.join(pathSeparator);
 };
 
 export default async function aemComponentLoader(source) {
   const { context, rootContext } = this;
-  context = context.replace(/\/\//g, '\/');
   const logger = this.getLogger();
   const componentData = JSON.parse(toJson(source));
   const pathBaseName = basename(context);
