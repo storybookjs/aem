@@ -2,7 +2,7 @@ import { basename, relative, sep as pathSeparator } from 'path';
 import { toJson } from 'xml2json';
 import { existsSync } from 'fs';
 
-const txtLoader = require.resolve('./aem-clientlib-txt-loader.js');
+const txtLoader = require.resolve('./aem-clientlib-txt-loader.js').split(pathSeparator).join('/');
 
 const KEY_JCR_ROOT = 'jcr:root';
 const KEY_JCR_TITLE = 'jcr:title';
@@ -13,8 +13,13 @@ const NAME_LIBS = 'libs';
 const NAME_NODE_MODULES = 'node_modules';
 
 const getRequiredHTL = (logger, component, context, pathBaseName) => {
-  const htlFile = `${context}${pathSeparator}${pathBaseName}.html`;
-  if (!existsSync(htlFile)) {
+
+  const htlFile = `${context.split(pathSeparator).join('/')}/${pathBaseName}.html`;
+  console.log('\n[getRequiredHTL] htlFile:', htlFile)
+  console.log('\n[getRequiredHTL] \`${htlFile}\`:', `${htlFile}`)
+  console.log('\n[getRequiredHTL] existsSync(htlFile):', existsSync(htlFile))
+  console.log('\n[getRequiredHTL] existsSync(\`${htlFile}\`):', existsSync(`${htlFile}`))
+  if (!existsSync(`${htlFile}`)) {
     logger.info(`No HTL script for ${pathBaseName}`);
     return '';
   }
@@ -37,6 +42,11 @@ const getRequiredClientLibs = componentDir => {
     // Execute all files
     txtFileLoadContext.keys().forEach(txtFileLoadContext);
   `;
+  // : [
+  //   `var txtFileLoadContext = require.context('!!${txtLoader}!${componentDir}/', true, /(^|\\/)(js|css).txt$/);`,
+  //   `txtFileLoadContext.keys().forEach(txtFileLoadContext);`,
+  // ].join('\n');
+
   return loadClientLibCode;
 };
 
@@ -66,7 +76,7 @@ const getResourceType = (rootContext, context) => {
       segs.splice(0, 1);
     }
   }
-  return segs.join(pathSeparator);
+  return segs.join('/');
 };
 
 export default async function aemComponentLoader(source) {
@@ -78,14 +88,17 @@ export default async function aemComponentLoader(source) {
     resourceType: getResourceType(rootContext, context),
     properties: componentData[KEY_JCR_ROOT] || {},
   };
+
   if (!component.properties[KEY_JCR_TITLE]) {
     component.properties[KEY_JCR_TITLE] = pathBaseName;
   }
 
-  return [
+  const components = [
     `var component = ${JSON.stringify(component)};`,
     'module.exports = component;',
-    getRequiredClientLibs(context),
+    getRequiredClientLibs(context.split(pathSeparator).join('/')),
     getRequiredHTL(logger, component, context, pathBaseName),
-  ].join('\n');
+  ]
+  console.log('\n[aemComponentLoader] components:', components);
+  return components.join('\n');
 }

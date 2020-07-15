@@ -1,4 +1,7 @@
+import { sep as pathSeparator } from 'path';
+
 const NEW_LINE = '\n';
+
 
 function extractBasePath(basePathExpression) {
   return basePathExpression.replace(/^\s*#base\s*=\s*/, '');
@@ -21,12 +24,13 @@ export default function aemClientLibTxtLoader(source) {
     // Ignore empty rows
     .filter(line => line);
 
-  const dependencyFolder = resolveDependencyFolder(this.context, source);
-  const requireCalls = depedencies.map(
-    dependency =>
-      `require('${dependencyFolder}${
-        isAbsolutePath(dependency) ? dependency.trim() : `/${dependency.trim()}`
-      }');`
-  );
+  const dependencyFolder = resolveDependencyFolder(this.context.split(pathSeparator).join('/'), source);
+  const requireCalls = depedencies.map(dependency => {
+    const trimmedDependency = isAbsolutePath(dependency) ? dependency.trim() : `/${dependency.trim()}`;
+    const filepath = `${dependencyFolder}${trimmedDependency}`;
+    console.log('\n[aemClientLibTxtLoader] filepath:', filepath)
+    return `require('${filepath}');`
+  });
+
   return requireCalls.join(NEW_LINE);
 }
