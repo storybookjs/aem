@@ -1,12 +1,17 @@
 import * as path from 'path';
 import { Configuration } from 'webpack';
+import runtimeVariables from '../client/preview/helpers/runtime-variables';
+import { createTemplateLoader } from '@adobe/htlengine';
+import options from './options';
 
 const modGen = (baseDir, varName, id) => {
-  // todo: only proxy the models atually defined as models.
+  // todo: only proxy the models that are actually defined as models.
   return `const ${varName} = require('@storybook/aem').modelProxy(${JSON.stringify(id)});`;
 };
 
 export function webpack(config: Configuration) {
+  const templateLoader = createTemplateLoader(options.jcrRoots);
+
   return {
     ...config,
     module: {
@@ -22,7 +27,8 @@ export function webpack(config: Configuration) {
                 moduleImportGenerator: modGen,
                 includeRuntime: false,
                 globalName: 'context',
-                runtimeVars: ['wcmmode', 'component'],
+                runtimeVars: Object.keys(runtimeVariables()),
+                templateLoader,
               },
             },
           ],
@@ -34,6 +40,10 @@ export function webpack(config: Configuration) {
               loader: path.resolve(__dirname, './aem-component-loader.js'),
             },
           ],
+        },
+        {
+          test: /\.less/,
+          loaders: ['style-loader', 'css-loader', 'less-loader'],
         },
       ],
     },

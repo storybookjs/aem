@@ -61,7 +61,7 @@ Like any other Storybook Framework app, Storybook AEM supports both [CSF](https:
 As a part of the storybook configuration setup there are options you can use to customize your use case:
 
 - Template (required): HTL/HTML File Reference or Inline HTML
-- Content (optional): Mocked authored content that can be used in conjunction with knobs
+- Content (optional): Mocked authored content that can be used in conjunction with knobs/controls
 - AEM Metadata: An assortment of metadata used to provide your component context such as:
   - Component dependencies: for nested components, you only need to provide a template but you must include require all nested component's xml files in order for them to render (They can also be defined at the story config level or in the preview using the aemMetadata decorator)
   - Decoration tags: tags/ classes that can be applied to the outside of your component as a wrapper and can be used to mock the java tag annotations({} or null)
@@ -217,6 +217,20 @@ export default class Person extends GenericModel {
     </dl>
 </div>
 ```
+
+### Extending from other projects.
+
+Extending from other projects is mostly straight forward, just import the components and models accordingly.
+A 3rd party project might choose to deliberately export the list of components and models, so just import
+their definition. see the `examples/aem-core-components` and how they imported in `examples/aem-kitchen-sink`. 
+
+However, if the 3rd party projects use template references, the HTL compiler can't resolve them. So they need
+to be specified during build time. This is currently only possible by using the `AEMRegisterJcrRoot` function.
+See [aem-kitchen-sink/.storybook/main.js](./examples/aem-kitchen-sink/.storybook/main.js#L22).
+
+The `AEMRegisterJcrRoot` function can also be used, if your project's content root is not the project directory.
+See [aem-core-components/.storybook/main.js](./examples/aem-core-components/.storybook/main.js#L20).
+
 
 ### Contributing
 

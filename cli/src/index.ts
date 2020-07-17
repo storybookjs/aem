@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import chalk from 'chalk';
 import { getConfig, log } from './utils';
 import { analyzeCommand } from './cmds/analyze';

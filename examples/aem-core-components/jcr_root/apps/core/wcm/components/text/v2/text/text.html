@@ -1,9 +1,0 @@
-<!--/* todo: fix template resolution for extended components */-->
-<div data-sly-use.textModel="com.adobe.cq.wcm.core.components.models.Text"
-     data-sly-use.templates="../../../../../../core/wcm/components/commons/v1/templates.html"
-     data-sly-test.text="${textModel.text}"
-     class="cmp-text">
-    <p class="cmp-text__paragraph"
-       data-sly-unwrap="${textModel.isRichText}">${text @ context = textModel.isRichText ? 'html' : 'text'}</p>
-</div>
-<sly data-sly-call="${templates.placeholder @ isEmpty = !text, classAppend='cmp-text'}"></sly>

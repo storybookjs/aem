@@ -24,6 +24,7 @@ export interface AemMetadata {
   components?: any[];
   decorationTag?: DecorationTag;
   models: any;
+  roots?: string[];
 }
 
 export interface RenderMainArgs {

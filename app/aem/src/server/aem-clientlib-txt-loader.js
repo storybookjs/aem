@@ -1,17 +1,17 @@
+import { sep as pathSeparator } from 'path';
+
 const NEW_LINE = '\n';
 
-function extractBasePath(basePathExpression) {
-  return basePathExpression.replace(/^\s*#base\s*=\s*/, '');
-}
+const extractBasePath = basePathExpression => {
+  return basePathExpression.replace(/^\s*#base\s*=\s*/, '').replace(/\r/, '');
+};
 
-function resolveDependencyFolder(contextPath, source) {
+const resolveDependencyFolder = (contextPath, source) => {
   const baseExpression = source.split(NEW_LINE).find(line => /^\s*#\s*base/.test(line));
   return contextPath + (baseExpression ? `/${extractBasePath(baseExpression)}` : '');
-}
+};
 
-function isAbsolutePath(path) {
-  return path.charAt(0) === '/';
-}
+const isAbsolutePath = filepath => filepath.charAt(0) === '/';
 
 export default function aemClientLibTxtLoader(source) {
   const depedencies = source
@@ -21,12 +21,19 @@ export default function aemClientLibTxtLoader(source) {
     // Ignore empty rows
     .filter(line => line);
 
-  const dependencyFolder = resolveDependencyFolder(this.context, source);
-  const requireCalls = depedencies.map(
-    dependency =>
-      `require('${dependencyFolder}${
-        isAbsolutePath(dependency) ? dependency.trim() : `/${dependency.trim()}`
-      }');`
+  const dependencyFolder = resolveDependencyFolder(
+    this.context.split(pathSeparator).join('/'),
+    source
   );
-  return requireCalls.join(NEW_LINE);
+
+  return depedencies
+    .map(dependency => {
+      const trimmedDependency = isAbsolutePath(dependency)
+        ? dependency.trim()
+        : `/${dependency.trim()}`;
+      const filepath = `${dependencyFolder}${trimmedDependency}`;
+
+      if (!filepath.endsWith('/')) return `require('${filepath}');`;
+    })
+    .join(NEW_LINE);
 }

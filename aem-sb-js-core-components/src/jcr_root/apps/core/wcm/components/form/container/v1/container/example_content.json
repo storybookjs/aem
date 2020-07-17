@@ -1,0 +1,31 @@
+{
+    "jcr:primaryType"   : "nt:unstructured",
+    "jcr:createdBy"     : "admin",
+    "enctype"           : "application/x-www-form-urlencoded",
+    "jcr:lastModifiedBy": "admin",
+    "method"            : "GET",
+    "jcr:created"       : "Wed Oct 05 2016 16:05:53 GMT+0530",
+    "jcr:lastModified"  : "Wed Oct 05 2016 16:05:53 GMT+0530",
+    "sling:resourceType": "core/wcm/components/form/container/v1/container",
+    "actionType"        : "foundation/components/form/actions/store",
+    "id"                : "my-id",
+    "redirect"          : "/content/coretest/home",
+    "text"              : {
+        "jcr:primaryType"   : "nt:unstructured",
+        "jcr:createdBy"     : "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created"       : "Wed Oct 05 2016 16:28:03 GMT+0530",
+        "name"              : "input-field-1",
+        "jcr:lastModified"  : "Wed Oct 05 2016 16:28:14 GMT+0530",
+        "sling:resourceType": "core/wcm/components/form/text/v1/text"
+    },
+    "text_185087333"    : {
+        "jcr:primaryType"   : "nt:unstructured",
+        "jcr:createdBy"     : "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created"       : "Wed Oct 05 2016 16:28:06 GMT+0530",
+        "name"              : "input-field-2",
+        "jcr:lastModified"  : "Wed Oct 05 2016 16:28:22 GMT+0530",
+        "sling:resourceType": "core/wcm/components/form/text/v1/text"
+    }
+}
