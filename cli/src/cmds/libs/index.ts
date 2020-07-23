@@ -10,6 +10,7 @@ import { getClientlibContent } from './getClientlibContent';
 import { createPackageDefinition } from './createPackageDefinition';
 import { installPackage } from './installPackage';
 import { cacheContent } from '../analyze/cacheContent';
+import * as minify from 'minify';
 
 export const libsCommand = async (args, config) => {
   await createPackageDefinition(args, config);
@@ -55,7 +56,7 @@ export const libsCommand = async (args, config) => {
   await clientlibData.hits.forEach(async (hit)=>{
     const pathEnd = `${hit.path}`.substring(`${hit.path}`.lastIndexOf('/') + 1);
     if(pathEnd !== 'editor' && pathEnd !== 'editorhook' ){
-    const contentObj = await getClientlibContent(hit);
+      const contentObj = await getClientlibContent(hit);
       fsExtra.outputFile(path.join(config.storybookLocation, `./dependencies/jcr_root${contentObj.js.path}`), contentObj.js.content, err => {
         if(err) {
           console.log(err);

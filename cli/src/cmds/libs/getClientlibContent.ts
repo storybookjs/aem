@@ -1,4 +1,6 @@
 import { fetchFromAEM } from '../../utils';
+import { minify } from "javascript-minifier";
+import * as csso from 'csso';
 
 /* eslint-disable no-param-reassign */
 export const getClientlibContent = async (file) => {
@@ -8,11 +10,11 @@ export const getClientlibContent = async (file) => {
   const response = {
     js: {
       path: `${file.path}.js`,
-      content: await jsResponse.text(),
+      content: await minify(await jsResponse.text()),
     },
     css: {
       path: `${file.path}.css`,
-      content: await cssResponse.text(),
+      content: await csso.minify(await cssResponse.text()).css,
     }
   };
   return response;
