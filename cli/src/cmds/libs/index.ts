@@ -32,7 +32,7 @@ export const libsCommand = async (args, config) => {
 
   await components.forEach((componentPath)=>{
     if(!isEditorFile(componentPath)) {
-      fs.mkdir(path.join(config.storybookLocation, path.join('./dependencies/jcr_root', componentPath)), { recursive: true }, (err) => {
+      fs.mkdir(path.join(config.storybookLocation, path.join('./dependencies', componentPath)), { recursive: true }, (err) => {
         if (err) throw err;
       });
     }
