@@ -12,6 +12,12 @@ import { installPackage } from './installPackage';
 import { cacheContent } from '../analyze/cacheContent';
 import * as minify from 'minify';
 
+// this has a problem because we will get duplicates of local files
+const clientLibRegex = /(data-sly-use.templates|data-sly-use.clientlib)="((?:\\.|[^"\\])*)"/g;
+const quoteRegex = /"((?:\\.|[^"\\])*)"/g;
+
+let foundClientLibPaths = new Set()
+
 export const libsCommand = async (args, config) => {
   await createPackageDefinition(args, config);
   await installPackage(args, config);
@@ -24,58 +30,73 @@ export const libsCommand = async (args, config) => {
   const clientlibData = await clientlibResponse.json();
   const components = getComponentTypes(htmlData.hits);
 
-  let cache = {};
-  console.log(components);
-  components.forEach(type => {
-    cache[type] = {
-      html: {},
-      entry: ``,
-      clientlibs: {},
-    };
-  });
-  // console.log('HTML: ', htmlData.hits)
-  // console.log('ClientLib: ', clientlibData.hits)
   await components.forEach((componentPath)=>{
-    fs.mkdir(path.join(config.storybookLocation, `./dependencies/jcr_root/${componentPath}`), { recursive: true }, (err) => {
-      if (err) throw err;
-    });
+    if(!isEditorFile(componentPath)) {
+      fs.mkdir(path.join(config.storybookLocation, path.join('./dependencies/jcr_root', componentPath)), { recursive: true }, (err) => {
+        if (err) throw err;
+      });
+    }
   })
   console.log('All component directories have been created!')
 
   await htmlData.hits.forEach(async (hit)=>{
-    const fileContent = await getFileContent(hit);
-    fsExtra.outputFile(path.join(config.storybookLocation, `./dependencies/jcr_root${hit.path}`), fileContent, err => {
-        if(err) {
-          console.log(err);
-        } else {
-          console.log(`The html file ${hit.path} was saved!`);
-      }
-    });
+    recursiveFunction(hit, config)
   })
+  console.log('All component HTML files been created!')
+
 
   await clientlibData.hits.forEach(async (hit)=>{
-    const pathEnd = `${hit.path}`.substring(`${hit.path}`.lastIndexOf('/') + 1);
-    if(pathEnd !== 'editor' && pathEnd !== 'editorhook' ){
+    if(!isEditorFile(hit.path)){
       const contentObj = await getClientlibContent(hit);
-      fsExtra.outputFile(path.join(config.storybookLocation, `./dependencies/jcr_root${contentObj.js.path}`), contentObj.js.content, err => {
-        if(err) {
-          console.log(err);
-        } else {
-          console.log(`The clientlib file ${contentObj.js.path} was saved!`);
-        }
-      });
-      fsExtra.outputFile(path.join(config.storybookLocation, `./dependencies/jcr_root${contentObj.css.path}`), contentObj.css.content, err => {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log(`The clientlib file ${contentObj.css.path} was saved!`);
+      writeToFile(contentObj.js.path, contentObj.js.content, config);
+      writeToFile(contentObj.css.path, contentObj.css.content, config);
+    }
+  })
+  console.log('All component ClientLib files been created!')
+};
+
+
+export const writeToFile = async (filePath, fileContent, config) => {
+  await fsExtra.outputFile(path.join(config.storybookLocation, path.join('./dependencies/jcr_root', filePath)), fileContent, err => {
+    if(err) {
+      console.log(err);
+    }
+  });
+}
+
+export const recursiveFunction = async (hit, config) => {
+    const fileContent = await getFileContent(hit);
+    const matches = fileContent.match(clientLibRegex);
+    
+    if(matches) {
+      matches.forEach(async match => {
+        const newMatch = match.match(quoteRegex);
+        if(newMatch && newMatch[0]) {
+          const value = newMatch[0].replace(/["]+/g, '');
+          if(!isEditorFile(hit.path) && !foundClientLibPaths.has(value))  {
+            foundClientLibPaths.add(value);
+            const pathEnd = `${value}`.substring(`${value}`.lastIndexOf('/') + 1);
+            const ext = pathEnd.split('.')[1];
+            if(ext === 'html') {
+              writeToFile(value, await getFileContent({ path: value }), config);
+              recursiveFunction({ path: value }, config);
+            } else if(ext === 'js' || ext === 'css') {
+              if(pathEnd !== 'editor' && pathEnd !== 'editorhook' ){
+                const contentObj = await getFileContent({ path: value });
+                writeToFile(contentObj.js.path, contentObj.js.content, config);
+                writeToFile(contentObj.css.path, contentObj.css.content, config);
+              }
+            }
+          }
         }
       });
     }
-  })
+    if(!isEditorFile(hit.path) && !foundClientLibPaths.has(hit.path))  {
+      writeToFile(hit.path, fileContent, config);
+    }
+}
 
-  const cachePath = path.join(config.storybookLocation, `.aem-cache.js`);
-  const content = `export default ${JSON.stringify(cache, null, 2)};`;
-  // console.log(cache)
-  // cacheContent(content, config)
-};
+export const isEditorFile = (path) => {
+  const pathEnd = `${path}`.substring(`${path}`.lastIndexOf('/') + 1);
+  return pathEnd === 'editor' || pathEnd === 'editorhook' || path.indexOf('/editor/') > -1;
+}
