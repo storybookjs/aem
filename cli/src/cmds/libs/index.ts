@@ -11,6 +11,7 @@ import { createPackageDefinition } from './createPackageDefinition';
 import { installPackage } from './installPackage';
 import { cacheContent } from '../analyze/cacheContent';
 import * as minify from 'minify';
+import { getContentXml } from './getContentXml';
 
 // this has a problem because we will get duplicates of local files
 const clientLibRegex = /(data-sly-use.templates|data-sly-use.clientlib)="((?:\\.|[^"\\])*)"/g;
@@ -19,6 +20,7 @@ const quoteRegex = /"((?:\\.|[^"\\])*)"/g;
 let foundClientLibPaths = new Set()
 
 export const libsCommand = async (args, config) => {
+  await deleteDependencies(config);
   await createPackageDefinition(args, config);
   await installPackage(args, config);
 
@@ -35,6 +37,7 @@ export const libsCommand = async (args, config) => {
       fs.mkdir(path.join(config.storybookLocation, path.join('./dependencies', componentPath)), { recursive: true }, (err) => {
         if (err) throw err;
       });
+      saveContentXml(componentPath, config)
     }
   })
   console.log('All component directories have been created!')
@@ -53,6 +56,7 @@ export const libsCommand = async (args, config) => {
     }
   })
   console.log('All component ClientLib files been created!')
+  createRootFile(config, components)
 };
 
 
@@ -96,7 +100,29 @@ export const recursiveFunction = async (hit, config) => {
     }
 }
 
+export const saveContentXml = async (componentPath, config) => {
+  const location = path.join(componentPath, `.content.xml`);
+  const contentXml = await getContentXml({path: `${componentPath.replace(/\/$/, "")}.json`});
+  writeToFile(location, contentXml, config);
+}
+
 export const isEditorFile = (path) => {
   const pathEnd = `${path}`.substring(`${path}`.lastIndexOf('/') + 1);
   return pathEnd === 'editor' || pathEnd === 'editorhook' || path.indexOf('/editor/') > -1;
+}
+
+export const deleteDependencies = async (config) => {
+  await fsExtra.remove(path.join(config.storybookLocation, './dependencies'), { recursive: true }); 
+  console.log('Removed all dependencies!')
+}
+
+export const createRootFile = async (config, components) => {
+  let content = `module.exports = [`
+  await components.forEach(componentPath => {
+    const requirePath = path.join(componentPath, `.content.xml`);
+    content = content.concat(`require('${requirePath}'),`);
+  });
+  content = content.concat('];')
+  writeToFile('components.js', content, config);
+  console.log('Created root file!')
 }
