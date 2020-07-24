@@ -57,7 +57,7 @@ export const libsCommand = async (args, config) => {
 
 
 export const writeToFile = async (filePath, fileContent, config) => {
-  await fsExtra.outputFile(path.join(config.storybookLocation, path.join('./dependencies/jcr_root', filePath)), fileContent, err => {
+  await fsExtra.outputFile(path.join(config.storybookLocation, path.join('./dependencies', filePath)), fileContent, err => {
     if(err) {
       console.log(err);
     }
