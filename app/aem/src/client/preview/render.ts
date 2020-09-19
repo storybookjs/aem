@@ -31,7 +31,6 @@ const createRuntime = (
   const models: Record<string, any> = aemMetadata ? aemMetadata.models : {};
   const components: any[] = aemMetadata ? aemMetadata.components : [];
   const includes: Record<string, any>[] = aemMetadata ? aemMetadata.includes : {};
-
   const runtimeGlobals = {
     ...runtimeVariables(resourceLoaderPath, content),
     models, // this is an internal object that is used in the model proxy
@@ -39,7 +38,7 @@ const createRuntime = (
     properties: content, // not quite right, since content here is module.json content
     wcmmode,
   };
-
+  console.table(window.includeTest)
   return new Runtime()
     .setGlobal(runtimeGlobals)
     .withDomFactory(new VDOMFactory(window.document.implementation).withKeepFragment(true))
@@ -49,7 +48,7 @@ const createRuntime = (
       )
     )
     .withIncludeHandler(
-      new IncludeHandler(includes).createIncludeHandler(),
+      new IncludeHandler(window.includeTest).createIncludeHandler(),
     );
 };
 

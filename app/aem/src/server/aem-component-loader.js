@@ -1,6 +1,7 @@
-import { basename, relative, sep as pathSeparator } from 'path';
+import { basename, relative, join, sep as pathSeparator } from 'path';
 import { toJson } from 'xml2json';
-import { existsSync } from 'fs';
+import { existsSync, readFile } from 'fs';
+const { getOptions } = require("loader-utils");
 
 const txtLoader = require
   .resolve('./aem-clientlib-txt-loader.js')
@@ -14,15 +15,45 @@ const NAME_JCR_ROOT = 'jcr_root';
 const NAME_APPS = 'apps';
 const NAME_LIBS = 'libs';
 const NAME_NODE_MODULES = 'node_modules';
+const DATA_SLY_INCLUDE_REGEX = /data-sly-include\s*="(.*?)"\s*/g;
+const WITHIN_QUOTES_REGEX = /"(.*?)"/
 
-const getRequiredHTL = (logger, component, context, pathBaseName) => {
+
+const getRequiredHTL = async (logger, component, context, pathBaseName, resolver) => {
   const htlFile = `${context.split(pathSeparator).join('/')}/${pathBaseName}.html`;
   if (!existsSync(`${htlFile}`)) {
     logger.info(`No HTL script for ${pathBaseName}`);
     return '';
   }
-  return `component.module = require('${htlFile}');`;
+
+  const includes = await getIncludes(htlFile, resolver, context);
+  console.log('THESE ARE INCLUDES',includes)
+  return `
+  window.includeTest = Object.assign(window.includeTest ? window.includeTest : {}, ${includes ? JSON. stringify(includes) : '{}'});
+  component.module = require('${htlFile}');
+  `;
 };
+
+const getIncludes = async (path, resolver, context, pathBaseName) => {
+  const includes = {};
+  await readFile(path, 'utf8', async function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+    const matches = data.match(DATA_SLY_INCLUDE_REGEX);
+    if(matches) {
+      for (let result of matches) {
+        const includeValue = Array.from(result.match(WITHIN_QUOTES_REGEX))[0];
+        const includeValueQuotesRemoved = includeValue.replace(/["']/g, "");
+        const fullIncludePath = join(context, includeValueQuotesRemoved);
+        includes['components/accordion/item.htl'] = `require('${fullIncludePath}')`;
+      }
+    }
+    // console.log(obj)
+    return includes;
+  });
+  return includes;
+}
 
 const getRequiredClientLibs = componentDir => {
   // Generate the code to load and watch all
@@ -36,6 +67,8 @@ const getRequiredClientLibs = componentDir => {
 
   return loadClientLibCode;
 };
+
+
 
 /**
  * Computes the resource type given the webpack context and root-context.
@@ -79,11 +112,12 @@ export default async function aemComponentLoader(source) {
   if (!component.properties[KEY_JCR_TITLE]) {
     component.properties[KEY_JCR_TITLE] = pathBaseName;
   }
+  const options = getOptions(this);
 
   return [
     `var component = ${JSON.stringify(component)};`,
     'module.exports = component;',
     getRequiredClientLibs(context.split(pathSeparator).join('/')),
-    getRequiredHTL(logger, component, context, pathBaseName),
+    await getRequiredHTL(logger, component, context, pathBaseName, options.resolver),
   ].join('\n');
 }

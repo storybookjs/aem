@@ -46,6 +46,7 @@
     "core-js": "^3.0.1",
     "global": "^4.3.2",
     "htl-loader": "^3.0.2",
+    "loader-utils": "^2.0.0",
     "regenerator-runtime": "^0.13.3",
     "typescript": "^3.7.5",
     "webpack": "^4.42.0",

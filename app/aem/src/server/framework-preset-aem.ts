@@ -10,8 +10,6 @@ const modGen = (baseDir, varName, id) => {
 };
 
 export function webpack(config: Configuration) {
-  // todo: record the scripts resolved during compilation and tell it the IncludeHandler,
-  //       so they don't need to be specified manually in the `includes` metadata.
   const scriptResolver = createScriptResolver(options.jcrRoots);
 
   return {
@@ -40,6 +38,9 @@ export function webpack(config: Configuration) {
           use: [
             {
               loader: path.resolve(__dirname, './aem-component-loader.js'),
+              options: {
+                resolver: scriptResolver,
+              },
             },
           ],
         },
