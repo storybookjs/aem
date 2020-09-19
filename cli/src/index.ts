@@ -2,7 +2,9 @@
 
 import chalk from 'chalk';
 import { getConfig, log } from './utils';
+import { analyzeCommand } from './cmds/analyze';
 import { helpCommand } from './cmds/help';
+import { libsCommand } from './cmds/libs';
 import { packageCommand } from './cmds/package';
 import { storyCommand } from './cmds/stories';
 import { versionCommand } from './cmds/version';
@@ -29,19 +31,25 @@ module.exports = () => {
   }
 
   switch (cmd) {
-    case 'story':
-    case 'stories':
-      storyCommand(args, config);
+    case 'analyze':
+      analyzeCommand(args, config);
+      break;
+    case 'help':
+      helpCommand(args);
+      break;
+    case 'libs':
+      libsCommand(args, config);
       break;
     case 'package':
       packageCommand(args, config);
       break;
+    case 'story':
+    case 'stories':
+      storyCommand(args, config);
+      break;
     case 'v':
     case 'version':
       versionCommand(args);
-      break;
-    case 'help':
-      helpCommand(args);
       break;
     default:
       log(
