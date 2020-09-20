@@ -15,8 +15,8 @@ module.exports = {
     "@storybook/addon-storysource",
     "@storybook/addon-viewport",
     '@storybook/addon-docs',
+  ],
+  roots: [
+    require('./dependencies/config')
   ]
 };
-
-// need to specify the additional jcrRoots from dependencies
-AEMRegisterJcrRoot(require('./dependencies/config').jcrRoots);
