@@ -156,13 +156,9 @@ export const createComponentsRootFile = async (config, components) => {
 }
 
 export const createConfigFile = (config) => {
-  // TODO: This should be dynamic
   const content = `
   const path = require('path');
-
-  AEMRegisterJcrRoot(path.resolve(__dirname, './apps'));
-  AEMRegisterJcrRoot(path.resolve(__dirname, './core'));
-  AEMRegisterJcrRoot(path.resolve(__dirname, './libs'));
+  AEMRegisterJcrRoot(path.resolve(__dirname, '.'));
   `
   writeToFile('config.js', content, config);
   console.log('Created config file!')
