@@ -60,7 +60,9 @@ export const libsCommand = async (args, config) => {
     }
   })
   console.log('All component ClientLib files been created!')
-  createRootFile(config, components)
+  createComponentsRootFile(config, components)
+  createConfigFile(config);
+  createIndexFile(config);
 };
 
 export const recursiveFunction = async (hit, config) => {
@@ -140,7 +142,7 @@ export const deleteDependencies = async (config) => {
   console.log('Removed all dependencies!')
 }
 
-export const createRootFile = async (config, components) => {
+export const createComponentsRootFile = async (config, components) => {
   let content = `module.exports = [`
   await components.forEach(componentPath => {
       if(!isEditorFile(componentPath)) {
@@ -150,5 +152,23 @@ export const createRootFile = async (config, components) => {
   });
   content = content.concat('];')
   writeToFile('components.js', content, config);
-  console.log('Created root file!')
+  console.log('Created components root file!')
+}
+
+export const createConfigFile = (config) => {
+  const content = `
+  module.exports = {
+    jcrRoots: '${path.join(config.storybookLocation, './dependencies')}',
+  }`
+  writeToFile('config.js', content, config);
+  console.log('Created config file!')
+}
+
+export const createIndexFile = (config) => {
+  const content = `
+  module.exports = {
+    components: require('./components.js'),
+  };`
+  writeToFile('index.js', content, config);
+  console.log('Created index file!')
 }

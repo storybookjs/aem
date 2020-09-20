@@ -1,6 +1,6 @@
 import { basename, relative, join, sep as pathSeparator } from 'path';
 import { toJson } from 'xml2json';
-import { existsSync, readFile } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 const { getOptions } = require("loader-utils");
 
 const txtLoader = require
@@ -19,39 +19,41 @@ const DATA_SLY_INCLUDE_REGEX = /data-sly-include\s*="(.*?)"\s*/g;
 const WITHIN_QUOTES_REGEX = /"(.*?)"/
 
 
-const getRequiredHTL = async (logger, component, context, pathBaseName, resolver) => {
+const getRequiredHTL = (logger, component, context, pathBaseName, resolver) => {
   const htlFile = `${context.split(pathSeparator).join('/')}/${pathBaseName}.html`;
   if (!existsSync(`${htlFile}`)) {
     logger.info(`No HTL script for ${pathBaseName}`);
     return '';
   }
 
-  const includes = await getIncludes(htlFile, resolver, context);
-  console.log('THESE ARE INCLUDES',includes)
+  const includes = getIncludes(htlFile, resolver, context);
   return `
-  window.includeTest = Object.assign(window.includeTest ? window.includeTest : {}, ${includes ? JSON. stringify(includes) : '{}'});
+  ${includes}
   component.module = require('${htlFile}');
   `;
 };
 
-const getIncludes = async (path, resolver, context, pathBaseName) => {
-  const includes = {};
-  await readFile(path, 'utf8', async function (err,data) {
-    if (err) {
-      return console.log(err);
-    }
+const getIncludes = (path, resolver, context, pathBaseName) => {
+  const data = readFileSync(path, 'utf8')
+  let includes = ``;
+  if(data) {
     const matches = data.match(DATA_SLY_INCLUDE_REGEX);
     if(matches) {
       for (let result of matches) {
         const includeValue = Array.from(result.match(WITHIN_QUOTES_REGEX))[0];
         const includeValueQuotesRemoved = includeValue.replace(/["']/g, "");
         const fullIncludePath = join(context, includeValueQuotesRemoved);
-        includes['components/accordion/item.htl'] = `require('${fullIncludePath}')`;
+        includes = `
+        ${includes}
+        window.storybookAEMIncludes = Object.assign(window.storybookAEMIncludes ? window.storybookAEMIncludes : {}, {"${includeValueQuotesRemoved}": require('${fullIncludePath}')});
+        console.log('INCLUDES', window.storybookAEMIncludes, "${includeValueQuotesRemoved}", '${fullIncludePath}')
+        `
       }
     }
-    // console.log(obj)
-    return includes;
-  });
+  }
+  if(includes) {
+    console.log(includes)
+  }
   return includes;
 }
 
@@ -118,6 +120,6 @@ export default async function aemComponentLoader(source) {
     `var component = ${JSON.stringify(component)};`,
     'module.exports = component;',
     getRequiredClientLibs(context.split(pathSeparator).join('/')),
-    await getRequiredHTL(logger, component, context, pathBaseName, options.resolver),
+    getRequiredHTL(logger, component, context, pathBaseName, options.resolver),
   ].join('\n');
 }

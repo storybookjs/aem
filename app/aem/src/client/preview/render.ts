@@ -38,7 +38,7 @@ const createRuntime = (
     properties: content, // not quite right, since content here is module.json content
     wcmmode,
   };
-  console.table(window.includeTest)
+  console.log(window.storybookAEMIncludes)
   return new Runtime()
     .setGlobal(runtimeGlobals)
     .withDomFactory(new VDOMFactory(window.document.implementation).withKeepFragment(true))
@@ -48,7 +48,7 @@ const createRuntime = (
       )
     )
     .withIncludeHandler(
-      new IncludeHandler(window.includeTest).createIncludeHandler(),
+      new IncludeHandler(window.storybookAEMIncludes).createIncludeHandler(),
     );
 };
 

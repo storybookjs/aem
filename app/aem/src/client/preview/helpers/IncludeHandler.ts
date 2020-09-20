@@ -11,6 +11,7 @@ export default class IncludeHandler {
 
   createIncludeHandler() {
     return (runtime, file: string, options: any) => {
+      console.log("file!!!",file)
       const action = this.includes[file];
       if (!action) {
         return `No such script: ${file}.`;
