@@ -11,7 +11,10 @@ export default class IncludeHandler {
 
   createIncludeHandler() {
     return (runtime, file: string, options: any) => {
-      console.log("file!!!",file)
+      console.log("file!!!",file, runtime, options)
+      // file should be item.htl
+      // file ends up come back as components/accordion/item.htl
+
       const action = this.includes[file];
       if (!action) {
         return `No such script: ${file}.`;

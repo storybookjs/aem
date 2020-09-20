@@ -8,3 +8,4 @@ ts3.5
 .vscode/
 .coverage/
 storybook-static/
+**/.storybook/dependencies/**

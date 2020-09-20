@@ -6,8 +6,7 @@ export const getContentXml = async (file) => {
   if (!file) throw new Error(`No file found`);
   const rawContentObj = await fetchFromAEM({ url: file.path });
   const rawContent = JSON.parse(await rawContentObj.text());
-  return rawContent ? `
-  <?xml version="1.0" encoding="UTF-8"?>
+  return rawContent ? `<?xml version="1.0" encoding="UTF-8"?>
   <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     cq:icon="${rawContent['cq:icon'] ? rawContent['cq:icon'] : ''}"
     cq:isContainer="${rawContent['cq:isContainer'] ? rawContent['cq:isContainer'] : ''}"

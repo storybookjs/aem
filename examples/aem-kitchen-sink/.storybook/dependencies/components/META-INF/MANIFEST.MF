@@ -1,4 +1,0 @@
-Manifest - Version: 1.0
-Content - Package - Roots: /apps/core/wcm/components/,/libs/wcm/foundation/components/parsys/newpar
-Content - Package - Type: application
-Content - Package - Id: storybook:storybook-dependencies
