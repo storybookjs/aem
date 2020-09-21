@@ -16,7 +16,8 @@ const NAME_APPS = 'apps';
 const NAME_LIBS = 'libs';
 const NAME_NODE_MODULES = 'node_modules';
 const DATA_SLY_INCLUDE_REGEX = /data-sly-include\s*="(.*?)"\s*/g;
-const WITHIN_QUOTES_REGEX = /"(.*?)"/
+const WITHIN_DOUBLE_QUOTES_REGEX = /"(.*?)"/
+const WITHIN_SINGLE_QUOTES_REGEX = /"(.*?)"/
 
 
 const getRequiredHTL = (logger, component, context, pathBaseName, resolver) => {
@@ -40,13 +41,12 @@ const getIncludes = (path, resolver, context, pathBaseName) => {
     const matches = data.match(DATA_SLY_INCLUDE_REGEX);
     if(matches) {
       for (let result of matches) {
-        const includeValue = Array.from(result.match(WITHIN_QUOTES_REGEX))[0];
-        const includeValueQuotesRemoved = includeValue.replace(/["']/g, "");
-        const fullIncludePath = join(context, includeValueQuotesRemoved);
+        const endResult = getIncludeValue(result)
+        console.log('RECEIVED INCLUDE VALUE', endResult)
+        const fullIncludePath = join(context, endResult);
         includes = `
         ${includes}
-        window.storybookAEMIncludes = Object.assign(window.storybookAEMIncludes ? window.storybookAEMIncludes : {}, {"${includeValueQuotesRemoved}": require('${fullIncludePath}')});
-        console.log('INCLUDES', window.storybookAEMIncludes, "${includeValueQuotesRemoved}", '${fullIncludePath}')
+        window.storybookAEMIncludes = Object.assign(window.storybookAEMIncludes ? window.storybookAEMIncludes : {}, {"${endResult}": require('${fullIncludePath}')});
         `
       }
     }
@@ -56,6 +56,64 @@ const getIncludes = (path, resolver, context, pathBaseName) => {
   }
   return includes;
 }
+
+
+const getIncludeValue = (initialValue) => {
+  const includeValue = Array.from(initialValue.match(WITHIN_DOUBLE_QUOTES_REGEX)) ? Array.from(initialValue.match(WITHIN_DOUBLE_QUOTES_REGEX))[0] : null;
+  if(!includeValue) {
+    return null;
+  }
+
+  // simple include - data-sly-include="test.htl"
+  const includeValueQuotesRemoved = includeValue.replace(/["']/g, '');
+  // result  = test.htl
+
+  if(includeValueQuotesRemoved.indexOf('${') === -1) {
+    return includeValueQuotesRemoved;
+  }
+
+  // include with string variable - data-sly-include="${'test.htl'}"
+  const includeDollarBracesRemoved = includeValueQuotesRemoved.replace(/\${([^()]+)\}/, '');
+  // result  = 'test.htl'
+
+  // include with path manipulation - data-sly-include="${'test.htl' @ prependPath='project1'}" or , prependPath='project1'}"
+  const prependPathValue = Array.from(includeDollarBracesRemoved.match(/(\@|,)(.)prependPath\=\'([^()]+)\'/))[0];
+  // result project1
+
+  // include with path manipulation - data-sly-include="${'project1' @ appendPath='test.htl'}" or , appendPath='test.htl'}"
+  const appendPathValue = Array.from(includeDollarBracesRemoved.match(/(\@|,)(.)appendPath\=\'([^()]+)\'/))[0];
+  // result test.htl
+
+  // include with path manipulation - data-sly-include="${@ file='test.htl'}"
+  const fileSetValue = Array.from(includeDollarBracesRemoved.match(/\@(.)file\=\'([^()]+)\'/))[0];
+  if(fileSetValue) {
+    if(includeDollarBracesRemoved.indexOf(',') === -1) {
+      return fileSetValue;
+    }
+    return prependAppendValue(fileSetValue, prependPathValue, appendPathValue);
+  }
+
+  const firstValueWithinQuotes = includeDollarBracesRemoved.match(WITHIN_SINGLE_QUOTES_REGEX) ? includeDollarBracesRemoved.match(WITHIN_SINGLE_QUOTES_REGEX)[0] : null;
+  if(firstValueWithinQuotes) {
+    if(firstValueWithinQuotes.trim().legth + 2 === includeDollarBracesRemoved.length) {
+      return firstValueWithinQuotes;
+    }
+    return prependAppendValue(firstValueWithinQuotes, prependPathValue, appendPathValue);
+  }
+
+  // include with request attributes - data-sly-include="${'test.htl' @ requestAttributes=settings}"
+
+  // include with wcmmode - data-sly-include="${'test.htl' @ wcmmode='disabled'}"
+  return null;
+}
+
+const prependAppendValue = (initialValue, prependValue, appendValue) => {
+  prependValue = prependValue ? `${prependValue}${sep}` : '';
+  appendValue = appendValue ? `${sep}${appendValue}` : '';
+  return `${prependValue}${initialValue}${appendValue}`;
+}
+
+
 
 const getRequiredClientLibs = componentDir => {
   // Generate the code to load and watch all
