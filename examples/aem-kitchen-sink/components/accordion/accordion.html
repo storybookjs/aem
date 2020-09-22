@@ -24,7 +24,9 @@
          data-sly-test="${(wcmmode.edit || wcmmode.preview) && accordion.items.size < 1}"></sly>
 </div>
 <h1>Include Test</h1>
-<section data-sly-include="item.htl">should not render</section>
+
+<section data-sly-include="item.html">should not render</section>
+
 <script>
     setTimeout(() => {
         const button = document.querySelector('.cmp-accordion__button')

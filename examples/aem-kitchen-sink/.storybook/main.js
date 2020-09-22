@@ -17,6 +17,6 @@ module.exports = {
     '@storybook/addon-docs',
   ],
   roots: [
-    require('./dependencies/config')
+    // require('./dependencies/config')
   ]
 };

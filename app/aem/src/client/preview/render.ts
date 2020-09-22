@@ -38,7 +38,6 @@ const createRuntime = (
     properties: content, // not quite right, since content here is module.json content
     wcmmode,
   };
-  console.log(window.storybookAEMIncludes)
   return new Runtime()
     .setGlobal(runtimeGlobals)
     .withDomFactory(new VDOMFactory(window.document.implementation).withKeepFragment(true))
@@ -84,10 +83,10 @@ const getDecorationElement = (decorationTag: DecorationTag, element: Element) =>
       PROPERTY_CSS_CLASSES
     )
       ? decorationTag.cssClasses
-          .map((value: any) => {
-            return typeof value === 'function' ? value() : value;
-          })
-          .join(' ')
+        .map((value: any) => {
+          return typeof value === 'function' ? value() : value;
+        })
+        .join(' ')
       : 'component';
     decorationElement = document.createElement(decorationElementType);
     decorationElement.setAttribute(ATTRIBUTE_CLASS, decorationElementClass);

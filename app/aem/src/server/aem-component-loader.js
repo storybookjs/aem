@@ -18,6 +18,7 @@ const NAME_NODE_MODULES = 'node_modules';
 const DATA_SLY_INCLUDE_REGEX = /data-sly-include\s*="(.*?)"\s*/g;
 const WITHIN_DOUBLE_QUOTES_REGEX = /"(.*?)"/
 const WITHIN_SINGLE_QUOTES_REGEX = /"(.*?)"/
+const HTL_COMMENTS_REGEX = /(?<=\<\!\-\-\/\*\s*).*?(?=\s*\*\/\-\-\>)/gs;
 
 
 const getRequiredHTL = (logger, component, context, pathBaseName, resolver) => {
@@ -35,32 +36,31 @@ const getRequiredHTL = (logger, component, context, pathBaseName, resolver) => {
 };
 
 const getIncludes = (path, resolver, context, pathBaseName) => {
-  const data = readFileSync(path, 'utf8')
+  const data = readFileSync(path, 'utf8').replace(HTL_COMMENTS_REGEX, '');
+  const htlEngineContext = context.split(`${process.cwd()}${pathSeparator}`)[1].replace(pathSeparator, '/');
   let includes = ``;
-  if(data) {
+  if (data) {
     const matches = data.match(DATA_SLY_INCLUDE_REGEX);
-    if(matches) {
+    if (matches) {
       for (let result of matches) {
+
         const endResult = getIncludeValue(result)
-        console.log('RECEIVED INCLUDE VALUE', endResult)
-        const fullIncludePath = join(context, endResult);
+        const fullIncludePath = join(context, endResult).split(pathSeparator).join('/');
         includes = `
         ${includes}
-        window.storybookAEMIncludes = Object.assign(window.storybookAEMIncludes ? window.storybookAEMIncludes : {}, {"${endResult}": require('${fullIncludePath}')});
+        window.storybookAEMIncludes = Object.assign(window.storybookAEMIncludes ? window.storybookAEMIncludes : {}, {"${htlEngineContext}/${endResult}": require('${fullIncludePath}')});
         `
       }
     }
   }
-  if(includes) {
-    console.log(includes)
-  }
+
   return includes;
 }
 
 
 const getIncludeValue = (initialValue) => {
   const includeValue = Array.from(initialValue.match(WITHIN_DOUBLE_QUOTES_REGEX)) ? Array.from(initialValue.match(WITHIN_DOUBLE_QUOTES_REGEX))[0] : null;
-  if(!includeValue) {
+  if (!includeValue) {
     return null;
   }
 
@@ -68,7 +68,7 @@ const getIncludeValue = (initialValue) => {
   const includeValueQuotesRemoved = includeValue.replace(/["']/g, '');
   // result  = test.htl
 
-  if(includeValueQuotesRemoved.indexOf('${') === -1) {
+  if (includeValueQuotesRemoved.indexOf('${') === -1) {
     return includeValueQuotesRemoved;
   }
 
@@ -86,16 +86,16 @@ const getIncludeValue = (initialValue) => {
 
   // include with path manipulation - data-sly-include="${@ file='test.htl'}"
   const fileSetValue = Array.from(includeDollarBracesRemoved.match(/\@(.)file\=\'([^()]+)\'/))[0];
-  if(fileSetValue) {
-    if(includeDollarBracesRemoved.indexOf(',') === -1) {
+  if (fileSetValue) {
+    if (includeDollarBracesRemoved.indexOf(',') === -1) {
       return fileSetValue;
     }
     return prependAppendValue(fileSetValue, prependPathValue, appendPathValue);
   }
 
   const firstValueWithinQuotes = includeDollarBracesRemoved.match(WITHIN_SINGLE_QUOTES_REGEX) ? includeDollarBracesRemoved.match(WITHIN_SINGLE_QUOTES_REGEX)[0] : null;
-  if(firstValueWithinQuotes) {
-    if(firstValueWithinQuotes.trim().legth + 2 === includeDollarBracesRemoved.length) {
+  if (firstValueWithinQuotes) {
+    if (firstValueWithinQuotes.trim().legth + 2 === includeDollarBracesRemoved.length) {
       return firstValueWithinQuotes;
     }
     return prependAppendValue(firstValueWithinQuotes, prependPathValue, appendPathValue);
@@ -108,8 +108,8 @@ const getIncludeValue = (initialValue) => {
 }
 
 const prependAppendValue = (initialValue, prependValue, appendValue) => {
-  prependValue = prependValue ? `${prependValue}${sep}` : '';
-  appendValue = appendValue ? `${sep}${appendValue}` : '';
+  prependValue = prependValue ? `${prependValue}${pathSeparator}` : '';
+  appendValue = appendValue ? `${pathSeparator}${appendValue}` : '';
   return `${prependValue}${initialValue}${appendValue}`;
 }
 

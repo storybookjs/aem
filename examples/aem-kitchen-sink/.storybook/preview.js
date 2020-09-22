@@ -9,7 +9,7 @@ addDecorator(aemMetadata({
     require('../components/list/.content.xml'),
     require('../components/text/.content.xml'),
     require('../components/aemtext/.content.xml'),
-    ...require('./dependencies').components,
+    // ...require('./dependencies').components,
   ],
   models: {
     'Accordion': GenericModel,
