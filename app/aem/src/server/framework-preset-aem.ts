@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { Configuration } from 'webpack';
 import runtimeVariables from '../client/preview/helpers/runtime-variables';
-import { createTemplateLoader } from '@adobe/htlengine';
+import { createScriptResolver } from '@adobe/htlengine';
 import options from './options';
 
 const modGen = (baseDir, varName, id) => {
@@ -10,7 +10,9 @@ const modGen = (baseDir, varName, id) => {
 };
 
 export function webpack(config: Configuration) {
-  const templateLoader = createTemplateLoader(options.jcrRoots);
+  // todo: record the scripts resolved during compilation and tell it the IncludeHandler,
+  //       so they don't need to be specified manually in the `includes` metadata.
+  const scriptResolver = createScriptResolver(options.jcrRoots);
 
   return {
     ...config,
@@ -19,7 +21,7 @@ export function webpack(config: Configuration) {
       rules: [
         ...config.module.rules,
         {
-          test: /\.html$/,
+          test: /\.(html|htl)$/,
           use: [
             {
               loader: require.resolve('htl-loader'),
@@ -28,7 +30,7 @@ export function webpack(config: Configuration) {
                 includeRuntime: false,
                 globalName: 'context',
                 runtimeVars: Object.keys(runtimeVariables()),
-                templateLoader,
+                scriptResolver,
               },
             },
           ],

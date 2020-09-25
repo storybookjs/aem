@@ -7,6 +7,7 @@ import { document, Node, window } from 'global';
 import { RenderMainArgs, ShowErrorArgs, DecorationTag, AemMetadata } from './types/types';
 import ComponentLoader from './helpers/ComponentLoader';
 import ResourceResolver from './helpers/ResourceResolver';
+import IncludeHandler from './helpers/IncludeHandler';
 import { simulatePageLoad, simulateDOMContentLoaded } from './helpers/simulate-pageload';
 import runtimeVariables from './helpers/runtime-variables';
 
@@ -29,6 +30,7 @@ const createRuntime = (
 ) => {
   const models: Record<string, any> = aemMetadata ? aemMetadata.models : {};
   const components: any[] = aemMetadata ? aemMetadata.components : [];
+  const includes: Record<string, any>[] = aemMetadata ? aemMetadata.includes : {};
 
   const runtimeGlobals = {
     ...runtimeVariables(resourceLoaderPath, content),
@@ -45,6 +47,9 @@ const createRuntime = (
       new ResourceResolver(content || {}, new ComponentLoader(components)).createResourceLoader(
         resourceLoaderPath || '/'
       )
+    )
+    .withIncludeHandler(
+      new IncludeHandler(includes).createIncludeHandler(),
     );
 };
 

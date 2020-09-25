@@ -19,6 +19,11 @@ addDecorator(aemMetadata({
     'List': GenericModel,
     'person': require('../models/person'),
     ...AEMCoreComponents.models,
+  },
+
+  // todo: the includes could be automatically detected during compilation using the script resolver
+  includes: {
+    'components/include/item.htl': require('../components/include/item.htl'),
   }
 }));
 
