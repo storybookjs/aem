@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    cq:icon="page"
+    cq:isContainer=""
+    jcr:description=""
+    jcr:primaryType="cq:Component"
+    sling:resourceSuperType="wcm/foundation/components/basicpage/v1/basicpage"
+    jcr:title="Page (v1)"
+    componentGroup=".core-wcm"/>

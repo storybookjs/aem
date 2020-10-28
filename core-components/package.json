@@ -1,0 +1,11 @@
+{
+    "name": "@storybook/aem-core-components",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "keywords": [
+        "storybook",
+        "aem",
+        "core components"
+    ]
+}

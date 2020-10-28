@@ -1,0 +1,1 @@
+<template data-sly-template.allowedcomponents="${@ title, components}"><div data-text="${title}" class="aem-AllowedComponent--title"></div><sly data-sly-repeat.comp="${components}" data-sly-resource="${comp.path @ resourceType=comp.resourceType, decorationTagName='div', cssClassName=comp.cssClass}"></sly></template>

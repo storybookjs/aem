@@ -1,0 +1,1 @@
+.breadcrumb{display:inline-block;list-style:none;padding:0}.breadcrumb .breadcrumb-item{float:left}.breadcrumb .breadcrumb-item+.breadcrumb-item:before{display:inline-block;padding:0 5px;content:"/\00a0"}
