@@ -7,5 +7,9 @@
         "storybook",
         "aem",
         "core components"
+    ],
+    "files": [
+        "index.js",
+        "config.js"
     ]
 }

@@ -1,7 +1,7 @@
 import { addParameters, addDecorator } from '@storybook/client-api';
 import { withA11y } from '@storybook/addon-a11y';
 import { aemMetadata, GenericModel } from '@storybook/aem';
-// import { components as CoreComponents } from '@storybook/aem-core-components';
+import { components as CoreComponents } from '@storybook/aem-core-components';
 
 addDecorator(withA11y);
 addDecorator(aemMetadata({
@@ -10,7 +10,7 @@ addDecorator(aemMetadata({
         require('../components/list/.content.xml'),
         require('../components/text/.content.xml'),
         require('../components/aemtext/.content.xml'),
-        // ...CoreComponents,
+        ...CoreComponents,
         // ...require('./dependencies').components,
     ],
     models: {
@@ -21,8 +21,8 @@ addDecorator(aemMetadata({
     },
     // todo: the includes could be automatically detected during compilation using the script resolver
     // includes: {
-    //   'components/accordion/item.htl': require('../components/accordion/item.htl'),
-    //   'components/include/item.htl': require('../components/include/item.htl'),
+    // 'components/accordion/item.htl': require('../components/accordion/item.htl'),
+    // 'components/include/item.htl': require('../components/include/item.htl'),
     // }
 }));
 

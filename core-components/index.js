@@ -1,3 +1,6 @@
+const { resolve } = require('path');
+
 module.exports = {
-    components: require('./components.js'),
+    foo: './',
+    components: require('./components.js')
 };
