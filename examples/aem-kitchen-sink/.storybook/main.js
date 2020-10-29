@@ -17,6 +17,6 @@ module.exports = {
         '@storybook/addon-docs',
     ],
     roots: [
-        require('@storybook/aem-core-components/config')
+        require('@storybook/aem-core-components/jcrRoot')
     ]
 };

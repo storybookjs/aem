@@ -10,6 +10,6 @@
     ],
     "files": [
         "index.js",
-        "config.js"
+        "jcrRoot.js"
     ]
 }

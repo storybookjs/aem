@@ -1,7 +1,7 @@
 import { addParameters, addDecorator } from '@storybook/client-api';
 import { withA11y } from '@storybook/addon-a11y';
 import { aemMetadata, GenericModel } from '@storybook/aem';
-import { components as CoreComponents } from '@storybook/aem-core-components';
+import { components as CoreComponents, models as CoreModels } from '@storybook/aem-core-components';
 
 addDecorator(withA11y);
 addDecorator(aemMetadata({
@@ -17,7 +17,8 @@ addDecorator(aemMetadata({
         'Accordion': GenericModel,
         'Text': GenericModel,
         'List': GenericModel,
-        'person': require('../models/person')
+        'person': require('../models/person'),
+        ...CoreModels
     },
     // todo: the includes could be automatically detected during compilation using the script resolver
     // includes: {
