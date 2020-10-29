@@ -1,5 +1,5 @@
+const { GenericModel } = require('@storybook/aem');
 const { resolve } = require('path');
-import { GenericModel } from '@storybook/aem';
 
 module.exports = {
     models: {

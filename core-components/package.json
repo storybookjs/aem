@@ -11,5 +11,8 @@
     "files": [
         "index.js",
         "jcrRoot.js"
-    ]
+    ],
+    "dependencies": {
+        "@storybook/aem": "*"
+    }
 }
