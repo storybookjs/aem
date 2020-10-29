@@ -2,6 +2,7 @@ module.exports = {
     stories: [
         `../stories/*.stories.*`,
         `../components/**/*.stories.*`,
+        '../ui.frontend/src/main/webpack/stories/*.stories.*'
     ],
     addons: [
         "@storybook/addon-a11y",

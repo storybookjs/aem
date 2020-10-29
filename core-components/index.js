@@ -29,5 +29,8 @@ module.exports = {
         'com.day.cq.wcm.foundation.TemplatedContainer': GenericModel,
         'libs.granite.sightly.templates.ClientLibUseObject': GenericModel,
     },
-    components: require('./components.js')
+    components: require('./components.js'),
+    includes: {
+        'core/wcm/components/commons/v1/templates.html': require('./apps/core/wcm/components/commons/v1/templates.html')
+    }
 };

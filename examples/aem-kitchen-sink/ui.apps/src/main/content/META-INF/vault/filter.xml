@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/storybook/clientlibs"/>
+    <filter root="/apps/storybook/components"/>
+    <filter root="/apps/storybook/i18n"/>
+</workspaceFilter>
