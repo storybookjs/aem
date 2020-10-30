@@ -3,11 +3,9 @@ import { aemMetadata, GenericModel } from '@storybook/aem';
 import Template from './include.html';
 
 export default {
-  title: 'Include',
-  decorators: [
-  ],
-  parameters: {
-  },
+  title: 'Custom/Include',
+  decorators: [],
+  parameters: {},
 };
 
 export const Include = () => {

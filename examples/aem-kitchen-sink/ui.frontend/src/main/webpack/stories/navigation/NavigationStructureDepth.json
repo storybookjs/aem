@@ -1,0 +1,47 @@
+{
+  "id": "navigation-435d0661e7",
+  "items": [{
+    "id": "navigation-435d0661e7-item-3a6bcb4e2c",
+    "path": "/content/core-components-examples",
+    "children": [{
+      "id": "navigation-435d0661e7-item-9bee4d4454",
+      "path": "/content/core-components-examples/library",
+      "children": [],
+      "level": 1,
+      "active": true,
+      "lastModified": 1590161225662,
+      "description": "AEM Core Components - Component Library",
+      "url": "/content/core-components-examples/library.html",
+      "title": "Component Library",
+      "dataLayer": {
+        "navigation-435d0661e7-item-9bee4d4454": {
+          "dc:title": "Component Library",
+          "repo:modifyDate": "2019-12-20T18:35:24Z",
+          "xdm:linkURL": "/content/core-components-examples/library.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    }],
+    "level": 0,
+    "active": true,
+    "lastModified": 1544121656470,
+    "url": "/content/core-components-examples.html",
+    "title": "Core Components",
+    "dataLayer": {
+      "navigation-435d0661e7-item-3a6bcb4e2c": {
+        "dc:title": "Core Components",
+        "xdm:linkURL": "/content/core-components-examples.html",
+        "@type": "foundation/components/redirect"
+      }
+    },
+    ":type": "foundation/components/redirect"
+  }],
+  ":type": "core/wcm/components/navigation/v1/navigation",
+  "dataLayer": {
+    "navigation-435d0661e7": {
+      "repo:modifyDate": "2019-05-21T16:28:11Z",
+      "@type": "core/wcm/components/navigation/v1/navigation"
+    }
+  }
+}

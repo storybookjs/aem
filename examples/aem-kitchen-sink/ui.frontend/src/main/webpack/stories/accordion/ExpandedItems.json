@@ -1,0 +1,70 @@
+{
+  "id": "accordion-78bc3b842e",
+  "singleExpansion": false,
+  "expandedItems": [
+    "item_1",
+    "item_2",
+    "item_3"
+  ],
+  ":itemsOrder": [
+    "item_1",
+    "item_2",
+    "item_3"
+  ],
+  ":items": {
+    "item_1": {
+      "id": "text-0b936d3b6c",
+      "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu mi bibendum neque egestas congue quisque egestas. Varius morbi enim nunc faucibus a pellentesque. Scelerisque eleifend donec pretium vulputate sapien nec sagittis.</p>\n",
+      "richText": true,
+      ":type": "core/wcm/components/text/v2/text",
+      "dataLayer": {
+        "text-0b936d3b6c": {
+          "xdm:text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu mi bibendum neque egestas congue quisque egestas. Varius morbi enim nunc faucibus a pellentesque. Scelerisque eleifend donec pretium vulputate sapien nec sagittis.</p>\n",
+          "repo:modifyDate": "2019-01-22T11:45:56Z",
+          "@type": "core/wcm/components/text/v2/text"
+        }
+      },
+      "cq:panelTitle": "Item 1"
+    },
+    "item_2": {
+      "id": "text-273d53765b",
+      "text": "<p>Hac habitasse platea dictumst quisque sagittis purus. At risus viverra adipiscing at in tellus integer. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Leo vel orci porta non pulvinar neque laoreet suspendisse. Volutpat diam ut venenatis tellus in metus vulputate eu.</p>\n",
+      "richText": true,
+      ":type": "core/wcm/components/text/v2/text",
+      "dataLayer": {
+        "text-273d53765b": {
+          "xdm:text": "<p>Hac habitasse platea dictumst quisque sagittis purus. At risus viverra adipiscing at in tellus integer. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Leo vel orci porta non pulvinar neque laoreet suspendisse. Volutpat diam ut venenatis tellus in metus vulputate eu.</p>\n",
+          "repo:modifyDate": "2019-01-22T11:46:55Z",
+          "@type": "core/wcm/components/text/v2/text"
+        }
+      },
+      "cq:panelTitle": "Item 2"
+    },
+    "item_3": {
+      "id": "text-7a1ad04f9b",
+      "text": "<p>Libero id faucibus nisl tincidunt eget nullam non nisi. Hac habitasse platea dictumst vestibulum. Viverra orci sagittis eu volutpat odio facilisis mauris. Velit aliquet sagittis id consectetur purus ut. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt.</p>\n",
+      "richText": true,
+      ":type": "core/wcm/components/text/v2/text",
+      "dataLayer": {
+        "text-7a1ad04f9b": {
+          "xdm:text": "<p>Libero id faucibus nisl tincidunt eget nullam non nisi. Hac habitasse platea dictumst vestibulum. Viverra orci sagittis eu volutpat odio facilisis mauris. Velit aliquet sagittis id consectetur purus ut. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt.</p>\n",
+          "repo:modifyDate": "2019-01-22T11:47:15Z",
+          "@type": "core/wcm/components/text/v2/text"
+        }
+      },
+      "cq:panelTitle": "Item 3"
+    }
+  },
+  "dataLayer": {
+    "accordion-78bc3b842e": {
+      "shownItems": [
+        "accordion-78bc3b842e-item-0b936d3b6c",
+        "accordion-78bc3b842e-item-273d53765b",
+        "accordion-78bc3b842e-item-7a1ad04f9b"
+      ],
+      "repo:modifyDate": "2018-12-07T12:12:10Z",
+      "@type": "core-components-examples/components/accordion"
+    }
+  },
+  ":type": "core-components-examples/components/accordion"
+}

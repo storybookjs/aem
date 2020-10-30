@@ -1,0 +1,59 @@
+{
+  "id": "accordion-6c8513b5eb",
+  "singleExpansion": false,
+  "expandedItems": [],
+  ":itemsOrder": [
+    "item_021105873",
+    "item_560792289",
+    "item_234605691"
+  ],
+  ":items": {
+    "item_021105873": {
+      "columnCount": 12,
+      "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+      "columnClassNames": {},
+      "allowedComponents": {
+        "applicable": false,
+        "components": []
+      },
+      ":items": {},
+      ":itemsOrder": [],
+      ":type": "wcm/foundation/components/responsivegrid",
+      "cq:panelTitle": "Item 1"
+    },
+    "item_560792289": {
+      "columnCount": 12,
+      "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+      "columnClassNames": {},
+      "allowedComponents": {
+        "applicable": false,
+        "components": []
+      },
+      ":items": {},
+      ":itemsOrder": [],
+      ":type": "wcm/foundation/components/responsivegrid",
+      "cq:panelTitle": "Item 2"
+    },
+    "item_234605691": {
+      "columnCount": 12,
+      "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+      "columnClassNames": {},
+      "allowedComponents": {
+        "applicable": false,
+        "components": []
+      },
+      ":items": {},
+      ":itemsOrder": [],
+      ":type": "wcm/foundation/components/responsivegrid",
+      "cq:panelTitle": "Item 3"
+    }
+  },
+  "dataLayer": {
+    "accordion-6c8513b5eb": {
+      "shownItems": [],
+      "repo:modifyDate": "2018-12-07T12:11:51Z",
+      "@type": "core-components-examples/components/accordion"
+    }
+  },
+  ":type": "core-components-examples/components/accordion"
+}

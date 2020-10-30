@@ -3,7 +3,7 @@ import exampleContent from './example_content';
 import ListTemplate from './list.html';
 
 export default {
-  title: 'List',
+  title: 'Custom/List',
   decorators: [
     withKnobs,
   ],

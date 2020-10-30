@@ -1,0 +1,201 @@
+{
+  "id": "tabs-d734aa9c61",
+  "activeItem": "item_1",
+  ":itemsOrder": [
+    "item_1",
+    "item_2",
+    "item_1544184727261"
+  ],
+  ":items": {
+    "item_1": {
+      "columnCount": 12,
+      "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+      "columnClassNames": {
+        "image": "aem-GridColumn aem-GridColumn--default--12",
+        "text": "aem-GridColumn aem-GridColumn--default--12"
+      },
+      "allowedComponents": {
+        "applicable": false,
+        "components": []
+      },
+      ":items": {
+        "text": {
+          "id": "text-31e9b022fd",
+          "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu mi bibendum neque egestas congue quisque egestas. Varius morbi enim nunc faucibus a pellentesque. Scelerisque eleifend donec pretium vulputate sapien nec sagittis.</p>\n",
+          "richText": true,
+          ":type": "core/wcm/components/text/v2/text",
+          "dataLayer": {
+            "text-31e9b022fd": {
+              "xdm:text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu mi bibendum neque egestas congue quisque egestas. Varius morbi enim nunc faucibus a pellentesque. Scelerisque eleifend donec pretium vulputate sapien nec sagittis.</p>\n",
+              "repo:modifyDate": "2019-01-22T11:45:56Z",
+              "@type": "core/wcm/components/text/v2/text"
+            }
+          }
+        },
+        "image": {
+          "id": "image-c457ccf5b1",
+          "alt": "Lava flowing into the ocean",
+          "title": "Lava flowing into the ocean",
+          "src": "/content/core-components-examples/library/container/tabs/_jcr_content/root/responsivegrid/demo_1865210207/component/tabs/item_1/image.coreimg.jpeg/1550672497829/lava-into-ocean.jpeg",
+          "srcUriTemplate": "/content/core-components-examples/library/container/tabs/_jcr_content/root/responsivegrid/demo_1865210207/component/tabs/item_1/image.coreimg{.width}.jpeg/1550672497829/lava-into-ocean.jpeg",
+          "areas": [],
+          "lazyThreshold": 0,
+          "uuid": "0f54e1b5-535b-45f7-a46b-35abb19dd6bc",
+          "widths": [],
+          "lazyEnabled": false,
+          ":type": "core-components-examples/components/image",
+          "dataLayer": {
+            "image-c457ccf5b1": {
+              "image": {
+                "@type": "image/jpeg",
+                "repo:path": "/content/dam/core-components-examples/library/sample-assets/lava-into-ocean.jpg",
+                "xdm:tags": [],
+                "repo:modifyDate": "2019-02-20T14:21:37Z",
+                "repo:id": "0f54e1b5-535b-45f7-a46b-35abb19dd6bc"
+              },
+              "dc:title": "Lava flowing into the ocean",
+              "repo:modifyDate": "2018-12-07T12:13:13Z",
+              "@type": "core-components-examples/components/image"
+            }
+          }
+        }
+      },
+      ":itemsOrder": [
+        "text",
+        "image"
+      ],
+      ":type": "wcm/foundation/components/responsivegrid",
+      "cq:panelTitle": "Tab 1"
+    },
+    "item_2": {
+      "columnCount": 12,
+      "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+      "columnClassNames": {
+        "image": "aem-GridColumn aem-GridColumn--default--12",
+        "text": "aem-GridColumn aem-GridColumn--default--12"
+      },
+      "allowedComponents": {
+        "applicable": false,
+        "components": []
+      },
+      ":items": {
+        "text": {
+          "id": "text-cc6b3466b5",
+          "text": "<p>Hac habitasse platea dictumst quisque sagittis purus. At risus viverra adipiscing at in tellus integer. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Leo vel orci porta non pulvinar neque laoreet suspendisse. Volutpat diam ut venenatis tellus in metus vulputate eu.</p>\n",
+          "richText": true,
+          ":type": "core/wcm/components/text/v2/text",
+          "dataLayer": {
+            "text-cc6b3466b5": {
+              "xdm:text": "<p>Hac habitasse platea dictumst quisque sagittis purus. At risus viverra adipiscing at in tellus integer. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Leo vel orci porta non pulvinar neque laoreet suspendisse. Volutpat diam ut venenatis tellus in metus vulputate eu.</p>\n",
+              "repo:modifyDate": "2019-01-22T11:46:55Z",
+              "@type": "core/wcm/components/text/v2/text"
+            }
+          }
+        },
+        "image": {
+          "id": "image-5bf30ef570",
+          "alt": "Snowy mountain glacier",
+          "title": "Snowy mountain glacier",
+          "src": "/content/core-components-examples/library/container/tabs/_jcr_content/root/responsivegrid/demo_1865210207/component/tabs/item_2/image.coreimg.jpeg/1550672497135/snowy-mountain-glacier.jpeg",
+          "srcUriTemplate": "/content/core-components-examples/library/container/tabs/_jcr_content/root/responsivegrid/demo_1865210207/component/tabs/item_2/image.coreimg{.width}.jpeg/1550672497135/snowy-mountain-glacier.jpeg",
+          "areas": [],
+          "lazyThreshold": 0,
+          "uuid": "45c6ee92-90e1-4af2-af69-b6dcbc7daeb7",
+          "widths": [],
+          "lazyEnabled": false,
+          ":type": "core-components-examples/components/image",
+          "dataLayer": {
+            "image-5bf30ef570": {
+              "image": {
+                "@type": "image/jpeg",
+                "repo:path": "/content/dam/core-components-examples/library/sample-assets/snowy-mountain-glacier.jpg",
+                "xdm:tags": [],
+                "repo:modifyDate": "2019-02-20T14:21:37Z",
+                "repo:id": "45c6ee92-90e1-4af2-af69-b6dcbc7daeb7"
+              },
+              "dc:title": "Snowy mountain glacier",
+              "repo:modifyDate": "2018-12-07T12:14:44Z",
+              "@type": "core-components-examples/components/image"
+            }
+          }
+        }
+      },
+      ":itemsOrder": [
+        "text",
+        "image"
+      ],
+      ":type": "wcm/foundation/components/responsivegrid",
+      "cq:panelTitle": "Tab 2"
+    },
+    "item_1544184727261": {
+      "columnCount": 12,
+      "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+      "columnClassNames": {
+        "image": "aem-GridColumn aem-GridColumn--default--12",
+        "text": "aem-GridColumn aem-GridColumn--default--12"
+      },
+      "allowedComponents": {
+        "applicable": false,
+        "components": []
+      },
+      ":items": {
+        "text": {
+          "id": "text-cb937612dc",
+          "text": "<p>Libero id faucibus nisl tincidunt eget nullam non nisi. Hac habitasse platea dictumst vestibulum. Viverra orci sagittis eu volutpat odio facilisis mauris. Velit aliquet sagittis id consectetur purus ut. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt.</p>\n",
+          "richText": true,
+          ":type": "core/wcm/components/text/v2/text",
+          "dataLayer": {
+            "text-cb937612dc": {
+              "xdm:text": "<p>Libero id faucibus nisl tincidunt eget nullam non nisi. Hac habitasse platea dictumst vestibulum. Viverra orci sagittis eu volutpat odio facilisis mauris. Velit aliquet sagittis id consectetur purus ut. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt.</p>\n",
+              "repo:modifyDate": "2019-01-22T11:47:15Z",
+              "@type": "core/wcm/components/text/v2/text"
+            }
+          }
+        },
+        "image": {
+          "id": "image-3722ca35c2",
+          "alt": "Aerial photo of mountain range",
+          "title": "Aerial photo of mountain range",
+          "src": "/content/core-components-examples/library/container/tabs/_jcr_content/root/responsivegrid/demo_1865210207/component/tabs/item_1544184727261/image.coreimg.jpeg/1550673081151/mountain-range.jpeg",
+          "srcUriTemplate": "/content/core-components-examples/library/container/tabs/_jcr_content/root/responsivegrid/demo_1865210207/component/tabs/item_1544184727261/image.coreimg{.width}.jpeg/1550673081151/mountain-range.jpeg",
+          "areas": [],
+          "lazyThreshold": 0,
+          "uuid": "c0a39183-23f4-48f0-8db7-bb41ba2b0122",
+          "widths": [],
+          "lazyEnabled": false,
+          ":type": "core-components-examples/components/image",
+          "dataLayer": {
+            "image-3722ca35c2": {
+              "image": {
+                "@type": "image/jpeg",
+                "repo:path": "/content/dam/core-components-examples/library/sample-assets/mountain-range.jpg",
+                "xdm:tags": [],
+                "repo:modifyDate": "2019-02-20T14:31:21Z",
+                "repo:id": "c0a39183-23f4-48f0-8db7-bb41ba2b0122"
+              },
+              "dc:title": "Aerial photo of mountain range",
+              "repo:modifyDate": "2018-12-07T12:14:50Z",
+              "@type": "core-components-examples/components/image"
+            }
+          }
+        }
+      },
+      ":itemsOrder": [
+        "text",
+        "image"
+      ],
+      ":type": "wcm/foundation/components/responsivegrid",
+      "cq:panelTitle": "Tab 3"
+    }
+  },
+  "dataLayer": {
+    "tabs-d734aa9c61": {
+      "shownItems": [
+        "tabs-d734aa9c61-item-236e9c3f08"
+      ],
+      "repo:modifyDate": "2018-12-07T12:12:10Z",
+      "@type": "core-components-examples/components/tabs"
+    }
+  },
+  ":type": "core-components-examples/components/tabs"
+}

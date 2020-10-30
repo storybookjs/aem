@@ -1,0 +1,62 @@
+{
+  "description": "",
+  "title": "Adobe Headquarters",
+  ":items": {},
+  "elements": {
+    "title": {
+      "title": "Title",
+      "dataType": "string",
+      "value": "Adobe Headquarters",
+      ":type": "string",
+      "multiValue": false
+    },
+    "streetAddress": {
+      "title": "Street Address",
+      "dataType": "string",
+      "value": "345 Park Avenue",
+      ":type": "text/plain",
+      "multiValue": false
+    },
+    "city": {
+      "title": "City",
+      "dataType": "string",
+      "value": "San Jose",
+      ":type": "string",
+      "multiValue": false
+    },
+    "postalCode": {
+      "title": "Postal Code",
+      "dataType": "string",
+      "value": "95110-2704",
+      ":type": "string",
+      "multiValue": false
+    },
+    "country": {
+      "title": "Country",
+      "dataType": "string",
+      "value": "USA",
+      ":type": "string",
+      "multiValue": false
+    },
+    "region": {
+      "title": "Region",
+      "dataType": "string",
+      "value": [
+        "core-components-examples:region/north-america"
+      ],
+      ":type": "string",
+      "multiValue": true
+    }
+  },
+  "elementsOrder": [
+    "title",
+    "streetAddress",
+    "city",
+    "postalCode",
+    "country",
+    "region"
+  ],
+  ":itemsOrder": [],
+  ":type": "core/wcm/components/contentfragment/v1/contentfragment",
+  "model": "core-components-examples/models/office"
+}

@@ -1,0 +1,20 @@
+{
+  "description": "",
+  "title": "Simple Fragment",
+  ":items": {},
+  "elements": {
+    "main": {
+      "title": "Main",
+      "dataType": "string",
+      "value": "<h3>Lorem Ipsum</h3>\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n",
+      ":type": "text/html",
+      "multiValue": false
+    }
+  },
+  "elementsOrder": [
+    "main"
+  ],
+  ":itemsOrder": [],
+  ":type": "core/wcm/components/contentfragment/v1/contentfragment",
+  "model": "/content/dam/core-components-examples/library/sample-assets/simple-fragment/jcr:content/model"
+}

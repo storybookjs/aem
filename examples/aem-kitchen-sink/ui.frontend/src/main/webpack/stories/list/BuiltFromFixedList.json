@@ -1,0 +1,66 @@
+{
+  "id": "list-f50b36b533",
+  "dateFormatString": "yyyy-MM-dd",
+  "items": [{
+      "id": "list-f50b36b533-item-b0a08e7237",
+      "path": "/content/core-components-examples/library/container/carousel",
+      "lastModified": 1550252345916,
+      "description": "Cycle through content panels",
+      "url": "/content/core-components-examples/library/container/carousel.html",
+      "title": "Carousel",
+      "dataLayer": {
+        "list-f50b36b533-item-b0a08e7237": {
+          "dc:title": "Carousel",
+          "repo:modifyDate": "2020-01-16T15:15:28Z",
+          "xdm:linkURL": "/content/core-components-examples/library/container/carousel.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    },
+    {
+      "id": "list-f50b36b533-item-bd937d6b13",
+      "path": "/content/core-components-examples/library/page-authoring/teaser",
+      "lastModified": 1575799718587,
+      "description": "Link an image and text",
+      "url": "/content/core-components-examples/library/page-authoring/teaser.html",
+      "title": "Teaser",
+      "dataLayer": {
+        "list-f50b36b533-item-bd937d6b13": {
+          "dc:title": "Teaser",
+          "repo:modifyDate": "2020-01-16T15:15:32Z",
+          "xdm:linkURL": "/content/core-components-examples/library/page-authoring/teaser.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    },
+    {
+      "id": "list-f50b36b533-item-e13089bf3b",
+      "path": "/content/core-components-examples/library/page-authoring/text",
+      "lastModified": 1548159422163,
+      "description": "Display a rich text paragraph",
+      "url": "/content/core-components-examples/library/page-authoring/text.html",
+      "title": "Text",
+      "dataLayer": {
+        "list-f50b36b533-item-e13089bf3b": {
+          "dc:title": "Text",
+          "repo:modifyDate": "2020-01-16T15:15:42Z",
+          "xdm:linkURL": "/content/core-components-examples/library/page-authoring/text.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    }
+  ],
+  "showDescription": false,
+  "showModificationDate": false,
+  "linkItems": false,
+  ":type": "core/wcm/components/list/v2/list",
+  "dataLayer": {
+    "list-f50b36b533": {
+      "repo:modifyDate": "2019-01-14T14:09:59Z",
+      "@type": "core/wcm/components/list/v2/list"
+    }
+  }
+}

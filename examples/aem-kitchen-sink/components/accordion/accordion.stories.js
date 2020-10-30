@@ -2,11 +2,11 @@ import exampleContent from './example_content';
 import { aemMetadata } from '@storybook/aem';
 
 export default {
-  title: 'Accordion',
+  title: 'Custom/Accordion',
   decorators: [
     aemMetadata({
       decorationTag: {
-        cssClasses: ['accordion','component'],
+        cssClasses: ['accordion', 'component'],
         tagName: 'article'
       }
     }),

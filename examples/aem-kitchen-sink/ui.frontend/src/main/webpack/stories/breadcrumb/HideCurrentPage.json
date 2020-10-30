@@ -1,0 +1,84 @@
+{
+  "id": "breadcrumb-0b805437b4",
+  "items": [{
+      "id": "breadcrumb-0b805437b4-item-9bee4d4454",
+      "active": false,
+      "url": "/content/core-components-examples/library.html",
+      "title": "Component Library",
+      "dataLayer": {
+        "breadcrumb-0b805437b4-item-9bee4d4454": {
+          "dc:title": "Component Library",
+          "repo:modifyDate": "2019-12-20T18:35:24Z",
+          "xdm:linkURL": "/content/core-components-examples/library.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    },
+    {
+      "id": "breadcrumb-0b805437b4-item-1d32a567a9",
+      "active": false,
+      "url": "/content/core-components-examples/library/templating.html",
+      "title": "Templating",
+      "dataLayer": {
+        "breadcrumb-0b805437b4-item-1d32a567a9": {
+          "dc:title": "Templating",
+          "xdm:linkURL": "/content/core-components-examples/library/templating.html",
+          "@type": "foundation/components/redirect"
+        }
+      },
+      ":type": "foundation/components/redirect"
+    },
+    {
+      "id": "breadcrumb-0b805437b4-item-35671d6884",
+      "active": false,
+      "url": "/content/core-components-examples/library/templating/breadcrumb/hidden/level-1/level-2/breadcrumb.html",
+      "title": "Breadcrumb",
+      "dataLayer": {
+        "breadcrumb-0b805437b4-item-35671d6884": {
+          "dc:title": "Breadcrumb",
+          "xdm:linkURL": "/content/core-components-examples/library/templating/breadcrumb/hidden/level-1/level-2/breadcrumb.html",
+          "@type": "foundation/components/redirect"
+        }
+      },
+      ":type": "foundation/components/redirect"
+    },
+    {
+      "id": "breadcrumb-0b805437b4-item-eae3a9359d",
+      "active": false,
+      "url": "/content/core-components-examples/library/templating/breadcrumb/hidden/level-1.html",
+      "title": "Level 1",
+      "dataLayer": {
+        "breadcrumb-0b805437b4-item-eae3a9359d": {
+          "dc:title": "Level 1",
+          "repo:modifyDate": "2020-01-16T15:15:29Z",
+          "xdm:linkURL": "/content/core-components-examples/library/templating/breadcrumb/hidden/level-1.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    },
+    {
+      "id": "breadcrumb-0b805437b4-item-4ece1d42cb",
+      "active": false,
+      "url": "/content/core-components-examples/library/templating/breadcrumb/hidden/level-1/level-2.html",
+      "title": "Level 2",
+      "dataLayer": {
+        "breadcrumb-0b805437b4-item-4ece1d42cb": {
+          "dc:title": "Level 2",
+          "repo:modifyDate": "2020-01-16T15:15:29Z",
+          "xdm:linkURL": "/content/core-components-examples/library/templating/breadcrumb/hidden/level-1/level-2.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    }
+  ],
+  ":type": "core-components-examples/components/breadcrumb",
+  "dataLayer": {
+    "breadcrumb-0b805437b4": {
+      "repo:modifyDate": "2019-05-21T12:14:14Z",
+      "@type": "core-components-examples/components/breadcrumb"
+    }
+  }
+}

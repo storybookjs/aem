@@ -1,0 +1,89 @@
+{
+  "id": "carousel-82588fa1c7",
+  "autoplay": false,
+  "delay": 5000,
+  "autopauseDisabled": false,
+  ":itemsOrder": [
+    "teaser_720124833",
+    "teaser_841933659",
+    "teaser"
+  ],
+  ":items": {
+    "teaser_720124833": {
+      "id": "teaser-f9b21b552e",
+      "title": "First Teaser Title",
+      "description": "<p>Teaser Description</p>\r\n",
+      "linkURL": "/content/core-components-examples/library/container/carousel.html",
+      "actionsEnabled": false,
+      "imageLinkHidden": false,
+      "titleLinkHidden": false,
+      "actions": [],
+      "imagePath": "https://www.aemcomponents.dev/content/core-components-examples/library/container/carousel/_jcr_content/root/responsivegrid/demo/component/carousel_8337507762/teaser_720124833.coreimg.jpeg/1550672497829/lava-into-ocean.jpeg",
+      ":type": "storybook/components/teaser",
+      "dataLayer": {
+        "teaser-f9b21b552e": {
+          "dc:description": "<p>Teaser Description</p>\r\n",
+          "dc:title": "First Teaser Title",
+          "repo:modifyDate": "2019-01-22T12:37:05Z",
+          "xdm:linkURL": "/content/core-components-examples/library/container/carousel.html",
+          "@type": "storybook/components/teaser"
+        }
+      },
+      "cq:panelTitle": "Teaser Title"
+    },
+    "teaser_841933659": {
+      "id": "teaser-7cc66bb6ac",
+      "title": "Second Teaser Title",
+      "description": "<p>Teaser Description</p>\r\n",
+      "linkURL": "/content/core-components-examples/library/container/carousel.html",
+      "actionsEnabled": false,
+      "imageLinkHidden": false,
+      "titleLinkHidden": false,
+      "actions": [],
+      "imagePath": "https://www.aemcomponents.dev/content/core-components-examples/library/container/carousel/_jcr_content/root/responsivegrid/demo/component/carousel_8337507762/teaser_841933659.coreimg.jpeg/1550672497135/snowy-mountain-glacier.jpeg",
+      ":type": "storybook/components/teaser",
+      "dataLayer": {
+        "teaser-7cc66bb6ac": {
+          "dc:description": "<p>Teaser Description</p>\r\n",
+          "dc:title": "Second Teaser Title",
+          "repo:modifyDate": "2019-01-22T12:37:24Z",
+          "xdm:linkURL": "/content/core-components-examples/library/container/carousel.html",
+          "@type": "storybook/components/teaser"
+        }
+      },
+      "cq:panelTitle": "Teaser Title"
+    },
+    "teaser": {
+      "id": "teaser-5c64a9c179",
+      "title": "Third Teaser Title",
+      "description": "<p>Teaser Description</p>\r\n",
+      "linkURL": "/content/core-components-examples/library/container/carousel.html",
+      "actionsEnabled": false,
+      "imageLinkHidden": false,
+      "titleLinkHidden": false,
+      "actions": [],
+      "imagePath": "https://www.aemcomponents.dev/content/core-components-examples/library/container/carousel/_jcr_content/root/responsivegrid/demo/component/carousel_8337507762/teaser.coreimg.jpeg/1550672498426/lava-rock-formation.jpeg",
+      ":type": "storybook/components/teaser",
+      "dataLayer": {
+        "teaser-5c64a9c179": {
+          "dc:description": "<p>Teaser Description</p>\r\n",
+          "dc:title": "Third Teaser Title",
+          "repo:modifyDate": "2019-01-22T12:38:07Z",
+          "xdm:linkURL": "/content/core-components-examples/library/container/carousel.html",
+          "@type": "storybook/components/teaser"
+        }
+      },
+      "cq:panelTitle": "Teaser Title"
+    }
+  },
+  "dataLayer": {
+    "carousel-82588fa1c7": {
+      "shownItems": [
+        "carousel-82588fa1c7-item-f9b21b552e"
+      ],
+      "repo:modifyDate": "2019-01-22T12:37:48Z",
+      "@type": "storybook/components/carousel"
+    }
+  },
+  ":type": "storybook/components/carousel"
+}

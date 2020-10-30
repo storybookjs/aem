@@ -1,0 +1,255 @@
+{
+  "id": "tabs-9ed00c6e30",
+  "activeItem": "item_1",
+  ":itemsOrder": [
+    "item_1",
+    "item_2",
+    "item_1544185536409"
+  ],
+  ":items": {
+    "item_1": {
+      "columnCount": 12,
+      "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+      "columnClassNames": {
+        "tabs_copy": "aem-GridColumn aem-GridColumn--default--12"
+      },
+      "allowedComponents": {
+        "applicable": false,
+        "components": []
+      },
+      ":items": {
+        "tabs_copy": {
+          "id": "tabs-c0c835229e",
+          "activeItem": "item_1",
+          ":itemsOrder": [
+            "item_1",
+            "item_2",
+            "item_1544184727261"
+          ],
+          ":items": {
+            "item_1": {
+              "columnCount": 12,
+              "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+              "columnClassNames": {},
+              "allowedComponents": {
+                "applicable": false,
+                "components": []
+              },
+              ":items": {},
+              ":itemsOrder": [],
+              ":type": "wcm/foundation/components/responsivegrid",
+              "cq:panelTitle": "Tab 1.1"
+            },
+            "item_2": {
+              "columnCount": 12,
+              "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+              "columnClassNames": {},
+              "allowedComponents": {
+                "applicable": false,
+                "components": []
+              },
+              ":items": {},
+              ":itemsOrder": [],
+              ":type": "wcm/foundation/components/responsivegrid",
+              "cq:panelTitle": "Tab 1.2"
+            },
+            "item_1544184727261": {
+              "columnCount": 12,
+              "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+              "columnClassNames": {},
+              "allowedComponents": {
+                "applicable": false,
+                "components": []
+              },
+              ":items": {},
+              ":itemsOrder": [],
+              ":type": "wcm/foundation/components/responsivegrid",
+              "cq:panelTitle": "Tab 1.3"
+            }
+          },
+          "dataLayer": {
+            "tabs-c0c835229e": {
+              "shownItems": [
+                "tabs-c0c835229e-item-823fa9a5f9"
+              ],
+              "repo:modifyDate": "2019-01-22T11:51:03Z",
+              "@type": "core-components-examples/components/tabs"
+            }
+          },
+          ":type": "core-components-examples/components/tabs"
+        }
+      },
+      ":itemsOrder": [
+        "tabs_copy"
+      ],
+      ":type": "wcm/foundation/components/responsivegrid",
+      "cq:panelTitle": "Tab 1"
+    },
+    "item_2": {
+      "columnCount": 12,
+      "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+      "columnClassNames": {
+        "tabs_copy": "aem-GridColumn aem-GridColumn--default--12"
+      },
+      "allowedComponents": {
+        "applicable": false,
+        "components": []
+      },
+      ":items": {
+        "tabs_copy": {
+          "id": "tabs-de04dd860e",
+          "activeItem": "item_1",
+          ":itemsOrder": [
+            "item_1",
+            "item_2",
+            "item_1544184727261"
+          ],
+          ":items": {
+            "item_1": {
+              "columnCount": 12,
+              "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+              "columnClassNames": {},
+              "allowedComponents": {
+                "applicable": false,
+                "components": []
+              },
+              ":items": {},
+              ":itemsOrder": [],
+              ":type": "wcm/foundation/components/responsivegrid",
+              "cq:panelTitle": "Tab 2.1"
+            },
+            "item_2": {
+              "columnCount": 12,
+              "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+              "columnClassNames": {},
+              "allowedComponents": {
+                "applicable": false,
+                "components": []
+              },
+              ":items": {},
+              ":itemsOrder": [],
+              ":type": "wcm/foundation/components/responsivegrid",
+              "cq:panelTitle": "Tab 2.2"
+            },
+            "item_1544184727261": {
+              "columnCount": 12,
+              "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+              "columnClassNames": {},
+              "allowedComponents": {
+                "applicable": false,
+                "components": []
+              },
+              ":items": {},
+              ":itemsOrder": [],
+              ":type": "wcm/foundation/components/responsivegrid",
+              "cq:panelTitle": "Tab 2.3"
+            }
+          },
+          "dataLayer": {
+            "tabs-de04dd860e": {
+              "shownItems": [
+                "tabs-de04dd860e-item-ef5294ef2b"
+              ],
+              "repo:modifyDate": "2019-01-22T11:51:24Z",
+              "@type": "core-components-examples/components/tabs"
+            }
+          },
+          ":type": "core-components-examples/components/tabs"
+        }
+      },
+      ":itemsOrder": [
+        "tabs_copy"
+      ],
+      ":type": "wcm/foundation/components/responsivegrid",
+      "cq:panelTitle": "Tab 2"
+    },
+    "item_1544185536409": {
+      "columnCount": 12,
+      "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+      "columnClassNames": {
+        "tabs_copy": "aem-GridColumn aem-GridColumn--default--12"
+      },
+      "allowedComponents": {
+        "applicable": false,
+        "components": []
+      },
+      ":items": {
+        "tabs_copy": {
+          "id": "tabs-eab21bb274",
+          "activeItem": "item_1",
+          ":itemsOrder": [
+            "item_1",
+            "item_2",
+            "item_1544184727261"
+          ],
+          ":items": {
+            "item_1": {
+              "columnCount": 12,
+              "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+              "columnClassNames": {},
+              "allowedComponents": {
+                "applicable": false,
+                "components": []
+              },
+              ":items": {},
+              ":itemsOrder": [],
+              ":type": "wcm/foundation/components/responsivegrid",
+              "cq:panelTitle": "Tab 3.1"
+            },
+            "item_2": {
+              "columnCount": 12,
+              "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+              "columnClassNames": {},
+              "allowedComponents": {
+                "applicable": false,
+                "components": []
+              },
+              ":items": {},
+              ":itemsOrder": [],
+              ":type": "wcm/foundation/components/responsivegrid",
+              "cq:panelTitle": "Tab 3.2"
+            },
+            "item_1544184727261": {
+              "columnCount": 12,
+              "gridClassNames": "aem-Grid aem-Grid--12 aem-Grid--default--12",
+              "columnClassNames": {},
+              "allowedComponents": {
+                "applicable": false,
+                "components": []
+              },
+              ":items": {},
+              ":itemsOrder": [],
+              ":type": "wcm/foundation/components/responsivegrid",
+              "cq:panelTitle": "Tab 3.3"
+            }
+          },
+          "dataLayer": {
+            "tabs-eab21bb274": {
+              "shownItems": [
+                "tabs-eab21bb274-item-803755377b"
+              ],
+              "repo:modifyDate": "2019-01-22T11:51:36Z",
+              "@type": "core-components-examples/components/tabs"
+            }
+          },
+          ":type": "core-components-examples/components/tabs"
+        }
+      },
+      ":itemsOrder": [
+        "tabs_copy"
+      ],
+      ":type": "wcm/foundation/components/responsivegrid",
+      "cq:panelTitle": "Tab 3"
+    }
+  },
+  "dataLayer": {
+    "tabs-9ed00c6e30": {
+      "shownItems": [
+        "tabs-9ed00c6e30-item-b8fe8608fb"
+      ],
+      "repo:modifyDate": "2018-12-07T12:25:41Z",
+      "@type": "core-components-examples/components/tabs"
+    }
+  },
+  ":type": "core-components-examples/components/tabs"
+}

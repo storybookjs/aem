@@ -1,0 +1,82 @@
+{
+  "items": [{
+      "description": "",
+      "title": "Adobe Headquarters",
+      "model": "core-components-examples/models/office",
+      "elements": {
+        "title": {
+          "title": "Title",
+          "dataType": "string",
+          "value": "Adobe Headquarters",
+          ":type": "string",
+          "multiValue": false
+        },
+        "city": {
+          "title": "City",
+          "dataType": "string",
+          "value": "San Jose",
+          ":type": "string",
+          "multiValue": false
+        }
+      },
+      "elementsOrder": [
+        "title",
+        "city"
+      ],
+      ":type": "dam:Asset"
+    },
+    {
+      "description": "",
+      "title": "Adobe San Francisco",
+      "model": "core-components-examples/models/office",
+      "elements": {
+        "title": {
+          "title": "Title",
+          "dataType": "string",
+          "value": "Adobe San Francisco",
+          ":type": "string",
+          "multiValue": false
+        },
+        "city": {
+          "title": "City",
+          "dataType": "string",
+          "value": "San Francisco",
+          ":type": "string",
+          "multiValue": false
+        }
+      },
+      "elementsOrder": [
+        "title",
+        "city"
+      ],
+      ":type": "dam:Asset"
+    },
+    {
+      "description": "",
+      "title": "Adobe Research Schweiz AG",
+      "model": "core-components-examples/models/office",
+      "elements": {
+        "title": {
+          "title": "Title",
+          "dataType": "string",
+          "value": "Adobe Research Schweiz AG",
+          ":type": "string",
+          "multiValue": false
+        },
+        "city": {
+          "title": "City",
+          "dataType": "string",
+          "value": "Basel",
+          ":type": "string",
+          "multiValue": false
+        }
+      },
+      "elementsOrder": [
+        "title",
+        "city"
+      ],
+      ":type": "dam:Asset"
+    }
+  ],
+  ":type": "core/wcm/components/contentfragmentlist/v1/contentfragmentlist"
+}

@@ -1,0 +1,107 @@
+{
+  "id": "carousel-4879c671fd",
+  "autoplay": true,
+  "delay": 5000,
+  "autopauseDisabled": true,
+  ":itemsOrder": [
+    "image_436039984",
+    "image_1321018784",
+    "image"
+  ],
+  ":items": {
+    "image_436039984": {
+      "id": "image-43d0b6df1d",
+      "alt": "Lava flowing into the ocean",
+      "title": "Lava flowing into the ocean",
+      "src": "https://www.aemcomponents.dev/content/core-components-examples/library/container/carousel/_jcr_content/root/responsivegrid/demo_293658729/component/carousel_1655133361/image_436039984.coreimg.jpeg/1550672497829/lava-into-ocean.jpeg",
+      "srcUriTemplate": "https://www.aemcomponents.dev/content/core-components-examples/library/container/carousel/_jcr_content/root/responsivegrid/demo_293658729/component/carousel_1655133361/image_436039984.coreimg{.width}.jpeg/1550672497829/lava-into-ocean.jpeg",
+      "areas": [],
+      "lazyThreshold": 0,
+      "uuid": "0f54e1b5-535b-45f7-a46b-35abb19dd6bc",
+      "widths": [],
+      "lazyEnabled": false,
+      ":type": "storybook/components/image",
+      "dataLayer": {
+        "image-43d0b6df1d": {
+          "image": {
+            "@type": "image/jpeg",
+            "repo:path": "https://www.aemcomponents.dev/content/dam/core-components-examples/library/sample-assets/lava-into-ocean.jpg",
+            "xdm:tags": [],
+            "repo:modifyDate": "2019-02-20T14:21:37Z",
+            "repo:id": "0f54e1b5-535b-45f7-a46b-35abb19dd6bc"
+          },
+          "dc:title": "Lava flowing into the ocean",
+          "repo:modifyDate": "2018-12-06T18:48:18Z",
+          "@type": "storybook/components/image"
+        }
+      },
+      "cq:panelTitle": null
+    },
+    "image_1321018784": {
+      "id": "image-85f0a1e104",
+      "alt": "Snowy mountain glacier",
+      "title": "Snowy mountain glacier",
+      "src": "https://www.aemcomponents.dev/content/core-components-examples/library/container/carousel/_jcr_content/root/responsivegrid/demo_293658729/component/carousel_1655133361/image_1321018784.coreimg.jpeg/1550672497135/snowy-mountain-glacier.jpeg",
+      "srcUriTemplate": "https://www.aemcomponents.dev/content/core-components-examples/library/container/carousel/_jcr_content/root/responsivegrid/demo_293658729/component/carousel_1655133361/image_1321018784.coreimg{.width}.jpeg/1550672497135/snowy-mountain-glacier.jpeg",
+      "areas": [],
+      "lazyThreshold": 0,
+      "uuid": "45c6ee92-90e1-4af2-af69-b6dcbc7daeb7",
+      "widths": [],
+      "lazyEnabled": false,
+      ":type": "storybook/components/image",
+      "dataLayer": {
+        "image-85f0a1e104": {
+          "image": {
+            "@type": "image/jpeg",
+            "repo:path": "https://www.aemcomponents.dev/content/dam/core-components-examples/library/sample-assets/snowy-mountain-glacier.jpg",
+            "xdm:tags": [],
+            "repo:modifyDate": "2019-02-20T14:21:37Z",
+            "repo:id": "45c6ee92-90e1-4af2-af69-b6dcbc7daeb7"
+          },
+          "dc:title": "Snowy mountain glacier",
+          "repo:modifyDate": "2018-12-06T18:48:24Z",
+          "@type": "storybook/components/image"
+        }
+      },
+      "cq:panelTitle": null
+    },
+    "image": {
+      "id": "image-f03237c424",
+      "alt": "Gray lava rock formation",
+      "title": "Gray lava rock formation",
+      "src": "https://www.aemcomponents.dev/content/core-components-examples/library/container/carousel/_jcr_content/root/responsivegrid/demo_293658729/component/carousel_1655133361/image.coreimg.jpeg/1550672498426/lava-rock-formation.jpeg",
+      "srcUriTemplate": "https://www.aemcomponents.dev/content/core-components-examples/library/container/carousel/_jcr_content/root/responsivegrid/demo_293658729/component/carousel_1655133361/image.coreimg{.width}.jpeg/1550672498426/lava-rock-formation.jpeg",
+      "areas": [],
+      "lazyThreshold": 0,
+      "uuid": "c58c09f6-e382-4698-bfbd-e8c8d37712c8",
+      "widths": [],
+      "lazyEnabled": false,
+      ":type": "storybook/components/image",
+      "dataLayer": {
+        "image-f03237c424": {
+          "image": {
+            "@type": "image/jpeg",
+            "repo:path": "https://www.aemcomponents.dev/content/dam/core-components-examples/library/sample-assets/lava-rock-formation.jpg",
+            "xdm:tags": [],
+            "repo:modifyDate": "2019-02-20T14:21:38Z",
+            "repo:id": "c58c09f6-e382-4698-bfbd-e8c8d37712c8"
+          },
+          "dc:title": "Gray lava rock formation",
+          "repo:modifyDate": "2018-12-06T18:48:29Z",
+          "@type": "storybook/components/image"
+        }
+      },
+      "cq:panelTitle": null
+    }
+  },
+  "dataLayer": {
+    "carousel-4879c671fd": {
+      "shownItems": [
+        "carousel-4879c671fd-item-43d0b6df1d"
+      ],
+      "repo:modifyDate": "2019-01-14T20:10:54Z",
+      "@type": "core-components-examples/components/carousel"
+    }
+  },
+  ":type": "core-components-examples/components/carousel"
+}

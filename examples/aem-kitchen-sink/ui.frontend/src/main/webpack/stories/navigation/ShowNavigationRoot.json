@@ -1,0 +1,874 @@
+{
+  "id": "navigation-5a057c20a4",
+  "items": [{
+    "id": "navigation-5a057c20a4-item-3a6bcb4e2c",
+    "path": "/content/core-components-examples",
+    "children": [{
+      "id": "navigation-5a057c20a4-item-9bee4d4454",
+      "path": "/content/core-components-examples/library",
+      "children": [{
+          "id": "navigation-5a057c20a4-item-1d32a567a9",
+          "path": "/content/core-components-examples/library/templating",
+          "children": [{
+              "id": "navigation-5a057c20a4-item-a15ec9918d",
+              "path": "/content/core-components-examples/library/templating/navigation",
+              "children": [],
+              "level": 3,
+              "active": true,
+              "lastModified": 1558694278229,
+              "description": "Display a site navigation menu",
+              "url": "/content/core-components-examples/library/templating/navigation.html",
+              "title": "Navigation",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-a15ec9918d": {
+                  "dc:title": "Navigation",
+                  "repo:modifyDate": "2020-01-16T15:15:30Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/templating/navigation.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-e628106fe1",
+              "path": "/content/core-components-examples/library/templating/language-navigation/language-structure/us/en/language-navigation",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1559807944878,
+              "description": "Display a language switcher",
+              "url": "/content/core-components-examples/library/templating/language-navigation/language-structure/us/en/language-navigation.html",
+              "title": "Language Navigation",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-e628106fe1": {
+                  "dc:title": "Language Navigation",
+                  "repo:modifyDate": "2020-01-16T15:15:29Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/templating/language-navigation/language-structure/us/en/language-navigation.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-35671d6884",
+              "path": "/content/core-components-examples/library/templating/breadcrumb/hidden/level-1/level-2/breadcrumb",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1558607623701,
+              "description": "Display a breadcrumb navigation",
+              "url": "/content/core-components-examples/library/templating/breadcrumb/hidden/level-1/level-2/breadcrumb.html",
+              "title": "Breadcrumb",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-35671d6884": {
+                  "dc:title": "Breadcrumb",
+                  "xdm:linkURL": "/content/core-components-examples/library/templating/breadcrumb/hidden/level-1/level-2/breadcrumb.html",
+                  "@type": "foundation/components/redirect"
+                }
+              },
+              ":type": "foundation/components/redirect"
+            }
+          ],
+          "level": 2,
+          "active": true,
+          "lastModified": 1544121656470,
+          "url": "/content/core-components-examples/library/templating.html",
+          "title": "Templating",
+          "dataLayer": {
+            "navigation-5a057c20a4-item-1d32a567a9": {
+              "dc:title": "Templating",
+              "xdm:linkURL": "/content/core-components-examples/library/templating.html",
+              "@type": "foundation/components/redirect"
+            }
+          },
+          ":type": "foundation/components/redirect"
+        },
+        {
+          "id": "navigation-5a057c20a4-item-a0e12c193c",
+          "path": "/content/core-components-examples/library/page-authoring",
+          "children": [{
+              "id": "navigation-5a057c20a4-item-df1699a779",
+              "path": "/content/core-components-examples/library/page-authoring/title",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1588167941487,
+              "description": "Display a page heading",
+              "url": "/content/core-components-examples/library/page-authoring/title.html",
+              "title": "Title",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-df1699a779": {
+                  "dc:title": "Title",
+                  "repo:modifyDate": "2020-01-16T15:15:41Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/title.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-e13089bf3b",
+              "path": "/content/core-components-examples/library/page-authoring/text",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1548159422163,
+              "description": "Display a rich text paragraph",
+              "url": "/content/core-components-examples/library/page-authoring/text.html",
+              "title": "Text",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-e13089bf3b": {
+                  "dc:title": "Text",
+                  "repo:modifyDate": "2020-01-16T15:15:42Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/text.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-26f940ec0f",
+              "path": "/content/core-components-examples/library/page-authoring/image",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1550255022224,
+              "description": "Display an image asset",
+              "url": "/content/core-components-examples/library/page-authoring/image.html",
+              "title": "Image",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-26f940ec0f": {
+                  "dc:title": "Image",
+                  "repo:modifyDate": "2020-01-16T15:15:34Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/image.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-5ce5bb112c",
+              "path": "/content/core-components-examples/library/page-authoring/button",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1547062227177,
+              "description": "Display a button or anchor button",
+              "url": "/content/core-components-examples/library/page-authoring/button.html",
+              "title": "Button",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-5ce5bb112c": {
+                  "dc:title": "Button",
+                  "repo:modifyDate": "2020-01-16T15:15:37Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/button.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-bd937d6b13",
+              "path": "/content/core-components-examples/library/page-authoring/teaser",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1575799718587,
+              "description": "Link an image and text",
+              "url": "/content/core-components-examples/library/page-authoring/teaser.html",
+              "title": "Teaser",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-bd937d6b13": {
+                  "dc:title": "Teaser",
+                  "repo:modifyDate": "2020-01-16T15:15:32Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/teaser.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-d911db0f45",
+              "path": "/content/core-components-examples/library/page-authoring/download",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1558992253683,
+              "description": "Display an asset for download",
+              "url": "/content/core-components-examples/library/page-authoring/download.html",
+              "title": "Download",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-d911db0f45": {
+                  "dc:title": "Download",
+                  "repo:modifyDate": "2020-01-16T15:15:36Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/download.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-da73ac8b3b",
+              "path": "/content/core-components-examples/library/page-authoring/list",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1547642282466,
+              "description": "Display a list of pages",
+              "url": "/content/core-components-examples/library/page-authoring/list.html",
+              "title": "List",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-da73ac8b3b": {
+                  "dc:title": "List",
+                  "repo:modifyDate": "2020-01-16T15:15:40Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/list.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-849883059f",
+              "path": "/content/core-components-examples/library/page-authoring/experience-fragment",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1566294323252,
+              "description": "Display an experience fragment",
+              "url": "/content/core-components-examples/library/page-authoring/experience-fragment.html",
+              "title": "Experience Fragment",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-849883059f": {
+                  "dc:title": "Experience Fragment",
+                  "repo:modifyDate": "2020-01-16T15:15:39Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/experience-fragment.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-12f115629d",
+              "path": "/content/core-components-examples/library/page-authoring/content-fragment",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1547644839952,
+              "description": "Display a content fragment asset",
+              "url": "/content/core-components-examples/library/page-authoring/content-fragment.html",
+              "title": "Content Fragment",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-12f115629d": {
+                  "dc:title": "Content Fragment",
+                  "repo:modifyDate": "2020-01-16T15:15:38Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/content-fragment.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-f48a790a96",
+              "path": "/content/core-components-examples/library/page-authoring/content-fragment-list",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1554130037469,
+              "description": "Display a list of content fragments",
+              "url": "/content/core-components-examples/library/page-authoring/content-fragment-list.html",
+              "title": "Content Fragment List",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-f48a790a96": {
+                  "dc:title": "Content Fragment List",
+                  "repo:modifyDate": "2020-01-16T15:15:43Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/content-fragment-list.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-12fc929c8a",
+              "path": "/content/core-components-examples/library/page-authoring/embed",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1567092519658,
+              "description": "Embed a third-party widget",
+              "url": "/content/core-components-examples/library/page-authoring/embed.html",
+              "title": "Embed",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-12fc929c8a": {
+                  "dc:title": "Embed",
+                  "repo:modifyDate": "2020-01-16T15:15:41Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/embed.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-9f8160f4bd",
+              "path": "/content/core-components-examples/library/page-authoring/pdf-viewer",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1594988947598,
+              "description": "Embed a PDF Viewer widget to display Document Cloud PDF's",
+              "url": "/content/core-components-examples/library/page-authoring/pdf-viewer.html",
+              "title": "PDF Viewer",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-9f8160f4bd": {
+                  "dc:title": "PDF Viewer",
+                  "repo:modifyDate": "2020-06-18T11:25:34Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/pdf-viewer.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-5cc306b231",
+              "path": "/content/core-components-examples/library/page-authoring/progressbar",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1594989098927,
+              "description": "Display a progress indicator",
+              "url": "/content/core-components-examples/library/page-authoring/progressbar.html",
+              "title": "Progress Bar",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-5cc306b231": {
+                  "dc:title": "Progress Bar",
+                  "repo:modifyDate": "2020-05-29T15:04:39Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/progressbar.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-db5309eae3",
+              "path": "/content/core-components-examples/library/page-authoring/social-sharing",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1547062206375,
+              "description": "Add social sharing links",
+              "url": "/content/core-components-examples/library/page-authoring/social-sharing.html",
+              "title": "Social Sharing",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-db5309eae3": {
+                  "dc:title": "Social Sharing",
+                  "repo:modifyDate": "2020-01-16T15:15:42Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/social-sharing.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-611486886f",
+              "path": "/content/core-components-examples/library/page-authoring/separator",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1547062195738,
+              "description": "Display a section divider",
+              "url": "/content/core-components-examples/library/page-authoring/separator.html",
+              "title": "Separator",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-611486886f": {
+                  "dc:title": "Separator",
+                  "repo:modifyDate": "2020-01-16T15:15:41Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/page-authoring/separator.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            }
+          ],
+          "level": 2,
+          "active": false,
+          "lastModified": 1586771321174,
+          "url": "/content/core-components-examples/library/page-authoring.html",
+          "title": "Page Authoring",
+          "dataLayer": {
+            "navigation-5a057c20a4-item-a0e12c193c": {
+              "dc:title": "Page Authoring",
+              "xdm:linkURL": "/content/core-components-examples/library/page-authoring.html",
+              "@type": "foundation/components/redirect"
+            }
+          },
+          ":type": "foundation/components/redirect"
+        },
+        {
+          "id": "navigation-5a057c20a4-item-a66590213e",
+          "path": "/content/core-components-examples/library/container",
+          "children": [{
+              "id": "navigation-5a057c20a4-item-9caf5e2f9d",
+              "path": "/content/core-components-examples/library/container/container",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1560275793712,
+              "description": "Group and layout components",
+              "url": "/content/core-components-examples/library/container/container.html",
+              "title": "Container",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-9caf5e2f9d": {
+                  "dc:title": "Container",
+                  "repo:modifyDate": "2020-01-16T15:15:27Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/container/container.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-b0a08e7237",
+              "path": "/content/core-components-examples/library/container/carousel",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1550252345916,
+              "description": "Cycle through content panels",
+              "url": "/content/core-components-examples/library/container/carousel.html",
+              "title": "Carousel",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-b0a08e7237": {
+                  "dc:title": "Carousel",
+                  "repo:modifyDate": "2020-01-16T15:15:28Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/container/carousel.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-7672511d00",
+              "path": "/content/core-components-examples/library/container/tabs",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1548157896096,
+              "description": "Switchable content panels",
+              "url": "/content/core-components-examples/library/container/tabs.html",
+              "title": "Tabs",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-7672511d00": {
+                  "dc:title": "Tabs",
+                  "repo:modifyDate": "2020-01-16T15:15:28Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/container/tabs.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-b4c899a5ef",
+              "path": "/content/core-components-examples/library/container/accordion",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1548157896096,
+              "description": "Toggle panels of related content",
+              "url": "/content/core-components-examples/library/container/accordion.html",
+              "title": "Accordion",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-b4c899a5ef": {
+                  "dc:title": "Accordion",
+                  "repo:modifyDate": "2020-01-16T15:15:27Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/container/accordion.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            }
+          ],
+          "level": 2,
+          "active": false,
+          "lastModified": 1544121656470,
+          "url": "/content/core-components-examples/library/container.html",
+          "title": "Container",
+          "dataLayer": {
+            "navigation-5a057c20a4-item-a66590213e": {
+              "dc:title": "Container",
+              "xdm:linkURL": "/content/core-components-examples/library/container.html",
+              "@type": "foundation/components/redirect"
+            }
+          },
+          ":type": "foundation/components/redirect"
+        },
+        {
+          "id": "navigation-5a057c20a4-item-e0564bed01",
+          "path": "/content/core-components-examples/library/form",
+          "children": [{
+              "id": "navigation-5a057c20a4-item-4f978b47d0",
+              "path": "/content/core-components-examples/library/form/container",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1576771730790,
+              "description": "Group and Layout Form Components",
+              "url": "/content/core-components-examples/library/form/container.html",
+              "title": "Container",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-4f978b47d0": {
+                  "dc:title": "Container",
+                  "repo:modifyDate": "2020-03-13T18:39:28Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/form/container.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-e01425b0b2",
+              "path": "/content/core-components-examples/library/form/input",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1576767461500,
+              "description": "Display an input field",
+              "url": "/content/core-components-examples/library/form/input.html",
+              "title": "Input",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-e01425b0b2": {
+                  "dc:title": "Input",
+                  "repo:modifyDate": "2020-03-13T18:39:29Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/form/input.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-6e625a09fd",
+              "path": "/content/core-components-examples/library/form/options",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1579192036788,
+              "description": "Display different options to choose from",
+              "url": "/content/core-components-examples/library/form/options.html",
+              "title": "Options",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-6e625a09fd": {
+                  "dc:title": "Options",
+                  "repo:modifyDate": "2020-03-13T18:39:29Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/form/options.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-ac38626e6c",
+              "path": "/content/core-components-examples/library/form/hidden",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1576771327704,
+              "description": "Hidden Form Component ",
+              "url": "/content/core-components-examples/library/form/hidden.html",
+              "title": "Hidden",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-ac38626e6c": {
+                  "dc:title": "Hidden",
+                  "repo:modifyDate": "2020-03-13T18:39:29Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/form/hidden.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-eaedd4ea75",
+              "path": "/content/core-components-examples/library/form/button",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1576770945395,
+              "description": "Display a form button",
+              "url": "/content/core-components-examples/library/form/button.html",
+              "title": "Button",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-eaedd4ea75": {
+                  "dc:title": "Button",
+                  "repo:modifyDate": "2020-03-13T18:39:28Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/form/button.html",
+                  "@type": "core-components-examples/components/page"
+                }
+              },
+              ":type": "core-components-examples/components/page"
+            }
+          ],
+          "level": 2,
+          "active": false,
+          "lastModified": 1544121656470,
+          "url": "/content/core-components-examples/library/form.html",
+          "title": "Form",
+          "dataLayer": {
+            "navigation-5a057c20a4-item-e0564bed01": {
+              "dc:title": "Form",
+              "xdm:linkURL": "/content/core-components-examples/library/form.html",
+              "@type": "foundation/components/redirect"
+            }
+          },
+          ":type": "foundation/components/redirect"
+        },
+        {
+          "id": "navigation-5a057c20a4-item-9ab3d0177f",
+          "path": "/content/core-components-examples/library/commerce",
+          "children": [{
+              "id": "navigation-5a057c20a4-item-0dea1ff70e",
+              "path": "/content/core-components-examples/library/commerce/product",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1594812339732,
+              "description": "Display commerce product data",
+              "url": "/content/core-components-examples/library/commerce/product.html",
+              "title": "Product",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-0dea1ff70e": {
+                  "dc:title": "Product",
+                  "repo:modifyDate": "2020-10-28T08:41:01Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/commerce/product.html",
+                  "@type": "cif-components-examples/components/page"
+                }
+              },
+              ":type": "cif-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-3253e121af",
+              "path": "/content/core-components-examples/library/commerce/productteaser",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1589287548065,
+              "description": "Display commerce product teaser",
+              "url": "/content/core-components-examples/library/commerce/productteaser.html",
+              "title": "Product Teaser",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-3253e121af": {
+                  "dc:title": "Product Teaser",
+                  "repo:modifyDate": "2020-10-28T08:41:01Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/commerce/productteaser.html",
+                  "@type": "cif-components-examples/components/page"
+                }
+              },
+              ":type": "cif-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-a951b11a6c",
+              "path": "/content/core-components-examples/library/commerce/productcarousel",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1589359153015,
+              "description": "Display commerce product carousel",
+              "url": "/content/core-components-examples/library/commerce/productcarousel.html",
+              "title": "Product Carousel",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-a951b11a6c": {
+                  "dc:title": "Product Carousel",
+                  "repo:modifyDate": "2020-10-28T08:41:01Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/commerce/productcarousel.html",
+                  "@type": "cif-components-examples/components/page"
+                }
+              },
+              ":type": "cif-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-9e0a26222d",
+              "path": "/content/core-components-examples/library/commerce/relatedproducts",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1589807057713,
+              "description": "Display commerce related products",
+              "url": "/content/core-components-examples/library/commerce/relatedproducts.html",
+              "title": "Related Products",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-9e0a26222d": {
+                  "dc:title": "Related Products",
+                  "repo:modifyDate": "2020-10-28T08:41:01Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/commerce/relatedproducts.html",
+                  "@type": "cif-components-examples/components/page"
+                }
+              },
+              ":type": "cif-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-b907503750",
+              "path": "/content/core-components-examples/library/commerce/productlist",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1594813518109,
+              "description": "Display commerce products",
+              "url": "/content/core-components-examples/library/commerce/productlist.html",
+              "title": "Product List",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-b907503750": {
+                  "dc:title": "Product List",
+                  "repo:modifyDate": "2020-10-28T08:41:01Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/commerce/productlist.html",
+                  "@type": "cif-components-examples/components/page"
+                }
+              },
+              ":type": "cif-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-d2f34340dd",
+              "path": "/content/core-components-examples/library/commerce/search",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1591263295649,
+              "description": "Display commerce products search results",
+              "url": "/content/core-components-examples/library/commerce/search.html",
+              "title": "Search",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-d2f34340dd": {
+                  "dc:title": "Search",
+                  "repo:modifyDate": "2020-10-28T08:41:01Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/commerce/search.html",
+                  "@type": "cif-components-examples/components/page"
+                }
+              },
+              ":type": "cif-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-7ca4f389fe",
+              "path": "/content/core-components-examples/library/commerce/featuredcategorylist",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1591169014274,
+              "description": "Display a list of categories",
+              "url": "/content/core-components-examples/library/commerce/featuredcategorylist.html",
+              "title": "Featured Category List",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-7ca4f389fe": {
+                  "dc:title": "Featured Category List",
+                  "repo:modifyDate": "2020-10-28T08:41:01Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/commerce/featuredcategorylist.html",
+                  "@type": "cif-components-examples/components/page"
+                }
+              },
+              ":type": "cif-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-af0aa43138",
+              "path": "/content/core-components-examples/library/commerce/teaser",
+              "children": [],
+              "level": 3,
+              "active": false,
+              "lastModified": 1591105012839,
+              "description": "Display teaser content",
+              "url": "/content/core-components-examples/library/commerce/teaser.html",
+              "title": "Teaser",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-af0aa43138": {
+                  "dc:title": "Teaser",
+                  "repo:modifyDate": "2020-10-28T08:41:01Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/commerce/teaser.html",
+                  "@type": "cif-components-examples/components/page"
+                }
+              },
+              ":type": "cif-components-examples/components/page"
+            },
+            {
+              "id": "navigation-5a057c20a4-item-98fa786e24",
+              "path": "/content/core-components-examples/library/commerce/navigation",
+              "children": [{
+                "id": "navigation-5a057c20a4-item-5ecc840b3f",
+                "path": "/content/core-components-examples/library/commerce/navigation/catalogpage",
+                "children": [],
+                "level": 4,
+                "active": false,
+                "lastModified": 1555500128497,
+                "url": "/content/core-components-examples/library/commerce/navigation/catalogpage.html",
+                "title": "Catalog Page",
+                "dataLayer": {
+                  "navigation-5a057c20a4-item-5ecc840b3f": {
+                    "dc:title": "Catalog Page",
+                    "repo:modifyDate": "2020-10-28T08:41:01Z",
+                    "xdm:linkURL": "/content/core-components-examples/library/commerce/navigation/catalogpage.html",
+                    "@type": "cif-components-examples/components/catalogpage"
+                  }
+                },
+                ":type": "cif-components-examples/components/catalogpage"
+              }],
+              "level": 3,
+              "active": false,
+              "lastModified": 1591190630847,
+              "description": "Display the site navigation menu",
+              "url": "/content/core-components-examples/library/commerce/navigation.html",
+              "title": "Navigation",
+              "dataLayer": {
+                "navigation-5a057c20a4-item-98fa786e24": {
+                  "dc:title": "Navigation",
+                  "repo:modifyDate": "2020-10-28T08:41:01Z",
+                  "xdm:linkURL": "/content/core-components-examples/library/commerce/navigation.html",
+                  "@type": "cif-components-examples/components/page"
+                }
+              },
+              ":type": "cif-components-examples/components/page"
+            }
+          ],
+          "level": 2,
+          "active": false,
+          "lastModified": 1544121656470,
+          "url": "/content/core-components-examples/library/commerce.html",
+          "title": "Commerce",
+          "dataLayer": {
+            "navigation-5a057c20a4-item-9ab3d0177f": {
+              "dc:title": "Commerce",
+              "xdm:linkURL": "/content/core-components-examples/library/commerce.html",
+              "@type": "foundation/components/redirect"
+            }
+          },
+          ":type": "foundation/components/redirect"
+        }
+      ],
+      "level": 1,
+      "active": true,
+      "lastModified": 1590161225662,
+      "description": "AEM Core Components - Component Library",
+      "url": "/content/core-components-examples/library.html",
+      "title": "Component Library",
+      "dataLayer": {
+        "navigation-5a057c20a4-item-9bee4d4454": {
+          "dc:title": "Component Library",
+          "repo:modifyDate": "2019-12-20T18:35:24Z",
+          "xdm:linkURL": "/content/core-components-examples/library.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    }],
+    "level": 0,
+    "active": true,
+    "lastModified": 1544121656470,
+    "url": "/content/core-components-examples.html",
+    "title": "Core Components",
+    "dataLayer": {
+      "navigation-5a057c20a4-item-3a6bcb4e2c": {
+        "dc:title": "Core Components",
+        "xdm:linkURL": "/content/core-components-examples.html",
+        "@type": "foundation/components/redirect"
+      }
+    },
+    ":type": "foundation/components/redirect"
+  }],
+  ":type": "core/wcm/components/navigation/v1/navigation",
+  "dataLayer": {
+    "navigation-5a057c20a4": {
+      "repo:modifyDate": "2019-05-21T16:07:03Z",
+      "@type": "core/wcm/components/navigation/v1/navigation"
+    }
+  }
+}

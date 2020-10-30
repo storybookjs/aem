@@ -2,12 +2,12 @@ import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import { aemMetadata, GenericModel } from '@storybook/aem';
 
 export default {
-  title: 'AEM Text',
+  title: 'Custom/AEM Text',
   decorators: [
     withKnobs,
     aemMetadata({
       decorationTag: {
-        cssClasses: ['text','component'],
+        cssClasses: ['text', 'component'],
         tagName: 'article'
       }
     }),
@@ -22,7 +22,7 @@ export default {
 export const Text = () => {
   return {
     content: {
-      text: text('text', 'Hello, world.' ),
+      text: text('text', 'Hello, world.'),
       isRichText: boolean('isRichText', false),
     },
     resourceType: 'components/aemtext',
@@ -32,7 +32,7 @@ export const Text = () => {
 export const RichText = () => {
   return {
     content: {
-      text: text('text', '<h1>Hello, world.</h1>' ),
+      text: text('text', '<h1>Hello, world.</h1>'),
       isRichText: boolean('isRichText', true),
     },
     resourceType: 'components/aemtext',

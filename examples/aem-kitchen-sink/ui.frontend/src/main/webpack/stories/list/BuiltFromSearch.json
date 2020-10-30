@@ -1,0 +1,66 @@
+{
+  "id": "list-64bf657ac8",
+  "dateFormatString": "yyyy-MM-dd",
+  "items": [{
+      "id": "list-64bf657ac8-item-b0a08e7237",
+      "path": "/content/core-components-examples/library/container/carousel",
+      "lastModified": 1550252345916,
+      "description": "Cycle through content panels",
+      "url": "/content/core-components-examples/library/container/carousel.html",
+      "title": "Carousel",
+      "dataLayer": {
+        "list-64bf657ac8-item-b0a08e7237": {
+          "dc:title": "Carousel",
+          "repo:modifyDate": "2020-01-16T15:15:28Z",
+          "xdm:linkURL": "/content/core-components-examples/library/container/carousel.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    },
+    {
+      "id": "list-64bf657ac8-item-a951b11a6c",
+      "path": "/content/core-components-examples/library/commerce/productcarousel",
+      "lastModified": 1589359153015,
+      "description": "Display commerce product carousel",
+      "url": "/content/core-components-examples/library/commerce/productcarousel.html",
+      "title": "Product Carousel",
+      "dataLayer": {
+        "list-64bf657ac8-item-a951b11a6c": {
+          "dc:title": "Product Carousel",
+          "repo:modifyDate": "2020-10-28T08:41:01Z",
+          "xdm:linkURL": "/content/core-components-examples/library/commerce/productcarousel.html",
+          "@type": "cif-components-examples/components/page"
+        }
+      },
+      ":type": "cif-components-examples/components/page"
+    },
+    {
+      "id": "list-64bf657ac8-item-9e0a26222d",
+      "path": "/content/core-components-examples/library/commerce/relatedproducts",
+      "lastModified": 1589807057713,
+      "description": "Display commerce related products",
+      "url": "/content/core-components-examples/library/commerce/relatedproducts.html",
+      "title": "Related Products",
+      "dataLayer": {
+        "list-64bf657ac8-item-9e0a26222d": {
+          "dc:title": "Related Products",
+          "repo:modifyDate": "2020-10-28T08:41:01Z",
+          "xdm:linkURL": "/content/core-components-examples/library/commerce/relatedproducts.html",
+          "@type": "cif-components-examples/components/page"
+        }
+      },
+      ":type": "cif-components-examples/components/page"
+    }
+  ],
+  "showDescription": false,
+  "showModificationDate": false,
+  "linkItems": false,
+  ":type": "core/wcm/components/list/v2/list",
+  "dataLayer": {
+    "list-64bf657ac8": {
+      "repo:modifyDate": "2019-01-14T14:07:05Z",
+      "@type": "core/wcm/components/list/v2/list"
+    }
+  }
+}

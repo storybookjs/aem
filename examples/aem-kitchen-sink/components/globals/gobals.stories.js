@@ -3,7 +3,7 @@ import { aemMetadata } from '@storybook/aem';
 import Template from './globals.html';
 
 export default {
-  title: 'Globals',
+  title: 'Custom/Globals',
   decorators: [
     withKnobs,
   ],
@@ -12,7 +12,7 @@ export default {
 export const Globals = () => {
   return {
     content: {
-      text: text('text', 'Hello, world.' ),
+      text: text('text', 'Hello, world.'),
     },
     template: Template,
   };

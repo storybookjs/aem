@@ -5,12 +5,12 @@ import PersonTemplate from './person.html';
 // todo: simplify; include automatically during compilation
 
 export default {
-  title: 'Person',
+  title: 'Custom/Person',
   decorators: [
     withKnobs,
     aemMetadata({
       decorationTag: {
-        cssClasses: ['person','component'],
+        cssClasses: ['person', 'component'],
         tagName: 'article'
       }
     }),
@@ -25,8 +25,8 @@ export default {
 export const Person = () => {
   return {
     content: {
-      firstName: text('First Name', 'John' ),
-      lastName: text('Last Name', 'Doe' ),
+      firstName: text('First Name', 'John'),
+      lastName: text('Last Name', 'Doe'),
     },
     props: {
       'jcr:title': 'Person Component'

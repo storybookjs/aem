@@ -1,0 +1,83 @@
+{
+  "id": "list-88a698b7a4",
+  "dateFormatString": "yyyy-MM-dd",
+  "items": [{
+      "id": "list-88a698b7a4-item-df1699a779",
+      "path": "/content/core-components-examples/library/page-authoring/title",
+      "lastModified": 1588167941487,
+      "description": "Display a page heading",
+      "url": "/content/core-components-examples/library/page-authoring/title.html",
+      "title": "Title",
+      "dataLayer": {
+        "list-88a698b7a4-item-df1699a779": {
+          "dc:title": "Title",
+          "repo:modifyDate": "2020-01-16T15:15:41Z",
+          "xdm:linkURL": "/content/core-components-examples/library/page-authoring/title.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    },
+    {
+      "id": "list-88a698b7a4-item-e13089bf3b",
+      "path": "/content/core-components-examples/library/page-authoring/text",
+      "lastModified": 1548159422163,
+      "description": "Display a rich text paragraph",
+      "url": "/content/core-components-examples/library/page-authoring/text.html",
+      "title": "Text",
+      "dataLayer": {
+        "list-88a698b7a4-item-e13089bf3b": {
+          "dc:title": "Text",
+          "repo:modifyDate": "2020-01-16T15:15:42Z",
+          "xdm:linkURL": "/content/core-components-examples/library/page-authoring/text.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    },
+    {
+      "id": "list-88a698b7a4-item-26f940ec0f",
+      "path": "/content/core-components-examples/library/page-authoring/image",
+      "lastModified": 1550255022224,
+      "description": "Display an image asset",
+      "url": "/content/core-components-examples/library/page-authoring/image.html",
+      "title": "Image",
+      "dataLayer": {
+        "list-88a698b7a4-item-26f940ec0f": {
+          "dc:title": "Image",
+          "repo:modifyDate": "2020-01-16T15:15:34Z",
+          "xdm:linkURL": "/content/core-components-examples/library/page-authoring/image.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    },
+    {
+      "id": "list-88a698b7a4-item-5ce5bb112c",
+      "path": "/content/core-components-examples/library/page-authoring/button",
+      "lastModified": 1547062227177,
+      "description": "Display a button or anchor button",
+      "url": "/content/core-components-examples/library/page-authoring/button.html",
+      "title": "Button",
+      "dataLayer": {
+        "list-88a698b7a4-item-5ce5bb112c": {
+          "dc:title": "Button",
+          "repo:modifyDate": "2020-01-16T15:15:37Z",
+          "xdm:linkURL": "/content/core-components-examples/library/page-authoring/button.html",
+          "@type": "core-components-examples/components/page"
+        }
+      },
+      ":type": "core-components-examples/components/page"
+    }
+  ],
+  "showDescription": false,
+  "showModificationDate": false,
+  "linkItems": false,
+  ":type": "core/wcm/components/list/v2/list",
+  "dataLayer": {
+    "list-88a698b7a4": {
+      "repo:modifyDate": "2018-12-07T12:00:17Z",
+      "@type": "core/wcm/components/list/v2/list"
+    }
+  }
+}
