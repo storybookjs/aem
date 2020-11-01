@@ -24,6 +24,7 @@ module.exports = {
     'com.adobe.cq.wcm.core.components.models.Page': GenericModel,
     'com.adobe.cq.wcm.core.components.models.Search': GenericModel,
     'com.adobe.cq.wcm.core.components.models.SocialMediaHelper': GenericModel,
+    'com.adobe.cq.wcm.core.components.models.Tabs': GenericModel,
     'com.adobe.cq.wcm.core.components.models.Teaser': GenericModel,
     'com.adobe.cq.wcm.core.components.models.Text': GenericModel,
     'com.adobe.cq.wcm.core.components.models.Title': GenericModel,
