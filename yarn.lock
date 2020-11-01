@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@adobe/htlengine@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@adobe/htlengine/-/htlengine-6.2.0.tgz#a2eb79ba18ba66d48ab328b6b7c8759014a92acf"
-  integrity sha512-SLnPErpIIav0pFYrasuiWn4FL3OSSyQjKBL6Dv0GPWMufjFI5gIOu0JIWaMOtedcNTbJPssn1sEYd5d6wRFbvw==
+"@adobe/htlengine@6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@adobe/htlengine/-/htlengine-6.2.1.tgz#bf23c68c4b0e678a85ee85e04545a48033357ec1"
+  integrity sha512-yjQOo0SLowLXmCO4eS4JVRfh49AqelTYsv8RJ0CVcozUUp+RFRsAE2nvuC8d1ErsPRnciU4HWJasYH+dy6xJjA==
   dependencies:
     antlr4 "^4.7.2"
     fs-extra "^9.0.0"
