@@ -34,10 +34,12 @@ export const FullWindow = () => ({
     "containerClass": "cmp-pdfviewer__full-window",
     "reportSuiteId": "",
     ":type": "core-components-examples/components/pdfviewer",
-    "dataLayer": {
-      "pdfviewer-97a46bd902": {
-        "repo:modifyDate": "2020-04-30T00:10:55Z",
-        "@type": "core-components-examples/components/pdfviewer"
+    "data": {
+      "json": {
+        "pdfviewer-97a46bd902": {
+          "repo:modifyDate": "2020-04-30T00:10:55Z",
+          "@type": "core-components-examples/components/pdfviewer"
+        }
       }
     }
   },
@@ -47,7 +49,7 @@ export const FullWindow = () => ({
 export const SizedContainer = () => ({
   content: {
     "id": "pdfviewer-c5f6662102",
-    "documentPath": "/content/dam/core-components-examples/library/sample-assets/Bodea Brochure.pdf",
+    "documentPath": "/content/dam/core-components-examples/library/sample-assets/Bodea-Brochure.pdf",
     "type": "SIZED_CONTAINER",
     "defaultViewMode": "FIT_PAGE",
     "borderless": false,

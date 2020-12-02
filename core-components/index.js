@@ -22,6 +22,8 @@ module.exports = {
     'com.adobe.cq.wcm.core.components.models.List': GenericModel,
     'com.adobe.cq.wcm.core.components.models.Navigation': GenericModel,
     'com.adobe.cq.wcm.core.components.models.Page': GenericModel,
+    'com.adobe.cq.wcm.core.components.models.PdfViewer': GenericModel,
+    'com.adobe.cq.wcm.core.components.models.ProgressBar': GenericModel,
     'com.adobe.cq.wcm.core.components.models.Search': GenericModel,
     'com.adobe.cq.wcm.core.components.models.SocialMediaHelper': GenericModel,
     'com.adobe.cq.wcm.core.components.models.Tabs': GenericModel,
@@ -35,6 +37,6 @@ module.exports = {
   },
   components: require('./components.js'),
   includes: {
-    'core/wcm/components/commons/v1/templates.html': require('./apps/core/wcm/components/commons/v1/templates.html')
+    'core/wcm/components/commons/v1/templates.html': require('./apps/core/wcm/components/commons/v1/templates.html'),
   }
 };
