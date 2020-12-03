@@ -9,7 +9,10 @@ import { getCQTemplate } from './getCQTemplate';
 import { getConfig } from './getConfig';
 import { getDirectories } from './getDirectories';
 import { getEditDialog } from './getEditDialog';
+import { getPackageJSON } from './getPackageJSON';
 import { log } from './log';
+import { navigatePrompt } from './navigatePrompt';
+import { resourceTypePrompt } from './resourceTypePrompt';
 import { parseEditDialog } from './parseEditDialog';
 import { toCamelCase } from './toCamelCase';
 import { getLatestVersion, getInstalledVersion, checkVersion } from './versionCheck';
@@ -27,7 +30,10 @@ export {
   getConfig,
   getDirectories,
   getEditDialog,
+  getPackageJSON,
   log,
+  navigatePrompt,
+  resourceTypePrompt,
   parseEditDialog,
   toCamelCase,
   getLatestVersion,
