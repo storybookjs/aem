@@ -1,3 +1,5 @@
+### This project is noo longer supported. If you are interested in continuing this project, please let us know by creating an issue here: https://github.com/storybookjs/aem/issues
+
 <p align="center">
   <a href="https://storybook.js.org/">
     <img src="./.github/sb-aem-logo.svg" alt="Storybook AEM App Logo" width="400" height="200">
@@ -237,7 +239,5 @@ See [aem-core-components/.storybook/main.js](./examples/aem-core-components/.sto
 For more information about how to start contributing to this project, see our [contributing file](./CONTRIBUTING.md).
 
 Check out our issues here: https://github.com/storybookjs/aem/issues
-
-Join our discord here: https://discord.gg/z5pGCKQ
 
 We especially need help with figuring out the proper way to support 3rd party libraries that are defined in the POM and use Java models such as the AEM Core components. If you have any ideas about how to solve this please comment on this issue: https://github.com/storybookjs/aem/issues/45
