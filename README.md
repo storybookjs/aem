@@ -1,4 +1,4 @@
-### This project is noo longer supported. If you are interested in continuing this project, please let us know by creating an issue here: https://github.com/storybookjs/aem/issues
+### This project is no longer supported. If you are interested in continuing this project, please let us know by creating an issue here: https://github.com/storybookjs/aem/issues
 
 <p align="center">
   <a href="https://storybook.js.org/">
