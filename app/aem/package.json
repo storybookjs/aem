@@ -34,7 +34,7 @@
     "prepare": "node ../../scripts/prepare.js"
   },
   "dependencies": {
-    "@adobe/htlengine": "4.4.0",
+    "@adobe/htlengine": "6.2.0",
     "@storybook/addons": "6.0.0-alpha.2",
     "@storybook/client-api": "6.0.0-alpha.2",
     "@storybook/core": "6.0.0-alpha.2",
@@ -45,7 +45,7 @@
     "babel-loader": "^8.0.6",
     "core-js": "^3.0.1",
     "global": "^4.3.2",
-    "htl-loader": "2.1.0",
+    "htl-loader": "^3.0.2",
     "regenerator-runtime": "^0.13.3",
     "typescript": "^3.7.5",
     "webpack": "^4.42.0",
