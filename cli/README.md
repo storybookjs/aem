@@ -3,7 +3,7 @@
 Storybook AEM CLI is a command line application that is used with [@storybook/aem](https://www.npmjs.com/package/@storybook/aem). It provides useful commands that will speed up your workflow.
 
 ## Installation
-To install the Storybook AEM CLI run `npm install @storybook/aem-cli -g` from the directory with your `package.json` file. Also add it to your project as a development dependency.
+To install the Storybook AEM CLI run `npm install @storybook/aem-cli -g` from the directory with your `package.json` file. Also add it to your project as a development dependency. Run `sba init` to initialize your project.
 
 ## Commands
 There are several commands provided by the Storybook AEM CLI. You can find a list of them by running `sba` from your terminal. Or by running the `sba help` command. Ensure you are running the `sba` commands from the folder with your `package.json` file.
@@ -12,11 +12,16 @@ There are several commands provided by the Storybook AEM CLI. You can find a lis
 Usage: sba <command> <options>
 
 Commands:
+  init .................. Initializes a project for use with @storybook/aem
   story ................. Creates/Updates your component story file, Adds story definition, Creates AEM Content example
   package ............... Imports & Exports content package from AEM => Code => AEM
   help .................. Show help menu for sba
   version, v ............ Show sba version
 ```
+
+### Init
+
+The `sba init` command will initialize the `@storybook/aem` section of the package.json and create the folder structure. The `--use-defaults` option will reduce the number of questions asked. It assumes that your components already exist within the codebase.
 
 ### Story
 
@@ -32,9 +37,6 @@ Commands:
     "componentPaths": "{Array|String} The paths to the component directories",
     "storybookAEMStyleSystem": "{Boolean} Whether or not you want to use the StyleSystem plugin.",
     "storybookAEMGrid": "{Boolean} Whether or not to use the AEM grid plugin.",
-    "storybookAEMPageTemplate": "{Boolean} Whether or not to use the page template plugin.",
-    "storybookAEMConfluence": "{Boolean} Whether or not to use the Confluence plugin.",
-    "storybookAEMFoundation": "{Boolean} Whether or not to use the foundation plugin.",
     "aemContentDefaultPageResourceType": "{String} The resource type of the page to use for creating stories",
     "aemContentDefaultPageTemplate": "{String} The conf path to the page template within AEM.",
     "aemContentDefaultPageContentPath": "{String} The page content path under the jcr:root node to create the components. This should be based on the resource type of the page.",
