@@ -31,7 +31,7 @@
     "base-64": "^0.1.0",
     "chalk": "^4.0.0",
     "form-data": "^3.0.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "npm": "^6.14.4",
     "prompts": "^2.3.2",
     "unzipper": "^0.10.10",
